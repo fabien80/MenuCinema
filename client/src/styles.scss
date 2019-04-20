@@ -11,12 +11,19 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-mat-grid-tile.poster-tile.mat-grid-tile .mat-figure {
+mat-grid-tile {
+  &.poster-tile.mat-grid-tile .mat-figure {
     justify-content: flex-start !important;
     align-items: flex-start !important;
+  }
+
+  &.add-tile.mat-grid-tile .mat-figure {
+    justify-content: flex-end !important;
+    align-items: flex-start !important;
+  }
+
 }
 
-mat-grid-tile.add-tile.mat-grid-tile .mat-figure {
-  justify-content: flex-end !important;
-  align-items: flex-start !important;
-}
+
+
+
