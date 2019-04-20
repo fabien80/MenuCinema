@@ -18,12 +18,16 @@ export class MovieComponent implements OnInit {
 
     async ngOnInit() {
         if (this.movie === undefined) {
-            this.movie = await this.tmdbService.getMovie(15);
+            this.movie = await this.tmdbService.getMovie(550);
         }
         this.initPosterUrl();
     }
 
     public initPosterUrl(): void {
         this.posterUrl = `https://image.tmdb.org/t/p/w500${this.movie.poster_path}`;
+    }
+
+    public openHomepage() {
+        window.open(this.movie.homepage, '_blank');
     }
 }

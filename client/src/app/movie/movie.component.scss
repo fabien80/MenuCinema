@@ -1,0 +1,31 @@
+img {
+  height: 200px;
+  width: 200px;
+}
+
+.main {
+  display: flex;
+}
+
+mat-grid-tile {
+  .poster-div {
+    padding-left: 5%;
+    padding-top: 5%;
+    display: flex;
+  }
+
+  .add-div {
+    align-items: center;
+  }
+}
+
+p.overview-text {
+    border: solid 1px black;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+h2.overview-title {
+  margin-left: 50%;
+}
+

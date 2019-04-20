@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~css-star-rating/scss/star-rating';
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-grid-tile.poster-tile.mat-grid-tile .mat-figure {
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+}
+
+mat-grid-tile.add-tile.mat-grid-tile .mat-figure {
+  justify-content: flex-end !important;
+  align-items: flex-start !important;
+}
