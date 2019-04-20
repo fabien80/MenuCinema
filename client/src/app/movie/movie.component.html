@@ -1,12 +1,12 @@
 <div *ngIf="movie != undefined">
-    <mat-grid-list cols="2" rowHeight="300px">
+    <mat-grid-list cols="2">
         <mat-grid-tile class="poster-tile">
             <div class="poster-div">
                 <div>
                     <img [src]="posterUrl" alt="poster">
                 </div>
-                <div>
-                    <h1 class="mat-h1">{{movie.title}}</h1>
+                <div class="movie-info-div">
+                    <h1 class="mat-h1 movie-title" >{{movie.title}}</h1>
                     <mat-chip-list>
                         <mat-chip
                                 *ngFor="let genre of movie.genres"
@@ -16,14 +16,14 @@
                             {{genre.name}}
                         </mat-chip>
                     </mat-chip-list>
-                    <button mat-button (click)="openHomepage()" >Go to Homepage</button>
+                    <button mat-button class="homepage-button" (click)="openHomepage()" >Go to Homepage</button>
                 </div>
             </div>
         </mat-grid-tile>
         <mat-grid-tile class="add-tile">
             <div class="add-div">
                 <div>
-                    <button mat-button>Add to command</button>
+                    <button class="add-button" mat-button>Add to command</button>
                 </div>
                 <div>
                     <star-rating [starType]="'svg'"
