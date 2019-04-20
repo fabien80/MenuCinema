@@ -1,0 +1,47 @@
+img {
+}
+
+.main {
+  display: flex;
+}
+
+h1.movie-title {
+  font-size: 300%;
+}
+
+button.add-button {
+  margin-top: 10px;
+}
+
+button.homepage-button {
+  text-align: left;
+}
+
+div.movie-info-div {
+  padding-left: 20px;
+
+}
+
+mat-grid-tile {
+  .poster-div {
+    margin-left: 2%;
+    margin-top: 2%;
+    display: flex;
+  }
+
+  .add-div {
+    align-items: center;
+  }
+}
+
+p.overview-text {
+  text-align: justify;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-bottom: 50px;
+}
+
+h2.overview-title {
+  margin-left: 50%;
+}
+

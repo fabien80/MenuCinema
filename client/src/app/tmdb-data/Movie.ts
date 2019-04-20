@@ -27,7 +27,7 @@ export interface SpokenLanguage {
 export interface MovieResponse {
   adult?: boolean;
   backdrop_path?: string;
-  belongs_to_collection?: Object;
+  belongs_to_collection?: object;
   budget?: number;
   genres?: MovieGenre[];
   homepage?: string;
