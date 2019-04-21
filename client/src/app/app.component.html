@@ -7,6 +7,10 @@
     </button>
 
 </mat-toolbar>
-<app-film></app-film>
-
+<ul>
+    <li class="text" *ngFor="let item of items | async">
+        {{item.name}}
+    </li>
+</ul>
+<firebase-ui></firebase-ui>
 <router-outlet></router-outlet>
