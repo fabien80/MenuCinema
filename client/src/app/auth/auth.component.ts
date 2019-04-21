@@ -21,7 +21,7 @@ export class AuthComponent implements OnInit {
     }
 
     public signInSuccessWithAuthResult() {
-        this.router.navigate(['/']);
+        this.router.navigate(['/homepage']);
     }
 
 }
