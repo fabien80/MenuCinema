@@ -23,6 +23,8 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {firebase, firebaseui, FirebaseUIModule} from 'firebaseui-angular';
 import {AngularFirestore} from '@angular/fire/firestore';
+import {Routes} from '@angular/router';
+import { AuthComponent } from './auth/auth.component';
 
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
@@ -58,7 +60,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
 @NgModule({
     declarations: [
         AppComponent,
-        MovieComponent
+        MovieComponent,
+        AuthComponent
     ],
     imports: [
         BrowserModule,

@@ -4,6 +4,7 @@ import {MovieResponse} from './tmdb-data/Movie';
 import {environment} from '../environments/environment';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 // Je suis passé par l'itération 0...
 @Component({
@@ -13,11 +14,12 @@ import {Observable} from 'rxjs';
 })
 export class AppComponent {
     pFilm: MovieResponse;
-    items: Observable<any[]>;
 
-    constructor(private tmdb: TmdbService, private db: AngularFirestore) {
+    constructor(private tmdb: TmdbService, private angularFireAuth: AngularFireAuth) {
         this.init();
-        this.items = db.collection('items').valueChanges();
+        angularFireAuth.authState.subscribe((value => {
+            console.log(value);
+        }));
     }
 
     async init() {
