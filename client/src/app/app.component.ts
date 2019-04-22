@@ -14,6 +14,7 @@ import {Observable} from 'rxjs';
 export class AppComponent {
     pFilm: MovieResponse;
     items: Observable<any[]>;
+    searchValue = 'aaa';
 
     constructor(private tmdb: TmdbService, private db: AngularFirestore) {
         this.init();
@@ -27,6 +28,11 @@ export class AppComponent {
 
     get film(): MovieResponse {
         return this.pFilm;
+    }
+
+    test(value: string) {
+        console.log(value);
+        console.log(this.searchValue);
     }
 
 }
