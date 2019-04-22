@@ -5,12 +5,9 @@
     <button mat-button>
         <mat-icon>shopping_cart</mat-icon>
     </button>
-
 </mat-toolbar>
-<ul>
-    <li class="text" *ngFor="let item of items | async">
-        {{item.name}}
-    </li>
-</ul>
-<firebase-ui></firebase-ui>
+
+<app-search-bar [searchValue]="searchValue" (searchEvent)="searchValue = $event" ></app-search-bar>
+{{searchValue}}
+
 <router-outlet></router-outlet>
