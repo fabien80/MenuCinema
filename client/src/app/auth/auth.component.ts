@@ -21,6 +21,7 @@ export class AuthComponent implements OnInit {
     }
 
     public signInSuccessWithAuthResult() {
+        console.log('ici');
         this.router.navigate(['/homepage']);
     }
 
