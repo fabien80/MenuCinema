@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {TmdbService} from './tmdb.service';
@@ -8,12 +7,12 @@ import {HttpClientModule} from '@angular/common/http';
 import {MovieComponent} from './movie/movie.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-    MatButtonModule,
+    MatButtonModule, MatButtonToggleModule,
     MatCardModule,
     MatChipsModule,
     MatFormFieldModule,
     MatGridListModule, MatIconModule,
-    MatInputModule,
+    MatInputModule, MatTableModule,
     MatToolbarModule
 } from '@angular/material';
 import {StarRatingModule} from 'angular-star-rating';
@@ -23,8 +22,8 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {firebase, firebaseui, FirebaseUIModule} from 'firebaseui-angular';
 import {AngularFirestore} from '@angular/fire/firestore';
-import { SearchBarComponent } from './search-bar/search-bar.component';
-
+import {SearchBarComponent} from './search-bar/search-bar.component';
+import {HomeComponent} from './home/home.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
     signInFlow: 'popup',
@@ -60,7 +59,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     declarations: [
         AppComponent,
         MovieComponent,
-        SearchBarComponent
+        SearchBarComponent,
+        HomeComponent
     ],
     imports: [
         BrowserModule,
@@ -80,7 +80,9 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
         AngularFireDatabaseModule,
-        FirebaseUIModule.forRoot(firebaseUiAuthConfig)
+        FirebaseUIModule.forRoot(firebaseUiAuthConfig),
+        MatTableModule,
+        MatButtonToggleModule
     ],
     providers: [TmdbService, AngularFirestore],
     bootstrap: [AppComponent]
