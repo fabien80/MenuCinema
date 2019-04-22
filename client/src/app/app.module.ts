@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {TmdbService} from './tmdb.service';
@@ -8,12 +7,12 @@ import {HttpClientModule} from '@angular/common/http';
 import {MovieComponent} from './movie/movie.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-    MatButtonModule,
+    MatButtonModule, MatButtonToggleModule,
     MatCardModule,
     MatChipsModule,
     MatFormFieldModule,
     MatGridListModule, MatIconModule,
-    MatInputModule,
+    MatInputModule, MatTableModule,
     MatToolbarModule
 } from '@angular/material';
 import {StarRatingModule} from 'angular-star-rating';
@@ -36,6 +35,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
         AppComponent,
         SearchBarComponent
         MovieComponent,
+        HomeComponent
     ],
     imports: [
         BrowserModule,
