@@ -25,6 +25,7 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {Routes} from '@angular/router';
 import {AuthComponent} from './auth/auth.component';
 import {HomeComponent} from './home/home.component';
+import { MovieTableComponent } from './movie/movie-table/movie-table.component';
 import {AuthRoutingModule} from './auth/auth-routing.module';
 import {AuthModule} from './auth/auth.module';
 import { SearchBarComponent } from './search-bar/search-bar.component';
@@ -35,7 +36,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
         AppComponent,
         SearchBarComponent
         MovieComponent,
-        HomeComponent
+        MovieTableComponent
     ],
     imports: [
         BrowserModule,
