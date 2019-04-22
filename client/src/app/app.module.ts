@@ -24,6 +24,7 @@ import {firebase, firebaseui, FirebaseUIModule} from 'firebaseui-angular';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {SearchBarComponent} from './search-bar/search-bar.component';
 import {HomeComponent} from './home/home.component';
+import { MovieTableComponent } from './movie/movie-table/movie-table.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
     signInFlow: 'popup',
@@ -60,7 +61,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
         AppComponent,
         MovieComponent,
         SearchBarComponent,
-        HomeComponent
+        HomeComponent,
+        MovieTableComponent
     ],
     imports: [
         BrowserModule,
