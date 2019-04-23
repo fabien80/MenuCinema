@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
     private searchType: SearchEnum;
     private selectedTab = 1;
 
+
     constructor(private tmdbService: TmdbService) {
     }
 
