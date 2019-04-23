@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges} from '@angular/core';
-import {SearchMovieQuery, SearchMovieResponse} from '../../tmdb-data/searchMovie';
+import {MovieResult, SearchMovieQuery, SearchMovieResponse} from '../../tmdb-data/searchMovie';
 import {SearchEnum} from '../../enum/SearchEnum';
 import {TmdbService} from '../../tmdb.service';
 
@@ -12,7 +12,8 @@ export class MovieTableComponent implements OnInit, OnChanges {
     @Input() searchMovieResponse: SearchMovieResponse;
     @Input() searchString;
     private selectedTab = 1;
-
+    private sortName = false;
+    private sortScore = false;
 
     constructor(private tmdbService: TmdbService) {
     }
@@ -75,4 +76,32 @@ export class MovieTableComponent implements OnInit, OnChanges {
     }
 
 
+    sortWithName() {
+        this.searchMovieResponse.results.sort((a: MovieResult, b: MovieResult) => {
+            let res: number;
+            if (this.sortName) {
+                res = ('' + b.title).localeCompare(a.title);
+
+            } else {
+                res = ('' + a.title).localeCompare(b.title);
+            }
+            return res;
+
+        });
+        this.sortName = !this.sortName;
+    }
+
+    sortWithScore() {
+        this.searchMovieResponse.results.sort((a: MovieResult, b: MovieResult) => {
+            let res: number;
+            if (this.sortScore) {
+                res = a.vote_average - b.vote_average;
+            } else {
+                res = b.vote_average - a.vote_average;
+            }
+            return res;
+
+        });
+        this.sortScore = !this.sortScore;
+    }
 }
