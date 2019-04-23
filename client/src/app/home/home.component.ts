@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
         if (query !== '') {
             const searchMovie: SearchMovieQuery = {
                 query,
-                region: 'fr-FR',
+                region: 'fr',
                 page
             };
             this.tmdbService.searchMovie(searchMovie).then((response: SearchMovieResponse) => {
