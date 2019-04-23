@@ -1,13 +1,16 @@
-import {Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {MovieResult, SearchMovieQuery, SearchMovieResponse} from '../../tmdb-data/searchMovie';
-import {SearchEnum} from '../../enum/SearchEnum';
 import {TmdbService} from '../../tmdb.service';
+
+const maxPage = 1000;
+
 
 @Component({
     selector: 'app-movie-table',
     templateUrl: './movie-table.component.html',
     styleUrls: ['./movie-table.component.scss']
 })
+
 export class MovieTableComponent implements OnInit, OnChanges {
     @Input() searchMovieResponse: SearchMovieResponse;
     @Input() searchString;
@@ -19,7 +22,6 @@ export class MovieTableComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
-        this.searchMovie('a', 1);
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -41,7 +43,7 @@ export class MovieTableComponent implements OnInit, OnChanges {
     }
 
     public nextTab() {
-        if (this.selectedTab === 1000 || this.selectedTab === this.searchMovieResponse.total_pages) {
+        if (this.selectedTab === maxPage || this.selectedTab === this.searchMovieResponse.total_pages) {
             this.selectedTab = 1;
         } else {
             this.selectedTab++;
@@ -52,10 +54,10 @@ export class MovieTableComponent implements OnInit, OnChanges {
     }
 
     public lastTab() {
-        if (this.searchMovieResponse.total_pages < 1000) {
+        if (this.searchMovieResponse.total_pages < maxPage) {
             this.selectedTab = this.searchMovieResponse.total_pages;
         } else {
-            this.selectedTab = 1000;
+            this.selectedTab = maxPage;
         }
 
         this.searchMovie(this.searchString, this.selectedTab);
@@ -70,7 +72,7 @@ export class MovieTableComponent implements OnInit, OnChanges {
         if (this.selectedTab !== 1) {
             this.selectedTab--;
         } else {
-            this.selectedTab = this.searchMovieResponse.total_pages < 1000 ? this.searchMovieResponse.total_pages : 1000;
+            this.selectedTab = this.searchMovieResponse.total_pages < maxPage ? this.searchMovieResponse.total_pages : maxPage;
         }
         this.searchMovie(this.searchString, this.selectedTab);
     }

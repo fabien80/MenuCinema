@@ -5,6 +5,4 @@
         <mat-button-toggle #buttonFood value="food">Food</mat-button-toggle>
     </mat-button-toggle-group>
 </div>
-<div *ngIf="searchMovieResponse != null && movieSelected() && searchString !== ''">
-    <app-movie-table [searchString]="searchString"></app-movie-table>
-</div>
+<app-movie-table [searchString]="searchString"></app-movie-table>
