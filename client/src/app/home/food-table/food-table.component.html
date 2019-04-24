@@ -13,7 +13,7 @@
     </button>
     <label>{{selectedTab}}</label>
 </div>
-<table class="table table-striped" *ngIf="searchMovieResponse != undefined">
+<table class="table table-striped">
     <thead>
     <tr>
         <th scope="col" width="5%">
@@ -30,26 +30,19 @@
             description
         </th>
         <th scope="col" width="10%">
-            score
-            <button mat-button (click)="sortWithScore()">
+            prix
+            <button mat-button (click)="sortWithPrice()">
                 <mat-icon>sort</mat-icon>
             </button>
         </th>
     </tr>
     </thead>
-    <tbody *ngIf="searchString !== ''">
-    <tr *ngFor="let movie of searchMovieResponse.results">
-        <th scope="row">Movie</th>
-        <td>{{movie.title}}</td>
-        <td>{{movie.overview}}</td>
-        <td>
-            <star-rating
-                    [starType]="'svg'"
-                    [labelText]="'Score MovieDB'"
-                    [readOnly]="true"
-                    [rating]="movie.vote_average / 2"
-            ></star-rating>
-        </td>
+    <tbody *ngIf="searchString !== '' && searchFoodResponse != undefined">
+    <tr *ngFor="let food of searchFoodResponse.results">
+        <th scope="row">{{food.type}}</th>
+        <td>{{food.nom}}</td>
+        <td>{{food.description}}</td>
+        <td>{{food.prix}}</td>
     </tr>
     </tbody>
 </table>

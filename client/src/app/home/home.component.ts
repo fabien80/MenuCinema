@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SearchMovieQuery, SearchMovieResponse} from '../tmdb-data/searchMovie';
 import {TmdbService} from '../tmdb.service';
-import {SearchEnum} from '../enum/SearchEnum';
+import {SearchType} from '../enum/SearchType';
 
 @Component({
     selector: 'app-home',
@@ -11,7 +11,7 @@ import {SearchEnum} from '../enum/SearchEnum';
 export class HomeComponent implements OnInit {
     private _searchMovieResponse: SearchMovieResponse;
     private _searchString: string;
-    private searchType: SearchEnum;
+    private searchType: SearchType;
     private selectedTab = 1;
 
 
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
 
     public onSearch(query: string) {
         this.searchString = query;
-        if (this.searchType === SearchEnum.Movie) {
+        if (this.searchType === SearchType.Movie) {
             this.searchMovie(query, this.selectedTab);
         }
 
@@ -44,64 +44,21 @@ export class HomeComponent implements OnInit {
 
     }
 
-    public nextTab() {
-        if (this.selectedTab === 1000 || this.selectedTab === this.searchMovieResponse.total_pages) {
-            this.selectedTab = 1;
-        } else {
-            this.selectedTab++;
-        }
-
-        if (this.searchType === SearchEnum.Movie) {
-            this.searchMovie(this.searchString, this.selectedTab);
-        }
-
-    }
-
-    public lastTab() {
-        if (this.searchMovieResponse.total_pages < 1000) {
-            this.selectedTab = this.searchMovieResponse.total_pages;
-        } else {
-            this.selectedTab = 1000;
-        }
-
-        if (this.searchType === SearchEnum.Movie) {
-            this.searchMovie(this.searchString, this.selectedTab);
-        }
-    }
-
-    public firstTab() {
-        this.selectedTab = 1;
-        if (this.searchType === SearchEnum.Movie) {
-            this.searchMovie(this.searchString, this.selectedTab);
-        }
-    }
-
-    public beforeTab() {
-        if (this.selectedTab !== 1) {
-            this.selectedTab--;
-        } else {
-            this.selectedTab = this.searchMovieResponse.total_pages < 1000 ? this.searchMovieResponse.total_pages : 1000;
-        }
-        if (this.searchType === SearchEnum.Movie) {
-            this.searchMovie(this.searchString, this.selectedTab);
-        }
-    }
-
     public updateSearchType(event: any) {
         console.log(event);
-        console.log(SearchEnum.Food);
+        console.log(SearchType.Food);
         switch (event.target.textContent.toLowerCase()) {
             case 'food' :
-                this.searchType = SearchEnum.Food;
+                this.searchType = SearchType.Food;
                 break;
             case 'movie':
-                this.searchType = SearchEnum.Movie;
+                this.searchType = SearchType.Movie;
                 break;
         }
     }
 
     public movieSelected() {
-        return this.searchType === SearchEnum.Movie;
+        return this.searchType === SearchType.Movie;
     }
 
     public onSearchChange(value: string) {
@@ -123,5 +80,9 @@ export class HomeComponent implements OnInit {
 
     set searchString(value: string) {
         this._searchString = value;
+    }
+
+    foodSelected() {
+        return this.searchType === SearchType.Food;
     }
 }
