@@ -5,4 +5,5 @@
         <mat-button-toggle #buttonFood value="food">Food</mat-button-toggle>
     </mat-button-toggle-group>
 </div>
-<app-movie-table [searchString]="searchString"></app-movie-table>
+<app-movie-table *ngIf=" movieSelected()" [_searchString]="searchString"></app-movie-table>
+<app-food-table *ngIf=" foodSelected()" [_searchString]="searchString"></app-food-table>

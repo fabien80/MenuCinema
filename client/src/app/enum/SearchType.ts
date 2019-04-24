@@ -1,4 +1,4 @@
-export enum SearchEnum {
+export enum SearchType {
     Movie = 'movie',
     Food = 'food'
 }
