@@ -19,6 +19,7 @@ export class FoodService {
         const params = new HttpParams();
         params.append('page', query.page.toString());
         params.append('query', query.query);
+        params.append('nbElem', query.nbElem.toString());
         const url = `${api}/search/movie`;
         return await this.http.get(url, {params}).toPromise();
     }

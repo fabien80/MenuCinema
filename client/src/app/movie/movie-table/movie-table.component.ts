@@ -24,15 +24,28 @@ export class MovieTableComponent implements OnInit, OnChanges {
     ngOnInit() {
     }
 
+    /**
+     * A chaques changements des inputs, effectue une nouvelle recherche, se replace à la première page et remet à false les boolean de tri
+     */
     ngOnChanges(changes: SimpleChanges) {
+
+        this._selectedTab = 1;
         this.searchMovie(this._searchString, this._selectedTab);
+        this.sortName = false;
+        this.sortScore = false;
     }
 
+
+    /**
+     * Recherche d'un film en fonction d'une query et d'une page
+     * @param query : la phrase ou mot à rechercher
+     * @param page : la page selectionné
+     */
     public searchMovie(query: string, page: number) {
         if (query !== '') {
             const searchMovie: SearchMovieQuery = {
                 query,
-                region: 'fr-FR',
+                region: 'fr',
                 page
             };
             this.tmdbService.searchMovie(searchMovie).then((response: SearchMovieResponse) => {
@@ -42,6 +55,9 @@ export class MovieTableComponent implements OnInit, OnChanges {
 
     }
 
+    /**
+     * Passe à l page suivant en restant entre maxPage ou total_page et 1 (avance de façon circulaire)
+     */
     public nextTab() {
         if (this._selectedTab === maxPage || this._selectedTab === this.searchMovieResponse.total_pages) {
             this._selectedTab = 1;
@@ -53,6 +69,9 @@ export class MovieTableComponent implements OnInit, OnChanges {
 
     }
 
+    /**
+     * Se place à la denière page (page maxPage maximum)
+     */
     public lastTab() {
         if (this.searchMovieResponse.total_pages < maxPage) {
             this._selectedTab = this.searchMovieResponse.total_pages;
@@ -63,11 +82,18 @@ export class MovieTableComponent implements OnInit, OnChanges {
         this.searchMovie(this._searchString, this._selectedTab);
     }
 
+    /**
+     * Retourne à la première page (1)
+     */
     public firstTab() {
         this._selectedTab = 1;
         this.searchMovie(this._searchString, this._selectedTab);
     }
 
+
+    /**
+     * Retourne à la page d'avant, (recule de façon circulaire)
+     */
     public beforeTab() {
         if (this._selectedTab !== 1) {
             this._selectedTab--;
@@ -78,6 +104,9 @@ export class MovieTableComponent implements OnInit, OnChanges {
     }
 
 
+    /**
+     * En fonction de sortName, tri de façon asc ou desc le nom
+     */
     sortWithName() {
         this.searchMovieResponse.results.sort((a: MovieResult, b: MovieResult) => {
             let res: number;
@@ -93,6 +122,9 @@ export class MovieTableComponent implements OnInit, OnChanges {
         this.sortName = !this.sortName;
     }
 
+    /**
+     * En fonction de sortScore, tri de façon asc ou desc le score
+     */
     sortWithScore() {
         this.searchMovieResponse.results.sort((a: MovieResult, b: MovieResult) => {
             let res: number;
