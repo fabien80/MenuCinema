@@ -13,7 +13,7 @@
     </button>
     <label>{{selectedTab}}</label>
 </div>
-<table class="table table-striped" *ngIf="searchMovieResponse != undefined">
+<table class="table table-striped">
     <thead>
     <tr>
         <th scope="col" width="5%">
@@ -37,7 +37,7 @@
         </th>
     </tr>
     </thead>
-    <tbody *ngIf="searchString !== ''">
+    <tbody *ngIf="searchString !== '' && searchMovieResponse != undefined">
     <tr *ngFor="let movie of searchMovieResponse.results">
         <th scope="row">Movie</th>
         <td>{{movie.title}}</td>

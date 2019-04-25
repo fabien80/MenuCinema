@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {SearchMovieQuery, SearchMovieResponse} from '../tmdb-data/searchMovie';
-import {TmdbService} from '../tmdb.service';
 import {SearchType} from '../enum/SearchType';
 
 @Component({
@@ -9,41 +7,27 @@ import {SearchType} from '../enum/SearchType';
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-    private _searchMovieResponse: SearchMovieResponse;
     private _searchString: string;
     private searchType: SearchType;
-    private selectedTab = 1;
 
 
-    constructor(private tmdbService: TmdbService) {
+    constructor() {
     }
 
     ngOnInit() {
-        this.searchMovie('a', this.selectedTab);
     }
 
+    /**
+     * A chaque changement de recherche dans la bar de recherche, obtient la nouvelle string recherché
+     * @param query : la nouvelle string recherché
+     */
     public onSearch(query: string) {
         this.searchString = query;
-        if (this.searchType === SearchType.Movie) {
-            this.searchMovie(query, this.selectedTab);
-        }
-
     }
 
-    public searchMovie(query: string, page: number) {
-        if (query !== '') {
-            const searchMovie: SearchMovieQuery = {
-                query,
-                region: 'fr',
-                page
-            };
-            this.tmdbService.searchMovie(searchMovie).then((response: SearchMovieResponse) => {
-                this.searchMovieResponse = response;
-            });
-        }
-
-    }
-
+    /**
+     * Quand l'utilisateur clique sur un bouton movie ou food, change le searchType
+     */
     public updateSearchType(event: any) {
         console.log(event);
         console.log(SearchType.Food);
@@ -61,18 +45,6 @@ export class HomeComponent implements OnInit {
         return this.searchType === SearchType.Movie;
     }
 
-    public onSearchChange(value: string) {
-        this._searchString = value;
-    }
-
-
-    get searchMovieResponse(): SearchMovieResponse {
-        return this._searchMovieResponse;
-    }
-
-    set searchMovieResponse(value: SearchMovieResponse) {
-        this._searchMovieResponse = value;
-    }
 
     get searchString(): string {
         return this._searchString;
