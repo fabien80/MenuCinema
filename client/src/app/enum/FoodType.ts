@@ -1,4 +1,4 @@
-export enum FoodType {
+export const enum FoodType {
     Entree = 'entree',
     Plat = 'plat',
     Dessert = 'dessert',

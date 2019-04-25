@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
-import {SearchMovieQuery, SearchMovieResponse} from './tmdb-data/searchMovie';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {FoodInterface, SearchFoodQuery, SearchFoodResponse} from './interface/food';
-import {promise} from 'selenium-webdriver';
 import {FoodType} from './enum/FoodType';
 
 const api = '/api';
@@ -25,49 +23,73 @@ export class FoodService {
     }
 
     public async searchFoodMock(query: SearchFoodQuery): Promise<SearchFoodResponse> {
-        const food1: FoodInterface = {
+        const plat: FoodInterface = {
             description: 'test',
             id: 1,
             nom: 'pizza',
             prix: 6,
             type: FoodType.Plat
         };
-        const food2: FoodInterface = {
+        const dessert: FoodInterface = {
             description: 'test',
             id: 2,
-            nom: 'taco',
-            prix: 8,
-            type: FoodType.Plat
+            nom: 'glace',
+            prix: 2.50,
+            type: FoodType.Dessert
+        };
+
+        const entree: FoodInterface = {
+            description: 'test',
+            id: 3,
+            nom: 'salade',
+            prix: 3,
+            type: FoodType.Entree
+        };
+
+        const boisson: FoodInterface = {
+            description: 'test',
+            id: 4,
+            nom: 'coca',
+            prix: 2,
+            type: FoodType.Boisson
         };
         const results: FoodInterface[] = [];
+        console.log(query.foodType);
 
-        if (query.page === 1) {
-            for (let i = 0; i < 20; i++) {
-                results.push(food1);
-            }
-            return new Promise<SearchFoodResponse>(resolve => {
-                const searchFoodResponse: SearchFoodResponse = {
-                    page: query.page,
-                    results,
-                    total_pages: 2,
-                    total_results: 20
-                };
-                resolve(searchFoodResponse);
-            });
+        if (query.foodType == null) {
+            results.push(entree);
+            results.push(plat);
+            results.push(boisson);
+            results.push(dessert);
         } else {
-            for (let i = 0; i < 20; i++) {
-                results.push(food2);
+            switch (query.foodType) {
+                case FoodType.Entree:
+                    for (let i = 0; i < 10; i++) {
+                        results.push(entree);
+                    }
+
+                    break;
+                case FoodType.Plat:
+                    for (let i = 0; i < 10; i++) {
+                        results.push(plat);
+                    }
+                    break;
+                case FoodType.Dessert:
+                    for (let i = 0; i < 10; i++) {
+                        results.push(dessert);
+                    }
+                    break;
+                case FoodType.Boisson:
+                    for (let i = 0; i < 10; i++) {
+                        results.push(boisson);
+                    }
+                    break;
             }
-            return new Promise<SearchFoodResponse>(resolve => {
-                const searchFoodResponse: SearchFoodResponse = {
-                    page: query.page,
-                    results,
-                    total_pages: 2,
-                    total_results: 20
-                };
-                resolve(searchFoodResponse);
-            });
         }
+
+        return new Promise<SearchFoodResponse>((resolve, reject) => {
+            resolve({results});
+        });
 
     }
 

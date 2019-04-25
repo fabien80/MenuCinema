@@ -1,0 +1,17 @@
+<mat-tab-group>
+    <mat-tab label="Les menus">
+    </mat-tab>
+    <mat-tab label="Les entrées">
+        <app-food-list [foodType]="ENTREE"></app-food-list>
+    </mat-tab>
+    <mat-tab label="Les plats">
+        <app-food-list [foodType]="PLAT"></app-food-list>
+    </mat-tab>
+    <mat-tab label="Les desserts">
+        <app-food-list [foodType]="DESSERT"></app-food-list>
+
+    </mat-tab>
+    <mat-tab label="Les boissons">
+        <app-food-list [foodType]="BOISSON"></app-food-list>
+    </mat-tab>
+</mat-tab-group>

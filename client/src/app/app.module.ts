@@ -12,7 +12,7 @@ import {
     MatChipsModule,
     MatFormFieldModule,
     MatGridListModule, MatIconModule,
-    MatInputModule, MatTableModule,
+    MatInputModule, MatTableModule, MatTabsModule,
     MatToolbarModule
 } from '@angular/material';
 import {StarRatingModule} from 'angular-star-rating';
