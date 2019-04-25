@@ -12,7 +12,7 @@ import {
     MatChipsModule,
     MatFormFieldModule,
     MatGridListModule, MatIconModule,
-    MatInputModule, MatTableModule,
+    MatInputModule, MatTableModule, MatTabsModule,
     MatToolbarModule
 } from '@angular/material';
 import {StarRatingModule} from 'angular-star-rating';
@@ -26,6 +26,9 @@ import {SearchBarComponent} from './search-bar/search-bar.component';
 import {HomeComponent} from './home/home.component';
 import { MovieTableComponent } from './movie/movie-table/movie-table.component';
 import {FoodTableComponent} from './home/food-table/food-table.component';
+import { SelectionFoodComponent } from './selection-food/selection-food.component';
+import { FoodComponent } from './selection-food/food/food.component';
+import { FoodListComponent } from './selection-food/food-list/food-list.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
     signInFlow: 'popup',
@@ -63,7 +66,10 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
         SearchBarComponent,
         HomeComponent,
         MovieTableComponent,
-        FoodTableComponent
+        FoodTableComponent,
+        SelectionFoodComponent,
+        FoodComponent,
+        FoodListComponent
     ],
     imports: [
         BrowserModule,
@@ -85,7 +91,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
         AngularFireDatabaseModule,
         FirebaseUIModule.forRoot(firebaseUiAuthConfig),
         MatTableModule,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        MatTabsModule
     ],
     providers: [TmdbService, AngularFirestore],
     bootstrap: [AppComponent]

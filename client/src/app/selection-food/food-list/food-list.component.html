@@ -1,0 +1,10 @@
+<mat-grid-list cols="2">
+    <div>
+        <mat-grid-tile *ngFor="let foods of gridsContent" class="food-tile">
+            <div class="food-div">
+                <app-food *ngFor="let food of foods" [food]="food"></app-food>
+            </div>
+        </mat-grid-tile>
+    </div>
+
+</mat-grid-list>

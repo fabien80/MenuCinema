@@ -16,7 +16,8 @@ export interface SearchFoodResponse {
 }
 
 export interface SearchFoodQuery {
-    query: string;
-    nbElem: number;
+    query?: string;
+    nbElem?: number;
+    foodType?: FoodType;
     page?: number; // Specify which page to query. minimum: 1, default: 1
 }

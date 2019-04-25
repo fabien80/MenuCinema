@@ -1,0 +1,10 @@
+.food-div {
+  display: inline-grid;
+}
+
+mat-grid-tile.food-tile {
+  figure.mat-figure {
+    align-items: baseline !important;
+
+  }
+}
