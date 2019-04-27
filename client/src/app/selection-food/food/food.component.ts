@@ -3,7 +3,7 @@ import {FoodType} from '../../enum/FoodType';
 import {FoodService} from '../../food.service';
 import {FoodInterface, SearchFoodQuery, SearchFoodResponse} from '../../interface/food';
 import {MatDialog} from '@angular/material';
-import {AddFoodToCartComponent} from '../../dialogs/add-food-to-cart/add-food-to-cart.component';
+import {AddFoodToBasketComponent} from '../../dialogs/add-food-to-basket/add-food-to-basket.component';
 
 @Component({
     selector: 'app-food',
@@ -27,7 +27,7 @@ export class FoodComponent implements OnInit {
     }
 
     private openDialog() {
-        const dialogRef = this.dialog.open(AddFoodToCartComponent, {
+        const dialogRef = this.dialog.open(AddFoodToBasketComponent, {
             width: '250px',
             data: this.food
         });
