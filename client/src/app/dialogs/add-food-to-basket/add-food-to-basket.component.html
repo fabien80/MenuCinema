@@ -10,7 +10,7 @@
         <button class="btn btn-outline-success amount-btn" (click)="addFood()"><mat-icon>add</mat-icon></button>
     </div>
     <div class="btn-div">
-        <button class="btn btn-outline-danger cancel-btn"> Annuler</button>
-        <button class="btn btn-outline-success total-btn"> Total {{price}} €</button>
+        <button class="btn btn-outline-danger cancel-btn" (click)="close()"> Annuler</button>
+        <button class="btn btn-outline-success total-btn" (click)="addToBasket()"> Total {{price}} €</button>
     </div>
 </div>

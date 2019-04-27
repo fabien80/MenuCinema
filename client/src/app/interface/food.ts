@@ -21,3 +21,8 @@ export interface SearchFoodQuery {
     foodType?: FoodType;
     page?: number; // Specify which page to query. minimum: 1, default: 1
 }
+
+export interface FoodGroup {
+    food: FoodInterface;
+    amount: number;
+}
