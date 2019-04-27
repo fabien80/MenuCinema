@@ -60,7 +60,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     ],
     providers: [TmdbService, AngularFirestore],
     bootstrap: [AppComponent],
-    entryComponents: [AddFoodToCartComponent]
+    entryComponents: [AddFoodToBasketComponent]
 })
 export class AppModule {
 }
