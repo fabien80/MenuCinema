@@ -31,5 +31,6 @@ export class FoodComponent implements OnInit {
             width: '250px',
             data: this.food
         });
+
     }
 }

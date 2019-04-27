@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FoodInterface} from '../../interface/food';
+import {BasketService} from '../../basket/basket.service';
 
 @Component({
     selector: 'app-add-food-to-cart',
@@ -12,7 +13,8 @@ export class AddFoodToBasketComponent implements OnInit {
     private price = 0;
 
     constructor(public dialogRef: MatDialogRef<AddFoodToBasketComponent>,
-                @Inject(MAT_DIALOG_DATA) public data: FoodInterface) {
+                @Inject(MAT_DIALOG_DATA) public data: FoodInterface,
+                private basketService: BasketService) {
 
     }
 
@@ -34,5 +36,14 @@ export class AddFoodToBasketComponent implements OnInit {
     addFood() {
         this.amount++;
         this.calculatePrice();
+    }
+
+    addToBasket() {
+        this.basketService.addFoods(this.data);
+        this.dialogRef.close();
+    }
+
+    close() {
+        this.dialogRef.close();
     }
 }
