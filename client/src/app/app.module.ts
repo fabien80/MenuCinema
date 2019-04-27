@@ -9,7 +9,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
     MatButtonModule, MatButtonToggleModule,
     MatCardModule,
-    MatChipsModule,
+    MatChipsModule, MatDialogModule,
     MatFormFieldModule,
     MatGridListModule, MatIconModule,
     MatInputModule, MatTableModule, MatTabsModule,
@@ -59,7 +59,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
         AuthModule
     ],
     providers: [TmdbService, AngularFirestore],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [AddFoodToCartComponent]
 })
 export class AppModule {
 }
