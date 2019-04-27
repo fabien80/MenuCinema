@@ -4,7 +4,7 @@ import {FoodComponent} from './food/food.component';
 import {FoodListComponent} from './food-list/food-list.component';
 
 @NgModule({
-    declarations: [FoodComponent, FoodListComponent],
+    declarations: [FoodListComponent],
     imports: [
         CommonModule
     ]

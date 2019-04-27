@@ -9,7 +9,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
     MatButtonModule, MatButtonToggleModule,
     MatCardModule,
-    MatChipsModule,
+    MatChipsModule, MatDialogModule,
     MatFormFieldModule,
     MatGridListModule, MatIconModule,
     MatInputModule, MatTableModule, MatTabsModule,
@@ -29,6 +29,7 @@ import {FoodTableComponent} from './home/food-table/food-table.component';
 import { SelectionFoodComponent } from './selection-food/selection-food.component';
 import { FoodComponent } from './selection-food/food/food.component';
 import { FoodListComponent } from './selection-food/food-list/food-list.component';
+import { AddFoodToCartComponent } from './dialogs/add-food-to-cart/add-food-to-cart.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
     signInFlow: 'popup',
@@ -69,7 +70,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
         FoodTableComponent,
         SelectionFoodComponent,
         FoodComponent,
-        FoodListComponent
+        FoodListComponent,
+        AddFoodToCartComponent
     ],
     imports: [
         BrowserModule,
@@ -92,10 +94,12 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
         FirebaseUIModule.forRoot(firebaseUiAuthConfig),
         MatTableModule,
         MatButtonToggleModule,
-        MatTabsModule
+        MatTabsModule,
+        MatDialogModule
     ],
     providers: [TmdbService, AngularFirestore],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [AddFoodToCartComponent]
 })
 export class AppModule {
 }
