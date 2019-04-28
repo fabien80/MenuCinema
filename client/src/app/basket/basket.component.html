@@ -1,3 +1,29 @@
-<p>
-  basket works!
-</p>
+<div class="basket-div">
+    <div>
+        <button class="btn btn-success"> Valider mon panier</button>
+    </div>
+    <ng-container *ngFor="let foodGroup of basket.foodGroups">
+        <div class="amount-div">
+            <button class="btn btn-outline-success amount-btn" (click)="descreaseAmount(foodGroup)">
+                <mat-icon>remove</mat-icon>
+            </button>
+            {{foodGroup.amount}}
+            <button class="btn btn-outline-success amount-btn" (click)="increaseAmount(foodGroup)">
+                <mat-icon>add</mat-icon>
+            </button>
+            {{foodGroup.food.nom}}
+        </div>
+    </ng-container>
+    <ng-container *ngFor="let menuGroup of basket.menuGroups">
+        <div class="amount-div">
+            <button class="btn btn-outline-success amount-btn" (click)="descreaseAmount(menuGroup)">
+                <mat-icon>remove</mat-icon>
+            </button>
+            {{menuGroup.amount}}
+            <button class="btn btn-outline-success amount-btn" (click)="increaseAmount(menuGroup)">
+                <mat-icon>add</mat-icon>
+            </button>
+            Menu {{menuGroup.menu.id}}
+        </div>
+    </ng-container>
+</div>
