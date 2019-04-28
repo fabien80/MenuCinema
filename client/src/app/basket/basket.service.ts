@@ -17,56 +17,50 @@ export class BasketService {
         };
     }
 
-    private addFood(food: FoodInterface) {
+    private addFoodGroup(foodGroup: FoodGroup) {
         let added = false;
         let i = 0;
         while (!added && i < this.basket.foods.length) {
-            if (this.basket.foods[i].food === food) {
-                this.basket.foods[i].amount++;
+            if (this.basket.foods[i] === foodGroup) {
+                this.basket.foods[i].amount += foodGroup.amount;
                 added = true;
             }
             i++;
         }
         if (!added) {
-            this.basket.foods.push({
-                food,
-                amount: 1
-            });
+            this.basket.foods.push(foodGroup);
         }
-        this.basket.total += food.prix;
+        this.basket.total += foodGroup.food.prix * foodGroup.amount;
     }
 
-    public addFoods(...foods: FoodInterface[]) {
-        foods.forEach((food: FoodInterface) => {
-            this.addFood(food);
+    public addFoodGroups(...foodGroups: FoodGroup[]) {
+        foodGroups.forEach((foodGroup: FoodGroup) => {
+            this.addFoodGroup(foodGroup);
         });
         console.log(this.basket);
     }
 
 
-    private addMenu(menu: Menu) {
+    private addMenuGroup(menuGroup: MenuGroup) {
         let added = false;
         let i = 0;
         while (!added && i < this.basket.menus.length) {
-            if (this.basket.menus[i].menu === menu) {
-                this.basket.menus[i].amount++;
+            if (this.basket.menus[i] === menuGroup) {
+                this.basket.menus[i].amount += menuGroup.amount;
                 added = true;
             }
             i++;
         }
         if (!added) {
-            this.basket.menus.push({
-                menu,
-                amount: 1
-            });
+            this.basket.menus.push(menuGroup);
         }
 
-        this.basket.total += menu.total;
+        this.basket.total += menuGroup.menu.total * menuGroup.amount;
     }
 
-    public addMenus(...menus: Menu[]) {
-        menus.forEach((menu: Menu) => {
-            this.addMenu(menu);
+    public addMenuGroups(...menuGroups: MenuGroup[]) {
+        menuGroups.forEach((menuGroup: MenuGroup) => {
+            this.addMenuGroup(menuGroup);
         });
         console.log(this.basket);
     }

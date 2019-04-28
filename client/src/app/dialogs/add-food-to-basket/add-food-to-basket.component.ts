@@ -39,7 +39,7 @@ export class AddFoodToBasketComponent implements OnInit {
     }
 
     addToBasket() {
-        this.basketService.addFoods(this.data);
+        this.basketService.addFoodGroups({food: this.data, amount: this.amount});
         this.dialogRef.close();
     }
 
