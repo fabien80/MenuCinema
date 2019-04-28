@@ -1,13 +1,13 @@
 import {FoodInterface, FoodGroup} from './food';
 
 export interface Basket {
-    foods: FoodGroup[];
-    menus: MenuGroup[];
+    foodGroups: FoodGroup[];
+    menuGroups: MenuGroup[];
     total: number;
 }
 
 export interface Menu {
-    foods: FoodGroup[];
+    foodGroups: FoodGroup[];
     total: number;
     id: number;
 }

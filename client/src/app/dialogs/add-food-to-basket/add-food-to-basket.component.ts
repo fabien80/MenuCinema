@@ -41,15 +41,15 @@ export class AddFoodToBasketComponent implements OnInit {
 
     addToBasket() {
         const foodGroup = {food: this.data, amount: this.amount};
-        /* const menuGroup: MenuGroup = {
+        const menuGroup: MenuGroup = {
             amount: 2,
             menu: {
                 id: 1,
                 total: 20,
-                foods: [foodGroup]
+                foodGroups: [foodGroup]
             }
-        }; */
-        this.basketService.addGroups(foodGroup);
+        };
+        this.basketService.addGroups(foodGroup, menuGroup);
         this.dialogRef.close();
     }
 
