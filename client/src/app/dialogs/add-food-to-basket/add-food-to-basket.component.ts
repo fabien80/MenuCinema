@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FoodInterface} from '../../interface/food';
 import {BasketService} from '../../basket/basket.service';
+import {MenuGroup} from '../../interface/basket';
 
 @Component({
     selector: 'app-add-food-to-cart',
@@ -39,11 +40,20 @@ export class AddFoodToBasketComponent implements OnInit {
     }
 
     addToBasket() {
-        this.basketService.addFoodGroups({food: this.data, amount: this.amount});
+        const foodGroup = {food: this.data, amount: this.amount};
+        /* const menuGroup: MenuGroup = {
+            amount: 2,
+            menu: {
+                id: 1,
+                total: 20,
+                foods: [foodGroup]
+            }
+        }; */
+        this.basketService.addGroups(foodGroup);
         this.dialogRef.close();
     }
 
-    close() {
+    public close() {
         this.dialogRef.close();
     }
 }
