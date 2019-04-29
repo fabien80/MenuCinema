@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Basket, Menu, MenuGroup} from '../interface/basket';
 import {FoodInterface, FoodGroup} from '../interface/food';
-import {hasProperties} from 'codelyzer/util/astQuery';
 import {BehaviorSubject} from 'rxjs';
 
 
@@ -33,16 +32,19 @@ export class BasketService {
     public deacreaseGroupAmount(group: FoodGroup | MenuGroup) {
         const index = this.getIndexOfGroup(group);
         if ('menu' in group) {
-            if (this._basket.value.menuGroups[index].amount > 0) {
+            if (this._basket.value.menuGroups[index].amount > 1) {
                 this._basket.value.menuGroups[index].amount--;
-
+            } else {
+                this.removeGroup(group);
             }
         } else {
-            if (this._basket.value.foodGroups[index].amount > 0) {
+            if (this._basket.value.foodGroups[index].amount > 1) {
                 this._basket.value.foodGroups[index].amount--;
+            } else {
+                this.removeGroup(group);
             }
         }
-        this.basket.next(this.basket.value);
+        this.comptuteBasketTotal();
     }
 
     public increaseGrougAmount(group: FoodGroup | MenuGroup) {
@@ -52,7 +54,7 @@ export class BasketService {
         } else {
             this._basket.value.foodGroups[index].amount++;
         }
-        this.basket.next(this.basket.value);
+        this.comptuteBasketTotal();
     }
 
     private getGroupLength(group: FoodGroup | MenuGroup) {
@@ -84,34 +86,44 @@ export class BasketService {
 
     private isAtIndex(group: FoodGroup | MenuGroup, index: number) {
         if ('menu' in group) {
-            return this._basket.value.menuGroups[index] === group;
+            return this._basket.value.menuGroups[index].menu.id === group.menu.id;
         } else {
-            return this._basket.value.foodGroups[index] === group;
+            return this._basket.value.foodGroups[index].food.id === group.food.id;
         }
     }
 
     private getIndexOfGroup(group: FoodGroup | MenuGroup) {
         let index;
         if ('menu' in group) {
-            index = this._basket.value.menuGroups.indexOf(group);
+            index = this._basket.value.menuGroups.reduce((acc: number, elm: MenuGroup, i: number) => {
+                if (elm.menu.id === group.menu.id) {
+                    acc = i;
+                }
+                return acc;
+            }, -1);
         } else {
-            index = this._basket.value.foodGroups.indexOf(group);
+            index = this._basket.value.foodGroups.reduce((acc: number, elm: FoodGroup, i: number) => {
+                if (elm.food.id === group.food.id) {
+                    acc = i;
+                }
+                return acc;
+            }, -1);
         }
 
         return index;
     }
 
     private increaseGroupAmount(group: FoodGroup | MenuGroup) {
-        if ('menu' in group) {
-            const index = this.getIndexOfGroup(group);
-            this._basket.value.menuGroups[index].amount += group.amount;
-            this._basket.value.total += this._basket.value.menuGroups[index].menu.total;
-        } else {
-            const index = this.getIndexOfGroup(group);
-            this._basket.value.foodGroups[index].amount += group.amount;
-            this._basket.value.total += this._basket.value.foodGroups[index].food.prix;
+        const index = this.getIndexOfGroup(group);
+        if (index !== -1) {
+            if ('menu' in group) {
+                this._basket.value.menuGroups[index].amount += group.amount;
+            } else {
+                this._basket.value.foodGroups[index].amount += group.amount;
+            }
         }
-        this.basket.next(this.basket.value);
+
+        this.comptuteBasketTotal();
     }
 
     private addNewGroup(group: FoodGroup | MenuGroup) {
@@ -120,6 +132,27 @@ export class BasketService {
         } else {
             this._basket.value.foodGroups.push(group);
         }
+    }
+
+    private comptuteTotalOfFoodGroups(): number {
+        return this._basket.value.foodGroups.reduce((acc: number, foodGroup: FoodGroup) => {
+            acc += foodGroup.amount * foodGroup.food.prix;
+            return acc;
+        }, 0);
+    }
+
+    private comptuteTotalOfMenuGroups(): number {
+        return this._basket.value.menuGroups.reduce((acc: number, menuGroup: MenuGroup) => {
+            acc += menuGroup.amount * menuGroup.menu.total;
+            return acc;
+        }, 0);
+    }
+
+    private comptuteBasketTotal() {
+        let total;
+        total = this.comptuteTotalOfFoodGroups() + this.comptuteTotalOfMenuGroups();
+        this._basket.value.total = total;
+        this._basket.next(this._basket.value);
     }
 
     private updateTotalBasketTotal(group: FoodGroup | MenuGroup) {
@@ -132,4 +165,15 @@ export class BasketService {
 
         this._basket.value.total += groupTotal;
     }
+
+    private removeGroup(group: FoodGroup | MenuGroup) {
+        const index = this.getIndexOfGroup(group);
+        if ('menu' in group) {
+            this._basket.value.menuGroups.splice(index, 1);
+        } else {
+            this._basket.value.foodGroups.splice(index, 1);
+        }
+    }
+
+
 }
