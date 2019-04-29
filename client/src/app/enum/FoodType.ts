@@ -2,5 +2,6 @@ export const enum FoodType {
     Entree = 'entree',
     Plat = 'plat',
     Dessert = 'dessert',
-    Boisson = 'boisson'
+    Boisson = 'boisson',
+    Menu = 'menu'
 }

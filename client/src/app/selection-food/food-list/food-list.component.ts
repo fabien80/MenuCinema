@@ -11,6 +11,7 @@ import {FoodService} from '../../food.service';
 export class FoodListComponent implements OnInit {
 
     @Input() private foodType: FoodType;
+    private readonly NB_ELEM_PER_ROW = 5;
     private gridsContent: FoodInterface[][];
     private searchFoodResponse: SearchFoodResponse;
 
@@ -31,8 +32,17 @@ export class FoodListComponent implements OnInit {
     }
 
     private fillGridsContent() {
-        this.gridsContent.push(this.searchFoodResponse.results.slice(0, this.searchFoodResponse.results.length / 2));
-        this.gridsContent.push(this.searchFoodResponse.results.slice(this.searchFoodResponse.results.length / 2, this.searchFoodResponse.results.length));
+        const nbLine = this.searchFoodResponse.results.length / this.NB_ELEM_PER_ROW;
+        let start = 0;
+        let end = this.NB_ELEM_PER_ROW;
+        for (let i = 1; i < nbLine + 1; i++) {
+            this.gridsContent.push(this.searchFoodResponse.results.slice(start, end));
+            start = i * this.NB_ELEM_PER_ROW;
+            end = start + this.NB_ELEM_PER_ROW;
+            if (end > this.searchFoodResponse.results.length) {
+                end = this.searchFoodResponse.results.length;
+            }
+        }
     }
 
     private checkFoodType(foodType: FoodType) {
