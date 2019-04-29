@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+xsd schéma de TypeDePlat
+-->
+
+<xs:schema version="1.0"
+           targetNamespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+
+    <xs:simpleType name = "TypeDePlat">
+        <xs:restriction base = "xs:string">
+            <xs:enumeration value = "Entree" />
+            <xs:enumeration value = "Plat" />
+            <xs:enumeration value = "Dessert" />
+            <xs:enumeration value = "Boisson" />
+        </xs:restriction >
+    </xs:simpleType >
+</xs:schema>
