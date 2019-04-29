@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+xsd schéma de Ingredient
+-->
+
+<xs:schema version="1.0"
+           targetNamespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+
+    <xs:simpleType name = "Ingredient">
+        <xs:restriction base = "xs:string">
+            <xs:enumeration value = "Poulet" />
+            <xs:enumeration value = "Viande" />
+            <xs:enumeration value = "Poivron" />
+            <xs:enumeration value = "Tomate" />
+            <xs:enumeration value = "Mozzarella" />
+            <xs:enumeration value = "Aubergine" />
+            <xs:enumeration value = "Jambon" />
+            <xs:enumeration value = "Champignon" />
+            <xs:enumeration value = "Ananas" />
+        </xs:restriction >
+    </xs:simpleType >
+</xs:schema>
