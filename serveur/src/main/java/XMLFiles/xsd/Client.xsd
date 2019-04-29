@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+scheme de Client
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP"
+           version="1.0"
+           targetNamespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP"
+           elementFormDefault="qualified">
+
+    <xs:element name="client" type="Client"/>
+    <xs:complexType name="Client">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="nom" type="xs:string"/>
+            <xs:element name="prenom" type="xs:string"/>
+            <xs:element name="photo" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="tel" type="xs:string"/>
+            <xs:element name="adresse" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
