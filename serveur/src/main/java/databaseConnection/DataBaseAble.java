@@ -1,4 +1,4 @@
-package l3m;
+package databaseConnection;
 
 
 public interface DataBaseAble
