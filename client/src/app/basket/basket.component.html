@@ -26,4 +26,7 @@
             Menu {{menuGroup.menu.id}}
         </div>
     </ng-container>
+    <div *ngIf="basket.total != 0">
+        Total : {{basket.total}}
+    </div>
 </div>
