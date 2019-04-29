@@ -64,23 +64,23 @@ export class FoodService {
         } else {
             switch (query.foodType) {
                 case FoodType.Entree:
-                    for (let i = 0; i < 10; i++) {
+                    for (let i = 0; i < 13; i++) {
                         results.push(entree);
                     }
 
                     break;
                 case FoodType.Plat:
-                    for (let i = 0; i < 10; i++) {
+                    for (let i = 0; i < 13; i++) {
                         results.push(plat);
                     }
                     break;
                 case FoodType.Dessert:
-                    for (let i = 0; i < 10; i++) {
+                    for (let i = 0; i < 13; i++) {
                         results.push(dessert);
                     }
                     break;
                 case FoodType.Boisson:
-                    for (let i = 0; i < 10; i++) {
+                    for (let i = 0; i < 13; i++) {
                         results.push(boisson);
                     }
                     break;
