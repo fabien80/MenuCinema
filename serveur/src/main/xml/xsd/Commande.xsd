@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP"
+           version="1.0"
+           targetNamespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP"
+           elementFormDefault="qualified">
+    
+
+    <xs:element name="commande" type="Commande"/>
+
+    <xs:complexType name="Commande">
+        <xs:sequence>
+            <xs:element name="date" type="xs:string"/>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="idClient" type="xs:string"/>
+            <xs:element name="idPlats" type="IdList" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="idFilms" type="IdList" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="prix" type="xs:double"/>
+            <xs:element name="adresseLivraison" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="IdList">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+</xs:schema>
