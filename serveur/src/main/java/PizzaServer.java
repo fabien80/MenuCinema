@@ -1,6 +1,7 @@
-package l3m; 
-
 import javax.servlet.http.HttpServlet;
+
+import servlets.BlockingServlet;
+import servlets.ClientAuthentificationServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.Connector;

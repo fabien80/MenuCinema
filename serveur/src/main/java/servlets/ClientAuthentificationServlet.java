@@ -1,4 +1,4 @@
-package l3m;
+package servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -31,9 +31,9 @@ public class ClientAuthentificationServlet extends HttpServlet  {
         String userId = null;
         // Call the database and return result
         try {
-	        String res = BdAccess.authentifyUser(userId);
+        	BdAccess.authentifyUser(userId);
 	        response.setStatus(HttpServletResponse.SC_OK);
-	        response.getWriter().println( res  + ". " + processQueryTest(request) );
+	        response.getWriter().println( "allo"  + ". " + processQueryTest(request) );
         } catch (SQLException e) {
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			response.getWriter().println( e.toString() );

@@ -1,6 +1,6 @@
-package JavaServer;
+package databaseConnection;
 
-import l3m.DataBaseAble;
+import services.Connection;
 
 public class SQLAble implements DataBaseAble
 {

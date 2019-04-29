@@ -1,4 +1,4 @@
-package JavaServer;
+package Models;
 
 public class Plat {
 }

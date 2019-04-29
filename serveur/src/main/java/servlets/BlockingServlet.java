@@ -1,4 +1,4 @@
-package l3m;
+package servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

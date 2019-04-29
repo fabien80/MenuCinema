@@ -1,5 +1,5 @@
 
-package JavaServer;
+package enums;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour TypeDePlat.
  * 
- * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
  * <p>
  * <pre>
  * &lt;simpleType name="TypeDePlat">
