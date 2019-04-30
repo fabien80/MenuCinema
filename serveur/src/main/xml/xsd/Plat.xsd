@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!--
+xsd schéma de Plat
+-->
+<xs:schema version="1.0"
+           targetNamespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/Plat"
+           xmlns:pl="https://www.univ-grenoble-alpes.fr/francais/l3miage/Plat"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+    <xs:element name="plat" type="pl:Plat"/>
+
+    <xs:complexType name="Plat">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="type" type="pl:TypeDePlat"/>
+            <xs:element name="prix" type="xs:double"/>
+            <xs:element name="ingredients" type="pl:Ingredient" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name = "Ingredient">
+        <xs:restriction base = "xs:string">
+            <xs:enumeration value = "Poulet" />
+            <xs:enumeration value = "Viande" />
+            <xs:enumeration value = "Poivron" />
+            <xs:enumeration value = "Tomate" />
+            <xs:enumeration value = "Mozzarella" />
+            <xs:enumeration value = "Aubergine" />
+            <xs:enumeration value = "Jambon" />
+            <xs:enumeration value = "Champignon" />
+            <xs:enumeration value = "Ananas" />
+        </xs:restriction >
+    </xs:simpleType >
+
+    <xs:simpleType name = "TypeDePlat">
+        <xs:restriction base = "xs:string">
+            <xs:enumeration value = "Entree" />
+            <xs:enumeration value = "Plat" />
+            <xs:enumeration value = "Dessert" />
+            <xs:enumeration value = "Boisson" />
+        </xs:restriction >
+    </xs:simpleType >
+
+
+</xs:schema>

@@ -4,11 +4,12 @@ xsd schéma de Ingredient
 -->
 
 <xs:schema version="1.0"
-           targetNamespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP"
+           targetNamespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/Ingredient"
+           xmlns:ing="https://www.univ-grenoble-alpes.fr/francais/l3miage/Ingredient"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified">
 
-
+    <xs:element name="ingredient" type="ing:Ingredient"/>
     <xs:simpleType name = "Ingredient">
         <xs:restriction base = "xs:string">
             <xs:enumeration value = "Poulet" />

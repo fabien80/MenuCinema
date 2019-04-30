@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  * 
  */
-@XmlType(name = "Ingredient", namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP")
+@XmlType(name = "Ingredient", namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Plat")
 @XmlEnum
 public enum Ingredient {
 
