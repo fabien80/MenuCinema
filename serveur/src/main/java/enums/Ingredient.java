@@ -23,12 +23,17 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="Jambon"/>
  *     &lt;enumeration value="Champignon"/>
  *     &lt;enumeration value="Ananas"/>
+ *     &lt;enumeration value="Chevre"/>
+ *     &lt;enumeration value="Miel"/>
+ *     &lt;enumeration value="Saumon"/>
+ *     &lt;enumeration value="Emmental"/>
+ *     &lt;enumeration value="Chorizo"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
  * 
  */
-@XmlType(name = "Ingredient", namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Plat")
+@XmlType(name = "Ingredient", namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Ingredient")
 @XmlEnum
 public enum Ingredient {
 
@@ -49,7 +54,17 @@ public enum Ingredient {
     @XmlEnumValue("Champignon")
     CHAMPIGNON("Champignon"),
     @XmlEnumValue("Ananas")
-    ANANAS("Ananas");
+    ANANAS("Ananas"),
+    @XmlEnumValue("Chevre")
+    CHEVRE("Chevre"),
+    @XmlEnumValue("Miel")
+    MIEL("Miel"),
+    @XmlEnumValue("Saumon")
+    SAUMON("Saumon"),
+    @XmlEnumValue("Emmental")
+    EMMENTAL("Emmental"),
+    @XmlEnumValue("Chorizo")
+    CHORIZO("Chorizo");
     private final String value;
 
     Ingredient(String v) {

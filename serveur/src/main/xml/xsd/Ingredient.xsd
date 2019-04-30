@@ -21,6 +21,11 @@ xsd schéma de Ingredient
             <xs:enumeration value = "Jambon" />
             <xs:enumeration value = "Champignon" />
             <xs:enumeration value = "Ananas" />
+            <xs:enumeration value= "Chevre"/>
+            <xs:enumeration value= "Miel"/>
+            <xs:enumeration value= "Saumon" />
+            <xs:enumeration value= "Emmental" />
+            <xs:enumeration value= "Chorizo" />
         </xs:restriction >
     </xs:simpleType >
 </xs:schema>

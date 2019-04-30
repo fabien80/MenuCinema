@@ -24,9 +24,9 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="type" type="{https://www.univ-grenoble-alpes.fr/francais/l3miage/Plat}TypeDePlat"/>
+ *         &lt;element name="type" type="{https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP}TypeDePlat"/>
  *         &lt;element name="prix" type="{http://www.w3.org/2001/XMLSchema}double"/>
- *         &lt;element name="ingredients" type="{https://www.univ-grenoble-alpes.fr/francais/l3miage/Plat}Ingredient" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="ingredients" type="{https://www.univ-grenoble-alpes.fr/francais/l3miage/Ingredient}Ingredient" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -91,13 +91,6 @@ public class Plat {
         return type;
     }
 
-    public Plat(String id, TypeDePlat type, double prix, List<Ingredient> ingredients) {
-        this.id = id;
-        this.type = type;
-        this.prix = prix;
-        this.ingredients = ingredients;
-    }
-
     /**
      * D�finit la valeur de la propri�t� type.
      * 
@@ -155,7 +148,4 @@ public class Plat {
         return this.ingredients;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
 }
