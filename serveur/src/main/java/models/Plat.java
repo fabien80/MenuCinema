@@ -1,5 +1,4 @@
-
-package Models;
+package models;
 
 import enums.Ingredient;
 import enums.TypeDePlat;
