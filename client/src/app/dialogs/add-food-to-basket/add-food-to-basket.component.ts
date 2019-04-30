@@ -1,8 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {FoodInterface} from '../../interface/food';
+import {FoodGroup, FoodInterface} from '../../interface/food';
 import {BasketService} from '../../basket/basket.service';
-import {MenuGroup} from '../../interface/basket';
+import {Menu, MenuGroup} from '../../interface/basket';
+import {TypeConverter} from '../../tools/typeConverter';
 
 @Component({
     selector: 'app-add-food-to-cart',
@@ -14,7 +15,7 @@ export class AddFoodToBasketComponent implements OnInit {
     private price = 0;
 
     constructor(public dialogRef: MatDialogRef<AddFoodToBasketComponent>,
-                @Inject(MAT_DIALOG_DATA) public data: FoodInterface,
+                @Inject(MAT_DIALOG_DATA) public data: FoodInterface | Menu,
                 private basketService: BasketService) {
 
     }
@@ -24,7 +25,14 @@ export class AddFoodToBasketComponent implements OnInit {
     }
 
     private calculatePrice() {
-        this.price = this.data.prix * this.amount;
+        if (TypeConverter.isMenu(this.data)) {
+            const test = TypeConverter.toMenu(this.data);
+            this.price = TypeConverter.toMenu(this.data).total * this.amount;
+        } else {
+            this.price = TypeConverter.toFood(this.data).prix * this.amount;
+        }
+
+        console.log(this.price);
     }
 
     removeFood() {
@@ -40,20 +48,38 @@ export class AddFoodToBasketComponent implements OnInit {
     }
 
     addToBasket() {
-        const foodGroup = {food: this.data, amount: this.amount};
-        const menuGroup: MenuGroup = {
-            amount: 2,
-            menu: {
-                id: 1,
-                total: 20,
-                foodGroups: [foodGroup]
-            }
-        };
-        this.basketService.addGroups(foodGroup, menuGroup);
+        const group = this.getGroup();
+        this.basketService.addGroups(group);
         this.dialogRef.close();
     }
 
     public close() {
         this.dialogRef.close();
+    }
+
+    private getGroup() {
+        let group;
+        if (TypeConverter.isMenu(this.data)) {
+            group = TypeConverter.menuToMenuGroup(TypeConverter.toMenu(this.data), this.amount);
+        } else {
+            group = TypeConverter.foodToFoodGroup(TypeConverter.toFood(this.data), this.amount);
+        }
+        return group;
+    }
+
+    private isMenu() {
+        return TypeConverter.isMenu(this.data);
+    }
+
+    getFoodName() {
+        return TypeConverter.toFood(this.data).nom;
+    }
+
+    getFooddescription() {
+        return TypeConverter.toFood(this.data).description;
+    }
+
+    getMenuFoods() {
+        return TypeConverter.toMenu(this.data).foodGroups;
     }
 }

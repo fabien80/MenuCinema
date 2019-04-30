@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {FoodInterface, SearchFoodQuery, SearchFoodResponse} from './interface/food';
-import {FoodType} from './enum/FoodType';
+import {FoodInterface, SearchQuery, SearchResponse} from './interface/food';
+import {ProductType} from './enum/ProductType';
+import {Menu} from './interface/basket';
 
 const api = '/api';
 
@@ -13,7 +14,7 @@ export class FoodService {
     constructor(private http: HttpClient) {
     }
 
-    public async searchFood(query: SearchFoodQuery): Promise<SearchFoodResponse> {
+    public async search(query: SearchQuery): Promise<SearchResponse> {
         const params = new HttpParams();
         params.append('page', query.page.toString());
         params.append('query', query.query);
@@ -22,20 +23,20 @@ export class FoodService {
         return await this.http.get(url, {params}).toPromise();
     }
 
-    public async searchFoodMock(query: SearchFoodQuery): Promise<SearchFoodResponse> {
+    public async searchMock(query: SearchQuery): Promise<SearchResponse> {
         const plat: FoodInterface = {
             description: 'test',
             id: 1,
             nom: 'pizza',
             prix: 6,
-            type: FoodType.Plat
+            type: ProductType.Plat
         };
         const dessert: FoodInterface = {
             description: 'test',
             id: 2,
             nom: 'glace',
             prix: 2.50,
-            type: FoodType.Dessert
+            type: ProductType.Dessert
         };
 
         const entree: FoodInterface = {
@@ -43,7 +44,7 @@ export class FoodService {
             id: 3,
             nom: 'salade',
             prix: 3,
-            type: FoodType.Entree
+            type: ProductType.Entree
         };
 
         const boisson: FoodInterface = {
@@ -51,43 +52,67 @@ export class FoodService {
             id: 4,
             nom: 'coca',
             prix: 2,
-            type: FoodType.Boisson
+            type: ProductType.Boisson
         };
-        const results: FoodInterface[] = [];
-        console.log(query.foodType);
+        const results: (FoodInterface | Menu)[] = [];
+        console.log(query.type);
 
-        if (query.foodType == null) {
+        const menu1: Menu = {
+            id: 1,
+            foodGroups: [{food: entree, amount: 1}, {food: boisson, amount: 1}, {food: plat, amount: 1}],
+            total: 20
+        };
+
+        const menu2: Menu = {
+            id: 2,
+            foodGroups: [{food: boisson, amount: 1}, {food: plat, amount: 1}],
+            total: 10
+        };
+
+        const menu3: Menu = {
+            id: 3,
+            foodGroups: [{food: entree, amount: 1}, {food: boisson, amount: 1}, {food: plat, amount: 1}, {food: dessert, amount: 1}],
+            total: 25
+        };
+
+        if (query.type == null) {
             results.push(entree);
             results.push(plat);
             results.push(boisson);
             results.push(dessert);
         } else {
-            switch (query.foodType) {
-                case FoodType.Entree:
+            switch (query.type) {
+                case ProductType.Entree:
                     for (let i = 0; i < 13; i++) {
                         results.push(entree);
                     }
 
                     break;
-                case FoodType.Plat:
+                case ProductType.Plat:
                     for (let i = 0; i < 13; i++) {
                         results.push(plat);
                     }
                     break;
-                case FoodType.Dessert:
+                case ProductType.Dessert:
                     for (let i = 0; i < 13; i++) {
                         results.push(dessert);
                     }
                     break;
-                case FoodType.Boisson:
+                case ProductType.Boisson:
                     for (let i = 0; i < 13; i++) {
                         results.push(boisson);
                     }
                     break;
+                case ProductType.Menu :
+                    results.push(menu1);
+                    results.push(menu2);
+                    results.push(menu3);
+                    break;
+
             }
         }
 
-        return new Promise<SearchFoodResponse>((resolve, reject) => {
+        return new Promise<SearchResponse>((resolve, reject) => {
             resolve({results});
         });
 

@@ -27,6 +27,7 @@ export class BasketComponent implements OnInit {
     }
 
     increaseAmount(foodGroup: MenuGroup | FoodGroup) {
+        console.log(foodGroup);
         this.basketService.increaseGrougAmount(foodGroup);
     }
 }

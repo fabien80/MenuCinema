@@ -1,24 +1,25 @@
-import {FoodType} from '../enum/FoodType';
+import {ProductType} from '../enum/ProductType';
+import {Menu} from './basket';
 
 export interface FoodInterface {
     id: number;
-    type: FoodType;
+    type: ProductType;
     nom: string;
     description: string;
     prix: number;
 }
 
-export interface SearchFoodResponse {
+export interface SearchResponse {
     page?: number;
-    results?: FoodInterface[];
+    results?: (FoodInterface | Menu)[];
     total_results?: number;
     total_pages?: number;
 }
 
-export interface SearchFoodQuery {
+export interface SearchQuery {
     query?: string;
     nbElem?: number;
-    foodType?: FoodType;
+    type?: ProductType;
     page?: number; // Specify which page to query. minimum: 1, default: 1
 }
 

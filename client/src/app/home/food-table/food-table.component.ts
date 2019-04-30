@@ -1,6 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {FoodService} from '../../food.service';
-import {FoodInterface, SearchFoodQuery, SearchFoodResponse} from '../../interface/food';
+import {FoodInterface, SearchQuery, SearchResponse} from '../../interface/food';
 import {MovieResult, SearchMovieResponse} from '../../tmdb-data/searchMovie';
 
 @Component({
@@ -9,7 +9,7 @@ import {MovieResult, SearchMovieResponse} from '../../tmdb-data/searchMovie';
     styleUrls: ['./food-table.component.scss']
 })
 export class FoodTableComponent implements OnInit, OnChanges {
-    @Input() searchFoodResponse: SearchFoodResponse;
+    @Input() searchFoodResponse: SearchResponse;
 
     @Input() private _searchString;
     private _selectedTab = 1;
@@ -38,16 +38,16 @@ export class FoodTableComponent implements OnInit, OnChanges {
      */
     public searchFood() {
         console.log('foodSearch');
-        const query: SearchFoodQuery = {
+        const query: SearchQuery = {
             query: this._searchString,
             page: this._selectedTab,
             nbElem: 20
         };
-        /* this.foodService.searchFood(query)
-            .then((searchFoodResponse: SearchFoodResponse) => {
+        /* this.foodService.search(query)
+            .then((searchFoodResponse: SearchResponse) => {
                 this.searchFoodResponse = searchFoodResponse;
             }); */
-        this.foodService.searchFoodMock(query).then((searchFoodResponse: SearchFoodResponse) => {
+        this.foodService.searchMock(query).then((searchFoodResponse: SearchResponse) => {
             this.searchFoodResponse = searchFoodResponse;
         });
 
