@@ -1,4 +1,4 @@
-import {FoodInterface, FoodGroup} from './food';
+import {FoodGroup} from './food';
 
 export interface Basket {
     foodGroups: FoodGroup[];

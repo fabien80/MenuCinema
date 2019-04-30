@@ -31,6 +31,7 @@ import { FoodComponent } from './selection-food/food/food.component';
 import { FoodListComponent } from './selection-food/food-list/food-list.component';
 import { AddFoodToBasketComponent } from './dialogs/add-food-to-basket/add-food-to-basket.component';
 import { BasketComponent } from './basket/basket.component';
+import { MenuComponent } from './menu/menu.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
     signInFlow: 'popup',
@@ -73,7 +74,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
         FoodComponent,
         FoodListComponent,
         AddFoodToBasketComponent,
-        BasketComponent
+        BasketComponent,
+        MenuComponent
     ],
     imports: [
         BrowserModule,

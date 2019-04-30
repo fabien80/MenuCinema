@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FoodType} from '../enum/FoodType';
+import {ProductType} from '../enum/ProductType';
 
 @Component({
     selector: 'app-selection-food',
@@ -7,11 +7,11 @@ import {FoodType} from '../enum/FoodType';
     styleUrls: ['./selection-food.component.scss']
 })
 export class SelectionFoodComponent implements OnInit {
-    private readonly ENTREE: FoodType = FoodType.Entree;
-    private readonly PLAT: FoodType = FoodType.Plat;
-    private readonly DESSERT: FoodType = FoodType.Dessert;
-    private readonly BOISSON: FoodType = FoodType.Boisson;
-    private readonly MENU: FoodType = FoodType.Menu;
+    private readonly ENTREE: ProductType = ProductType.Entree;
+    private readonly PLAT: ProductType = ProductType.Plat;
+    private readonly DESSERT: ProductType = ProductType.Dessert;
+    private readonly BOISSON: ProductType = ProductType.Boisson;
+    private readonly MENU: ProductType = ProductType.Menu;
 
     constructor() {
     }

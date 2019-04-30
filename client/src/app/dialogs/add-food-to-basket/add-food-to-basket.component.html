@@ -1,13 +1,27 @@
 <div>
-    <div>
-        <h1>{{data.nom}}</h1>
-        <p>{{data.description}}</p>
+    <div *ngIf="isMenu()">
+        <h1>Menu {{data.id}}</h1>
+        <div *ngFor="let foodGroup of getMenuFoods()">
+            <div>
+                <h3>{{foodGroup.food.nom}} ({{foodGroup.amount}})</h3>
+                <p>{{foodGroup.food.description}}</p>
+
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!isMenu()">
+        <h1>{{getFoodName()}}</h1>
+        <p>{{getFooddescription()}}</p>
     </div>
 
     <div class="amount-div">
-        <button class="btn btn-outline-success amount-btn" (click)="removeFood()"> <mat-icon>remove</mat-icon></button>
+        <button class="btn btn-outline-success amount-btn" (click)="removeFood()">
+            <mat-icon>remove</mat-icon>
+        </button>
         {{amount}}
-        <button class="btn btn-outline-success amount-btn" (click)="addFood()"><mat-icon>add</mat-icon></button>
+        <button class="btn btn-outline-success amount-btn" (click)="addFood()">
+            <mat-icon>add</mat-icon>
+        </button>
     </div>
     <div class="btn-div">
         <button class="btn btn-outline-danger cancel-btn" (click)="close()"> Annuler</button>
