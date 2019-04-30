@@ -25,7 +25,6 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {SearchBarComponent} from './search-bar/search-bar.component';
 import {HomeComponent} from './home/home.component';
 import { MovieTableComponent } from './movie/movie-table/movie-table.component';
-import {FoodTableComponent} from './home/food-table/food-table.component';
 import { SelectionFoodComponent } from './selection-food/selection-food.component';
 import { FoodComponent } from './selection-food/food/food.component';
 import { FoodListComponent } from './selection-food/food-list/food-list.component';
@@ -69,7 +68,6 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
         SearchBarComponent,
         HomeComponent,
         MovieTableComponent,
-        FoodTableComponent,
         SelectionFoodComponent,
         FoodComponent,
         FoodListComponent,
