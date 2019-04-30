@@ -30,4 +30,12 @@ export class BasketComponent implements OnInit {
         console.log(foodGroup);
         this.basketService.increaseGrougAmount(foodGroup);
     }
+
+    clearBasket() {
+        this.basketService.clear();
+    }
+
+    removeGroup(group: FoodGroup | MenuGroup) {
+        this.basketService.removeGroup(group);
+    }
 }

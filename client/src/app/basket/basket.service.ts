@@ -52,7 +52,7 @@ export class BasketService {
                 this.removeGroup(group);
             }
         }
-        this.comptuteBasketTotal();
+        this.computeBasketTotal();
     }
 
     /**
@@ -66,7 +66,7 @@ export class BasketService {
         } else {
             this._basket.value.foodGroups[index].amount++;
         }
-        this.comptuteBasketTotal();
+        this.computeBasketTotal();
     }
 
     /**
@@ -155,7 +155,7 @@ export class BasketService {
             }
         }
 
-        this.comptuteBasketTotal();
+        this.computeBasketTotal();
     }
 
     /**
@@ -193,7 +193,7 @@ export class BasketService {
     /**
      * Calcul le total du panier et le met à jour
      */
-    private comptuteBasketTotal() {
+    private computeBasketTotal() {
         let total;
         total = this.comptuteTotalOfFoodGroups() + this.comptuteTotalOfMenuGroups();
         this._basket.value.total = total;
@@ -219,14 +219,22 @@ export class BasketService {
      * Retire un groupe du panier en fonction du panier passé en argument
      * @param group: un groupe
      */
-    private removeGroup(group: FoodGroup | MenuGroup) {
+    public removeGroup(group: FoodGroup | MenuGroup) {
         const index = this.getIndexOfGroup(group);
         if (TypeConverter.isMenuGroup(group)) {
             this._basket.value.menuGroups.splice(index, 1);
         } else {
             this._basket.value.foodGroups.splice(index, 1);
         }
+        this.computeBasketTotal();
     }
 
 
+    public clear() {
+        this._basket.next({
+            menuGroups: [],
+            foodGroups: [],
+            total: 0
+        });
+    }
 }
