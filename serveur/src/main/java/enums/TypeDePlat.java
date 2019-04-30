@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  * 
  */
-@XmlType(name = "TypeDePlat", namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Plat")
+@XmlType(name = "TypeDePlat", namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP")
 @XmlEnum
 public enum TypeDePlat {
 
