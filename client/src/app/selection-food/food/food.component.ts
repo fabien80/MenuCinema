@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FoodType} from '../../enum/FoodType';
+import {ProductType} from '../../enum/ProductType';
 import {FoodService} from '../../food.service';
-import {FoodInterface, SearchFoodQuery, SearchFoodResponse} from '../../interface/food';
+import {FoodInterface, SearchQuery, SearchResponse} from '../../interface/food';
 import {MatDialog} from '@angular/material';
 import {AddFoodToBasketComponent} from '../../dialogs/add-food-to-basket/add-food-to-basket.component';
 

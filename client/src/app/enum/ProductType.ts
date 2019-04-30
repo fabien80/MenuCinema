@@ -1,7 +1,8 @@
-export const enum FoodType {
+export const enum ProductType {
     Entree = 'entree',
     Plat = 'plat',
     Dessert = 'dessert',
     Boisson = 'boisson',
-    Menu = 'menu'
+    Menu = 'menu',
+    Film = 'film'
 }
