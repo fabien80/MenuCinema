@@ -13,27 +13,14 @@ import {AngularFireAuth} from '@angular/fire/auth';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    pFilm: MovieResponse;
 
     constructor(private tmdb: TmdbService, private angularFireAuth: AngularFireAuth) {
         this.init();
-        angularFireAuth.authState.subscribe((value => {
-            console.log(value);
-        }));
     }
 
     async init() {
         this.tmdb.init(environment.tmdbKey);
-        this.pFilm = await this.tmdb.getMovie(14);
     }
 
-    get film(): MovieResponse {
-        return this.pFilm;
-    }
-
-    test(value: string) {
-        console.log(value);
-        console.log(this.searchValue);
-    }
 
 }

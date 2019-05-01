@@ -32,35 +32,8 @@ import { AddProductToBasketComponent } from './dialogs/add-product-to-basket/add
 import { BasketComponent } from './basket/basket.component';
 import { MenuComponent } from './product/menu/menu.component';
 import { AmountButtonsComponent } from './amount-buttons/amount-buttons.component';
-
-const firebaseUiAuthConfig: firebaseui.auth.Config = {
-    signInFlow: 'popup',
-    signInOptions: [
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        /*{
-            scopes: [
-                'public_profile',
-                'email',
-                'user_likes',
-                'user_friends'
-            ],
-            customParameters: {
-                auth_type: 'reauthenticate'
-            },
-            provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID
-        },*/
-        firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-        firebase.auth.GithubAuthProvider.PROVIDER_ID,
-        {
-            requireDisplayName: false,
-            provider: firebase.auth.EmailAuthProvider.PROVIDER_ID
-        },
-        firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-    ],
-    tosUrl: '<your-tos-link>',
-    privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
-    credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM
-};
+import {AuthRoutingModule} from './auth/auth-routing.module';
+import {AuthModule} from './auth/auth.module';
 
 @NgModule({
     declarations: [
@@ -76,6 +49,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
         BasketComponent,
         MenuComponent,
         AmountButtonsComponent
+
     ],
     imports: [
         BrowserModule,
@@ -95,11 +69,13 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
         AngularFireDatabaseModule,
-        FirebaseUIModule.forRoot(firebaseUiAuthConfig),
+        FirebaseUIModule.forRoot(environment.firebaseUiAuthConfig),
         MatTableModule,
         MatButtonToggleModule,
         MatTabsModule,
-        MatDialogModule
+        MatDialogModule,
+        AuthRoutingModule,
+        AuthModule
     ],
     providers: [TmdbService, AngularFirestore],
     bootstrap: [AppComponent],

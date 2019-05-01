@@ -9,8 +9,7 @@ import {environment} from '../../environments/environment';
 
 @NgModule({
     declarations: [
-        AuthComponent,
-        HomeComponent
+        AuthComponent
     ],
     imports: [
         CommonModule,
