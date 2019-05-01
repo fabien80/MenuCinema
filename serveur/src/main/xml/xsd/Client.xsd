@@ -12,13 +12,18 @@ scheme de Client
     <xs:element name="client" type="Client"/>
     <xs:complexType name="Client">
         <xs:sequence>
-            <xs:element name="id" type="xs:string"/>
+            <xs:element name="client_id" type="xs:int"/>
             <xs:element name="nom" type="xs:string"/>
             <xs:element name="prenom" type="xs:string"/>
+            <xs:element name="mail" type="xs:string"/>
             <xs:element name="photo" type="xs:string"/>
-            <xs:element name="email" type="xs:string"/>
             <xs:element name="tel" type="xs:string"/>
-            <xs:element name="adresse" type="xs:string"/>
+            <xs:element name="fidelite" type="xs:int"/>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="numeroRue" type = "xs:int"/>
+            <xs:element name="rue" type = "xs:string"/>
+            <xs:element name="ville" type = "xs:string"/>
+            <xs:element name="codePostal" type = "xs:string"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>
