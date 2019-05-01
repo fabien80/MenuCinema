@@ -8,11 +8,12 @@
 #------------------------------------------------------------
 
 CREATE TABLE client(
-        client_id   Int NOT NULL ,
+        client_id   Int  Auto_increment  NOT NULL ,
         nom         Varchar (5) NOT NULL ,
         prenom      Varchar (50) NOT NULL ,
-                mail        Varchar (50) ,
+        mail        Varchar (50) ,
         photo       Varchar (50) ,
+        tel         Varchar (12) ,
         fidelite    Int NOT NULL ,
         numero_rue  Int ,
         rue         Varchar (50) ,
