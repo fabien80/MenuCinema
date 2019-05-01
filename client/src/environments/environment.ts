@@ -43,5 +43,6 @@ export const environment = {
         privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
         credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM
     },
-    nbItemsPerRow: 5
+    nbItemsPerRow: 5,
+    basketStorageKey: 'basket'
 };

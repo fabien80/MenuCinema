@@ -1,6 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {MovieResult, SearchMovieQuery, SearchMovieResponse} from '../../../tmdb-data/searchMovie';
-import {TmdbService} from '../../../tmdb.service';
+import {TmdbService} from '../../../services/tmdb.service';
 
 const maxPage = 1000;
 

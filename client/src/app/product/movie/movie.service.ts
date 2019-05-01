@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {TmdbService} from '../../tmdb.service';
+import {TmdbService} from '../../services/tmdb.service';
 
 @Injectable({
     providedIn: 'root'
