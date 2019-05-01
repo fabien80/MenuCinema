@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
-xsd schéma de Plat
+xsd schéma de Plats
 -->
 <xs:schema version="1.0"
            targetNamespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/Plats"

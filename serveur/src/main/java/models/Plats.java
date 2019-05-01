@@ -1,5 +1,5 @@
 
-package Models;
+package models;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +34,6 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class Plats {
 
-
-
     @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Plats")
     protected List<Plat> plats;
 
@@ -61,14 +59,6 @@ public class Plats {
      * 
      * 
      */
-
-    public Plats(List<Plat> plats) {
-        this.plats = plats;
-    }
-
-    public Plats() {
-        this.plats = new ArrayList<>();
-    }
     public List<Plat> getPlats() {
         if (plats == null) {
             plats = new ArrayList<Plat>();
@@ -76,16 +66,23 @@ public class Plats {
         return this.plats;
     }
 
-    public double getPrixPlat(String references) {
-        int i = 0;
+    /**
+     *
+     * @param references
+     * @return le prix du plat d'id references ou -1 s'il n'existe pas
+     */
+    public double getPrixPlat(String references){
         double prixPlat = -1;
-        Plat currentPlat;
+        int i = 0;
+        Plat current;
         while(i < plats.size() && prixPlat == -1){
-            currentPlat = plats.get(i);
-            if(currentPlat.getId().equals(references)){
-                prixPlat = currentPlat.getPrix();
+            current = plats.get(i);
+            if(current.getId().equals(references)){
+                prixPlat = current.getPrix();
             }
+            i++;
         }
+
         return prixPlat;
     }
 

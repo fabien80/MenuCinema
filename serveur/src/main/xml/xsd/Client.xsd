@@ -4,9 +4,9 @@ scheme de Client
 -->
 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns="https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP"
+           xmlns="https://www.univ-grenoble-alpes.fr/francais/l3miage/Client"
            version="1.0"
-           targetNamespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP"
+           targetNamespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/Client"
            elementFormDefault="qualified">
 
     <xs:element name="client" type="Client"/>
