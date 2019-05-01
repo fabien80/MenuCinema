@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Menu} from '../interface/basket';
+import {MenuClass} from './menu';
 
 @Component({
     selector: 'app-menu',
@@ -7,7 +7,7 @@ import {Menu} from '../interface/basket';
     styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-    @Input() private menu: Menu;
+    @Input() private menu: MenuClass;
 
     constructor() {
     }

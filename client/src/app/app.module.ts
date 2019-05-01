@@ -4,7 +4,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {TmdbService} from './tmdb.service';
 import {HttpClientModule} from '@angular/common/http';
-import {MovieComponent} from './movie/movie.component';
+import {MovieComponent} from './product/movie/movie.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
     MatButtonModule, MatButtonToggleModule,
@@ -60,7 +60,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     ],
     providers: [TmdbService, AngularFirestore],
     bootstrap: [AppComponent],
-    entryComponents: [AddFoodToBasketComponent]
+    entryComponents: [AddProductToBasketComponent]
 })
 export class AppModule {
 }

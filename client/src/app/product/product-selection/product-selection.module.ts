@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FoodComponent} from './food/food.component';
-import {FoodListComponent} from './food-list/food-list.component';
+import {FoodComponent} from '../food/food.component';
+import {ProductListComponent} from './product-list/product-list.component';
 
 @NgModule({
     declarations: [],
@@ -9,5 +9,5 @@ import {FoodListComponent} from './food-list/food-list.component';
         CommonModule
     ]
 })
-export class SelectionFoodModule {
+export class ProductSelectionModule {
 }

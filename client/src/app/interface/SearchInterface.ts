@@ -1,17 +1,10 @@
+import {MenuInterface} from './BasketInterface';
 import {ProductType} from '../enum/ProductType';
-import {Menu} from './basket';
+import {FoodInterface} from './FoodInterface';
 
-export interface FoodInterface {
-    id: number;
-    type: ProductType;
-    nom: string;
-    description: string;
-    prix: number;
-}
-
-export interface SearchResponse {
+export interface SearchProductResponse {
     page?: number;
-    results?: (FoodInterface | Menu)[];
+    results?: (FoodInterface | MenuInterface)[];
     total_results?: number;
     total_pages?: number;
 }

@@ -1,25 +1,26 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ProductType} from '../../enum/ProductType';
-import {FoodInterface, SearchQuery, SearchResponse} from '../../interface/food';
-import {FoodService} from '../../food.service';
-import {Menu} from '../../interface/basket';
-import {TypeConverter} from '../../tools/typeConverter';
-import {AddFoodToBasketComponent} from '../../dialogs/add-food-to-basket/add-food-to-basket.component';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ProductType} from '../../../enum/ProductType';
+import {FoodInterface, SearchQuery, SearchProductResponse} from '../../../interface/FoodInterface';
+import {ProductService} from '../../product.service';
+import {MenuInterface} from '../../../interface/BasketInterface';
+import {TypeConverter} from '../../../tools/typeConverter';
+import {AddProductToBasketComponent} from '../../../dialogs/add-product-to-basket/add-product-to-basket.component';
 import {MatDialog} from '@angular/material';
+import {AddEventInterface} from '../../../interface/AddEventInterface';
 
 @Component({
     selector: 'app-food-list',
-    templateUrl: './food-list.component.html',
-    styleUrls: ['./food-list.component.scss']
+    templateUrl: './product-list.component.html',
+    styleUrls: ['./product-list.component.scss']
 })
-export class FoodListComponent implements OnInit {
-
+export class ProductListComponent implements OnInit {
+    @Output() private addEvent: EventEmitter<AddEventInterface> = new EventEmitter();
     @Input() private type: ProductType;
     private readonly NB_ELEM_PER_ROW = 5;
-    private gridsContent: (FoodInterface | Menu)[][];
-    private searchResponse: SearchResponse;
+    private gridsContent: (FoodInterface | MenuInterface)[][];
+    private searchResponse: SearchProductResponse;
 
-    constructor(private foodService: FoodService, public dialog: MatDialog) {
+    constructor(private foodService: ProductService, public dialog: MatDialog) {
         this.gridsContent = [];
     }
 
@@ -29,7 +30,7 @@ export class FoodListComponent implements OnInit {
             type: this.type
         };
 
-        this.foodService.searchMock(query).then((searchFoodResponse: SearchResponse) => {
+        this.foodService.searchMock(query).then((searchFoodResponse: SearchProductResponse) => {
             this.searchResponse = searchFoodResponse;
             this.fillGridsContent();
             console.log(searchFoodResponse);
@@ -56,7 +57,7 @@ export class FoodListComponent implements OnInit {
         }
     }
 
-    toFood(content: FoodInterface | Menu) {
+    toFood(content: FoodInterface | MenuInterface) {
         return TypeConverter.toFood(content);
     }
 
@@ -64,14 +65,18 @@ export class FoodListComponent implements OnInit {
         return this.type === ProductType.Menu;
     }
 
-    toMenu(content: FoodInterface | Menu) {
+    toMenu(content: FoodInterface | MenuInterface) {
         return TypeConverter.toMenu(content);
     }
 
     private openDialog(data: any) {
-        const dialogRef = this.dialog.open(AddFoodToBasketComponent, {
+        const dialogRef = this.dialog.open(AddProductToBasketComponent, {
             width: '250px',
             data
+        });
+
+        dialogRef.afterClosed().toPromise().then(value => {
+
         });
 
     }

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Basket, Menu, MenuGroup} from '../interface/basket';
-import {FoodInterface, FoodGroup} from '../interface/food';
+import {BasketInterface, MenuInterface, MenuGroup} from '../interface/BasketInterface';
+import {FoodInterface, FoodGroup} from '../interface/FoodInterface';
 import {BehaviorSubject} from 'rxjs';
 import {TypeConverter} from '../tools/typeConverter';
 
@@ -9,7 +9,7 @@ import {TypeConverter} from '../tools/typeConverter';
     providedIn: 'root'
 })
 export class BasketService {
-    private _basket = new BehaviorSubject<Basket>({
+    private _basket = new BehaviorSubject<BasketInterface>({
         foodGroups: [],
         menuGroups: [],
         total: 0
@@ -18,7 +18,7 @@ export class BasketService {
     constructor() {
     }
 
-    get basket(): BehaviorSubject<Basket> {
+    get basket(): BehaviorSubject<BasketInterface> {
         return this._basket;
     }
 
