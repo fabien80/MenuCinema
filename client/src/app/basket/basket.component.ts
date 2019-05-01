@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {BasketService} from './basket.service';
-import {Basket, MenuGroup} from '../interface/basket';
-import {FoodGroup} from '../interface/food';
+import {BasketInterface, MenuGroup} from '../interface/BasketInterface';
+import {FoodGroup} from '../interface/FoodInterface';
 
 @Component({
     selector: 'app-basket',
@@ -9,10 +9,10 @@ import {FoodGroup} from '../interface/food';
     styleUrls: ['./basket.component.scss']
 })
 export class BasketComponent implements OnInit {
-    private basket: Basket;
+    private basket: BasketInterface;
 
     constructor(private basketService: BasketService) {
-        this.basketService.basket.subscribe((basket: Basket) => {
+        this.basketService.basket.subscribe((basket: BasketInterface) => {
             this.basket = basket;
             console.log(basket);
         });

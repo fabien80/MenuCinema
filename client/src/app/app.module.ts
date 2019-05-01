@@ -4,7 +4,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {TmdbService} from './tmdb.service';
 import {HttpClientModule} from '@angular/common/http';
-import {MovieComponent} from './movie/movie.component';
+import {MovieComponent} from './product/movie/movie.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
     MatButtonModule, MatButtonToggleModule,
@@ -24,13 +24,13 @@ import {firebase, firebaseui, FirebaseUIModule} from 'firebaseui-angular';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {SearchBarComponent} from './search-bar/search-bar.component';
 import {HomeComponent} from './home/home.component';
-import { MovieTableComponent } from './movie/movie-table/movie-table.component';
-import { SelectionFoodComponent } from './selection-food/selection-food.component';
-import { FoodComponent } from './selection-food/food/food.component';
-import { FoodListComponent } from './selection-food/food-list/food-list.component';
-import { AddFoodToBasketComponent } from './dialogs/add-food-to-basket/add-food-to-basket.component';
+import { MovieTableComponent } from './product/movie/movie-table/movie-table.component';
+import { ProductSelectionComponent } from './product/product-selection/product-selection.component';
+import { FoodComponent } from './product/food/food.component';
+import { ProductListComponent } from './product/product-selection/product-list/product-list.component';
+import { AddProductToBasketComponent } from './dialogs/add-product-to-basket/add-product-to-basket.component';
 import { BasketComponent } from './basket/basket.component';
-import { MenuComponent } from './menu/menu.component';
+import { MenuComponent } from './product/menu/menu.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
     signInFlow: 'popup',
@@ -68,10 +68,10 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
         SearchBarComponent,
         HomeComponent,
         MovieTableComponent,
-        SelectionFoodComponent,
+        ProductSelectionComponent,
         FoodComponent,
-        FoodListComponent,
-        AddFoodToBasketComponent,
+        ProductListComponent,
+        AddProductToBasketComponent,
         BasketComponent,
         MenuComponent
     ],
@@ -101,7 +101,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     ],
     providers: [TmdbService, AngularFirestore],
     bootstrap: [AppComponent],
-    entryComponents: [AddFoodToBasketComponent]
+    entryComponents: [AddProductToBasketComponent]
 })
 export class AppModule {
 }
