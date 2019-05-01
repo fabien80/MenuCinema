@@ -1,12 +1,14 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ProductType} from '../../../enum/ProductType';
-import {FoodInterface, SearchQuery, SearchProductResponse} from '../../../interface/FoodInterface';
-import {ProductService} from '../../product.service';
-import {MenuInterface} from '../../../interface/BasketInterface';
-import {TypeConverter} from '../../../tools/typeConverter';
-import {AddProductToBasketComponent} from '../../../dialogs/add-product-to-basket/add-product-to-basket.component';
 import {MatDialog} from '@angular/material';
 import {AddEventInterface} from '../../../interface/AddEventInterface';
+import {Product} from '../../class/Product';
+import {Food} from '../../food/food';
+import {FoodInterface} from '../../../interface/FoodInterface';
+import {ProductInterface} from '../../../interface/ProductInterface';
+import {MenuClass} from '../../menu/menu';
+import {MenuInterface} from '../../../interface/MenuInterface';
+import {AddProductToBasketComponent} from '../../../dialogs/add-product-to-basket/add-product-to-basket.component';
 
 @Component({
     selector: 'app-food-list',
@@ -16,68 +18,31 @@ import {AddEventInterface} from '../../../interface/AddEventInterface';
 export class ProductListComponent implements OnInit {
     @Output() private addEvent: EventEmitter<AddEventInterface> = new EventEmitter();
     @Input() private type: ProductType;
-    private readonly NB_ELEM_PER_ROW = 5;
-    private gridsContent: (FoodInterface | MenuInterface)[][];
-    private searchResponse: SearchProductResponse;
+    @Input() private products: Product[];
 
-    constructor(private foodService: ProductService, public dialog: MatDialog) {
-        this.gridsContent = [];
+    constructor(public dialog: MatDialog) {
     }
 
     ngOnInit() {
-        this.checkType(this.type);
-        const query: SearchQuery = {
-            type: this.type
-        };
+        console.log(this.products);
+    }
 
-        this.foodService.searchMock(query).then((searchFoodResponse: SearchProductResponse) => {
-            this.searchResponse = searchFoodResponse;
-            this.fillGridsContent();
-            console.log(searchFoodResponse);
+    isMenu(product: Product) {
+        return product instanceof MenuClass;
+    }
+
+    toFood(product) {
+        return product as Food;
+    }
+
+    openDialog(product: Product) {
+        const dialogReg = this.dialog.open(AddProductToBasketComponent, {
+            width: '250',
+            data: product
         });
     }
 
-    private fillGridsContent() {
-        const nbLine = this.searchResponse.results.length / this.NB_ELEM_PER_ROW;
-        let start = 0;
-        let end = this.NB_ELEM_PER_ROW;
-        for (let i = 1; i < nbLine + 1; i++) {
-            this.gridsContent.push(this.searchResponse.results.slice(start, end));
-            start = i * this.NB_ELEM_PER_ROW;
-            end = start + this.NB_ELEM_PER_ROW;
-            if (end > this.searchResponse.results.length) {
-                end = this.searchResponse.results.length;
-            }
-        }
-    }
-
-    private checkType(foodType: ProductType) {
-        if (foodType == null) {
-            throw new Error('Food type needed');
-        }
-    }
-
-    toFood(content: FoodInterface | MenuInterface) {
-        return TypeConverter.toFood(content);
-    }
-
-    isMenu() {
-        return this.type === ProductType.Menu;
-    }
-
-    toMenu(content: FoodInterface | MenuInterface) {
-        return TypeConverter.toMenu(content);
-    }
-
-    private openDialog(data: any) {
-        const dialogRef = this.dialog.open(AddProductToBasketComponent, {
-            width: '250px',
-            data
-        });
-
-        dialogRef.afterClosed().toPromise().then(value => {
-
-        });
-
+    toMenu(product: Product) {
+        return product as MenuClass;
     }
 }

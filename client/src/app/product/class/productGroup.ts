@@ -1,7 +1,7 @@
 import {Product} from './Product';
 import {ProductGroupInterface} from '../../interface/ProductInterface';
 
-class ProductGroup implements ProductGroupInterface {
+export class ProductGroup implements ProductGroupInterface {
     private _product: Product;
     private _amount: number;
 

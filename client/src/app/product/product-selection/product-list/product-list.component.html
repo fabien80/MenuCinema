@@ -1,14 +1,10 @@
 <div class="container">
-    <div *ngFor="let contents of gridsContent" class="row">
-        <div class="food-div col-sm">
-            <ng-container>
-                <button mat-button *ngFor="let  content of contents" (click)="openDialog(content)">
-                    <app-food *ngIf="!isMenu()" [food]="toFood(content)"></app-food>
-                    <app-menu *ngIf="isMenu()" [menu]="toMenu(content)"></app-menu>
-                </button>
-            </ng-container>
-        </div>
-    </div>
+    <ng-container *ngFor="let product of products">
+        <button mat-button (click)="openDialog(product)">
+            <app-food *ngIf="!isMenu(product)" [food]="toFood(product)"></app-food>
+            <app-menu *ngIf="isMenu(product)" [menu]="toMenu(product)"></app-menu>
+        </button>
+    </ng-container>
 </div>
 
 

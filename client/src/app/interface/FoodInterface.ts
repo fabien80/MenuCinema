@@ -8,3 +8,7 @@ export interface FoodInterface {
     prix: number;
 }
 
+export interface FoodGroup {
+    food: FoodInterface;
+    amount: number;
+}

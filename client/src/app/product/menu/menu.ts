@@ -4,13 +4,15 @@ import {ProductGroupInterface} from '../../interface/ProductInterface';
 
 export class MenuClass extends Product implements MenuInterface {
     private _foodGroups: ProductGroupInterface[];
-    private _total: number;
 
+    static fromData(data: MenuInterface) {
+        const {prix, foodGroups, id} = data;
+        return new this(id, prix, foodGroups);
+    }
 
-    constructor(id: number, prix: number, foodGroups: ProductGroupInterface[], total: number) {
+    constructor(id: number, prix: number, foodGroups: ProductGroupInterface[]) {
         super(id, prix);
         this._foodGroups = foodGroups;
-        this._total = total;
     }
 
     get foodGroups(): ProductGroupInterface[] {
@@ -21,11 +23,4 @@ export class MenuClass extends Product implements MenuInterface {
         this._foodGroups = value;
     }
 
-    get total(): number {
-        return this._total;
-    }
-
-    set total(value: number) {
-        this._total = value;
-    }
 }

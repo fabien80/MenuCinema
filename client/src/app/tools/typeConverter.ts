@@ -1,5 +1,5 @@
 import {FoodGroup, FoodInterface} from '../interface/FoodInterface';
-import {MenuInterface, MenuGroup} from '../interface/BasketInterface';
+import {MenuGroup, MenuInterface} from '../interface/MenuInterface';
 
 export class TypeConverter {
     private static readonly MENU_SPECIFIC_ATTR = 'total';
@@ -10,9 +10,9 @@ export class TypeConverter {
 
     /**
      * Regarde si l'attribut MENU_SPECIFIC_ATTR est dans date
-     * @param data: une donnée de type foodInterface ou MenuInterface
+     * @param data: une donnée de type foodInterface ou FoodInterface
      */
-    public static isMenu(data: FoodInterface | MenuInterface) {
+    public static isMenu(data: FoodInterface | FoodInterface) {
         let bool: boolean;
         bool = this.MENU_SPECIFIC_ATTR in data;
         console.log(data);
@@ -20,22 +20,22 @@ export class TypeConverter {
         return bool;
     }
 
-    public static isFood(data: FoodInterface | MenuInterface) {
+    public static isFood(data: FoodInterface | FoodInterface) {
         let bool: boolean;
         bool = !(this.MENU_SPECIFIC_ATTR in data);
         return bool;
     }
 
 
-    public static toFood(data: FoodInterface | MenuInterface) {
+    public static toFood(data: FoodInterface | FoodInterface) {
         let food: FoodInterface;
         food = data as FoodInterface;
         return food;
     }
 
-    public static toMenu(data: FoodInterface | MenuInterface) {
-        let menu: MenuInterface;
-        menu = data as MenuInterface;
+    public static toMenu(data: FoodInterface | FoodInterface) {
+        let menu: FoodInterface;
+        menu = data as FoodInterface;
         return menu;
     }
 
@@ -63,11 +63,11 @@ export class TypeConverter {
         return menuGroup;
     }
 
-    public static menuToMenuGroup(menu: MenuInterface, amount: number) {
+   /* public static menuToMenuGroup(menu: FoodInterface, amount: number) {
         let menuGroup: MenuGroup;
         menuGroup = {menu, amount};
         return menuGroup;
-    }
+    } */
 
     public static foodToFoodGroup(food: FoodInterface, amount: number) {
         let foodGroup: FoodGroup;
@@ -78,7 +78,7 @@ export class TypeConverter {
     public static computeGroupPrice(group: FoodGroup | MenuGroup) {
         let price: number;
         if (this.isMenuGroup(group)) {
-            price = this.toMenuGroup(group).menu.total * group.amount;
+            price = this.toMenuGroup(group).menu.prix * group.amount;
         } else {
             price = this.toFoodGroup(group).food.prix * group.amount;
         }

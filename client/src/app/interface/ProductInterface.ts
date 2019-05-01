@@ -1,7 +1,7 @@
 import {Product} from '../product/class/Product';
 
 export interface ProductGroupInterface {
-    product: Product;
+    product: ProductInterface;
     amount: number;
 }
 

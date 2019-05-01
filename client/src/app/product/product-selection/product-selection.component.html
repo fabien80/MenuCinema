@@ -1,18 +1,18 @@
 <mat-tab-group>
     <mat-tab label="Les menus">
-        <app-food-list [type]="MENU"></app-food-list>
+        <app-food-list *ngIf="menus != undefined" [type]="MENU" [products]="menus"></app-food-list>
     </mat-tab>
     <mat-tab label="Les entrées">
-        <app-food-list [type]="ENTREE"></app-food-list>
+        <app-food-list *ngIf="entrees != undefined" [type]="ENTREE" [products]="entrees"></app-food-list>
     </mat-tab>
     <mat-tab label="Les plats">
-        <app-food-list [type]="PLAT"></app-food-list>
+        <app-food-list *ngIf="plats != undefined" [type]="PLAT" [products]="plats"></app-food-list>
     </mat-tab>
     <mat-tab label="Les desserts">
-        <app-food-list [type]="DESSERT"></app-food-list>
+        <app-food-list *ngIf="desserts != undefined" [type]="DESSERT" [products]="desserts"></app-food-list>
 
     </mat-tab>
     <mat-tab label="Les boissons">
-        <app-food-list [type]="BOISSON"></app-food-list>
+        <app-food-list *ngIf="boissons != undefined" [type]="BOISSON" [products]="boissons"></app-food-list>
     </mat-tab>
 </mat-tab-group>

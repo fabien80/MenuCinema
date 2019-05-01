@@ -7,6 +7,10 @@ export class Food extends Product implements FoodInterface {
     private _nom: string;
     private _type: ProductType;
 
+    static fromData(data: FoodInterface) {
+        const {description, id, nom, prix, type} = data;
+        return new this(id, prix, description, nom, type);
+    }
 
     constructor(id: number, prix: number, description: string, nom: string, type: ProductType) {
         super(id, prix);
