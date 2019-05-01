@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="row" *ngFor="let content of gridContent">
+        <div *ngFor="let product of content" class="col-sm">
+            <button mat-button (click)="openDialog(product)">
+                <app-food *ngIf="!isMenu(product)" [food]="toFood(product)"></app-food>
+                <app-menu *ngIf="isMenu(product)" [menu]="toMenu(product)"></app-menu>
+            </button>
+        </div>
+
+    </div>
+</div>
+
+

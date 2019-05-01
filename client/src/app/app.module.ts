@@ -1,19 +1,18 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {TmdbService} from './tmdb.service';
 import {HttpClientModule} from '@angular/common/http';
-import {MovieComponent} from './movie/movie.component';
+import {MovieComponent} from './product/movie/movie.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-    MatButtonModule,
+    MatButtonModule, MatButtonToggleModule,
     MatCardModule,
-    MatChipsModule,
+    MatChipsModule, MatDialogModule,
     MatFormFieldModule,
     MatGridListModule, MatIconModule,
-    MatInputModule,
+    MatInputModule, MatTableModule, MatTabsModule,
     MatToolbarModule
 } from '@angular/material';
 import {StarRatingModule} from 'angular-star-rating';
@@ -23,19 +22,60 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {firebase, firebaseui, FirebaseUIModule} from 'firebaseui-angular';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {Routes} from '@angular/router';
-import {AuthComponent} from './auth/auth.component';
+import {SearchBarComponent} from './search-bar/search-bar.component';
 import {HomeComponent} from './home/home.component';
-import {AuthRoutingModule} from './auth/auth-routing.module';
-import {AuthModule} from './auth/auth.module';
-import { SearchBarComponent } from './search-bar/search-bar.component';
+import { MovieTableComponent } from './product/movie/movie-table/movie-table.component';
+import { ProductSelectionComponent } from './product/product-selection/product-selection.component';
+import { FoodComponent } from './product/food/food.component';
+import { ProductListComponent } from './product/product-selection/product-list/product-list.component';
+import { AddProductToBasketComponent } from './dialogs/add-product-to-basket/add-product-to-basket.component';
+import { BasketComponent } from './basket/basket.component';
+import { MenuComponent } from './product/menu/menu.component';
+import { AmountButtonsComponent } from './amount-buttons/amount-buttons.component';
 
+const firebaseUiAuthConfig: firebaseui.auth.Config = {
+    signInFlow: 'popup',
+    signInOptions: [
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        /*{
+            scopes: [
+                'public_profile',
+                'email',
+                'user_likes',
+                'user_friends'
+            ],
+            customParameters: {
+                auth_type: 'reauthenticate'
+            },
+            provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID
+        },*/
+        firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+        firebase.auth.GithubAuthProvider.PROVIDER_ID,
+        {
+            requireDisplayName: false,
+            provider: firebase.auth.EmailAuthProvider.PROVIDER_ID
+        },
+        firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+    ],
+    tosUrl: '<your-tos-link>',
+    privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
+    credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM
+};
 
 @NgModule({
     declarations: [
         AppComponent,
-        SearchBarComponent
         MovieComponent,
+        SearchBarComponent,
+        HomeComponent,
+        MovieTableComponent,
+        ProductSelectionComponent,
+        FoodComponent,
+        ProductListComponent,
+        AddProductToBasketComponent,
+        BasketComponent,
+        MenuComponent,
+        AmountButtonsComponent
     ],
     imports: [
         BrowserModule,
@@ -55,10 +95,15 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
         AngularFireDatabaseModule,
-        AuthModule
+        FirebaseUIModule.forRoot(firebaseUiAuthConfig),
+        MatTableModule,
+        MatButtonToggleModule,
+        MatTabsModule,
+        MatDialogModule
     ],
     providers: [TmdbService, AngularFirestore],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [AddProductToBasketComponent]
 })
 export class AppModule {
 }

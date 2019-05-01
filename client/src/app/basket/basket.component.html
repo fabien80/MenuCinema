@@ -1,0 +1,36 @@
+<div class="basket-div">
+    <div class="validation">
+        <button class="btn btn-success"> Valider mon panier</button>
+        <button mat-button (click)="clearBasket()">
+            <mat-icon>delete_forever</mat-icon>
+        </button>
+    </div>
+    <ng-container *ngFor="let foodGroup of basket.foodGroups; index as i">
+        <div class="amount-div">
+            <app-amount-buttons
+                    [(amount)]="foodGroup.amount"
+                    (amountChange)="amountChange()"
+            ></app-amount-buttons>
+            {{this.foodService.productToFood(foodGroup.product).nom}}
+            <button mat-button (click)="removeFoodGroup(i)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </ng-container>
+    <ng-container *ngFor="let menuGroup of basket.menuGroups; index as i">
+        <div class="amount-div">
+            <app-amount-buttons
+                    [(amount)]="menuGroup.amount"
+                    (amountChange)="amountChange()"
+            ></app-amount-buttons>
+            Menu {{menuGroup.product.id}}
+            <button mat-button (click)="removeMenuGroup(i)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </ng-container>
+    <div *ngIf="basket.total != 0">
+        Total : {{basket.total}} €
+    </div>
+</div>
+

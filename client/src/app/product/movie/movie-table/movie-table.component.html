@@ -1,0 +1,55 @@
+<div>
+    <button mat-button (click)="firstTab()">
+        <mat-icon>keyboard_return</mat-icon>
+    </button>
+    <button mat-button (click)="beforeTab()">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    <button mat-button (click)="nextTab()">
+        <mat-icon>arrow_forward</mat-icon>
+    </button>
+    <button mat-button (click)="lastTab()">
+        <mat-icon>keyboard_tab</mat-icon>
+    </button>
+    <label>{{selectedTab}}</label>
+</div>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col" width="5%">
+            type
+        </th>
+
+        <th scope="col" width="10%">
+            name
+            <button mat-button (click)="sortWithName()">
+                <mat-icon>sort</mat-icon>
+            </button>
+        </th>
+        <th scope="col" width="50%">
+            description
+        </th>
+        <th scope="col" width="10%">
+            score
+            <button mat-button (click)="sortWithScore()">
+                <mat-icon>sort</mat-icon>
+            </button>
+        </th>
+    </tr>
+    </thead>
+    <tbody *ngIf="searchString !== '' && searchMovieResponse != undefined">
+    <tr *ngFor="let movie of searchMovieResponse.results">
+        <th scope="row">Movie</th>
+        <td>{{movie.title}}</td>
+        <td>{{movie.overview}}</td>
+        <td>
+            <star-rating
+                    [starType]="'svg'"
+                    [labelText]="'Score MovieDB'"
+                    [readOnly]="true"
+                    [rating]="movie.vote_average / 2"
+            ></star-rating>
+        </td>
+    </tr>
+    </tbody>
+</table>

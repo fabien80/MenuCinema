@@ -1,3 +1,19 @@
-<p>
-  home works!
-</p>
+<!--
+<app-search-bar (searchEvent)="onSearch($event)"></app-search-bar>
+<div>
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style" (click)="updateSearchType($event)">
+        <mat-button-toggle #buttonMovie value="movie">Movie</mat-button-toggle>
+        <mat-button-toggle #buttonFood value="food">Food</mat-button-toggle>
+    </mat-button-toggle-group>
+</div>
+<app-movie-table *ngIf=" movieSelected()" [_searchString]="searchString"></app-movie-table>
+-->
+<h1> Bienvenue sur Menu Cinema !</h1>
+<div class="home-div">
+    <div class="selection-div">
+        <app-selection-food></app-selection-food>
+    </div>
+    <div class="basket-div">
+        <app-basket></app-basket>
+    </div>
+</div>
