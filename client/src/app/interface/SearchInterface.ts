@@ -1,22 +1,16 @@
-import {MenuInterface} from './BasketInterface';
 import {ProductType} from '../enum/ProductType';
-import {FoodInterface} from './FoodInterface';
+import {ProductInterface} from './ProductInterface';
 
 export interface SearchProductResponse {
     page?: number;
-    results?: (FoodInterface | MenuInterface)[];
+    results?: ProductInterface[];
     total_results?: number;
     total_pages?: number;
 }
 
-export interface SearchQuery {
+export interface SearchProductQuery {
     query?: string;
     nbElem?: number;
     type?: ProductType;
     page?: number; // Specify which page to query. minimum: 1, default: 1
-}
-
-export interface FoodGroup {
-    food: FoodInterface;
-    amount: number;
 }

@@ -2,7 +2,12 @@ import {ProductGroupInterface} from './ProductInterface';
 
 export interface MenuInterface {
     foodGroups: ProductGroupInterface[];
-    total: number;
+    prix: number;
     id: number;
 
+}
+
+export interface MenuGroup {
+    menu: MenuInterface;
+    amount: number;
 }

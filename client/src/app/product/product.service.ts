@@ -1,8 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {FoodInterface, SearchQuery, SearchProductResponse} from '../interface/FoodInterface';
+import {FoodInterface} from '../interface/FoodInterface';
 import {ProductType} from '../enum/ProductType';
-import {MenuInterface} from '../interface/BasketInterface';
+import {SearchProductQuery, SearchProductResponse} from '../interface/SearchInterface';
+import {MenuInterface} from '../interface/MenuInterface';
+import {ProductGroupInterface, ProductInterface} from '../interface/ProductInterface';
+import {MenuClass} from './menu/menu';
 
 const api = '/api';
 
@@ -14,7 +17,7 @@ export class ProductService {
     constructor(private http: HttpClient) {
     }
 
-    public async search(query: SearchQuery): Promise<SearchProductResponse> {
+    public async search(query: SearchProductQuery): Promise<SearchProductResponse> {
         const params = new HttpParams();
         params.append('page', query.page.toString());
         params.append('query', query.query);
@@ -23,7 +26,7 @@ export class ProductService {
         return await this.http.get(url, {params}).toPromise();
     }
 
-    public async searchMock(query: SearchQuery): Promise<SearchProductResponse> {
+    public async searchMock(query: SearchProductQuery): Promise<SearchProductResponse> {
         const plat: FoodInterface = {
             description: 'test',
             id: 1,
@@ -54,25 +57,29 @@ export class ProductService {
             prix: 2,
             type: ProductType.Boisson
         };
-        const results: (FoodInterface | MenuInterface)[] = [];
+        const results: ProductInterface[] = [];
         console.log(query.type);
 
         const menu1: MenuInterface = {
             id: 1,
-            foodGroups: [{food: entree, amount: 1}, {food: boisson, amount: 1}, {food: plat, amount: 1}],
-            total: 20
+            foodGroups: [{product: entree, amount: 1}, {product: boisson, amount: 1}, {product: plat, amount: 1}],
+            prix: 20
         };
 
         const menu2: MenuInterface = {
+
             id: 2,
-            foodGroups: [{food: boisson, amount: 1}, {food: plat, amount: 1}],
-            total: 10
+            foodGroups: [{amount: 1, product: plat}, {amount: 1, product: dessert}],
+            prix: 10
         };
 
         const menu3: MenuInterface = {
             id: 3,
-            foodGroups: [{food: entree, amount: 1}, {food: boisson, amount: 1}, {food: plat, amount: 1}, {food: dessert, amount: 1}],
-            total: 25
+            foodGroups: [{product: entree, amount: 1}, {product: boisson, amount: 1}, {product: plat, amount: 1}, {
+                product: dessert,
+                amount: 1
+            }],
+            prix: 25
         };
 
         if (query.type == null) {
