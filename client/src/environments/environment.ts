@@ -12,5 +12,6 @@ export const environment = {
         projectId: 'l3m-menu-cinema',
         storageBucket: 'l3m-menu-cinema.appspot.com',
         messagingSenderId: '654696164371'
-    }
+    },
+    nbItemsPerRow: 5
 };

@@ -3,13 +3,19 @@ import {Food} from '../food/food';
 import {Product} from '../class/Product';
 import {MenuClass} from './menu';
 import {MenuInterface} from '../../interface/MenuInterface';
+import {BasketService} from '../../basket/basket.service';
+import {ProductGroup} from '../class/productGroup';
 
 @Injectable({
     providedIn: 'root'
 })
 export class MenuService {
 
-    constructor() {
+    constructor(private basketService: BasketService) {
+    }
+
+    public addToBasket(productGroup: ProductGroup) {
+        this.basketService.addMenu(productGroup);
     }
 
     public interfaceToClass(menuInterface: MenuInterface) {

@@ -7,6 +7,15 @@
     </div>
     <app-food *ngIf="!isMenu()" [food]="foodService.productToFood(data)"></app-food>
     <div class="amount-div">
-        <app-amount-buttons [(amount)]="amount"></app-amount-buttons>
+        <app-amount-buttons [(amount)]="amount" (amountChange)="calculatePrice()"></app-amount-buttons>
     </div>
+    {{price}} €
+</div>
+<div>
+    <button mat-button class="btn btn-danger" (click)="close()">
+        Annuler
+    </button>
+    <button mat-button class="btn btn-success" (click)="onValid()">
+        Valider
+    </button>
 </div>

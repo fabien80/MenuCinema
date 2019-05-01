@@ -1,5 +1,7 @@
+import {AddEventType} from '../enum/AddEventType';
+import {ProductGroup} from '../product/class/productGroup';
+
 export interface AddEventInterface {
-    event: string;
-    data: any;
-    amount: number;
+    event: AddEventType;
+    data: ProductGroup;
 }

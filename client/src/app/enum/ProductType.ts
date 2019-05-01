@@ -4,5 +4,5 @@ export const enum ProductType {
     Dessert = 'dessert',
     Boisson = 'boisson',
     Menu = 'menu',
-    Film = 'film'
+    Movie = 'movie'
 }
