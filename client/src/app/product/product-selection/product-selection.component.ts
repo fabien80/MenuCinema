@@ -8,6 +8,8 @@ import {FoodService} from '../food/food.service';
 import {FoodInterface} from '../../interface/FoodInterface';
 import {MenuService} from '../menu/menu.service';
 import {MenuInterface} from '../../interface/MenuInterface';
+import {AddEventInterface} from '../../interface/AddEventInterface';
+import {AddEventType} from '../../enum/AddEventType';
 
 @Component({
     selector: 'app-selection-food',
@@ -63,4 +65,26 @@ export class ProductSelectionComponent implements OnInit {
     }
 
 
+    onAdd(addEvent: AddEventInterface) {
+        console.log(addEvent);
+        switch (addEvent.event) {
+            case AddEventType.addFood:
+                this.foodService.addToBasket(addEvent.data);
+                break;
+            case AddEventType.addMenu:
+                this.menuService.addToBasket(addEvent.data);
+                break;
+            case AddEventType.addMovie:
+                break;
+
+        }
+    }
+
+    getAddEventMenu() {
+        return AddEventType.addMenu;
+    }
+
+    getAddEventFood() {
+        return AddEventType.addFood;
+    }
 }

@@ -8,6 +8,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class AmountButtonsComponent implements OnInit {
     private amountValue: number;
     @Output() amountChange: EventEmitter<number> = new EventEmitter();
+    @Output() increaseEvent: EventEmitter<number> = new EventEmitter();
+    @Output() decreaseEvent: EventEmitter<number> = new EventEmitter();
 
     constructor() {
     }
@@ -16,10 +18,11 @@ export class AmountButtonsComponent implements OnInit {
     }
 
     increase() {
-        this.amountValue++;
+        this.amount = this.amountValue + 1;
+        this.increaseEvent.emit(this.amountValue);
     }
 
-    set amount(amount) {
+    set amount(amount: number) {
         this.amountValue = amount;
         this.amountChange.emit(this.amountValue);
     }
@@ -30,6 +33,10 @@ export class AmountButtonsComponent implements OnInit {
     }
 
     decrease() {
+        if (this.amount > 1) {
+            this.amount = this.amountValue - 1;
+            this.decreaseEvent.emit(this.amountValue);
+        }
 
     }
 }

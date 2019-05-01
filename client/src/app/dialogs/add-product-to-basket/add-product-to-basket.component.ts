@@ -8,6 +8,7 @@ import {Product} from '../../product/class/Product';
 import {FoodService} from '../../product/food/food.service';
 import {MenuClass} from '../../product/menu/menu';
 import {MenuService} from '../../product/menu/menu.service';
+import {ProductGroup} from '../../product/class/productGroup';
 
 @Component({
     selector: 'app-add-food-to-cart',
@@ -31,10 +32,20 @@ export class AddProductToBasketComponent implements OnInit {
     }
 
     private calculatePrice() {
-
+        this.price = this.data.prix * this.amount;
     }
 
     isMenu() {
         return this.data instanceof MenuClass;
+    }
+
+    close() {
+        this.dialogRef.close();
+    }
+
+    onValid() {
+        let productGroup: ProductGroup;
+        productGroup = new ProductGroup(this.data, this.amount);
+        this.dialogRef.close(productGroup);
     }
 }
