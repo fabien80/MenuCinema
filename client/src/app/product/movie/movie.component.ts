@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {TmdbService} from '../../tmdb.service';
+import {TmdbService} from '../../services/tmdb.service';
 import {MovieResponse} from '../../tmdb-data/Movie';
 import {MovieResult} from '../../tmdb-data/searchMovie';
 

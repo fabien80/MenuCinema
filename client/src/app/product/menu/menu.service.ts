@@ -14,12 +14,16 @@ export class MenuService {
     constructor(private basketService: BasketService) {
     }
 
-    public addToBasket(productGroup: ProductGroup) {
-        this.basketService.addMenu(productGroup);
-    }
-
     public interfaceToClass(menuInterface: MenuInterface) {
         return MenuClass.fromData(menuInterface);
+    }
+
+    public productToMenu(product: Product) {
+        return product as MenuClass;
+    }
+
+    public addToBasket(productGroup: ProductGroup) {
+        this.basketService.addMenu(productGroup);
     }
 
     public interfaceTabToClassTab(menus: MenuInterface[]) {
@@ -27,9 +31,5 @@ export class MenuService {
             menusClass.push(MenuClass.fromData(elem));
             return menusClass;
         }, []);
-    }
-
-    public productToMenu(product: Product) {
-        return product as MenuClass;
     }
 }

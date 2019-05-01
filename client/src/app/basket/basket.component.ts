@@ -28,8 +28,9 @@ export class BasketComponent implements OnInit {
     }
 
     amountChange() {
+        this.basketService.setBasketValue(this.basket);
         this.basketService.basket.next(this.basket);
-        this.basketService.updateTotalPrice();
+
     }
 
     clearBasket() {

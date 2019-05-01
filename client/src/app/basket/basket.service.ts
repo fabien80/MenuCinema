@@ -3,6 +3,7 @@ import {BehaviorSubject} from 'rxjs';
 import {BasketInterface} from '../interface/BasketInterface';
 import {ProductGroup} from '../product/class/productGroup';
 import {Product} from '../product/class/Product';
+import {LocalStorageService} from '../services/local-storage.service';
 
 
 @Injectable({
@@ -16,7 +17,9 @@ export class BasketService {
         total: 0
     });
 
-    constructor() {
+    constructor(private localStorageService: LocalStorageService) {
+        console.log(this.localStorageService.getBasket());
+        this._basket.next(this.localStorageService.getBasket());
     }
 
 
@@ -63,6 +66,7 @@ export class BasketService {
             this._basket.value.foodGroups.push(group);
         }
         this.updateTotalPrice();
+        this.setBasketToLocalStorage();
     }
 
     addMovie(movie: Product) {
@@ -71,6 +75,7 @@ export class BasketService {
             this._basket.value.movies.push(movie);
         }
         this.updateTotalPrice();
+        this.setBasketToLocalStorage();
 
     }
 
@@ -83,6 +88,7 @@ export class BasketService {
             this._basket.value.menuGroups.push(menuGroup);
         }
         this.updateTotalPrice();
+        this.setBasketToLocalStorage();
 
     }
 
@@ -118,15 +124,30 @@ export class BasketService {
             total: 0,
             movies: []
         });
+        this.setBasketToLocalStorage();
     }
 
     removeFoodGroupByIndex(index: number) {
         this._basket.value.foodGroups.splice(index, 1);
         this.updateTotalPrice();
+        this.setBasketToLocalStorage();
     }
 
     removeMenuGroupByIndex(index: number) {
         this._basket.value.menuGroups.splice(index, 1);
         this.updateTotalPrice();
+        this.setBasketToLocalStorage();
+
+    }
+
+    setBasketToLocalStorage() {
+        this.localStorageService.setBasket(this._basket.value);
+    }
+
+    setBasketValue(basket: BasketInterface) {
+        this._basket.next(basket);
+        this.updateTotalPrice();
+        this.setBasketToLocalStorage();
+
     }
 }
