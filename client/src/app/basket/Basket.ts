@@ -2,9 +2,9 @@ import {BasketInterface} from '../interface/BasketInterface';
 import {FoodGroup} from '../product/food/foodGroup';
 import {MenuGroup} from '../product/menu/MenuGroup';
 import {Product} from '../product/class/Product';
-import {FoodGroupInterface} from '../interface/FoodInterface';
-import {MenuGroupInterface} from '../interface/MenuInterface';
-import {ProductInterface} from '../interface/ProductInterface';
+import {ProductGroupInterface, ProductInterface} from '../interface/ProductInterface';
+import {FoodInterface} from '../interface/FoodInterface';
+import {MenuInterface} from '../interface/MenuInterface';
 
 export class Basket implements BasketInterface {
     foodGroups: FoodGroup[];
@@ -14,13 +14,13 @@ export class Basket implements BasketInterface {
 
     public static fromData(basketInterface: BasketInterface) {
         const {menuGroups, foodGroups, movies, total} = basketInterface;
-        const foodGroupsClas = foodGroups.reduce((acc: FoodGroup[], currentValue: FoodGroupInterface) => {
+        const foodGroupsClas = foodGroups.reduce((acc: FoodGroup[], currentValue: ProductGroupInterface<FoodInterface>) => {
             const foodGroup = FoodGroup.fromData(currentValue);
             acc.push(foodGroup);
             return acc;
         }, []);
 
-        const menuGroupsClass = menuGroups.reduce((acc: MenuGroup[], currentValue: MenuGroupInterface) => {
+        const menuGroupsClass = menuGroups.reduce((acc: MenuGroup[], currentValue: ProductGroupInterface<MenuInterface>) => {
             const menuGroup = MenuGroup.fromData(currentValue);
             acc.push(menuGroup);
             return acc;

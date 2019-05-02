@@ -7,8 +7,3 @@ export interface FoodInterface {
     description: string;
     prix: number;
 }
-
-export interface FoodGroupInterface {
-    product: FoodInterface;
-    amount: number;
-}

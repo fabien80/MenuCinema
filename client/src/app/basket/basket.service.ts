@@ -62,12 +62,12 @@ export class BasketService {
     }
 
 
-    addFood(group: FoodGroup) {
-        const index = this.getIndexOfFoodGroup(group);
+    addFood(foodGroup: FoodGroup) {
+        const index = this.getIndexOfFoodGroup(foodGroup);
         if (index !== -1) {
-            this._basket.value.foodGroups[index].amount++;
+            this._basket.value.foodGroups[index].amount += foodGroup.amount;
         } else {
-            this._basket.value.foodGroups.push(group);
+            this._basket.value.foodGroups.push(foodGroup);
         }
         this.updateTotalPrice();
         this.setBasketToLocalStorage();
@@ -86,7 +86,7 @@ export class BasketService {
     addMenu(menuGroup: MenuGroup) {
         const index = this.getIndexOfMenuGroup(menuGroup);
         if (index !== -1) {
-            this._basket.value.menuGroups[index].amount++;
+            this._basket.value.menuGroups[index].amount += menuGroup.amount;
         } else {
             this._basket.value.menuGroups.push(menuGroup);
         }
