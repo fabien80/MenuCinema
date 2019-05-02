@@ -1,16 +1,23 @@
 import {MenuInterface} from '../../interface/MenuInterface';
 import {Product} from '../class/Product';
-import {FoodGroupInterface} from '../../interface/FoodInterface';
+import {FoodGroup} from '../food/foodGroup';
+import {ProductGroupInterface} from '../../interface/ProductInterface';
+import {FoodInterface} from '../../interface/FoodInterface';
 
 export class MenuClass extends Product implements MenuInterface {
-    public foodGroups: FoodGroupInterface[];
+    public foodGroups: FoodGroup[];
 
     static fromData(data: MenuInterface) {
         const {prix, foodGroups, id} = data;
-        return new this(id, prix, foodGroups);
+        const foodGroupsClass = foodGroups.reduce((acc: FoodGroup[], currentValue: ProductGroupInterface<FoodInterface>) => {
+            const foodGroup = FoodGroup.fromData(currentValue);
+            acc.push(foodGroup);
+            return acc;
+        }, []);
+        return new this(id, prix, foodGroupsClass);
     }
 
-    constructor(id: number, prix: number, foodGroups: FoodGroupInterface[]) {
+    constructor(id: number, prix: number, foodGroups: FoodGroup[]) {
         super(id, prix);
         this.foodGroups = foodGroups;
     }
