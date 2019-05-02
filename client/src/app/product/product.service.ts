@@ -4,8 +4,7 @@ import {FoodInterface} from '../interface/FoodInterface';
 import {ProductType} from '../enum/ProductType';
 import {SearchProductQuery, SearchProductResponse} from '../interface/SearchInterface';
 import {MenuInterface} from '../interface/MenuInterface';
-import {ProductGroupInterface, ProductInterface} from '../interface/ProductInterface';
-import {MenuClass} from './menu/menu';
+import {ProductInterface} from '../interface/ProductInterface';
 
 const api = '/api';
 

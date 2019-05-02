@@ -11,7 +11,7 @@
                     [(amount)]="foodGroup.amount"
                     (amountChange)="amountChange()"
             ></app-amount-buttons>
-            {{this.foodService.productToFood(foodGroup.product).nom}}
+            {{foodService.productToFood(foodGroup.product).nom}}
             <button mat-button (click)="removeFoodGroup(i)">
                 <mat-icon>delete</mat-icon>
             </button>
@@ -29,8 +29,6 @@
             </button>
         </div>
     </ng-container>
-    <div *ngIf="basket.total != 0">
-        Total : {{basket.total}} €
-    </div>
+    Total : {{basket.total}} €
 </div>
 

@@ -4,18 +4,16 @@ import {Food} from './food';
 import {Product} from '../class/Product';
 import {BasketService} from '../../basket/basket.service';
 import {ProductGroup} from '../class/productGroup';
+import {FoodGroup} from './foodGroup';
 
 @Injectable({
     providedIn: 'root'
 })
 export class FoodService {
 
-    constructor(private basketService: BasketService) {
+    constructor() {
     }
 
-    public addToBasket(productGroup: ProductGroup) {
-        this.basketService.addFood(productGroup);
-    }
 
     public interfaceToClass(foodInterface: FoodInterface) {
         return Food.fromData(foodInterface);

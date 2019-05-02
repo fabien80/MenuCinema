@@ -1,13 +1,14 @@
-import {ProductGroupInterface} from './ProductInterface';
+import {Food} from '../product/food/food';
+import {FoodGroupInterface} from './FoodInterface';
 
 export interface MenuInterface {
-    foodGroups: ProductGroupInterface[];
+    foodGroups: FoodGroupInterface[];
     prix: number;
     id: number;
 
 }
 
-export interface MenuGroup {
-    menu: MenuInterface;
+export interface MenuGroupInterface {
+    product: MenuInterface;
     amount: number;
 }

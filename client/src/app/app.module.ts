@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {TmdbService} from './tmdb.service';
+import {TmdbService} from './services/tmdb.service';
 import {HttpClientModule} from '@angular/common/http';
 import {MovieComponent} from './product/movie/movie.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
