@@ -5,6 +5,7 @@ import {MenuClass} from './menu';
 import {MenuInterface} from '../../interface/MenuInterface';
 import {BasketService} from '../../basket/basket.service';
 import {ProductGroup} from '../class/productGroup';
+import {MenuGroup} from './MenuGroup';
 
 @Injectable({
     providedIn: 'root'
@@ -22,8 +23,8 @@ export class MenuService {
         return product as MenuClass;
     }
 
-    public addToBasket(productGroup: ProductGroup) {
-        this.basketService.addMenu(productGroup);
+    public addToBasket(menuGroup: MenuGroup) {
+        this.basketService.addMenu(menuGroup);
     }
 
     public interfaceTabToClassTab(menus: MenuInterface[]) {

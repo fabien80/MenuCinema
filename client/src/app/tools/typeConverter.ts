@@ -1,5 +1,5 @@
-import {FoodGroup, FoodInterface} from '../interface/FoodInterface';
-import {MenuGroup, MenuInterface} from '../interface/MenuInterface';
+import {FoodGroupInterface, FoodInterface} from '../interface/FoodInterface';
+import {MenuGroupInterface} from '../interface/MenuInterface';
 
 export class TypeConverter {
     private static readonly MENU_SPECIFIC_ATTR = 'total';
@@ -39,27 +39,27 @@ export class TypeConverter {
         return menu;
     }
 
-    public static isMenuGroup(data: FoodGroup | MenuGroup) {
+    public static isMenuGroup(data: FoodGroupInterface | MenuGroupInterface) {
         let bool: boolean;
         bool = this.MENUGROUP_SPECIFIC_ATTR in data;
         return bool;
     }
 
-    public static isFoodGroup(data: FoodGroup | MenuGroup) {
+    public static isFoodGroup(data: FoodGroupInterface | MenuGroupInterface) {
         let bool: boolean;
         bool = !(this.MENUGROUP_SPECIFIC_ATTR in data);
         return bool;
     }
 
-    public static toFoodGroup(data: FoodGroup | MenuGroup) {
-        let foodGroup: FoodGroup;
-        foodGroup = data as FoodGroup;
+    public static toFoodGroup(data: FoodGroupInterface | MenuGroupInterface) {
+        let foodGroup: FoodGroupInterface;
+        foodGroup = data as FoodGroupInterface;
         return foodGroup;
     }
 
-    public static toMenuGroup(data: FoodGroup | MenuGroup) {
-        let menuGroup: MenuGroup;
-        menuGroup = data as MenuGroup;
+    public static toMenuGroup(data: FoodGroupInterface | MenuGroupInterface) {
+        let menuGroup: MenuGroupInterface;
+        menuGroup = data as MenuGroupInterface;
         return menuGroup;
     }
 
@@ -70,12 +70,12 @@ export class TypeConverter {
     } */
 
     public static foodToFoodGroup(food: FoodInterface, amount: number) {
-        let foodGroup: FoodGroup;
+        let foodGroup: FoodGroupInterface;
         foodGroup = {food, amount};
         return foodGroup;
     }
 
-    public static computeGroupPrice(group: FoodGroup | MenuGroup) {
+    public static computeGroupPrice(group: FoodGroupInterface | MenuGroupInterface) {
         let price: number;
         if (this.isMenuGroup(group)) {
             price = this.toMenuGroup(group).menu.prix * group.amount;

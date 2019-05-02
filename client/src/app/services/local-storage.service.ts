@@ -7,6 +7,8 @@ import {ProductType} from '../enum/ProductType';
 import {ProductGroup} from '../product/class/productGroup';
 import {MenuService} from '../product/menu/menu.service';
 import {FoodService} from '../product/food/food.service';
+import {MenuGroup} from '../product/menu/MenuGroup';
+import {FoodGroup} from '../product/food/foodGroup';
 
 @Injectable({
     providedIn: 'root'
@@ -21,9 +23,9 @@ export class LocalStorageService {
         const basket: any = JSON.parse(localStorage.getItem(this.basketKey));
         if (basket !== null) {
             const food = new Food(2, 1, 'oui', 'oui', ProductType.Entree);
-            const menu = new MenuClass(1, 1, [new ProductGroup(food, 1)]);
+            const menu = new MenuClass(1, 1, [{amount: 1, food}]);
             return {
-                menuGroups: [new ProductGroup(menu, 1)],
+                menuGroups: [new MenuGroup(menu, 1)],
                 total: 0,
                 movies: [],
                 foodGroups: []
@@ -39,6 +41,7 @@ export class LocalStorageService {
     }
 
     public setBasket(basket: BasketInterface) {
+
         localStorage.setItem(this.basketKey, JSON.stringify(basket));
     }
 }

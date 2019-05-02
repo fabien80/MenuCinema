@@ -9,7 +9,6 @@ export abstract class Product implements ProductInterface {
         this._prix = prix;
     }
 
-
     get id(): number {
         return this._id;
     }

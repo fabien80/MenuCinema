@@ -10,6 +10,8 @@ import {MenuService} from '../menu/menu.service';
 import {MenuInterface} from '../../interface/MenuInterface';
 import {AddEventInterface} from '../../interface/AddEventInterface';
 import {AddEventType} from '../../enum/AddEventType';
+import {FoodGroup} from '../food/foodGroup';
+import {MenuGroup} from '../menu/MenuGroup';
 
 @Component({
     selector: 'app-selection-food',
@@ -69,10 +71,11 @@ export class ProductSelectionComponent implements OnInit {
         console.log(addEvent);
         switch (addEvent.event) {
             case AddEventType.addFood:
-                this.foodService.addToBasket(addEvent.data);
+
+                this.foodService.addToBasket(FoodGroup.fromData(addEvent.data));
                 break;
             case AddEventType.addMenu:
-                this.menuService.addToBasket(addEvent.data);
+                this.menuService.addToBasket(MenuGroup.fromData(addEvent.data));
                 break;
             case AddEventType.addMovie:
                 break;
