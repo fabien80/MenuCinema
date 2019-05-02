@@ -1,8 +1,9 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MovieComponent} from './movie.component';
-import {MatButtonModule, MatChipsModule, MatGridListModule} from '@angular/material';
+import {MatButtonModule, MatChipsModule, MatGridListModule, MatIconModule} from '@angular/material';
 import {StarRatingModule} from 'angular-star-rating';
+import {MovieTableComponent} from './movie-table/movie-table.component';
 
 @NgModule({
     declarations: [
@@ -13,7 +14,8 @@ import {StarRatingModule} from 'angular-star-rating';
         MatGridListModule,
         MatChipsModule,
         StarRatingModule,
-        MatButtonModule
+        MatButtonModule,
+        MatIconModule
     ], exports: [
         MovieComponent
     ]

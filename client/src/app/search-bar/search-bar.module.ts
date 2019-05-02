@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {MatFormFieldModule, MatIconModule} from '@angular/material';
+import {MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
 import {SearchBarComponent} from './search-bar.component';
 
 @NgModule({
@@ -8,7 +8,9 @@ import {SearchBarComponent} from './search-bar.component';
     imports: [
         CommonModule,
         MatFormFieldModule,
-        MatIconModule
+        MatIconModule,
+        MatInputModule,
+        MatButtonModule
     ], exports: [SearchBarComponent]
 })
 export class SearchBarModule {
