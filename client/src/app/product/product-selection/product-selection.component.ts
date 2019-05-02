@@ -70,7 +70,6 @@ export class ProductSelectionComponent implements OnInit {
 
 
     onAdd(addEvent: AddEventInterface) {
-        console.log(addEvent);
         switch (addEvent.event) {
             case AddEventType.addFood:
 

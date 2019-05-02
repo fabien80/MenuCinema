@@ -24,9 +24,6 @@ export class LocalStorageService {
     public getBasket(): Basket {
         const basket: Basket = JSON.parse(localStorage.getItem(this.basketKey));
         if (basket !== null) {
-            console.log(basket);
-
-
             return basket;
         } else {
             return {
@@ -39,8 +36,6 @@ export class LocalStorageService {
     }
 
     public setBasket(basket: BasketInterface) {
-        console.log(basket);
-        console.log(JSON.stringify(basket));
         localStorage.setItem(this.basketKey, JSON.stringify(basket));
     }
 }

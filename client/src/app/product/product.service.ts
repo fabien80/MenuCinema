@@ -57,7 +57,6 @@ export class ProductService {
             type: ProductType.Boisson
         };
         const results: ProductInterface[] = [];
-        console.log(query.type);
 
         const menu1: MenuInterface = {
             id: 1,

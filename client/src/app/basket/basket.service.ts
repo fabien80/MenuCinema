@@ -22,7 +22,6 @@ export class BasketService {
     });
 
     constructor(private localStorageService: LocalStorageService) {
-        console.log(this.localStorageService.getBasket());
         const basket = Basket.fromData(this.localStorageService.getBasket());
         this._basket.next(basket);
     }
@@ -86,7 +85,6 @@ export class BasketService {
 
     addMenu(menuGroup: MenuGroup) {
         const index = this.getIndexOfMenuGroup(menuGroup);
-        console.log(index);
         if (index !== -1) {
             this._basket.value.menuGroups[index].amount++;
         } else {
@@ -146,7 +144,6 @@ export class BasketService {
     }
 
     setBasketToLocalStorage() {
-        console.log(this.basket.value);
         this.localStorageService.setBasket(this._basket.value);
     }
 

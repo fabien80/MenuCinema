@@ -9,7 +9,6 @@ export class MenuGroup extends ProductGroup<MenuClass> {
 
     public static fromData(data: MenuGroupInterface) {
         const {amount, product} = data;
-        console.log(data.product);
         const menu = MenuClass.fromData(product);
         return new this(menu, amount);
 
