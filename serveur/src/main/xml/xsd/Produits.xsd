@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+xsd schéma de Produits
+-->
+<xs:schema version="1.0"
+           targetNamespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/Produits"
+           xmlns="https://www.univ-grenoble-alpes.fr/francais/l3miage/Produits"
+           xmlns:pl="https://www.univ-grenoble-alpes.fr/francais/l3miage/Produit"
+           xmlns:mn="https://www.univ-grenoble-alpes.fr/francais/l3miage/Menu"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+    <xs:import schemaLocation="Produit.xsd" namespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/Produit"/>
+    <xs:import schemaLocation="Menu.xsd" namespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/Menu"/>
+
+    <xs:element name="produits" type="Produits"/>
+
+    <xs:complexType name="Produits">
+        <xs:sequence>
+            <xs:element name="menus" type="mn:Menu" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="produit" type="pl:Produit" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
