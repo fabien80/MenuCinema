@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BasketService} from './basket.service';
 import {BasketInterface} from '../interface/BasketInterface';
-import {FoodGroup} from '../interface/FoodInterface';
-import {MenuGroup} from '../interface/MenuInterface';
 import {FoodService} from '../product/food/food.service';
 import {MenuService} from '../product/menu/menu.service';
 
@@ -15,7 +13,7 @@ export class BasketComponent implements OnInit {
     private basket: BasketInterface;
 
     constructor(private basketService: BasketService,
-                private  foodService: FoodService,
+                private foodService: FoodService,
                 private menuService: MenuService) {
         this.basketService.basket.subscribe((basket: BasketInterface) => {
             this.basket = basket;

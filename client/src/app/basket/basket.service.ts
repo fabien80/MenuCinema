@@ -4,6 +4,10 @@ import {BasketInterface} from '../interface/BasketInterface';
 import {ProductGroup} from '../product/class/productGroup';
 import {Product} from '../product/class/Product';
 import {LocalStorageService} from '../services/local-storage.service';
+import {FoodGroup} from '../product/food/foodGroup';
+import {MenuGroup} from '../product/menu/MenuGroup';
+import {MenuService} from '../product/menu/menu.service';
+import {FoodService} from '../product/food/food.service';
 
 
 @Injectable({
@@ -27,8 +31,8 @@ export class BasketService {
         return this._basket;
     }
 
-    getIndexOfFoodGroup(group: ProductGroup): number {
-        return this._basket.value.foodGroups.reduce((groupIndex: number, foodGroup: ProductGroup, currentIndex: number) => {
+    getIndexOfFoodGroup(group: FoodGroup): number {
+        return this._basket.value.foodGroups.reduce((groupIndex: number, foodGroup: FoodGroup, currentIndex: number) => {
             if (foodGroup.product.id === group.product.id) {
                 groupIndex = currentIndex;
             }
@@ -36,9 +40,9 @@ export class BasketService {
         }, -1);
     }
 
-    getIndexOfMenuGroup(group: ProductGroup): number {
+    getIndexOfMenuGroup(group: MenuGroup): number {
         console.log(group);
-        return this._basket.value.menuGroups.reduce((groupIndex: number, menuGroup: ProductGroup, currentIndex: number) => {
+        return this._basket.value.menuGroups.reduce((groupIndex: number, menuGroup: MenuGroup, currentIndex: number) => {
             console.log(menuGroup);
             console.log(group);
             if (menuGroup.product.id === group.product.id) {
@@ -58,7 +62,7 @@ export class BasketService {
     }
 
 
-    addFood(group: ProductGroup) {
+    addFood(group: FoodGroup) {
         const index = this.getIndexOfFoodGroup(group);
         if (index !== -1) {
             this._basket.value.foodGroups[index].amount++;
@@ -79,7 +83,7 @@ export class BasketService {
 
     }
 
-    addMenu(menuGroup: ProductGroup) {
+    addMenu(menuGroup: MenuGroup) {
         const index = this.getIndexOfMenuGroup(menuGroup);
         console.log(index);
         if (index !== -1) {
@@ -100,14 +104,14 @@ export class BasketService {
     }
 
     private calculateFoodsPrice() {
-        return this._basket.value.foodGroups.reduce((total: number, foodGroup: ProductGroup) => {
+        return this._basket.value.foodGroups.reduce((total: number, foodGroup: FoodGroup) => {
             total += foodGroup.getTotal();
             return total;
         }, 0);
     }
 
     private calculateMenusPrice() {
-        return this._basket.value.menuGroups.reduce((total: number, menuGroup: ProductGroup) => {
+        return this._basket.value.menuGroups.reduce((total: number, menuGroup: MenuGroup) => {
             total += menuGroup.getTotal();
             return total;
         }, 0);

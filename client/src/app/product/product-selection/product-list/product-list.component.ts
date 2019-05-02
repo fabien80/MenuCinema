@@ -9,6 +9,7 @@ import {AddProductToBasketComponent} from '../../../dialogs/add-product-to-baske
 import {ProductGroup} from '../../class/productGroup';
 import {AddEventType} from '../../../enum/AddEventType';
 import {environment} from '../../../../environments/environment';
+import {ProductGroupInterface} from '../../../interface/ProductInterface';
 
 
 @Component({
@@ -48,10 +49,10 @@ export class ProductListComponent implements OnInit {
             data: product
         });
 
-        dialogRef.afterClosed().toPromise().then((productGroup: ProductGroup) => {
-            if (productGroup !== undefined) {
+        dialogRef.afterClosed().toPromise().then((productGroupInterface: ProductGroupInterface<any>) => {
+            if (productGroupInterface !== undefined) {
                 const addEvent: AddEventInterface = {
-                    data: productGroup,
+                    data: productGroupInterface,
                     event: this.eventType
                 };
                 this.addEvent.emit(addEvent);

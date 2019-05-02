@@ -4,8 +4,7 @@ import {FoodInterface} from '../interface/FoodInterface';
 import {ProductType} from '../enum/ProductType';
 import {SearchProductQuery, SearchProductResponse} from '../interface/SearchInterface';
 import {MenuInterface} from '../interface/MenuInterface';
-import {ProductGroupInterface, ProductInterface} from '../interface/ProductInterface';
-import {MenuClass} from './menu/menu';
+import {ProductInterface} from '../interface/ProductInterface';
 
 const api = '/api';
 
@@ -62,21 +61,21 @@ export class ProductService {
 
         const menu1: MenuInterface = {
             id: 1,
-            foodGroups: [{product: entree, amount: 1}, {product: boisson, amount: 1}, {product: plat, amount: 1}],
+            foodGroups: [{food: entree, amount: 1}, {food: boisson, amount: 1}, {food: plat, amount: 1}],
             prix: 20
         };
 
         const menu2: MenuInterface = {
 
             id: 2,
-            foodGroups: [{amount: 1, product: plat}, {amount: 1, product: dessert}],
+            foodGroups: [{amount: 1, food: plat}, {amount: 1, food: dessert}],
             prix: 10
         };
 
         const menu3: MenuInterface = {
             id: 3,
-            foodGroups: [{product: entree, amount: 1}, {product: boisson, amount: 1}, {product: plat, amount: 1}, {
-                product: dessert,
+            foodGroups: [{food: entree, amount: 1}, {food: boisson, amount: 1}, {food: plat, amount: 1}, {
+                food: dessert,
                 amount: 1
             }],
             prix: 25

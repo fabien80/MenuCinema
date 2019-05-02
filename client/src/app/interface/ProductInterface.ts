@@ -1,7 +1,7 @@
-import {Product} from '../product/class/Product';
 
-export interface ProductGroupInterface {
-    product: ProductInterface;
+
+export interface ProductGroupInterface<T> {
+    product: T;
     amount: number;
 }
 

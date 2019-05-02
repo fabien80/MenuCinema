@@ -1,25 +1,22 @@
-import {Product} from './Product';
 import {ProductGroupInterface} from '../../interface/ProductInterface';
 
-export class ProductGroup implements ProductGroupInterface {
-    private _product: Product;
+export abstract class ProductGroup<T> implements ProductGroupInterface<T> {
+    private _product: T;
     private _amount: number;
 
 
-    constructor(product: Product, amount: number) {
+    constructor(product: T, amount: number) {
         this._product = product;
         this._amount = amount;
     }
 
-    public getTotal() {
-        return this._product.prix * this._amount;
-    }
+    public abstract getTotal(): number;
 
-    get product(): Product {
+    get product(): T {
         return this._product;
     }
 
-    set product(value: Product) {
+    set product(value: T) {
         this._product = value;
     }
 
