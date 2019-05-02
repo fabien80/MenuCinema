@@ -18,10 +18,9 @@ export class ProductService {
 
     public async search(query: SearchProductQuery): Promise<SearchProductResponse> {
         const params = new HttpParams();
-        params.append('page', query.page.toString());
         params.append('query', query.query);
-        params.append('nbElem', query.nbElem.toString());
-        const url = `${api}/search/movie`;
+        params.append('type', query.type);
+        const url = `${api}/search`;
         return await this.http.get(url, {params}).toPromise();
     }
 

@@ -1,16 +1,12 @@
 import {ProductType} from '../enum/ProductType';
 import {ProductInterface} from './ProductInterface';
+import {Product} from '../product/class/Product';
 
 export interface SearchProductResponse {
-    page?: number;
-    results?: ProductInterface[];
-    total_results?: number;
-    total_pages?: number;
+    results?: Product[];
 }
 
 export interface SearchProductQuery {
     query?: string;
-    nbElem?: number;
     type?: ProductType;
-    page?: number; // Specify which page to query. minimum: 1, default: 1
 }
