@@ -18,7 +18,6 @@ export class BasketComponent implements OnInit {
                 private menuService: MenuService) {
         this.basketService.basket.subscribe((basket: Basket) => {
             this.basket = basket;
-            console.log(basket);
         });
     }
 
