@@ -1,5 +1,3 @@
-
-
 export interface ProductGroupInterface<T> {
     product: T;
     amount: number;

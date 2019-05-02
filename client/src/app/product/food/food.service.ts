@@ -14,16 +14,16 @@ export class FoodService {
     constructor() {
     }
 
-
-    public interfaceToClass(foodInterface: FoodInterface) {
-        return Food.fromData(foodInterface);
-    }
-
     public interfaceTabToClassTab(foods: FoodInterface[]) {
         return foods.reduce((foodsClass: Food[], elem: FoodInterface) => {
             foodsClass.push(Food.fromData(elem));
             return foodsClass;
         }, []);
+    }
+
+
+    public interfaceToClass(foodInterface: FoodInterface) {
+        return Food.fromData(foodInterface);
     }
 
     public productToFood(product: Product) {

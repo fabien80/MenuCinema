@@ -13,19 +13,19 @@ export class MenuService {
     constructor() {
     }
 
+    public menuGroupInterfaceToMenuGroup(menuGroups: ProductGroupInterface<MenuInterface>[]) {
+        return menuGroups.reduce((acc: MenuGroup[], currentValue: ProductGroupInterface<MenuInterface>) => {
+            acc.push(MenuGroup.fromData(currentValue));
+            return acc;
+        }, []);
+    }
+
     public interfaceToClass(menuInterface: MenuInterface) {
         return MenuClass.fromData(menuInterface);
     }
 
     public productToMenu(product: Product) {
         return product as MenuClass;
-    }
-
-    public menuGroupInterfaceToMenuGroup(menuGroups: ProductGroupInterface<MenuInterface>[]) {
-        return menuGroups.reduce((acc: MenuGroup[], currentValue: ProductGroupInterface<MenuInterface>) => {
-            acc.push(MenuGroup.fromData(currentValue));
-            return acc;
-        }, []);
     }
 
     public interfaceTabToClassTab(menus: MenuInterface[]) {

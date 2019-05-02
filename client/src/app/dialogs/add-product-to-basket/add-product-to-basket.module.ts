@@ -6,6 +6,7 @@ import {MenuModule} from '../../product/menu/menu.module';
 import {FoodModule} from '../../product/food/food.module';
 import {AppModule} from '../../app.module';
 import {AmountButtonsModule} from '../../amount-buttons/amount-buttons.module';
+import {MatButtonModule} from '@angular/material';
 
 @NgModule({
     declarations: [AddProductToBasketComponent],
@@ -13,7 +14,8 @@ import {AmountButtonsModule} from '../../amount-buttons/amount-buttons.module';
         CommonModule,
         MenuModule,
         FoodModule,
-        AmountButtonsModule
+        AmountButtonsModule,
+        MatButtonModule
     ], exports: [AddProductToBasketComponent]
     , entryComponents: [AddProductToBasketComponent]
 })
