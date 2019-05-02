@@ -2,7 +2,7 @@
     <div *ngIf="isMenu()">
         <app-menu [menu]="menuService.productToMenu(data)"></app-menu>
         <div *ngFor="let foodGroup of menuService.productToMenu(data).foodGroups">
-            <app-food [food]=" foodService.productToFood(foodGroup.food)"></app-food>
+            <app-food [food]=" foodService.productToFood(foodGroup.product)"></app-food>
         </div>
     </div>
     <app-food *ngIf="!isMenu()" [food]="foodService.productToFood(data)"></app-food>

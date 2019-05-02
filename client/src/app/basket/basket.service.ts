@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
-import {BasketInterface} from '../interface/BasketInterface';
 import {ProductGroup} from '../product/class/productGroup';
 import {Product} from '../product/class/Product';
 import {LocalStorageService} from '../services/local-storage.service';
@@ -8,26 +7,28 @@ import {FoodGroup} from '../product/food/foodGroup';
 import {MenuGroup} from '../product/menu/MenuGroup';
 import {MenuService} from '../product/menu/menu.service';
 import {FoodService} from '../product/food/food.service';
+import {Basket} from './Basket';
 
 
 @Injectable({
     providedIn: 'root'
 })
 export class BasketService {
-    private _basket = new BehaviorSubject<BasketInterface>({
+    private _basket = new BehaviorSubject<Basket>({
         foodGroups: [],
+        total: 0,
         menuGroups: [],
-        movies: [],
-        total: 0
+        movies: []
     });
 
     constructor(private localStorageService: LocalStorageService) {
         console.log(this.localStorageService.getBasket());
-        this._basket.next(this.localStorageService.getBasket());
+        const basket = Basket.fromData(this.localStorageService.getBasket());
+        this._basket.next(basket);
     }
 
 
-    get basket(): BehaviorSubject<BasketInterface> {
+    get basket(): BehaviorSubject<Basket> {
         return this._basket;
     }
 
@@ -145,10 +146,11 @@ export class BasketService {
     }
 
     setBasketToLocalStorage() {
+        console.log(this.basket.value);
         this.localStorageService.setBasket(this._basket.value);
     }
 
-    setBasketValue(basket: BasketInterface) {
+    setBasketValue(basket: Basket) {
         this._basket.next(basket);
         this.updateTotalPrice();
         this.setBasketToLocalStorage();
