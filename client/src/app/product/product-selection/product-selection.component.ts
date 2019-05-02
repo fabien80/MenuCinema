@@ -15,7 +15,7 @@ import {MenuGroup} from '../menu/MenuGroup';
 import {BasketService} from '../../basket/basket.service';
 
 @Component({
-    selector: 'app-selection-food',
+    selector: 'app-selection-product',
     templateUrl: './product-selection.component.html',
     styleUrls: ['./product-selection.component.scss']
 })
@@ -70,7 +70,6 @@ export class ProductSelectionComponent implements OnInit {
 
 
     onAdd(addEvent: AddEventInterface) {
-        console.log(addEvent);
         switch (addEvent.event) {
             case AddEventType.addFood:
 
