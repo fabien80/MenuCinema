@@ -27,7 +27,8 @@ import {DialogsModule} from '../dialogs/dialogs.module';
         FoodModule,
         MovieModule,
         MatButtonModule,
-        MatDialogModule
+        MatDialogModule,
+        DialogsModule
     ], exports: [
         ProductSelectionComponent,
         ProductListComponent
