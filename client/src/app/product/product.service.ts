@@ -61,21 +61,21 @@ export class ProductService {
 
         const menu1: MenuInterface = {
             id: 1,
-            foodGroups: [{food: entree, amount: 1}, {food: boisson, amount: 1}, {food: plat, amount: 1}],
+            foodGroups: [{product: entree, amount: 1}, {product: boisson, amount: 1}, {product: plat, amount: 1}],
             prix: 20
         };
 
         const menu2: MenuInterface = {
 
             id: 2,
-            foodGroups: [{amount: 1, food: plat}, {amount: 1, food: dessert}],
+            foodGroups: [{amount: 1, product: plat}, {amount: 1, product: dessert}],
             prix: 10
         };
 
         const menu3: MenuInterface = {
             id: 3,
-            foodGroups: [{food: entree, amount: 1}, {food: boisson, amount: 1}, {food: plat, amount: 1}, {
-                food: dessert,
+            foodGroups: [{product: entree, amount: 1}, {product: boisson, amount: 1}, {product: plat, amount: 1}, {
+                product: dessert,
                 amount: 1
             }],
             prix: 25

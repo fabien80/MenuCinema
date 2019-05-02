@@ -9,6 +9,6 @@ export interface FoodInterface {
 }
 
 export interface FoodGroupInterface {
-    food: FoodInterface;
+    product: FoodInterface;
     amount: number;
 }

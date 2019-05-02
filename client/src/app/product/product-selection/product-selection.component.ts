@@ -12,6 +12,7 @@ import {AddEventInterface} from '../../interface/AddEventInterface';
 import {AddEventType} from '../../enum/AddEventType';
 import {FoodGroup} from '../food/foodGroup';
 import {MenuGroup} from '../menu/MenuGroup';
+import {BasketService} from '../../basket/basket.service';
 
 @Component({
     selector: 'app-selection-food',
@@ -33,7 +34,8 @@ export class ProductSelectionComponent implements OnInit {
 
     constructor(private productService: ProductService,
                 private foodService: FoodService,
-                private menuService: MenuService) {
+                private menuService: MenuService,
+                private basketService: BasketService) {
     }
 
     ngOnInit() {
@@ -72,10 +74,10 @@ export class ProductSelectionComponent implements OnInit {
         switch (addEvent.event) {
             case AddEventType.addFood:
 
-                this.foodService.addToBasket(FoodGroup.fromData(addEvent.data));
+                this.basketService.addFood(FoodGroup.fromData(addEvent.data));
                 break;
             case AddEventType.addMenu:
-                this.menuService.addToBasket(MenuGroup.fromData(addEvent.data));
+                this.basketService.addMenu(MenuGroup.fromData(addEvent.data));
                 break;
             case AddEventType.addMovie:
                 break;

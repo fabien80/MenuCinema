@@ -2,7 +2,6 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FoodGroupInterface, FoodInterface} from '../../interface/FoodInterface';
 import {BasketService} from '../../basket/basket.service';
-import {TypeConverter} from '../../tools/typeConverter';
 import {MenuInterface} from '../../interface/MenuInterface';
 import {Product} from '../../product/class/Product';
 import {FoodService} from '../../product/food/food.service';

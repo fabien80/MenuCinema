@@ -2,17 +2,18 @@ import {Injectable} from '@angular/core';
 import {Food} from '../food/food';
 import {Product} from '../class/Product';
 import {MenuClass} from './menu';
-import {MenuInterface} from '../../interface/MenuInterface';
+import {MenuGroupInterface, MenuInterface} from '../../interface/MenuInterface';
 import {BasketService} from '../../basket/basket.service';
 import {ProductGroup} from '../class/productGroup';
 import {MenuGroup} from './MenuGroup';
+import {ProductGroupInterface} from '../../interface/ProductInterface';
 
 @Injectable({
     providedIn: 'root'
 })
 export class MenuService {
 
-    constructor(private basketService: BasketService) {
+    constructor() {
     }
 
     public interfaceToClass(menuInterface: MenuInterface) {
@@ -23,8 +24,11 @@ export class MenuService {
         return product as MenuClass;
     }
 
-    public addToBasket(menuGroup: MenuGroup) {
-        this.basketService.addMenu(menuGroup);
+    public menuGroupInterfaceToMenuGroup(menuGroups: MenuGroupInterface[]) {
+        return menuGroups.reduce((acc: MenuGroup[], currentValue: MenuGroupInterface) => {
+            acc.push(MenuGroup.fromData(currentValue));
+            return acc;
+        }, []);
     }
 
     public interfaceTabToClassTab(menus: MenuInterface[]) {

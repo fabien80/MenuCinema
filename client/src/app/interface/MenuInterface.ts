@@ -9,6 +9,6 @@ export interface MenuInterface {
 }
 
 export interface MenuGroupInterface {
-    menu: MenuInterface;
+    product: MenuInterface;
     amount: number;
 }

@@ -11,12 +11,9 @@ import {FoodGroup} from './foodGroup';
 })
 export class FoodService {
 
-    constructor(private basketService: BasketService) {
+    constructor() {
     }
 
-    public addToBasket(foodGroup: FoodGroup) {
-        this.basketService.addFood(foodGroup);
-    }
 
     public interfaceToClass(foodInterface: FoodInterface) {
         return Food.fromData(foodInterface);

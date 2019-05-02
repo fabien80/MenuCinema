@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
-import {BasketInterface} from '../interface/BasketInterface';
 import {MenuClass} from '../product/menu/menu';
 import {Food} from '../product/food/food';
 import {ProductType} from '../enum/ProductType';
@@ -9,6 +8,8 @@ import {MenuService} from '../product/menu/menu.service';
 import {FoodService} from '../product/food/food.service';
 import {MenuGroup} from '../product/menu/MenuGroup';
 import {FoodGroup} from '../product/food/foodGroup';
+import {Basket} from '../basket/Basket';
+import {BasketInterface} from '../interface/BasketInterface';
 
 @Injectable({
     providedIn: 'root'
@@ -16,20 +17,17 @@ import {FoodGroup} from '../product/food/foodGroup';
 export class LocalStorageService {
     private readonly basketKey: string = environment.basketStorageKey;
 
-    constructor() {
+    constructor(private menuService: MenuService,
+                private foodService: FoodService) {
     }
 
-    public getBasket(): BasketInterface {
-        const basket: any = JSON.parse(localStorage.getItem(this.basketKey));
+    public getBasket(): Basket {
+        const basket: Basket = JSON.parse(localStorage.getItem(this.basketKey));
         if (basket !== null) {
-            const food = new Food(2, 1, 'oui', 'oui', ProductType.Entree);
-            const menu = new MenuClass(1, 1, [{amount: 1, food}]);
-            return {
-                menuGroups: [new MenuGroup(menu, 1)],
-                total: 0,
-                movies: [],
-                foodGroups: []
-            };
+            console.log(basket);
+
+
+            return basket;
         } else {
             return {
                 menuGroups: [],
@@ -41,7 +39,8 @@ export class LocalStorageService {
     }
 
     public setBasket(basket: BasketInterface) {
-
+        console.log(basket);
+        console.log(JSON.stringify(basket));
         localStorage.setItem(this.basketKey, JSON.stringify(basket));
     }
 }

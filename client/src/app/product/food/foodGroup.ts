@@ -3,10 +3,10 @@ import {Food} from './food';
 import {FoodGroupInterface} from '../../interface/FoodInterface';
 import {ProductGroupInterface} from '../../interface/ProductInterface';
 
-export class FoodGroup extends ProductGroup<Food> {
+export class FoodGroup extends ProductGroup<Food> implements FoodGroupInterface {
 
 
-    public static fromData(data: ProductGroupInterface<Food>) {
+    public static fromData(data: FoodGroupInterface) {
         const {amount, product} = data;
         const food: Food = Food.fromData(product);
         return new this(food, amount);
