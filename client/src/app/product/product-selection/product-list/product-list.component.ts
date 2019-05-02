@@ -13,7 +13,7 @@ import {ProductGroupInterface} from '../../../interface/ProductInterface';
 
 
 @Component({
-    selector: 'app-food-list',
+    selector: 'app-product-list',
     templateUrl: './product-list.component.html',
     styleUrls: ['./product-list.component.scss']
 })

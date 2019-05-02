@@ -15,7 +15,7 @@ import {MenuGroup} from '../menu/MenuGroup';
 import {BasketService} from '../../basket/basket.service';
 
 @Component({
-    selector: 'app-selection-food',
+    selector: 'app-selection-product',
     templateUrl: './product-selection.component.html',
     styleUrls: ['./product-selection.component.scss']
 })
