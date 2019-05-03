@@ -14,8 +14,9 @@
             <xs:element name="comandeId" type="xs:string"/>
             <xs:element name="dateHeure" type="xs:string"/>
             <xs:element name="clientId" type="xs:string"/>
-            <xs:element name="PlatsId" type="IdList" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="idPlats" type="IdList" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="idFilms" type="IdList" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="idMenu" type="IdList" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="prix" type="xs:double"/>
             <xs:element name="numeroRue" type = "xs:int"/>
             <xs:element name="rue" type = "xs:string"/>

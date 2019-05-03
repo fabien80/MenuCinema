@@ -17,7 +17,7 @@ xsd schéma de Produits
 
     <xs:complexType name="Produits">
         <xs:sequence>
-            <xs:element name="menus" type="mn:Menu" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="menu" type="mn:Menu" minOccurs="0" maxOccurs="unbounded" />
             <xs:element name="produit" type="pl:Produit" minOccurs="0" maxOccurs="unbounded" />
         </xs:sequence>
     </xs:complexType>

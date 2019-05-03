@@ -11,15 +11,16 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import enums.*
 
 
 /**
- * <p>Classe Java pour Plat complex type.
+ * <p>Classe Java pour Produit complex type.
  * 
  * <p>Le fragment de sch�ma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="Plat">
+ * &lt;complexType name="Produit">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -36,22 +37,22 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Plat", namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Plat", propOrder = {
+@XmlType(name = "Produit", namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Produit", propOrder = {
     "id",
     "type",
     "prix",
     "ingredients"
 })
-public class Plat {
+public class Produit {
 
-    @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Plat", required = true)
+    @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Produit", required = true)
     protected String id;
-    @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Plat", required = true)
+    @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Produit", required = true)
     @XmlSchemaType(name = "string")
     protected TypeDePlat type;
-    @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Plat")
+    @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Produit")
     protected double prix;
-    @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Plat")
+    @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Produit")
     @XmlSchemaType(name = "string")
     protected List<Ingredient> ingredients;
 
