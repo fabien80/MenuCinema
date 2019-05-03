@@ -1,3 +1,10 @@
+//
+// Ce fichier a �t� g�n�r� par l'impl�mentation de r�f�rence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
+// Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
+// Toute modification apport�e � ce fichier sera perdue lors de la recompilation du sch�ma source. 
+// G�n�r� le : 2019.05.03 � 03:01:52 PM CEST 
+//
+
 
 package enums;
 
@@ -7,25 +14,26 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour TypeDePlat.
+ * <p>Classe Java pour TypeDeProduit.
  * 
  * <p>Le fragment de sch�ma suivant indique le contenu attendu figurant dans cette classe.
  * <p>
  * <pre>
- * &lt;simpleType name="TypeDePlat">
+ * &lt;simpleType name="TypeDeProduit">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
  *     &lt;enumeration value="Entree"/>
  *     &lt;enumeration value="Plat"/>
  *     &lt;enumeration value="Dessert"/>
  *     &lt;enumeration value="Boisson"/>
+ *     &lt;enumeration value="Menu"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
  * 
  */
-@XmlType(name = "TypeDePlat", namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP")
+@XmlType(name = "TypeDeProduit", namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP")
 @XmlEnum
-public enum TypeDePlat {
+public enum TypeDeProduit {
 
     @XmlEnumValue("Entree")
     ENTREE("Entree"),
@@ -34,10 +42,12 @@ public enum TypeDePlat {
     @XmlEnumValue("Dessert")
     DESSERT("Dessert"),
     @XmlEnumValue("Boisson")
-    BOISSON("Boisson");
+    BOISSON("Boisson"),
+    @XmlEnumValue("Menu")
+    MENU("Menu");
     private final String value;
 
-    TypeDePlat(String v) {
+    TypeDeProduit(String v) {
         value = v;
     }
 
@@ -45,8 +55,8 @@ public enum TypeDePlat {
         return value;
     }
 
-    public static TypeDePlat fromValue(String v) {
-        for (TypeDePlat c: TypeDePlat.values()) {
+    public static TypeDeProduit fromValue(String v) {
+        for (TypeDeProduit c: TypeDeProduit.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

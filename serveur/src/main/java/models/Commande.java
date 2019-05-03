@@ -12,14 +12,14 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour Commande complex type.
  * 
- * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="Commande">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="comandeId" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="commandeId" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="dateHeure" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="clientId" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="idPlats" type="{https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP}IdList" maxOccurs="unbounded" minOccurs="0"/>
@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Commande", namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP", propOrder = {
-    "comandeId",
+    "commandeId",
     "dateHeure",
     "clientId",
     "idPlats",
@@ -55,7 +55,7 @@ import javax.xml.bind.annotation.XmlType;
 public class Commande {
 
     @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP", required = true)
-    protected String comandeId;
+    protected String commandeId;
     @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP", required = true)
     protected String dateHeure;
     @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP", required = true)
@@ -77,32 +77,49 @@ public class Commande {
     @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP", required = true)
     protected String codePostal;
 
+    public Commande(String commandeId, String dateHeure, String clientId, List<String> idPlats, List<String> idFilms, List<String> idMenu, double prix, int numeroRue, String rue, String ville, String codePostal) {
+        this.commandeId = commandeId;
+        this.dateHeure = dateHeure;
+        this.clientId = clientId;
+        this.idPlats = idPlats;
+        this.idFilms = idFilms;
+        this.idMenu = idMenu;
+        this.prix = prix;
+        this.numeroRue = numeroRue;
+        this.rue = rue;
+        this.ville = ville;
+        this.codePostal = codePostal;
+    }
+
+    public Commande() {
+    }
+
     /**
-     * Obtient la valeur de la propriété comandeId.
+     * Obtient la valeur de la propriï¿½tï¿½ commandeId.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getComandeId() {
-        return comandeId;
+    public String getCommandeId() {
+        return commandeId;
     }
 
     /**
-     * Définit la valeur de la propriété comandeId.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ commandeId.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setComandeId(String value) {
-        this.comandeId = value;
+    public void setCommandeId(String value) {
+        this.commandeId = value;
     }
 
     /**
-     * Obtient la valeur de la propriété dateHeure.
+     * Obtient la valeur de la propriï¿½tï¿½ dateHeure.
      * 
      * @return
      *     possible object is
@@ -114,7 +131,7 @@ public class Commande {
     }
 
     /**
-     * Définit la valeur de la propriété dateHeure.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ dateHeure.
      * 
      * @param value
      *     allowed object is
@@ -126,7 +143,7 @@ public class Commande {
     }
 
     /**
-     * Obtient la valeur de la propriété clientId.
+     * Obtient la valeur de la propriï¿½tï¿½ clientId.
      * 
      * @return
      *     possible object is
@@ -138,7 +155,7 @@ public class Commande {
     }
 
     /**
-     * Définit la valeur de la propriété clientId.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ clientId.
      * 
      * @param value
      *     allowed object is
@@ -237,7 +254,7 @@ public class Commande {
     }
 
     /**
-     * Obtient la valeur de la propriété prix.
+     * Obtient la valeur de la propriï¿½tï¿½ prix.
      * 
      */
     public double getPrix() {
@@ -245,7 +262,7 @@ public class Commande {
     }
 
     /**
-     * Définit la valeur de la propriété prix.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ prix.
      * 
      */
     public void setPrix(double value) {
@@ -253,7 +270,7 @@ public class Commande {
     }
 
     /**
-     * Obtient la valeur de la propriété numeroRue.
+     * Obtient la valeur de la propriï¿½tï¿½ numeroRue.
      * 
      */
     public int getNumeroRue() {
@@ -261,7 +278,7 @@ public class Commande {
     }
 
     /**
-     * Définit la valeur de la propriété numeroRue.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ numeroRue.
      * 
      */
     public void setNumeroRue(int value) {
@@ -269,7 +286,7 @@ public class Commande {
     }
 
     /**
-     * Obtient la valeur de la propriété rue.
+     * Obtient la valeur de la propriï¿½tï¿½ rue.
      * 
      * @return
      *     possible object is
@@ -281,7 +298,7 @@ public class Commande {
     }
 
     /**
-     * Définit la valeur de la propriété rue.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ rue.
      * 
      * @param value
      *     allowed object is
@@ -293,7 +310,7 @@ public class Commande {
     }
 
     /**
-     * Obtient la valeur de la propriété ville.
+     * Obtient la valeur de la propriï¿½tï¿½ ville.
      * 
      * @return
      *     possible object is
@@ -305,7 +322,7 @@ public class Commande {
     }
 
     /**
-     * Définit la valeur de la propriété ville.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ ville.
      * 
      * @param value
      *     allowed object is
@@ -317,7 +334,7 @@ public class Commande {
     }
 
     /**
-     * Obtient la valeur de la propriété codePostal.
+     * Obtient la valeur de la propriï¿½tï¿½ codePostal.
      * 
      * @return
      *     possible object is
@@ -329,7 +346,7 @@ public class Commande {
     }
 
     /**
-     * Définit la valeur de la propriété codePostal.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ codePostal.
      * 
      * @param value
      *     allowed object is

@@ -1,34 +1,25 @@
 
 package models;
 
-import enums.Ingredient;
-import enums.TypeDePlat;
-
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import enums.*
 
 
 /**
  * <p>Classe Java pour Produit complex type.
  * 
- * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="Produit">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="type" type="{https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP}TypeDePlat"/>
- *         &lt;element name="prix" type="{http://www.w3.org/2001/XMLSchema}double"/>
- *         &lt;element name="ingredients" type="{https://www.univ-grenoble-alpes.fr/francais/l3miage/Ingredient}Ingredient" maxOccurs="unbounded" minOccurs="0"/>
- *       &lt;/sequence>
+ *       &lt;choice>
+ *         &lt;element name="nourriture" type="{https://www.univ-grenoble-alpes.fr/francais/l3miage/Nourriture}Nourriture"/>
+ *         &lt;element name="menu" type="{https://www.univ-grenoble-alpes.fr/francais/l3miage/Menu}Menu"/>
+ *       &lt;/choice>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -38,115 +29,62 @@ import enums.*
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Produit", namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Produit", propOrder = {
-    "id",
-    "type",
-    "prix",
-    "ingredients"
+    "nourriture",
+    "menu"
 })
 public class Produit {
 
-    @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Produit", required = true)
-    protected String id;
-    @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Produit", required = true)
-    @XmlSchemaType(name = "string")
-    protected TypeDePlat type;
     @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Produit")
-    protected double prix;
+    protected Nourriture nourriture;
     @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Produit")
-    @XmlSchemaType(name = "string")
-    protected List<Ingredient> ingredients;
+    protected Menu menu;
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ id.
+     * Obtient la valeur de la propriété nourriture.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Nourriture }
      *     
      */
-    public String getId() {
-        return id;
+    public Nourriture getNourriture() {
+        return nourriture;
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ id.
+     * Définit la valeur de la propriété nourriture.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Nourriture }
      *     
      */
-    public void setId(String value) {
-        this.id = value;
+    public void setNourriture(Nourriture value) {
+        this.nourriture = value;
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ type.
+     * Obtient la valeur de la propriété menu.
      * 
      * @return
      *     possible object is
-     *     {@link TypeDePlat }
+     *     {@link Menu }
      *     
      */
-    public TypeDePlat getType() {
-        return type;
+    public Menu getMenu() {
+        return menu;
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ type.
+     * Définit la valeur de la propriété menu.
      * 
      * @param value
      *     allowed object is
-     *     {@link TypeDePlat }
+     *     {@link Menu }
      *     
      */
-    public void setType(TypeDePlat value) {
-        this.type = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriï¿½tï¿½ prix.
-     * 
-     */
-    public double getPrix() {
-        return prix;
-    }
-
-    /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ prix.
-     * 
-     */
-    public void setPrix(double value) {
-        this.prix = value;
-    }
-
-    /**
-     * Gets the value of the ingredients property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the ingredients property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getIngredients().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Ingredient }
-     * 
-     * 
-     */
-    public List<Ingredient> getIngredients() {
-        if (ingredients == null) {
-            ingredients = new ArrayList<Ingredient>();
-        }
-        return this.ingredients;
+    public void setMenu(Menu value) {
+        this.menu = value;
     }
 
 }
