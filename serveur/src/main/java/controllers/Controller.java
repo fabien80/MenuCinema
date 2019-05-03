@@ -14,9 +14,9 @@ public abstract class Controller<T>
 
     protected abstract String getCreateString(HttpServletRequest request);
 
-    public void create(HttpServletRequest request)
+    public boolean create(HttpServletRequest request)
     {
-        Connection.create(getCreateString(request));
+        return Connection.create(getCreateString(request));
     }
 
     public List<T> get(String tableName)
@@ -27,7 +27,7 @@ public abstract class Controller<T>
         {
             ResultSet result =
                     Connection.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
-                            .executeQuery("SELECT * FROM" + tableName);
+                            .executeQuery("SELECT * FROM " + tableName + ";");
             while (result.next())
             {
                 list.add(serialize(result));
@@ -42,7 +42,7 @@ public abstract class Controller<T>
     public T getElem(String tableName, HttpServletRequest request)
     {
         T elem = null;
-        String id = request.getParameter(tableName + "_id");
+        String id = request.getParameter("id");
 
         try
         {
@@ -64,23 +64,25 @@ public abstract class Controller<T>
 
     protected abstract String getUpdateString(HttpServletRequest request);
 
-    public void update(HttpServletRequest request)
+    public boolean update(HttpServletRequest request)
     {
         try
         {
             Connection.update(getUpdateString(request));
+            return true;
         } catch (Exception e)
         {
             e.printStackTrace();
+            return false;
         }
     }
 
     public boolean delete(String tableName, HttpServletRequest request)
     {
-        String id = request.getParameter(tableName + "_id");
+        String id = request.getParameter("id");
         try
         {
-            Connection.conn.createStatement().executeQuery("DELETE FROM " + tableName + " WHERE " + tableName + "_id=" + id).close();
+            Connection.conn.createStatement().executeUpdate("DELETE FROM " + tableName + " WHERE " + tableName + "_id=" + id);
             Connection.commit();
             return true;
         } catch (SQLException e)
