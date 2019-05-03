@@ -1,0 +1,26 @@
+<div *ngIf="displayedArray" class="department_table">
+    <h2>Crew</h2>
+    <div *ngFor="let one_department of displayedArray">
+        <div class="each_department" (click)="one_department.hidden=!one_department.hidden">
+            <mat-icon [hidden]="!one_department.hidden" class="dropdown_icon_left">keyboard_arrow_down</mat-icon>
+            <mat-icon [hidden]="one_department.hidden" class="dropdown_icon_left">keyboard_arrow_up</mat-icon>
+            {{one_department.department}} ({{one_department.crew.length}})
+            <mat-icon
+                    [hidden]="!one_department.hidden"
+                    class="dropdown_icon_right"
+            >keyboard_arrow_down
+            </mat-icon>
+            <mat-icon [hidden]="one_department.hidden" class="dropdown_icon_right">keyboard_arrow_up</mat-icon>
+        </div>
+        <div class="whole_department">
+            <table class="all_dpt_member">
+                <tr *ngFor="let oneMember of one_department.crew" class="each_member" [hidden]="one_department.hidden">
+                    <td class="profile_pic"><img
+                            src="https://image.tmdb.org/t/p/w138_and_h175_face{{oneMember.profile_path}}" alt=" "></td>
+                    <td class="member_name">{{oneMember.name}}</td>
+                    <td class="member_job">{{oneMember.job}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

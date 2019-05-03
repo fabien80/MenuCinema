@@ -4,6 +4,7 @@ import {MovieTableComponent} from './movie-table.component';
 import {MatButtonModule, MatIconModule} from '@angular/material';
 import {StarRatingModule} from 'angular-star-rating';
 import {SearchBarModule} from '../../../search-bar/search-bar.module';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
     declarations: [MovieTableComponent],
@@ -12,7 +13,8 @@ import {SearchBarModule} from '../../../search-bar/search-bar.module';
         MatIconModule,
         StarRatingModule,
         SearchBarModule,
-        MatButtonModule
+        MatButtonModule,
+        RouterModule
     ], exports: [MovieTableComponent]
 })
 export class MovieTableModule {

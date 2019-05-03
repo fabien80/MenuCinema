@@ -8,6 +8,7 @@ import {MenuGroup} from '../product/menu/MenuGroup';
 import {MenuService} from '../product/menu/menu.service';
 import {FoodService} from '../product/food/food.service';
 import {Basket} from './Basket';
+import {Movie} from '../product/movie/Movie';
 
 
 @Injectable({
@@ -73,7 +74,7 @@ export class BasketService {
         this.setBasketToLocalStorage();
     }
 
-    addMovie(movie: Product) {
+    addMovie(movie: Movie) {
         const index = this.getIndexOfMovieProduct(movie);
         if (index === -1) {
             this._basket.value.movies.push(movie);
@@ -96,7 +97,7 @@ export class BasketService {
     }
 
     private calculateMoviesPrice() {
-        return this._basket.value.movies.reduce((total: number, movie: Product) => {
+        return this._basket.value.movies.reduce((total: number, movie: Movie) => {
             total += movie.prix;
             return total;
         }, 0);
@@ -152,5 +153,11 @@ export class BasketService {
         this.updateTotalPrice();
         this.setBasketToLocalStorage();
 
+    }
+
+    removeMovieByIndex(index: number) {
+        this._basket.value.movies.splice(index, 1);
+        this.updateTotalPrice();
+        this.setBasketToLocalStorage();
     }
 }

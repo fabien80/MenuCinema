@@ -1,8 +1,16 @@
-<div class="home-div">
-    <div class="selection-div">
-        <app-selection-product></app-selection-product>
-    </div>
-    <div class="basket-div">
-        <app-basket></app-basket>
+<div class="container-fluid movie_desc">
+    <div class="row">
+        <div class="col-xs-12 col-lg-5">
+            <div class="column_title">Cherchez un film</div>
+            <app-search-bar (searchEvent)="onSearch($event)"></app-search-bar>
+            <app-movie-table [_searchString]="searchString"></app-movie-table>
+        </div>
+        <div class="col-xs-12 col-lg-5">
+            <div class="column_title">Cherchez un repas</div>
+            <app-selection-product></app-selection-product>
+        </div>
+        <div class="col-xs-12 col-lg-2">
+            <app-basket></app-basket>
+        </div>
     </div>
 </div>

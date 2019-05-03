@@ -5,6 +5,7 @@
             <mat-icon>delete_forever</mat-icon>
         </button>
     </div>
+    <h1 *ngIf="basket.foodGroups.length || basket.menuGroups.length">Nourritures :</h1>
     <ng-container *ngFor="let foodGroup of basket.foodGroups; index as i">
         <div class="amount-div">
             <app-amount-buttons
@@ -29,6 +30,17 @@
             </button>
         </div>
     </ng-container>
+    <div *ngIf="basket.movies.length">
+        <h1>Films :</h1>
+        <div *ngFor="let movie of basket.movies; index as i">
+            <button mat-button (click)="goToMoviePage(movie.id)">
+                {{movie.title}} - {{movie.prix}} €
+            </button>
+            <button mat-button (click)="removeMovie(i)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </div>
     Total : {{basket.total}} €
 </div>
 

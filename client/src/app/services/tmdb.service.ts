@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import {MovieQuery, MovieResponse} from '../tmdb-data/Movie';
 import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
 import {PersonQuery, PersonResponse} from '../tmdb-data/Person';
 import {SearchMovieQuery, SearchMovieResponse} from '../tmdb-data/searchMovie';
 import {SearchPeopleQuery, SearchPeopleResponse} from '../tmdb-data/SearchPeople';
 import {TVQuery, TVResponse} from '../tmdb-data/TV';
 import {SearchTVQuery, SearchTVResponse} from '../tmdb-data/SearchTV';
+import {CreditsResponse, MovieQuery, MovieResponse} from '../tmdb-data/Movie';
 
 const tmdbApi = 'https://api.themoviedb.org/3';
 type HTTP_METHOD = 'GET' | 'POST' | 'DELETE' | 'PUT';
@@ -44,6 +44,12 @@ export class TmdbService {
   // _______________________________________________________________________________________________________________________________________
   async getMovie(id: number, options?: MovieQuery): Promise<MovieResponse> {
     const url = `${tmdbApi}/movie/${id}`;
+    const res = await this.get<MovieResponse>(url, options);
+    return res.body;
+  }
+
+  async getMovieCastAndCrew(id: number, options?: MovieQuery): Promise<CreditsResponse> {
+    const url = `${tmdbApi}/movie/${id}/credits`;
     const res = await this.get<MovieResponse>(url, options);
     return res.body;
   }

@@ -1,0 +1,72 @@
+
+.department_table{
+  border-left: 1px solid #434a4f;
+  text-align: center;
+  line-height: 3.5;
+}
+.each_department{
+  background-color: #797979;
+  border: 1px solid #a2a2a2;
+  position: relative;
+  vertical-align: middle;
+  height: 3.5em;
+}
+.each_department:hover{
+  cursor: pointer;
+  background-color: #a2a2a2;
+}
+.whole_department{
+  border-right: 1px solid dimgray;
+  border-left: 1px solid dimgray;
+  margin-bottom: 2px;
+}
+.each_member:nth-child(even){
+  background-color: #a5a5a5;
+}
+.each_member:nth-child(odd){
+  background-color: #cecece;
+}
+.each_member:hover{
+  cursor: pointer;
+  //background-color: #919191;
+}
+.each_member{
+  line-height: 1;
+  height: auto;
+}
+.all_dpt_member{
+  width: 90%;
+  margin: auto;
+  position: relative;
+  vertical-align: middle;
+}
+.profile_pic{
+  img{
+    width: 100%;
+  }
+  display: inline-block;
+  width: 20%;
+  position: relative;
+  margin: 3px 0;
+}
+.member_name{
+  display: inline-block;
+  width: 56%;
+  margin: 5px 0;
+}
+.member_job{
+  width: 20%;
+  display: inline-block;
+  margin: 5px 0;
+  //float: right;
+}
+.dropdown_icon_left {
+  position: absolute;
+  left: 10%;
+  line-height: 2.5em;
+}
+.dropdown_icon_right {
+  position: absolute;
+  right: 10%;
+  line-height: 2.5em;
+}

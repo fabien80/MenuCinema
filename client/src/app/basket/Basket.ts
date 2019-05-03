@@ -5,11 +5,13 @@ import {Product} from '../product/class/Product';
 import {ProductGroupInterface, ProductInterface} from '../interface/ProductInterface';
 import {FoodInterface} from '../interface/FoodInterface';
 import {MenuInterface} from '../interface/MenuInterface';
+import {Movie} from '../product/movie/Movie';
+import {MovieResponse} from '../tmdb-data/Movie';
 
 export class Basket implements BasketInterface {
     foodGroups: FoodGroup[];
     menuGroups: MenuGroup[];
-    movies: Product[];
+    movies: Movie[];
     total: number;
 
     public static fromData(basketInterface: BasketInterface) {
@@ -26,11 +28,17 @@ export class Basket implements BasketInterface {
             return acc;
         }, []);
 
-        return new this(foodGroupsClas, menuGroupsClass, [], total);
+        const moviesClass = movies.reduce((acc: Movie[], currentValue: MovieResponse) => {
+            const movie = Movie.fromData(currentValue);
+            acc.push(movie);
+            return acc;
+        }, []);
+
+        return new this(foodGroupsClas, menuGroupsClass, moviesClass, total);
     }
 
 
-    constructor(foodGroups: FoodGroup[], menuGroups: MenuGroup[], movies: Product[], total: number) {
+    constructor(foodGroups: FoodGroup[], menuGroups: MenuGroup[], movies: Movie[], total: number) {
         this.foodGroups = foodGroups;
         this.menuGroups = menuGroups;
         this.movies = movies;

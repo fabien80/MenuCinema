@@ -8,10 +8,9 @@ import {SearchType} from '../enum/SearchType';
 })
 export class HomeComponent implements OnInit {
     private _searchString: string;
-    private searchType: SearchType;
-
 
     constructor() {
+        this._searchString = "";
     }
 
     ngOnInit() {
@@ -25,26 +24,6 @@ export class HomeComponent implements OnInit {
         this.searchString = query;
     }
 
-    /**
-     * Quand l'utilisateur clique sur un bouton movie ou food, change le searchType
-     */
-    public updateSearchType(event: any) {
-        console.log(event);
-        console.log(SearchType.Food);
-        switch (event.target.textContent.toLowerCase()) {
-            case 'food' :
-                this.searchType = SearchType.Food;
-                break;
-            case 'movie':
-                this.searchType = SearchType.Movie;
-                break;
-        }
-    }
-
-    public movieSelected() {
-        return this.searchType === SearchType.Movie;
-    }
-
 
     get searchString(): string {
         return this._searchString;
@@ -54,7 +33,4 @@ export class HomeComponent implements OnInit {
         this._searchString = value;
     }
 
-    foodSelected() {
-        return this.searchType === SearchType.Food;
-    }
 }

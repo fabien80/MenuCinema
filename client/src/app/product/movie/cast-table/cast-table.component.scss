@@ -1,0 +1,44 @@
+.each_member_cast:nth-child(even){
+  background-color: #a5a5a5;
+}
+.each_member_cast:nth-child(odd){
+  background-color: #cecece;
+}
+.each_member_cast:hover{
+  cursor: pointer;
+  //background-color: #919191;
+}
+.each_member_cast{
+  line-height: 1;
+  height: auto;
+}
+
+.profile_pic_cast{
+  img{
+    width: 100%;
+  }
+  display: inline-block;
+  width: 20%;
+  position: relative;
+  margin: 3px 0;
+}
+.member_name_cast{
+  display: inline-block;
+  width: 56%;
+  margin: 5px 0;
+}
+.member_job_cast{
+  width: 20%;
+  display: inline-block;
+  margin: 5px 0;
+  //float: right;
+}
+
+.cast_table{
+  width: 100%;
+}
+
+.show_more{
+  line-height: 3.5em;
+  text-align: center;
+}
