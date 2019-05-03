@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour Client complex type.
  * 
- * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="Client">
@@ -79,10 +79,6 @@ public class Client {
     @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Client", required = true)
     protected String codePostal;
 
-    public Client(){
-
-    }
-
     public Client(int clientId, String nom, String prenom, String mail, String photo, String tel, int fidelite, String token, int numeroRue, String rue, String ville, String codePostal) {
         this.clientId = clientId;
         this.nom = nom;
@@ -98,8 +94,12 @@ public class Client {
         this.codePostal = codePostal;
     }
 
+    public Client() {
+    }
+
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ clientId.
+     *
+     * Obtient la valeur de la propriété clientId.
      * 
      */
     public int getClientId() {
@@ -107,7 +107,7 @@ public class Client {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ clientId.
+     * Définit la valeur de la propriété clientId.
      * 
      */
     public void setClientId(int value) {
@@ -115,7 +115,7 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ nom.
+     * Obtient la valeur de la propriété nom.
      * 
      * @return
      *     possible object is
@@ -127,7 +127,7 @@ public class Client {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ nom.
+     * Définit la valeur de la propriété nom.
      * 
      * @param value
      *     allowed object is
@@ -139,7 +139,7 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ prenom.
+     * Obtient la valeur de la propriété prenom.
      * 
      * @return
      *     possible object is
@@ -151,7 +151,7 @@ public class Client {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ prenom.
+     * Définit la valeur de la propriété prenom.
      * 
      * @param value
      *     allowed object is
@@ -163,7 +163,7 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ mail.
+     * Obtient la valeur de la propriété mail.
      * 
      * @return
      *     possible object is
@@ -175,7 +175,7 @@ public class Client {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ mail.
+     * Définit la valeur de la propriété mail.
      * 
      * @param value
      *     allowed object is
@@ -187,7 +187,7 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ photo.
+     * Obtient la valeur de la propriété photo.
      * 
      * @return
      *     possible object is
@@ -199,7 +199,7 @@ public class Client {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ photo.
+     * Définit la valeur de la propriété photo.
      * 
      * @param value
      *     allowed object is
@@ -211,7 +211,7 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ tel.
+     * Obtient la valeur de la propriété tel.
      * 
      * @return
      *     possible object is
@@ -223,7 +223,7 @@ public class Client {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ tel.
+     * Définit la valeur de la propriété tel.
      * 
      * @param value
      *     allowed object is
@@ -235,7 +235,7 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ fidelite.
+     * Obtient la valeur de la propriété fidelite.
      * 
      */
     public int getFidelite() {
@@ -243,7 +243,7 @@ public class Client {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ fidelite.
+     * Définit la valeur de la propriété fidelite.
      * 
      */
     public void setFidelite(int value) {
@@ -251,7 +251,7 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ token.
+     * Obtient la valeur de la propriété token.
      * 
      * @return
      *     possible object is
@@ -263,7 +263,7 @@ public class Client {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ token.
+     * Définit la valeur de la propriété token.
      * 
      * @param value
      *     allowed object is
@@ -275,7 +275,7 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ numeroRue.
+     * Obtient la valeur de la propriété numeroRue.
      * 
      */
     public int getNumeroRue() {
@@ -283,7 +283,7 @@ public class Client {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ numeroRue.
+     * Définit la valeur de la propriété numeroRue.
      * 
      */
     public void setNumeroRue(int value) {
@@ -291,7 +291,7 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ rue.
+     * Obtient la valeur de la propriété rue.
      * 
      * @return
      *     possible object is
@@ -303,7 +303,7 @@ public class Client {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ rue.
+     * Définit la valeur de la propriété rue.
      * 
      * @param value
      *     allowed object is
@@ -315,7 +315,7 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ ville.
+     * Obtient la valeur de la propriété ville.
      * 
      * @return
      *     possible object is
@@ -327,7 +327,7 @@ public class Client {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ ville.
+     * Définit la valeur de la propriété ville.
      * 
      * @param value
      *     allowed object is
@@ -339,7 +339,7 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ codePostal.
+     * Obtient la valeur de la propriété codePostal.
      * 
      * @return
      *     possible object is
@@ -351,7 +351,7 @@ public class Client {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ codePostal.
+     * Définit la valeur de la propriété codePostal.
      * 
      * @param value
      *     allowed object is

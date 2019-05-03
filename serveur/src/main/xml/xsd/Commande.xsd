@@ -11,7 +11,7 @@
 
     <xs:complexType name="Commande">
         <xs:sequence>
-            <xs:element name="comandeId" type="xs:string"/>
+            <xs:element name="commandeId" type="xs:string"/>
             <xs:element name="dateHeure" type="xs:string"/>
             <xs:element name="clientId" type="xs:string"/>
             <xs:element name="idPlats" type="IdList" minOccurs="0" maxOccurs="unbounded"/>

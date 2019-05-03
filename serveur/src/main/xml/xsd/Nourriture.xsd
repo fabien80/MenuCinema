@@ -1,0 +1,23 @@
+<xs:schema version="1.0"
+           targetNamespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/Nourriture"
+           xmlns:nourriture="https://www.univ-grenoble-alpes.fr/francais/l3miage/Nourriture"
+           xmlns:ing="https://www.univ-grenoble-alpes.fr/francais/l3miage/Ingredient"
+           xmlns:typ="https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+    <xs:import schemaLocation="Ingredient.xsd" namespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/Ingredient"/>
+    <xs:import schemaLocation="TypeDeProduit.xsd" namespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP"/>
+
+
+    <xs:element name="nourriture" type="nourriture:Nourriture"/>
+
+    <xs:complexType name="Nourriture">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="type" type="typ:TypeDeProduit"/>
+            <xs:element name="prix" type="xs:double"/>
+            <xs:element name="ingredients" type="ing:Ingredient" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

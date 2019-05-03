@@ -5,17 +5,23 @@ xsd schéma du Menu
 <xs:schema version="1.0"
            targetNamespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/Menu"
            xmlns="https://www.univ-grenoble-alpes.fr/francais/l3miage/Menu"
-           xmlns:pl="https://www.univ-grenoble-alpes.fr/francais/l3miage/Produit"
+           xmlns:nourriture="https://www.univ-grenoble-alpes.fr/francais/l3miage/Nourriture"
+           xmlns:TDP="https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified">
 
-    <xs:import schemaLocation="Produit.xsd" namespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/Produit"/>
+    <xs:import schemaLocation="Nourriture.xsd" namespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/Nourriture"/>
+    <xs:import schemaLocation="TypeDeProduit.xsd" namespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP"/>
 
     <xs:element name="menu" type="Menu"/>
 
     <xs:complexType name="Menu">
         <xs:sequence>
-            <xs:element name="produit" type="pl:Produit"  minOccurs="2" maxOccurs="4" />
+            <xs:element name="menuId" type="xs:string"/>
+            <xs:element name="nom" type="xs:string"/>
+            <xs:element name="typeProduit" type="TDP:TypeDeProduit"/>
+            <xs:element name="nourriture" type="nourriture:Nourriture"  minOccurs="2" maxOccurs="4" />
+            <xs:element name="prix" type="xs:double"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>
