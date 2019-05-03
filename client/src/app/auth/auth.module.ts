@@ -6,6 +6,7 @@ import {AuthComponent} from './auth.component';
 import {HomeComponent} from '../home/home.component';
 import {FirebaseUIModule} from 'firebaseui-angular';
 import {environment} from '../../environments/environment';
+import {HomeRoutingModule} from '../home/home-routing.module';
 
 @NgModule({
     declarations: [
@@ -14,6 +15,7 @@ import {environment} from '../../environments/environment';
     imports: [
         CommonModule,
         FormsModule,
+        HomeRoutingModule,
         AuthRoutingModule,
         FirebaseUIModule.forRoot(environment.firebaseUiAuthConfig),
     ]

@@ -16,6 +16,7 @@ export const environment = {
         messagingSenderId: '654696164371'
     },
     firebaseUiAuthConfig: {
+        signInSuccessUrl: '/homepage',
         signInFlow: 'popup',
         signInOptions: [
             firebase.auth.GoogleAuthProvider.PROVIDER_ID,

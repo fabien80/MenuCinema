@@ -12,25 +12,31 @@ const maxPage = 1000;
 })
 
 export class MovieTableComponent implements OnInit, OnChanges {
-    @Input() searchMovieResponse: SearchMovieResponse;
+    moviesFound: SearchMovieResponse;
     @Input() private _searchString;
     private _selectedTab = 1;
     private sortName = false;
     private sortScore = false;
+    emptyResult: SearchMovieResponse = {
+        results: [],
+        total_results: 0,
+        total_pages: 0
+    };
 
     constructor(private tmdbService: TmdbService) {
     }
 
     ngOnInit() {
+        this.moviesFound = this.emptyResult;
     }
 
     /**
      * A chaques changements des inputs, effectue une nouvelle recherche, se replace à la première page et remet à false les boolean de tri
      */
     ngOnChanges(changes: SimpleChanges) {
-
         this._selectedTab = 1;
         this.searchMovie(this._searchString, this._selectedTab);
+        console.log('ngOnChange');
         this.sortName = false;
         this.sortScore = false;
     }
@@ -49,17 +55,20 @@ export class MovieTableComponent implements OnInit, OnChanges {
                 page
             };
             this.tmdbService.searchMovie(searchMovie).then((response: SearchMovieResponse) => {
-                this.searchMovieResponse = response;
+                console.log('searchMovie promise');
+                this.moviesFound = response;
+                console.log(response);
             });
+        } else {
+            this.moviesFound = this.emptyResult;
         }
-
     }
 
     /**
      * Passe à l page suivant en restant entre maxPage ou total_page et 1 (avance de façon circulaire)
      */
     public nextTab() {
-        if (this._selectedTab === maxPage || this._selectedTab === this.searchMovieResponse.total_pages) {
+        if (this._selectedTab === maxPage || this._selectedTab === this.moviesFound.total_pages) {
             this._selectedTab = 1;
         } else {
             this._selectedTab++;
@@ -73,8 +82,8 @@ export class MovieTableComponent implements OnInit, OnChanges {
      * Se place à la denière page (page maxPage maximum)
      */
     public lastTab() {
-        if (this.searchMovieResponse.total_pages < maxPage) {
-            this._selectedTab = this.searchMovieResponse.total_pages;
+        if (this.moviesFound.total_pages < maxPage) {
+            this._selectedTab = this.moviesFound.total_pages;
         } else {
             this._selectedTab = maxPage;
         }
@@ -98,7 +107,7 @@ export class MovieTableComponent implements OnInit, OnChanges {
         if (this._selectedTab !== 1) {
             this._selectedTab--;
         } else {
-            this._selectedTab = this.searchMovieResponse.total_pages < maxPage ? this.searchMovieResponse.total_pages : maxPage;
+            this._selectedTab = this.moviesFound.total_pages < maxPage ? this.moviesFound.total_pages : maxPage;
         }
         this.searchMovie(this._searchString, this._selectedTab);
     }
@@ -108,7 +117,7 @@ export class MovieTableComponent implements OnInit, OnChanges {
      * En fonction de sortName, tri de façon asc ou desc le nom
      */
     sortWithName() {
-        this.searchMovieResponse.results.sort((a: MovieResult, b: MovieResult) => {
+        this.moviesFound.results.sort((a: MovieResult, b: MovieResult) => {
             let res: number;
             if (this.sortName) {
                 res = ('' + b.title).localeCompare(a.title);
@@ -126,7 +135,7 @@ export class MovieTableComponent implements OnInit, OnChanges {
      * En fonction de sortScore, tri de façon asc ou desc le score
      */
     sortWithScore() {
-        this.searchMovieResponse.results.sort((a: MovieResult, b: MovieResult) => {
+        this.moviesFound.results.sort((a: MovieResult, b: MovieResult) => {
             let res: number;
             if (this.sortScore) {
                 res = a.vote_average - b.vote_average;

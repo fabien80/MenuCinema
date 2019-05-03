@@ -17,6 +17,7 @@ import {AuthModule} from './auth/auth.module';
 import {ProductModule} from './product/product.module';
 import {HomeModule} from './home/home.module';
 import {MatButtonModule, MatIconModule, MatToolbarModule} from '@angular/material';
+import {MovieModule} from './product/movie/movie.module';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import {MatButtonModule, MatIconModule, MatToolbarModule} from '@angular/materia
         HomeModule,
         MatButtonModule,
         MatIconModule,
-        MatToolbarModule
+        MatToolbarModule,
+        MovieModule
     ],
     providers: [TmdbService, AngularFirestore],
     bootstrap: [AppComponent],

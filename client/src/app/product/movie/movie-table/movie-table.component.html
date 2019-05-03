@@ -1,5 +1,5 @@
-<div>
-    <button mat-button (click)="firstTab()">
+<div *ngIf="moviesFound !== undefined && moviesFound.total_pages > 1 ">
+    <button mat-button (click)="firstTab()" >
         <mat-icon>keyboard_return</mat-icon>
     </button>
     <button mat-button (click)="beforeTab()">
@@ -11,7 +11,7 @@
     <button mat-button (click)="lastTab()">
         <mat-icon>keyboard_tab</mat-icon>
     </button>
-    <label>{{selectedTab}}</label>
+    <label>{{selectedTab}}/{{moviesFound.total_pages}}</label>
 </div>
 <table class="table table-striped">
     <thead>
@@ -19,7 +19,6 @@
         <th scope="col" width="5%">
             type
         </th>
-
         <th scope="col" width="10%">
             name
             <button mat-button (click)="sortWithName()">
@@ -37,19 +36,25 @@
         </th>
     </tr>
     </thead>
-    <tbody *ngIf="searchString !== '' && searchMovieResponse != undefined">
-    <tr *ngFor="let movie of searchMovieResponse.results">
+    <tr class="no_results" *ngIf="moviesFound == undefined || moviesFound.results.length == 0 " >
+        <td colspan="4">
+            Pas de résultats
+        </td>
+    </tr>
+    <tbody *ngIf="moviesFound !== undefined && moviesFound.results.length >= 0">
+    <tr class="each_row" *ngFor="let movie of moviesFound.results" routerLink="/movie/{{movie.id}}" ><!--todo put a href-->
         <th scope="row">Movie</th>
         <td>{{movie.title}}</td>
         <td>{{movie.overview}}</td>
         <td>
             <star-rating
                     [starType]="'svg'"
-                    [labelText]="'Score MovieDB'"
+                    [labelText]="''"
                     [readOnly]="true"
                     [rating]="movie.vote_average / 2"
             ></star-rating>
         </td>
     </tr>
+    <!-- TODO: create a row "no more results" at the end of the last page ?-->
     </tbody>
 </table>

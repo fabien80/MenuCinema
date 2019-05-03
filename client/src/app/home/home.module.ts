@@ -9,6 +9,7 @@ import {StarRatingModule} from 'angular-star-rating';
 import {SearchBarModule} from '../search-bar/search-bar.module';
 import {AppModule} from '../app.module';
 import {BasketModule} from '../basket/basket.module';
+import {HomeRoutingModule} from './home-routing.module';
 
 @NgModule({
     declarations: [HomeComponent],

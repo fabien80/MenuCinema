@@ -3,10 +3,10 @@ import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {AuthComponent} from './auth.component';
 import {HomeComponent} from '../home/home.component';
+import {HomeRoutingModule} from '../home/home-routing.module';
 
 const routes: Routes = [
-    {path: 'login', component: AuthComponent},
-    {path: 'homepage', component: HomeComponent}
+    {path: 'login', component: AuthComponent}
 ];
 
 @NgModule({
