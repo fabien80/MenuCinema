@@ -1,12 +1,15 @@
 import javax.servlet.http.HttpServlet;
 
+import services.Connection;
 import servlets.BlockingServlet;
+import servlets.Client.*;
 import servlets.ClientAuthentificationServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.servlet.ServletHandler;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
+import servlets.GetParametersServlet;
 
 
 public class PizzaServer extends HttpServlet {
@@ -28,8 +31,16 @@ public class PizzaServer extends HttpServlet {
         ServletHandler servletHandler = new ServletHandler();
         server.setHandler(servletHandler);
 
+        Connection.init();
+
         servletHandler.addServletWithMapping(BlockingServlet.class, "/status");
         servletHandler.addServletWithMapping(ClientAuthentificationServlet.class, "/api/authentification");
+        servletHandler.addServletWithMapping(GetClientsServlet.class, "/clients");
+        servletHandler.addServletWithMapping(GetClientServlet.class, "/client");
+        servletHandler.addServletWithMapping(DeleteClientServlet.class, "/deleteClient");
+        servletHandler.addServletWithMapping(CreateClientServlet.class, "/addClient");
+        servletHandler.addServletWithMapping(EditClientServlet.class, "/editClient");
+        servletHandler.addServletWithMapping(GetParametersServlet.class, "/parameters");
 
         server.start();
     }

@@ -1,6 +1,9 @@
 
 package models;
 
+import enums.Ingredient;
+import enums.TypeDePlat;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour Plat complex type.
  * 
- * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="Plat">
@@ -53,7 +56,7 @@ public class Plat {
     protected List<Ingredient> ingredients;
 
     /**
-     * Obtient la valeur de la propriété id.
+     * Obtient la valeur de la propriï¿½tï¿½ id.
      * 
      * @return
      *     possible object is
@@ -65,7 +68,7 @@ public class Plat {
     }
 
     /**
-     * Définit la valeur de la propriété id.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ id.
      * 
      * @param value
      *     allowed object is
@@ -77,7 +80,7 @@ public class Plat {
     }
 
     /**
-     * Obtient la valeur de la propriété type.
+     * Obtient la valeur de la propriï¿½tï¿½ type.
      * 
      * @return
      *     possible object is
@@ -89,7 +92,7 @@ public class Plat {
     }
 
     /**
-     * Définit la valeur de la propriété type.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ type.
      * 
      * @param value
      *     allowed object is
@@ -101,7 +104,7 @@ public class Plat {
     }
 
     /**
-     * Obtient la valeur de la propriété prix.
+     * Obtient la valeur de la propriï¿½tï¿½ prix.
      * 
      */
     public double getPrix() {
@@ -109,7 +112,7 @@ public class Plat {
     }
 
     /**
-     * Définit la valeur de la propriété prix.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ prix.
      * 
      */
     public void setPrix(double value) {

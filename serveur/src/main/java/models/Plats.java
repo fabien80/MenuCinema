@@ -1,6 +1,8 @@
 
 package models;
 
+import models.Plat;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;

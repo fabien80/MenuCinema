@@ -108,7 +108,7 @@ public class Connection
     {
         try
         {
-            Connection.conn.createStatement().executeQuery(createString).close();
+            Connection.conn.createStatement().executeUpdate(createString);
             Connection.conn.commit();
             return true;
         } catch (SQLException e)
@@ -129,7 +129,7 @@ public class Connection
         try
         {
             System.out.println(updateString);
-            Connection.conn.createStatement().executeQuery(updateString).close();
+            Connection.conn.createStatement().executeUpdate(updateString);
             Connection.commit();
             return true;
         } catch (SQLException e)

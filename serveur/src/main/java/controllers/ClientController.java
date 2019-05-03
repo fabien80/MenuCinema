@@ -47,7 +47,7 @@ public class ClientController extends Controller<Client>
             ville = result.getString("ville");
             codePostal = result.getString("code_postal");
             mail = result.getString("mail");
-            client = new Client(id, nom, prenom, photo, mail, tel, fidelite,token,numeroRue,rue,ville,codePostal);
+            client = new Client(id, nom, prenom, photo, mail, tel, fidelite, token, numeroRue, rue, ville, codePostal);
 
         } catch (SQLException e)
         {
@@ -58,9 +58,9 @@ public class ClientController extends Controller<Client>
     }
 
     @Override
-    public void create(HttpServletRequest request)
+    public boolean create(HttpServletRequest request)
     {
-        super.create(request);
+        return super.create(request);
     }
 
     @Override
@@ -87,14 +87,14 @@ public class ClientController extends Controller<Client>
 
         String res = "INSERT INTO client ";
         res += "VALUES(";
-        res +=  client.getClientId()  ;
+        res += client.getClientId() + ",";
         res += "'" + client.getNom() + "',";
         res += "'" + client.getPrenom() + "',";
         res += "'" + client.getMail() + "',";
         res += "'" + client.getPhoto() + "',";
         res += "'" + client.getTel() + "',";
-        res +=   client.getFidelite()  ;
-        res +=  client.getNumeroRue()  ;
+        res += client.getFidelite() + ",";
+        res += client.getNumeroRue() + ",";
         res += "'" + client.getRue() + "',";
         res += "'" + client.getVille() + "',";
         res += "'" + client.getCodePostal() + "',";
@@ -103,9 +103,9 @@ public class ClientController extends Controller<Client>
     }
 
     @Override
-    public void update(HttpServletRequest request)
+    public boolean update(HttpServletRequest request)
     {
-        super.update(request);
+        return super.update(request);
     }
 
     @Override
@@ -115,18 +115,18 @@ public class ClientController extends Controller<Client>
 
         Client client = requestBodyToClass(request);
         String res = "UPDATE client SET";
-        res +=  client.getClientId()  ;
-        res += "'" + client.getNom() + "',";
-        res += "'" + client.getPrenom() + "',";
-        res += "'" + client.getMail() + "',";
-        res += "'" + client.getPhoto() + "',";
-        res += "'" + client.getTel() + "',";
-        res +=   client.getFidelite()  ;
-        res +=  client.getNumeroRue()  ;
-        res += "'" + client.getRue() + "',";
-        res += "'" + client.getVille() + "',";
-        res += "'" + client.getCodePostal() + "',";
-        res += "'" + client.getToken() + "')";
+        res += " client_id = " + client.getClientId() + " ,";
+        res += " nom = '" + client.getNom() + "' ,";
+        res += " prenom = '" + client.getPrenom() + "' ,";
+        res += " mail = '" + client.getMail() + "' ,";
+        res += " photo = '" + client.getPhoto() + "' ,";
+        res += " tel = '" + client.getTel() + "' ,";
+        res += " fidelite = " + client.getFidelite() + " ,";
+        res += " numero_rue = " + client.getNumeroRue() + " ,";
+        res += " rue = '" + client.getRue() + "' ,";
+        res += " ville = '" + client.getVille() + "' ,";
+        res += " code_postal = '" + client.getCodePostal() + "' ,";
+        res += " token = '" + client.getToken() + "' ";
         res += "WHERE client_id = " + client.getClientId();
 
         return res;
@@ -156,20 +156,20 @@ public class ClientController extends Controller<Client>
         String token;
 
 
-        id = Integer.parseInt(request.getParameter("client_id"));
+        id = Integer.parseInt(request.getParameter("clientId"));
         nom = request.getParameter("nom");
         prenom = request.getParameter("prenom");
         mail = request.getParameter("mail");
         photo = request.getParameter("photo");
         tel = request.getParameter("tel");
-        fidelite =  Integer.parseInt(request.getParameter("fidelite"));
-        numeroRue =  Integer.parseInt(request.getParameter("numero_rue"));
+        fidelite = Integer.parseInt(request.getParameter("fidelite"));
+        numeroRue = Integer.parseInt(request.getParameter("numeroRue"));
         rue = request.getParameter("rue");
         ville = request.getParameter("ville");
-        codePostal = request.getParameter("code_postal");
+        codePostal = request.getParameter("codePostal");
         token = request.getParameter("token");
 
-        client = new Client(id, nom, prenom, photo, mail, tel, fidelite,token,numeroRue,rue,ville,codePostal);
+        client = new Client(id, nom, prenom, photo, mail, tel, fidelite, token, numeroRue, rue, ville, codePostal);
 
         return client;
     }
