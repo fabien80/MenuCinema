@@ -22,8 +22,9 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="comandeId" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="dateHeure" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="clientId" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="PlatsId" type="{https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP}IdList" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="idPlats" type="{https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP}IdList" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="idFilms" type="{https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP}IdList" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="idMenu" type="{https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP}IdList" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="prix" type="{http://www.w3.org/2001/XMLSchema}double"/>
  *         &lt;element name="numeroRue" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="rue" type="{http://www.w3.org/2001/XMLSchema}string"/>
@@ -42,8 +43,9 @@ import javax.xml.bind.annotation.XmlType;
     "comandeId",
     "dateHeure",
     "clientId",
-    "platsId",
+    "idPlats",
     "idFilms",
+    "idMenu",
     "prix",
     "numeroRue",
     "rue",
@@ -58,10 +60,12 @@ public class Commande {
     protected String dateHeure;
     @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP", required = true)
     protected String clientId;
-    @XmlElement(name = "PlatsId", namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP")
-    protected List<String> platsId;
+    @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP")
+    protected List<String> idPlats;
     @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP")
     protected List<String> idFilms;
+    @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP")
+    protected List<String> idMenu;
     @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP")
     protected double prix;
     @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP")
@@ -146,18 +150,18 @@ public class Commande {
     }
 
     /**
-     * Gets the value of the platsId property.
+     * Gets the value of the idPlats property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the platsId property.
+     * This is why there is not a <CODE>set</CODE> method for the idPlats property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getPlatsId().add(newItem);
+     *    getIdPlats().add(newItem);
      * </pre>
      * 
      * 
@@ -167,11 +171,11 @@ public class Commande {
      * 
      * 
      */
-    public List<String> getPlatsId() {
-        if (platsId == null) {
-            platsId = new ArrayList<String>();
+    public List<String> getIdPlats() {
+        if (idPlats == null) {
+            idPlats = new ArrayList<String>();
         }
-        return this.platsId;
+        return this.idPlats;
     }
 
     /**
@@ -201,6 +205,35 @@ public class Commande {
             idFilms = new ArrayList<String>();
         }
         return this.idFilms;
+    }
+
+    /**
+     * Gets the value of the idMenu property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the idMenu property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getIdMenu().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     */
+    public List<String> getIdMenu() {
+        if (idMenu == null) {
+            idMenu = new ArrayList<String>();
+        }
+        return this.idMenu;
     }
 
     /**
