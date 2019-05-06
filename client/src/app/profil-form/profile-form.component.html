@@ -1,0 +1,49 @@
+<div class="container-fluid">
+    <form class="form-inline" (ngSubmit)="onSubmit(myForm)" #myForm="ngForm">
+        <div class="form-group row">
+            <label for="client_id">Votre identifiant</label>
+            <input type="text" disabled value="{{myClient.client_id}}" class="form-control" id="client_id" name="client_id">
+        </div>
+        <div class="form-group row">
+            <label for="name">Nom</label>
+            <input type="text" required [(ngModel)]="myClient.nom" class="form-control" id="name" name="name">
+        </div>
+        <div class="form-group row">
+            <label for="firstname">Prénom</label>
+            <input type="text" required [(ngModel)]="myClient.prenom" class="form-control" id="firstname" name="firstname">
+        </div>
+        <div class="form-group row">
+            <label for="email">Email</label>
+            <input type="text" required [(ngModel)]="myClient.mail" class="form-control" id="email" name="email">
+        </div>
+        <div class="form-group row">
+            <label for="photo">Photo</label>
+            <input type="text" required [(ngModel)]="myClient.photo" class="form-control" id="photo" name="photo">
+        </div>
+        <div class="form-group row">
+            <label for="tel">Telephone</label>
+            <input type="text" required [(ngModel)]="myClient.tel" class="form-control" id="tel" name="tel">
+        </div>
+        <div class="form-group row">
+            <label for="fidelite">Point de fidelité</label>
+            <input type="text" disabled value="myClient.fidelite" class="form-control" id="fidelite" name="fidelite">
+        </div>
+        <div class="form-group row">
+            <label for="street_number">Numéro de rue</label>
+            <input type="text" required [(ngModel)]="myClient.numero_rue" class="form-control" id="street_number" name="street_number">
+        </div>
+        <div class="form-group row">
+            <label for="street_name">Nom de rue</label>
+            <input type="text" required [(ngModel)]="myClient.rue" class="form-control" id="street_name" name="street_name">
+        </div>
+        <div class="form-group row">
+            <label for="city">Ville</label>
+            <input type="text" required [(ngModel)]="myClient.ville" class="form-control" id="city" name="city">
+        </div>
+        <div class="form-group row">
+            <label for="postal_code">Code postal</label>
+            <input type="text" required [(ngModel)]="myClient.code_postal" class="form-control" id="postal_code" name="postal_code">
+        </div>
+        <button type="submit" class="btn btn-success" [disabled]="!myForm.form.valid" >Submit</button>
+    </form>
+</div>
