@@ -18,6 +18,7 @@ import {ProductModule} from './product/product.module';
 import {HomeModule} from './home/home.module';
 import {MatButtonModule, MatIconModule, MatToolbarModule} from '@angular/material';
 import {MovieModule} from './product/movie/movie.module';
+import {profileFormModule} from "./profil-form/profile-form.module";
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import {MovieModule} from './product/movie/movie.module';
         MatButtonModule,
         MatIconModule,
         MatToolbarModule,
-        MovieModule
+        MovieModule,
+        profileFormModule
     ],
     providers: [TmdbService, AngularFirestore],
     bootstrap: [AppComponent],
