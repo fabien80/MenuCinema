@@ -1,18 +1,14 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ProductModule} from '../product/product.module';
 import {RouterModule, Routes} from '@angular/router';
-import {AuthComponent} from '../auth/auth.component';
 import {HomeComponent} from './home.component';
-import {MovieComponent} from '../product/movie/movie.component';
+import {AuthGuard} from '../auth/auth.guard';
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'homepage',
+        canActivate: [AuthGuard],
         component: HomeComponent
-    },
-    {path: 'movie/:id', component: MovieComponent}
-
+    }
 ];
 
 

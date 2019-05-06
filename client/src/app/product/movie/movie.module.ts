@@ -7,6 +7,7 @@ import {MovieTableComponent} from './movie-table/movie-table.component';
 import {CastTableModule} from './cast-table/cast-table.module';
 import {CrewTableModule} from './crew-table/crew-table.module';
 import {BasketModule} from '../../basket/basket.module';
+import {MovieRoutingModule} from './movie-routing.module';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import {BasketModule} from '../../basket/basket.module';
         MatIconModule,
         CastTableModule,
         CrewTableModule,
-        BasketModule
+        BasketModule,
+        MovieRoutingModule
     ], exports: [
         MovieComponent
     ]

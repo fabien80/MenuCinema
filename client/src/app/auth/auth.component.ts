@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FirebaseError} from 'firebase';
 import {FirebaseUISignInFailure, FirebaseUISignInSuccess} from 'firebaseui-angular';
+import {AuthService} from './auth.service';
 
 @Component({
     selector: 'app-auth',
@@ -10,19 +11,18 @@ import {FirebaseUISignInFailure, FirebaseUISignInSuccess} from 'firebaseui-angul
 })
 export class AuthComponent implements OnInit {
 
-    constructor(private router: Router) {
+    constructor(private authService: AuthService) {
     }
 
     ngOnInit() {
     }
 
     public signInFailure() {
-        this.router.navigate(['/']);
+        this.authService.signInFailure();
     }
 
-    public signInSuccessWithAuthResult() {
-        console.log('ici');
-        this.router.navigate(['/homepage']);
+    public signInSuccess() {
+        this.authService.signInSuccess();
     }
 
 }

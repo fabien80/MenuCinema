@@ -7,6 +7,7 @@ import {HomeComponent} from '../home/home.component';
 import {FirebaseUIModule} from 'firebaseui-angular';
 import {environment} from '../../environments/environment';
 import {HomeRoutingModule} from '../home/home-routing.module';
+import {MatButtonModule} from '@angular/material';
 
 @NgModule({
     declarations: [
@@ -18,6 +19,7 @@ import {HomeRoutingModule} from '../home/home-routing.module';
         HomeRoutingModule,
         AuthRoutingModule,
         FirebaseUIModule.forRoot(environment.firebaseUiAuthConfig),
+        MatButtonModule,
     ]
 })
 export class AuthModule {

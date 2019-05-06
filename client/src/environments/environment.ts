@@ -16,7 +16,7 @@ export const environment = {
         messagingSenderId: '654696164371'
     },
     firebaseUiAuthConfig: {
-        signInSuccessUrl: '/homepage',
+        // signInSuccessUrl: '/homepage',
         signInFlow: 'popup',
         signInOptions: [
             firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -45,5 +45,7 @@ export const environment = {
         credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM
     },
     nbItemsPerRow: 5,
-    basketStorageKey: 'basket'
+    basketStorageKey: 'basket',
+    userStorageKey: 'user',
+    userInfosStorageKey: 'userInfos'
 };

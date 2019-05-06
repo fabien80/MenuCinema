@@ -10,6 +10,7 @@ import {MenuGroup} from '../product/menu/MenuGroup';
 import {FoodGroup} from '../product/food/foodGroup';
 import {Basket} from '../basket/Basket';
 import {BasketInterface} from '../interface/BasketInterface';
+import * as firebase from 'firebase';
 
 @Injectable({
     providedIn: 'root'
@@ -37,5 +38,42 @@ export class LocalStorageService {
 
     public setBasket(basket: BasketInterface) {
         localStorage.setItem(this.basketKey, JSON.stringify(basket));
+    }
+
+    public setUser(user: firebase.User) {
+        localStorage.setItem(environment.userStorageKey, JSON.stringify(user));
+    }
+
+    public getUser(): firebase.User {
+        const user: string = localStorage.getItem(environment.userStorageKey);
+        if (user != null) {
+            return JSON.parse(user);
+        }
+
+        return null;
+
+
+    }
+
+    public removeUser() {
+        localStorage.removeItem(environment.userStorageKey);
+    }
+
+    public getUserInfos() {
+        const userInfos: string = localStorage.getItem(environment.userInfosStorageKey);
+        console.log(userInfos);
+        if (userInfos != null) {
+            return JSON.parse(userInfos);
+        }
+
+        return null;
+    }
+
+    public removeUserInfos() {
+        localStorage.removeItem(environment.userInfosStorageKey);
+    }
+
+    public setUserInfos(client: ClientInterface) {
+        localStorage.setItem(environment.userInfosStorageKey, JSON.stringify(client));
     }
 }
