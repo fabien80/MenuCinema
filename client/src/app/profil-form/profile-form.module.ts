@@ -5,7 +5,6 @@ import {FormsModule} from '@angular/forms';
 import {ProfilFormRoutingModule} from './profil-form-routing.module';
 
 
-@NgModule({
     declarations: [
         ProfileFormComponent
     ],
