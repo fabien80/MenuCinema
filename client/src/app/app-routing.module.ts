@@ -8,8 +8,9 @@ const routes: Routes = [
     {
         path: '',
         redirectTo: 'login',
-        pathMatch: 'full',
-    }
+        pathMatch: 'full'
+    },
+    {path: 'profile', component: profileFormComponent}
 ];
 
 @NgModule({
