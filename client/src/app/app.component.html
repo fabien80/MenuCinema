@@ -4,11 +4,14 @@
         <span>MenuCinema</span>
     </a>
     <span class="spacer"></span>
-    <button mat-button >
+    <button mat-button>
         <mat-icon>person</mat-icon>
     </button>
     <button mat-button>
         <mat-icon>shopping_cart</mat-icon>
+    </button>
+    <button mat-button (click)="signOut()">
+        <mat-icon>power_settings_new</mat-icon>
     </button>
 </mat-toolbar>
 <router-outlet></router-outlet>

@@ -5,6 +5,7 @@ import {environment} from '../environments/environment';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
+import {AuthService} from './auth/auth.service';
 
 // Je suis passé par l'itération 0...
 @Component({
@@ -14,12 +15,17 @@ import {AngularFireAuth} from '@angular/fire/auth';
 })
 export class AppComponent {
 
-    constructor(private tmdb: TmdbService, private angularFireAuth: AngularFireAuth) {
+    constructor(private tmdb: TmdbService,
+                public authService: AuthService) {
         this.init();
     }
 
     async init() {
         this.tmdb.init(environment.tmdbKey);
+    }
+
+    private signOut() {
+        this.authService.signOut();
     }
 
 

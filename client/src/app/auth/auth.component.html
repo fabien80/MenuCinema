@@ -1,2 +1,10 @@
-<firebase-ui></firebase-ui>
+<firebase-ui (signInSuccess)="signInSuccess()" (signInSuccessWithAuthResult)="signInSuccess()"></firebase-ui>
 
+<div *ngIf="authService.isSignedIn()" class="main-div" (click)="authService.signOut()">
+    Vous êtes actuellement connecté
+    <div>
+        <button mat-button class="btn btn-outline-danger">
+            Deconnexion
+        </button>
+    </div>
+</div>
