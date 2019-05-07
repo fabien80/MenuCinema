@@ -1,9 +1,11 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {ProfileFormComponent} from './profile-form.component';
+import {CanDeactivateGuard} from '../can-deactivate.guard';
 
 const routes: Routes = [
-    {path: 'form', component: ProfileFormComponent}
+    {path: 'profile', component: ProfileFormComponent, canDeactivate: [CanDeactivateGuard]}
+
 ];
 
 @NgModule({
@@ -12,3 +14,4 @@ const routes: Routes = [
 })
 export class ProfilFormRoutingModule {
 }
+

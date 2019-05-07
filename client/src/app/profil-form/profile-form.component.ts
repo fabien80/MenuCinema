@@ -2,6 +2,11 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ClientInterface} from '../interface/ClientInterface';
 import {NgForm} from '@angular/forms';
 import {ApiService} from '../services/api.service';
+import {from} from 'rxjs/internal/observable/from';
+import {Observable} from 'rxjs';
+import {of} from 'rxjs/internal/observable/of';
+import {MatDialog} from '@angular/material';
+import {GenericDialogModule} from '../dialogs/generic-dialog/generic-dialog.module';
 
 
 @Component({
@@ -14,7 +19,8 @@ export class ProfileFormComponent implements OnInit {
 
     @Input() myClient: ClientInterface;
 
-    constructor(private apiService: ApiService) {
+    constructor(private apiService: ApiService,
+                private dialog: MatDialog) {
 
     }
 
@@ -46,5 +52,4 @@ export class ProfileFormComponent implements OnInit {
             console.log(error);
         });
     }
-
 }

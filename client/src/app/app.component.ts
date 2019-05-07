@@ -6,6 +6,7 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AuthService} from './auth/auth.service';
+import {Router} from '@angular/router';
 
 // Je suis passé par l'itération 0...
 @Component({
@@ -16,7 +17,8 @@ import {AuthService} from './auth/auth.service';
 export class AppComponent {
 
     constructor(private tmdb: TmdbService,
-                public authService: AuthService) {
+                public authService: AuthService,
+                private router: Router) {
         this.init();
     }
 
@@ -27,6 +29,4 @@ export class AppComponent {
     private signOut() {
         this.authService.signOut();
     }
-
-
 }

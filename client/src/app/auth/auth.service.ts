@@ -12,8 +12,8 @@ import {GenericDialogComponent} from '../dialogs/generic-dialog/generic-dialog.c
     providedIn: 'root'
 })
 export class AuthService {
-    private user;
-    private isLogged = false;
+    private _user;
+    private _isLogged = false;
 
     constructor(private firebaseApp: FirebaseApp,
                 private router: Router,
@@ -25,15 +25,19 @@ export class AuthService {
     signOut() {
         this.localStorageService.removeUser();
         this.localStorageService.removeUserInfos();
-        this.isLogged = false;
+        this._isLogged = false;
         this.firebaseApp.auth().signOut().then(() => {
             this.router.navigate(['/login']);
         });
     }
 
+    signWithFirebase() {
+        return this.localStorageService.getUser() != null;
+    }
+
     isSignedIn() {
-        this.isLogged = (this.localStorageService.getUser() != null && this.localStorageService.getUserInfos() !== null) || this.isLogged;
-        return this.isLogged;
+        this._isLogged = (this.localStorageService.getUser() != null && this.localStorageService.getUserInfos() !== null) || this._isLogged;
+        return this._isLogged;
     }
 
     public signInFailure() {
@@ -41,12 +45,17 @@ export class AuthService {
     }
 
     public signInSuccess() {
-        this.user = firebase.auth().currentUser;
-        this.localStorageService.setUser(this.user);
-        this.clientService.init(this.user.uid)
+        this._user = firebase.auth().currentUser;
+        this.localStorageService.setUser(this._user);
+        this.clientService.init(this._user.uid)
         .then(() => {
-                this.isLogged = true;
-                this.router.navigate(['/homepage']);
+                if (this.localStorageService.getUserInfos() == null) {
+                    this.router.navigate(['/profile']);
+                } else {
+                    this._isLogged = true;
+                    this.router.navigate(['/homepage']);
+                }
+
             }
         )
         .catch((error: Error) => {
@@ -60,6 +69,5 @@ export class AuthService {
         });
 
     }
-
 
 }

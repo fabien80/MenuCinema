@@ -8,11 +8,11 @@ import {ClientInterface} from '../interface/ClientInterface';
     providedIn: 'root'
 })
 export class ClientService {
-    private client: BehaviorSubject<ClientInterface>;
+    private _client: BehaviorSubject<ClientInterface>;
 
     constructor(private apiService: ApiService,
                 private localStorageService: LocalStorageService) {
-        this.client = new BehaviorSubject<ClientInterface>({
+        this._client = new BehaviorSubject<ClientInterface>({
             client_id: 0,
             code_postal: '0',
             fidelite: 0,
@@ -26,13 +26,18 @@ export class ClientService {
             token: '',
             ville: ''
         });
-        this.client.next(this.localStorageService.getUserInfos());
+        this._client.next(this.localStorageService.getUserInfos());
     }
 
     async init(token: string) {
         const client = await this.apiService.getClient(token);
-        this.client.next(client);
+        this._client.next(client);
         console.log(client);
         this.localStorageService.setUserInfos(client);
+    }
+
+
+    get client(): BehaviorSubject<ClientInterface> {
+        return this._client;
     }
 }

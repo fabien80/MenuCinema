@@ -16,6 +16,7 @@ import {ProfilFormRoutingModule} from './profil-form-routing.module';
     ], exports: [
         ProfileFormComponent
     ]
+
 })
 export class ProfileFormModule {
 }
