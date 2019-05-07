@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour Produits complex type.
  * 
- * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="Produits">
@@ -65,5 +65,4 @@ public class Produits {
         }
         return this.produit;
     }
-
 }

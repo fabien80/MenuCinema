@@ -6,7 +6,8 @@
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified">
 
-    <xs:import schemaLocation="Ingredient.xsd" namespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/Ingredient"/>
+    <xs:import schemaLocation="Ingredient.xsd"
+               namespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/Ingredient"/>
     <xs:import schemaLocation="TypeDeProduit.xsd" namespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP"/>
 
 
@@ -14,10 +15,12 @@
 
     <xs:complexType name="Nourriture">
         <xs:sequence>
-            <xs:element name="id" type="xs:string"/>
             <xs:element name="type" type="typ:TypeDeProduit"/>
+            <xs:element name="nom" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
             <xs:element name="prix" type="xs:double"/>
-            <xs:element name="ingredients" type="ing:Ingredient" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="ingredients" type="ing:Ingredient" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
+        <xs:attribute name="id" type="xs:string"/>
     </xs:complexType>
 </xs:schema>
