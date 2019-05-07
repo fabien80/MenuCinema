@@ -13,7 +13,7 @@ CREATE TABLE client(
         prenom      Varchar (50) NOT NULL ,
         mail        Varchar (50) ,
         photo       Varchar (50) ,
-        tel         Varchar (12) ,
+        tel         Varchar (20) ,
         fidelite    Int NOT NULL ,
         numero_rue  Int ,
         rue         Varchar (50) ,
