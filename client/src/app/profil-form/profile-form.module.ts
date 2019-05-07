@@ -1,18 +1,21 @@
-import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
-import {profileFormComponent} from "./profile-form.component";
-import {FormsModule} from "@angular/forms";
+import {NgModule} from '@angular/core';
+import {ProfileFormComponent} from './profile-form.component';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {ProfilFormRoutingModule} from './profil-form-routing.module';
+
 
 @NgModule({
     declarations: [
-        profileFormComponent
+        ProfileFormComponent
     ],
     imports: [
         CommonModule,
-        FormsModule
+        FormsModule,
+        ProfilFormRoutingModule
     ], exports: [
-        profileFormComponent
+        ProfileFormComponent
     ]
 })
-export class profileFormModule {
+export class ProfileFormModule {
 }

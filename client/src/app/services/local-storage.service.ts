@@ -7,10 +7,11 @@ import {ProductGroup} from '../product/class/productGroup';
 import {MenuService} from '../product/menu/menu.service';
 import {FoodService} from '../product/food/food.service';
 import {MenuGroup} from '../product/menu/MenuGroup';
-import {FoodGroup} from '../product/food/foodGroup';
+
 import {Basket} from '../basket/Basket';
 import {BasketInterface} from '../interface/BasketInterface';
 import * as firebase from 'firebase';
+import {ClientInterface} from '../interface/ClientInterface';
 
 @Injectable({
     providedIn: 'root'

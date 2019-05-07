@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <form class="form-inline" (ngSubmit)="onSubmit(myForm)" #myForm="ngForm">
+    <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" class="form-inline">
         <div class="form-group row">
             <label for="client_id">Votre identifiant</label>
             <input type="text" disabled value="{{myClient.client_id}}" class="form-control" id="client_id" name="client_id">

@@ -9,6 +9,6 @@ export interface ClientInterface {
     numero_rue: number;
     rue: string;
     ville: string;
-    code_postal: number;
+    code_postal: string;
     token: string;
 }

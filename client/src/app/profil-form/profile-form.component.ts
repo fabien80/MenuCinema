@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from "@angular/core";
-import {ClientInterface} from "../interface/ClientInterface";
-import {NgForm} from "@angular/forms";
+import {Component, Input, OnInit} from '@angular/core';
+import {ClientInterface} from '../interface/ClientInterface';
+import {NgForm} from '@angular/forms';
+import {ApiService} from '../services/api.service';
 
 
 @Component({
@@ -9,31 +10,41 @@ import {NgForm} from "@angular/forms";
     styleUrls: ['./profile-form.component.scss']
 })
 
-export class profileFormComponent implements OnInit{
+export class ProfileFormComponent implements OnInit {
 
-    @Input() myClient:ClientInterface;
+    @Input() myClient: ClientInterface;
+
+    constructor(private apiService: ApiService) {
+
+    }
 
 
     ngOnInit(): void {
         this.myClient = {
             client_id: 123,
-            nom: "test",
-            prenom: "toto",
-            mail: "toto@test",
-            photo: "photo/path.png",
-            tel: "01 02 03 04 05",
+            nom: 'test',
+            prenom: 'toto',
+            mail: 'toto@test',
+            photo: 'photo/path.png',
+            tel: '01 02 03 04 05',
             fidelite: 12,
             numero_rue: 124,
-            rue: "place de la rep",
-            ville: "SMH",
-            code_postal: 26200,
-            token: "",
+            rue: 'place de la rep',
+            ville: 'SMH',
+            code_postal: '26200',
+            token: '',
         };
     }
 
-    onSubmit(){
-        console.log("This has to be sent to the back :");
+    onSubmit(myForm: NgForm) {
+        console.log('This has to be sent to the back :');
+        console.log(myForm);
         console.log(this.myClient);
+        this.apiService.postClient(this.myClient).then(() => {
+            console.log('ok');
+        }).catch((error: Error) => {
+            console.log(error);
+        });
     }
 
 }
