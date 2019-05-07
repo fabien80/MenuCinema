@@ -26,8 +26,7 @@ export class ClientService {
             token: '',
             ville: ''
         });
-        console.log(this.localStorageService.getApiClient());
-        this._client.next(this.localStorageService.getApiClient());
+        this._client.next(this.localStorageService.getUserInfos());
     }
 
     async init(token: string) {
