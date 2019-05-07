@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<xs:schema version="1.0"
+           targetNamespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/FoodGroups"
+           xmlns="https://www.univ-grenoble-alpes.fr/francais/l3miage/FoodGroups"
+           xmlns:nourriture="https://www.univ-grenoble-alpes.fr/francais/l3miage/Nourriture"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+>
+    <xs:import schemaLocation="Nourriture.xsd"
+               namespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/Nourriture"/>
+
+
+    <xs:complexType name="foodGroups">
+        <xs:sequence>
+            <xs:element name="product" type="nourriture:Nourriture" maxOccurs="4"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

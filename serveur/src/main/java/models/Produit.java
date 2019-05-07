@@ -9,82 +9,89 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Classe Java pour Produit complex type.
- * 
- * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- * 
+ *
+ * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
+ *
  * <pre>
  * &lt;complexType name="Produit">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;choice>
- *         &lt;element name="nourriture" type="{https://www.univ-grenoble-alpes.fr/francais/l3miage/Nourriture}Nourriture"/>
+ *         &lt;element name="product" type="{https://www.univ-grenoble-alpes.fr/francais/l3miage/Nourriture}Nourriture"/>
  *         &lt;element name="menu" type="{https://www.univ-grenoble-alpes.fr/francais/l3miage/Menu}Menu"/>
  *       &lt;/choice>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Produit", namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Produit", propOrder = {
-    "nourriture",
-    "menu"
+        "product",
+        "menu"
 })
-public class Produit {
+public class Produit
+{
 
     @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Produit")
-    protected Nourriture nourriture;
+    protected Nourriture product;
     @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Produit")
     protected Menu menu;
 
     /**
-     * Obtient la valeur de la propriété nourriture.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Nourriture }
-     *     
+     * Obtient la valeur de la propriï¿½tï¿½ product.
+     *
+     * @return possible object is
+     * {@link Nourriture }
      */
-    public Nourriture getNourriture() {
-        return nourriture;
+    public Nourriture getProduct()
+    {
+        return product;
     }
 
     /**
-     * Définit la valeur de la propriété nourriture.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Nourriture }
-     *     
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ product.
+     *
+     * @param value allowed object is
+     *              {@link Nourriture }
      */
-    public void setNourriture(Nourriture value) {
-        this.nourriture = value;
+    public void setProduct(Nourriture value)
+    {
+        this.product = value;
     }
 
     /**
-     * Obtient la valeur de la propriété menu.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Menu }
-     *     
+     * Obtient la valeur de la propriï¿½tï¿½ menu.
+     *
+     * @return possible object is
+     * {@link Menu }
      */
-    public Menu getMenu() {
+    public Menu getMenu()
+    {
         return menu;
     }
 
     /**
-     * Définit la valeur de la propriété menu.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Menu }
-     *     
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ menu.
+     *
+     * @param value allowed object is
+     *              {@link Menu }
      */
-    public void setMenu(Menu value) {
+    public void setMenu(Menu value)
+    {
         this.menu = value;
     }
 
+
+    @Override
+    public String toString()
+    {
+        if (menu != null)
+        {
+            return menu.toString();
+        } else
+        {
+            return product.toString();
+        }
+    }
 }
