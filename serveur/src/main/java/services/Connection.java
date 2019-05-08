@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class Connection
 {
-    static final String CONN_URL = "jdbc:mysql://localhost:3306/projetfinal";
+    static final String CONN_URL = "jdbc:mysql://l3miageprojetfinal.ci4ctohe4wul.eu-west-3.rds.amazonaws.com:3306/projetfinal";
 
     public static java.sql.Connection conn;
 
