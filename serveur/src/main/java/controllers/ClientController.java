@@ -94,8 +94,20 @@ public class ClientController extends Controller<Client> {
 		Client client = requestBodyToClass(request);
 
 		String res = "INSERT INTO client ";
+		res += " ( ";
+		res += " nom , ";
+		res += " prenom , ";
+		res += " mail , ";
+		res += " photo , ";
+		res += " tel , ";
+		res += " fidelite , ";
+		res += " numero_rue , ";
+		res += " rue , ";
+		res += " ville , ";
+		res += " code_postal , ";
+		res += " token ";
+		res += " ) ";
 		res += "VALUES(";
-		res += client.getClientId() + ",";
 		res += "'" + client.getNom() + "',";
 		res += "'" + client.getPrenom() + "',";
 		res += "'" + client.getMail() + "',";

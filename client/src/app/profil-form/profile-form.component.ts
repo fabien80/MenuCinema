@@ -7,6 +7,8 @@ import {Observable} from 'rxjs';
 import {of} from 'rxjs/internal/observable/of';
 import {MatDialog} from '@angular/material';
 import {GenericDialogModule} from '../dialogs/generic-dialog/generic-dialog.module';
+import {LocalStorageService} from '../services/local-storage.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -20,7 +22,9 @@ export class ProfileFormComponent implements OnInit {
     @Input() myClient: ClientInterface;
 
     constructor(private apiService: ApiService,
-                private dialog: MatDialog) {
+                private dialog: MatDialog,
+                private localStorageService: LocalStorageService,
+                private router: Router) {
 
     }
 
@@ -46,8 +50,11 @@ export class ProfileFormComponent implements OnInit {
         console.log('This has to be sent to the back :');
         console.log(myForm);
         console.log(this.myClient);
+        this.myClient.token = this.localStorageService.getUser().uid;
         this.apiService.postClient(this.myClient).then(() => {
             console.log('ok');
+            this.localStorageService.setUserInfos(this.myClient);
+            this.router.navigate(['/homepage']);
         }).catch((error: Error) => {
             console.log(error);
         });

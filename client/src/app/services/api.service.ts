@@ -21,7 +21,7 @@ export class ApiService {
 
     public postClient(client: ClientInterface): Promise<any> {
         let body: HttpParams = new HttpParams();
-        body = body.set('token', this.localStorageService.getUser().uid);
+        body = body.set('token', client.token);
         body = body.set('nom', client.nom);
         body = body.set('prenom', client.prenom);
         body = body.set('rue', client.rue);

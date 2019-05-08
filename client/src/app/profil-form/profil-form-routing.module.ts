@@ -4,7 +4,7 @@ import {ProfileFormComponent} from './profile-form.component';
 import {CanDeactivateGuard} from '../can-deactivate.guard';
 
 const routes: Routes = [
-    {path: 'profile', component: ProfileFormComponent, canDeactivate: [CanDeactivateGuard]}
+    {path: 'profile', component: ProfileFormComponent}
 
 ];
 
