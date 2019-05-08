@@ -46,6 +46,6 @@ export const environment = {
     },
     nbItemsPerRow: 5,
     basketStorageKey: 'basket',
-    userStorageKey: 'user',
-    userInfosStorageKey: 'userInfos'
+    firebaseUserStorageKey: 'firebaseUser',
+    apiClientStorageKey: 'apiUser'
 };

@@ -9,6 +9,8 @@ import {MatDialog} from '@angular/material';
 import {GenericDialogModule} from '../dialogs/generic-dialog/generic-dialog.module';
 import {LocalStorageService} from '../services/local-storage.service';
 import {Router} from '@angular/router';
+import {ClientService} from '../services/client.service';
+import {AuthService} from '../auth/auth.service';
 
 
 @Component({
@@ -24,7 +26,9 @@ export class ProfileFormComponent implements OnInit {
     constructor(private apiService: ApiService,
                 private dialog: MatDialog,
                 private localStorageService: LocalStorageService,
-                private router: Router) {
+                private router: Router,
+                private clientService: ClientService,
+                private authService: AuthService) {
 
     }
 
@@ -47,13 +51,12 @@ export class ProfileFormComponent implements OnInit {
     }
 
     onSubmit(myForm: NgForm) {
-        console.log('This has to be sent to the back :');
         console.log(myForm);
         console.log(this.myClient);
-        this.myClient.token = this.localStorageService.getUser().uid;
+        this.myClient.token = this.authService.firebaseUser.uid;
         this.apiService.postClient(this.myClient).then(() => {
             console.log('ok');
-            this.localStorageService.setUserInfos(this.myClient);
+            this.clientService.setClientValue(this.myClient);
             this.router.navigate(['/homepage']);
         }).catch((error: Error) => {
             console.log(error);

@@ -41,12 +41,12 @@ export class LocalStorageService {
         localStorage.setItem(this.basketKey, JSON.stringify(basket));
     }
 
-    public setUser(user: firebase.User) {
-        localStorage.setItem(environment.userStorageKey, JSON.stringify(user));
+    public setFirebaseUser(user: firebase.User) {
+        localStorage.setItem(environment.firebaseUserStorageKey, JSON.stringify(user));
     }
 
-    public getUser(): firebase.User {
-        const user: string = localStorage.getItem(environment.userStorageKey);
+    public getFirebaseUser(): firebase.User {
+        const user: string = localStorage.getItem(environment.firebaseUserStorageKey);
         if (user != null) {
             return JSON.parse(user);
         }
@@ -56,13 +56,12 @@ export class LocalStorageService {
 
     }
 
-    public removeUser() {
-        localStorage.removeItem(environment.userStorageKey);
+    public removeFirebaseUser() {
+        localStorage.removeItem(environment.firebaseUserStorageKey);
     }
 
-    public getUserInfos() {
-        const userInfos: string = localStorage.getItem(environment.userInfosStorageKey);
-        console.log(userInfos);
+    public getApiClient() {
+        const userInfos: string = localStorage.getItem(environment.apiClientStorageKey);
         if (userInfos != null) {
             return JSON.parse(userInfos);
         }
@@ -70,11 +69,11 @@ export class LocalStorageService {
         return null;
     }
 
-    public removeUserInfos() {
-        localStorage.removeItem(environment.userInfosStorageKey);
+    public removeApiClient() {
+        localStorage.removeItem(environment.apiClientStorageKey);
     }
 
-    public setUserInfos(client: ClientInterface) {
-        localStorage.setItem(environment.userInfosStorageKey, JSON.stringify(client));
+    public setApiClient(client: ClientInterface) {
+        localStorage.setItem(environment.apiClientStorageKey, JSON.stringify(client));
     }
 }

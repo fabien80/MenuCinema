@@ -14,6 +14,7 @@ import {AuthService} from './auth.service';
 import {LocalStorageService} from '../services/local-storage.service';
 import * as firebase from 'firebase';
 import {ClientInterface} from '../interface/ClientInterface';
+import {ClientService} from '../services/client.service';
 
 @Injectable({
     providedIn: 'root'
@@ -22,7 +23,8 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
     constructor(private authService: AuthService,
                 private router: Router,
-                private localStorageService: LocalStorageService) {
+                private localStorageService: LocalStorageService,
+                private clientService: ClientService) {
 
     }
 
@@ -48,14 +50,14 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
     private async checkLogin(url: string) {
         console.log(url);
-        const user: firebase.User = this.localStorageService.getUser();
-        const userInfos: ClientInterface = this.localStorageService.getUserInfos();
+        const firebaseUser: firebase.User = this.authService.firebaseUser;
+        const client: ClientInterface = this.clientService.client.value;
         console.log(this.authService.isSignedIn());
         if (this.authService.isSignedIn()) {
             return true;
         }
 
-        if (userInfos == null && user != null) {
+        if (client == null && firebaseUser != null) {
             this.router.navigate(['/profile']);
             return false;
         }

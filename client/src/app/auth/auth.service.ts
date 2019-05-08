@@ -7,12 +7,13 @@ import {LocalStorageService} from '../services/local-storage.service';
 import {firebase} from 'firebaseui-angular';
 import {MatDialog} from '@angular/material';
 import {GenericDialogComponent} from '../dialogs/generic-dialog/generic-dialog.component';
+import {ClientInterface} from '../interface/ClientInterface';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
-    private _user;
+    private _firebaseUser;
     private _isLogged = false;
 
     constructor(private firebaseApp: FirebaseApp,
@@ -20,23 +21,30 @@ export class AuthService {
                 private clientService: ClientService,
                 private localStorageService: LocalStorageService,
                 private dialog: MatDialog) {
+        this._firebaseUser = this.localStorageService.getFirebaseUser();
     }
 
     signOut() {
-        this.localStorageService.removeUser();
-        this.localStorageService.removeUserInfos();
+        this.localStorageService.removeFirebaseUser();
+        this.localStorageService.removeApiClient();
         this._isLogged = false;
+        this._firebaseUser = null;
+        this.clientService.client.next(null);
         this.firebaseApp.auth().signOut().then(() => {
             this.router.navigate(['/login']);
         });
     }
 
     signWithFirebase() {
-        return this.localStorageService.getUser() != null;
+        return this.localStorageService.getFirebaseUser() != null;
+    }
+
+    signWithApi() {
+        return this.localStorageService.getApiClient() != null;
     }
 
     isSignedIn() {
-        this._isLogged = (this.localStorageService.getUser() != null && this.localStorageService.getUserInfos() !== null) || this._isLogged;
+        this._isLogged = (this._firebaseUser != null && this.clientService.client.value !== null) || this._isLogged;
         return this._isLogged;
     }
 
@@ -45,11 +53,12 @@ export class AuthService {
     }
 
     public signInSuccess() {
-        this._user = firebase.auth().currentUser;
-        this.localStorageService.setUser(this._user);
-        this.clientService.init(this._user.uid)
+        this._firebaseUser = firebase.auth().currentUser;
+        this.localStorageService.setFirebaseUser(this._firebaseUser);
+        console.log('ici');
+        this.clientService.init(this._firebaseUser.uid)
         .then(() => {
-                if (this.localStorageService.getUserInfos() == null) {
+                if (this.localStorageService.getApiClient() == null) {
                     this.router.navigate(['/profile']);
                 } else {
                     this._isLogged = true;
@@ -70,4 +79,8 @@ export class AuthService {
 
     }
 
+
+    get firebaseUser() {
+        return this._firebaseUser;
+    }
 }

@@ -26,14 +26,21 @@ export class ClientService {
             token: '',
             ville: ''
         });
-        this._client.next(this.localStorageService.getUserInfos());
+        console.log(this.localStorageService.getApiClient());
+        this._client.next(this.localStorageService.getApiClient());
     }
 
     async init(token: string) {
         const client = await this.apiService.getClient(token);
+        console.log(client);
         this._client.next(client);
         console.log(client);
-        this.localStorageService.setUserInfos(client);
+        this.localStorageService.setApiClient(client);
+    }
+
+    public setClientValue(client: ClientInterface) {
+        this.client.next(client);
+        this.localStorageService.setApiClient(client);
     }
 
 
