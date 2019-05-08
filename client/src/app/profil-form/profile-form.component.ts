@@ -12,6 +12,10 @@ import {NgForm} from "@angular/forms";
 export class profileFormComponent implements OnInit{
 
     @Input() myClient:ClientInterface;
+    tmpClient:ClientInterface;
+    edit: boolean = false;
+    displayTile: number = 0;
+    formClass: string= "";
 
 
     ngOnInit(): void {
@@ -27,13 +31,34 @@ export class profileFormComponent implements OnInit{
             rue: "place de la rep",
             ville: "SMH",
             code_postal: 26200,
-            token: "",
+            token: ""
         };
+
+        this.tmpClient = {...this.myClient};
+
     }
 
-    onSubmit(){
-        console.log("This has to be sent to the back :");
-        console.log(this.myClient);
+    onSubmit(f:NgForm){
+        if(f.form.valid){
+            this.edit = false;
+            console.log("This has to be sent to the back :");
+            this.tileDisplayer(1);
+            this.myClient = this.tmpClient;
+            console.log(this.myClient);
+            f.form.markAsPristine();
+        }else {
+            this.formClass = "was-validated";
+            this.tileDisplayer(2);
+        }
     }
 
+    onCancel() {
+        this.edit = false;
+        this.tileDisplayer(3);
+    }
+
+    tileDisplayer(tileId){
+        this.displayTile = tileId;
+        setTimeout(a=>{this.displayTile = 0},4000);
+    }
 }

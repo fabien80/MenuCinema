@@ -6,13 +6,13 @@ import {MovieComponent} from './product/movie/movie.component';
 import {profileFormComponent} from "./profil-form/profile-form.component";
 
 const routes: Routes = [
+    {path: 'profile', component: profileFormComponent},
     {
         path: '',
         redirectTo: 'login',
         pathMatch: 'full'
     },
-    {path: 'homepage', component: HomeComponent},
-    {path: 'profile', component: profileFormComponent}
+    {path: '**', redirectTo: 'homepage', pathMatch: "full"}
 ];
 
 @NgModule({
