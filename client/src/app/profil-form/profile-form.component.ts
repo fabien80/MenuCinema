@@ -53,18 +53,31 @@ export class ProfileFormComponent implements OnInit {
 
     }
 
-    onSubmit(f:NgForm){
-        if(f.form.valid){
+    onSubmit(myForm: NgForm) {
+        if(myForm.form.valid){
             this.edit = false;
             console.log("This has to be sent to the back :");
             this.tileDisplayer(1);
             this.myClient = this.tmpClient;
             console.log(this.myClient);
-            f.form.markAsPristine();
+            myForm.form.markAsPristine();
+            this.myClient.token = this.authService.firebaseUser.uid;
+            this.apiService.postClient(this.myClient).then(() => {
+                console.log('ok');
+                this.clientService.setClientValue(this.myClient);
+                this.router.navigate(['/homepage']);
+            }).catch((error: Error) => {
+                console.log(error);
+            });
         }else {
             this.formClass = "was-validated";
             this.tileDisplayer(2);
         }
+    }
+
+    tileDisplayer(tileId){
+        this.displayTile = tileId;
+        setTimeout(a=>{this.displayTile = 0},4000);
     }
 }
 
