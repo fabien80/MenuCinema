@@ -1,49 +1,83 @@
-<div class="container-fluid">
-    <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" class="form-inline">
-        <div class="form-group row">
-            <label for="client_id">Votre identifiant</label>
-            <input type="text" disabled value="{{myClient.client_id}}" class="form-control" id="client_id" name="client_id">
+<div class="container">
+    <form [class]="formClass" novalidate (ngSubmit)="onSubmit(myForm)" #myForm="ngForm">
+        <div class="form-row">
+            <img alt="image de profil" class="picture col-lg-2" src="{{myClient.photo}}">
+            <div  *ngIf="edit" class="form-group col-lg-2">
+                <label class="sr-only" for="firstname">Prénom</label>
+                <input type="text" required [(ngModel)]="tmpClient.prenom" class="form-control form-control-lg col" id="firstname" name="firstname" placeholder="Prénom" pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$">
+                <div class="invalid-feedback offset-lg-2">
+                    Entrez un prénom valide. (pattern: Lettres, espaces, virgules, points, apostrophes, tirets, acceptés)
+                </div>
+            </div>
+            <div *ngIf="edit"  class="form-group col-lg-2 ">
+                <label class="sr-only" for="name">Nom</label>
+                <input type="text" required [(ngModel)]="tmpClient.nom" class="form-control form-control-lg col " id="name" name="name" placeholder="Nom" pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$">
+                <div class="invalid-feedback offset-lg-2">
+                    Entrez un nom valide. (pattern: Lettres, espaces, virgules, points, apostrophes, tirets, acceptés)
+                </div>
+            </div>
+            <!--input *ngIf="edit" type="text" required [(ngModel)]="tmpClient.photo" class="form-control edit" id="photo" name="photo" placeholder="photo" matTooltip="click to change your profile picture"-->
+            <span *ngIf="!edit" class="name display">
+                {{myClient.prenom}} {{myClient.nom}}
+                <span class="client_id">({{myClient.client_id}})</span>
+            </span>
         </div>
         <div class="form-group row">
-            <label for="name">Nom</label>
-            <input type="text" required [(ngModel)]="myClient.nom" class="form-control" id="name" name="name">
+            <label for="email" class="col-form-label col-lg-2">Email: </label>
+            <span *ngIf="!edit" class="display">{{myClient.mail}}</span>
+            <input *ngIf="edit" type="email" [(ngModel)]="tmpClient.mail" class="form-control col-lg-4" id="email" name="email" placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required>
+            <div class="invalid-feedback offset-lg-2">
+                Entrez un email valide. (pattern: exemple@ndd.ext)
+            </div>
         </div>
         <div class="form-group row">
-            <label for="firstname">Prénom</label>
-            <input type="text" required [(ngModel)]="myClient.prenom" class="form-control" id="firstname" name="firstname">
+            <label for="tel" class="col-form-label col-lg-2">Telephone: </label>
+            <span *ngIf="!edit" class="display">{{myClient.tel}}</span>
+            <input *ngIf="edit" type="tel" required [(ngModel)]="tmpClient.tel" class="form-control col-lg-4" id="tel" name="tel" placeholder="Téléphone" pattern="^(\+33\s?|0)[1-9]((\s|\.|-)?\d\d){4}$">
+            <div class="invalid-feedback offset-lg-2">
+                Entrez un numéro de téléphone valide. (pattern: 01 02 03 04 05 ou 0102030405 ou 01.02.03.04.05 ou 01-02-03-04-05 ou avec +33)
+            </div>
         </div>
-        <div class="form-group row">
-            <label for="email">Email</label>
-            <input type="text" required [(ngModel)]="myClient.mail" class="form-control" id="email" name="email">
+        <div class="form-row">
+            <label for="street_number" class="col-form-label col-lg-2">Adresse: </label>
+            <span *ngIf="!edit" class="display">{{myClient.numero_rue}} </span>
+            <span *ngIf="!edit" class="display">{{myClient.rue}} </span>
+            <span *ngIf="!edit" class="display">{{myClient.code_postal}} </span>
+            <span *ngIf="!edit" class="display">{{myClient.ville}}</span>
+            <div class="col-lg-2">
+                <input *ngIf="edit" type="text" required [(ngModel)]="tmpClient.numero_rue" class="form-control edit" id="street_number" name="street_number" placeholder="Numéro" pattern="^\d{0,5}\s?(bis|ter|Bis|Ter)?$" >
+                <div class="invalid-feedback offset-lg-2 invalid-addr">
+                    Entrez un numéro de numéro de maison valide. (pattern: entre 0 99999 ( bis ou ter autorisé)
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <label class="sr-only"  for="street_name">Nom de rue: </label>
+                <input *ngIf="edit" type="text" required [(ngModel)]="tmpClient.rue" class="form-control edit" id="street_name" name="street_name" placeholder="Nom de rue">
+            </div>
+            <div class="col-lg-2">
+                <label class="sr-only"  for="postal_code">Code postal: </label>
+                <input *ngIf="edit" type="text" required [(ngModel)]="tmpClient.code_postal" class="form-control edit" id="postal_code" name="postal_code" placeholder="Code postal" pattern="^[0-9]{5}$">
+                <div class="invalid-feedback offset-lg-10  ">
+                    Entrez un code postal valide. (pattern: 5 chiffres)
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <label class="sr-only"  for="city">Ville: </label>
+                <input *ngIf="edit" type="text" required [(ngModel)]="tmpClient.ville" class="form-control edit" id="city" name="city" placeholder="Ville">
+            </div>
         </div>
-        <div class="form-group row">
-            <label for="photo">Photo</label>
-            <input type="text" required [(ngModel)]="myClient.photo" class="form-control" id="photo" name="photo">
-        </div>
-        <div class="form-group row">
-            <label for="tel">Telephone</label>
-            <input type="text" required [(ngModel)]="myClient.tel" class="form-control" id="tel" name="tel">
-        </div>
-        <div class="form-group row">
-            <label for="fidelite">Point de fidelité</label>
-            <input type="text" disabled value="myClient.fidelite" class="form-control" id="fidelite" name="fidelite">
-        </div>
-        <div class="form-group row">
-            <label for="street_number">Numéro de rue</label>
-            <input type="text" required [(ngModel)]="myClient.numero_rue" class="form-control" id="street_number" name="street_number">
-        </div>
-        <div class="form-group row">
-            <label for="street_name">Nom de rue</label>
-            <input type="text" required [(ngModel)]="myClient.rue" class="form-control" id="street_name" name="street_name">
-        </div>
-        <div class="form-group row">
-            <label for="city">Ville</label>
-            <input type="text" required [(ngModel)]="myClient.ville" class="form-control" id="city" name="city">
-        </div>
-        <div class="form-group row">
-            <label for="postal_code">Code postal</label>
-            <input type="text" required [(ngModel)]="myClient.code_postal" class="form-control" id="postal_code" name="postal_code">
-        </div>
-        <button type="submit" class="btn btn-success" [disabled]="!myForm.form.valid" >Submit</button>
+        <hr>
+        <button *ngIf="edit" type="submit" class="btn btn-success" [disabled]="myForm.form.pristine" >Submit</button>
+        <button class="btn btn-primary" *ngIf="!edit" (click)="edit = true">Edit</button>
+        <button class="btn btn-danger" *ngIf="edit" (click)="onCancel()">Cancel change</button>
+        <small *ngIf="displayTile===1">
+            Mise à jour avec success
+        </small>
+        <small *ngIf="displayTile===2">
+            Echec de la mise à jour
+        </small>
+        <small *ngIf="displayTile===3">
+            Pas de changement fait
+        </small>
     </form>
 </div>

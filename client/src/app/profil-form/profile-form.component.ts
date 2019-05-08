@@ -17,7 +17,11 @@ import {ClientInterface} from '../interface/ClientInterface';
 
 export class ProfileFormComponent implements OnInit {
 
-    @Input() myClient: ClientInterface;
+    @Input() myClient:ClientInterface;
+    tmpClient:ClientInterface;
+    edit: boolean = false;
+    displayTile: number = 0;
+    formClass: string= "";
 
     constructor(private apiService: ApiService,
                 private dialog: MatDialog,
@@ -39,23 +43,38 @@ export class ProfileFormComponent implements OnInit {
             tel: '01 02 03 04 05',
             fidelite: 12,
             numero_rue: 124,
-            rue: 'place de la rep',
-            ville: 'SMH',
-            code_postal: '26200',
-            token: '',
+            rue: "place de la rep",
+            ville: "SMH",
+            code_postal: 26200,
+            token: ""
         };
+
+        this.tmpClient = {...this.myClient};
+
     }
 
-    onSubmit(myForm: NgForm) {
-        console.log(myForm);
-        console.log(this.myClient);
-        this.myClient.token = this.authService.firebaseUser.uid;
-        this.apiService.postClient(this.myClient).then(() => {
-            console.log('ok');
-            this.clientService.setClientValue(this.myClient);
-            this.router.navigate(['/homepage']);
-        }).catch((error: Error) => {
-            console.log(error);
-        });
+    onSubmit(f:NgForm){
+        if(f.form.valid){
+            this.edit = false;
+            console.log("This has to be sent to the back :");
+            this.tileDisplayer(1);
+            this.myClient = this.tmpClient;
+            console.log(this.myClient);
+            f.form.markAsPristine();
+        }else {
+            this.formClass = "was-validated";
+            this.tileDisplayer(2);
+        }
+    }
+}
+
+    onCancel() {
+        this.edit = false;
+        this.tileDisplayer(3);
+    }
+
+    tileDisplayer(tileId){
+        this.displayTile = tileId;
+        setTimeout(a=>{this.displayTile = 0},4000);
     }
 }
