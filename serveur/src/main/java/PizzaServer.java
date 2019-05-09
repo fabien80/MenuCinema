@@ -12,13 +12,14 @@ import org.eclipse.jetty.util.thread.QueuedThreadPool;
 import servlets.Commande.CreateCommandeServlet;
 import servlets.Commande.GetCommandeServlet;
 import servlets.Commande.GetCommandesServlet;
+import servlets.Commande.GetOrderHistory;
 import servlets.GetParametersServlet;
 import servlets.Produit.SearchProduitServlet;
 
 
 public class PizzaServer extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private Server server;
+    private static final long serialVersionUID = 1L;
+    private Server server;
 
     void start() throws Exception {
         int maxThreads = 100;
@@ -30,7 +31,7 @@ public class PizzaServer extends HttpServlet {
         server = new Server(threadPool);
         ServerConnector connector = new ServerConnector(server);
         connector.setPort(8090);
-        server.setConnectors(new Connector[] { connector });
+        server.setConnectors(new Connector[]{connector});
 
         ServletHandler servletHandler = new ServletHandler();
         server.setHandler(servletHandler);
@@ -48,20 +49,21 @@ public class PizzaServer extends HttpServlet {
         servletHandler.addServletWithMapping(CreateCommandeServlet.class, "/addCommande");
         servletHandler.addServletWithMapping(GetCommandeServlet.class, "/commande");
         servletHandler.addServletWithMapping(GetCommandesServlet.class, "/commandes");
-	    servletHandler.addServletWithMapping(SearchProduitServlet.class, "/search/product");
+        servletHandler.addServletWithMapping(GetOrderHistory.class, "/orderHistory");
+        servletHandler.addServletWithMapping(SearchProduitServlet.class, "/search/product");
 
         server.start();
     }
 
     void stop() throws Exception {
         System.out.println("Server stop");
-    	server.stop();
+        server.stop();
     }
 
-	public static void main(String[] args) throws Exception {
-		PizzaServer server = new PizzaServer();
+    public static void main(String[] args) throws Exception {
+        PizzaServer server = new PizzaServer();
 
-		server.start();
-	}
+        server.start();
+    }
 
 }

@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class ClientController extends Controller<Client> {
+
+
 	/**
 	 * Permet de transformer le resultat d'une requete SQL en objet client
 	 *
@@ -187,5 +189,23 @@ public class ClientController extends Controller<Client> {
 		client = new Client(id, nom, prenom, photo, mail, tel, fidelite, token, numeroRue, rue, ville, codePostal);
 
 		return client;
+	}
+
+	public int getClientIdByToken(String token) {
+		int clientId = -1;
+		ResultSet res;
+		String query = "SELECT client_id ";
+		query += "FROM CLIENT ";
+		query += " WHERE token =  " + "'" + token + "'";
+		res = super.getResultSet(query);
+		try {
+			res.next();
+			clientId = res.getInt("client_id");
+			res.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return clientId;
+
 	}
 }

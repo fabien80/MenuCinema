@@ -12,10 +12,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CommandeController extends Controller {
+public class CommandeController extends Controller<Commande> {
 
+    private ClientController clientController = new ClientController();
+
+    /**
+     * Fonction qui va sérialisé le resultset en objet Commande
+     *
+     * @param result : le résultset
+     * @return une Commande
+     */
     @Override
-    protected Object serialize(ResultSet result) {
+    protected Commande serialize(ResultSet result) {
 
         int commandeId;
         String dateHeure;
@@ -35,9 +43,9 @@ public class CommandeController extends Controller {
             commandeId = result.getInt("commande_id");
             dateHeure = result.getString("date_heure");
             clientId = result.getInt("client_id");
-            idPlats = getProductIds(commandeId, "plat");
-            idFilms = getProductIds(commandeId, "film");
-            idMenu = getProductIds(commandeId, "menu");
+            idPlats = getProductsIds(commandeId, "plat");
+            idFilms = getProductsIds(commandeId, "film");
+            idMenu = getProductsIds(commandeId, "menu");
             prix = result.getDouble("prix");
             numeroRue = result.getInt("numero_rue");
             rue = result.getString("rue");
@@ -51,33 +59,60 @@ public class CommandeController extends Controller {
         return commande;
     }
 
-    private List<String> getProductIds(int commandeId, String typeProduit) {
+    /**
+     * Fonction qui va ajouter l'id du produit de res dans la liste idsProduits (le fait plusieurs fois si le produit a été commandé plusieurs fois )
+     *
+     * @param res         : RésultSet
+     * @param idsProduits : La liste des idsProduits
+     */
+    private void getProductId(ResultSet res, List<String> idsProduits) {
 
-        List<String> idProduit = new ArrayList<>();
+        try {
+            int nbCommande = res.getInt("nb_commande");
+            for (int i = 1; i <= nbCommande; i++) {
+                idsProduits.add(res.getString("produit_id"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Fonction qui va récupéré tous les idsproduits
+     *
+     * @param commandeId  l'id de la ocmmande
+     * @param typeProduit le type du produit
+     * @return : la listes des ids produit de type TypeProduit et de la commande d'id commandeId
+     */
+    private List<String> getProductsIds(int commandeId, String typeProduit) {
+
+        List<String> idsProduits = new ArrayList<>();
         ResultSet res;
         String query = "SELECT produit_id, nb_commande ";
         query += "FROM produitCommande ";
         query += "WHERE commande_id = " + commandeId;
         query += " AND type_produit = " + "'" + typeProduit + "'";
-        System.out.println(query);
         res = super.getResultSet(query);
         try {
             while (res.next()) {
-                System.out.println("Le produit d'id : " + res.getString("produit_id") + " de type : " + typeProduit);
-                int nbCommande = res.getInt("nb_commande");
-                for (int i = 1; i <= nbCommande; i++) {
-                    idProduit.add(res.getString("produit_id"));
-                }
+                getProductId(res, idsProduits);
             }
             res.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return idProduit;
+        return idsProduits;
 
 
     }
 
+    /**
+     * Fonction qui va retourner la requête pour créer une commande
+     *
+     * @param request
+     * @return la  chaine de carazctère qui représente la requette sql à faire pout créer une commande.
+     */
     @Override
     protected String getCreateString(HttpServletRequest request) {
         Commande commande = requestBodyToClass(request);
@@ -100,6 +135,12 @@ public class CommandeController extends Controller {
         return res;
     }
 
+    /**
+     * Transforme le body de la requête envoyé par le front en class Commande
+     *
+     * @param request
+     * @return renvoie la commande ainsi crée
+     */
     @Override
     protected Commande requestBodyToClass(HttpServletRequest request) {
 
@@ -126,31 +167,20 @@ public class CommandeController extends Controller {
         idMenu = getParsedString(request.getParameter("id_menus"));
         idFilms = getParsedString(request.getParameter("id_films"));
 
-        clientId = getClientIdByToken(clientToken);
+        clientId = clientController.getClientIdByToken(clientToken);
         cmd = new Commande(clientId, idPlats, idFilms, idMenu, prix, numeroRue, rue, ville, codePostal);
 
         System.out.println(cmd);
         return cmd;
     }
 
-    private int getClientIdByToken(String token) {
-        int clientId = -1;
-        ResultSet res;
-        String query = "SELECT client_id ";
-        query += "FROM CLIENT ";
-        query += " WHERE token =  " + "'" + token + "'";
-        res = super.getResultSet(query);
-        try {
-            res.next();
-            clientId = res.getInt("client_id");
-            res.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return clientId;
-
-    }
-
+    /**
+     * Comme en URCENCODED il est difficile de traité des tableaux, le front envoie les tableaux d'ids sous forme de chaine avec des ";" comme séparateur
+     * Du coup on pase cette string
+     *
+     * @param str : al string à parsé
+     * @return La liste des idées
+     */
     private List<String> getParsedString(String str) {
         System.out.println(str);
         List<String> ids = new ArrayList<>();
@@ -159,6 +189,12 @@ public class CommandeController extends Controller {
     }
 
 
+    /**
+     * Fonction qui va insérer la commande dans la base de données et tousles produitCommandes
+     *
+     * @param request
+     * @return true si ça s'est bien passé, false sinon.
+     */
     @Override
     public boolean create(HttpServletRequest request) {
 
@@ -171,6 +207,11 @@ public class CommandeController extends Controller {
         return result;
     }
 
+    /**
+     * Fonction qui va récupéé l'id de la dernière commande ou -1 s'il n'y en a pas.
+     *
+     * @return : l'id de la dernière commande.
+     */
     private int getLastCommande() {
         int lastCommandeId = -1;
         String query = "SELECT max(commande_id) FROM COMMANDE ";
@@ -188,6 +229,14 @@ public class CommandeController extends Controller {
 
     }
 
+    /**
+     * Insère un produit dans produitCommande en faisant appelle à la procédure stoquées insertProduct
+     *
+     * @param commandeId
+     * @param idProduct
+     * @param productType
+     * @return true si ça c'est bien passé.
+     */
     private boolean insertAProduct(int commandeId, String idProduct, String productType) {
         try {
             if (!idProduct.equals("")) {
@@ -207,28 +256,74 @@ public class CommandeController extends Controller {
         return true;
     }
 
+    /**
+     * insert tous les produitsIds de type productType dans la base
+     *
+     * @param commandeId
+     * @param products
+     * @param productType
+     * @return true si ça c'est bien passé, faux sinon.
+     */
     public boolean insertProducts(int commandeId, List<String> products, String productType) {
-
         boolean result = false;
         for (int i = 0; i < products.size(); i++) {
             result = insertAProduct(commandeId, products.get(i), productType);
         }
         return result;
-
-
     }
 
+    /**
+     * Permet de récupéré l'élement commande d'id passé en requête.
+     * @param tableName
+     * @param request
+     * @return renvoie la commande demandé
+     */
     @Override
     public Commande getElem(String tableName, HttpServletRequest request) {
         Commande cmd = (Commande) super.getElem(tableName, request);
         return cmd;
     }
 
+    /**
+     * Fonction qui renvoie toute la liste des commandes
+     * @param tableName
+     * @return
+     */
     @Override
     public List get(String tableName) {
         return super.get(tableName);
     }
 
+    /**
+     * Renvoie l'ensemble des commandes du client dont l'id a été passé dans request.
+     * @param request
+     * @return la liste de l'historique des commandes
+     */
+    public List getOrderHistory(HttpServletRequest request) {
+        String tokenCLient = request.getParameter("token");
+        int clientId = clientController.getClientIdByToken(tokenCLient);
+        String query = getQueryOrderHistory(clientId);
+        return super.getList(query);
+    }
+
+    /**
+     * Renvoie la requête pour avoir l'ensemble des commandes du client d'id clientId
+     * @param clientId
+     * @return la requête.
+     */
+    private String getQueryOrderHistory(int clientId) {
+        String query = "SELECT * FROM COMMANDE ";
+        query += " WHERE client_id = " + clientId;
+
+        return query;
+    }
+
+    /**
+     * Fonction qui en théorie renvoie la requête d'update d'une commande, mais elle n'est pas utile dans notre
+     * cas, mais on doit l'override quand même. 
+     * @param request
+     * @return
+     */
     @Override
     protected String getUpdateString(HttpServletRequest request) {
         return null;
