@@ -18,6 +18,8 @@ import {ProductModule} from './product/product.module';
 import {HomeModule} from './home/home.module';
 import {MatButtonModule, MatIconModule, MatToolbarModule} from '@angular/material';
 import {MovieModule} from './product/movie/movie.module';
+import {ProfileFormModule} from './profil-form/profile-form.module';
+import {CanDeactivateGuard} from './can-deactivate.guard';
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import {MovieModule} from './product/movie/movie.module';
         MatButtonModule,
         MatIconModule,
         MatToolbarModule,
-        MovieModule
+        MovieModule,
+        ProfileFormModule
     ],
     providers: [TmdbService, AngularFirestore],
     bootstrap: [AppComponent],

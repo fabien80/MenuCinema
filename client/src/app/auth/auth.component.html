@@ -1,8 +1,16 @@
 <firebase-ui (signInSuccess)="signInSuccess()" (signInSuccessWithAuthResult)="signInSuccess()"></firebase-ui>
 
-<div *ngIf="authService.isSignedIn()" class="main-div" (click)="authService.signOut()">
-    Vous êtes actuellement connecté
-    <div>
+<div *ngIf="authService.signWithFirebase() || authService.signWithApi()" class="main-div"
+     (click)="authService.signOut()">
+    <div *ngIf="authService.signWithFirebase() && !authService.signWithApi()">
+        <p> Vous êtes actuellement connecté avec firebase mais pas avec l'api,
+            merci de vous rediriger vers le formulaire. </p>
+        <button mat-button class="btn btn-outline-success" (click)="goToProfil()">
+            Aller au formulaire
+        </button>
+    </div>
+    <div *ngIf="authService.isSignedIn()">
+        Vous êtes actuellement connecté
         <button mat-button class="btn btn-outline-danger">
             Deconnexion
         </button>
