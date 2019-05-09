@@ -24,7 +24,7 @@
                     [(amount)]="menuGroup.amount"
                     (amountChange)="amountChange()"
             ></app-amount-buttons>
-            Menu {{menuGroup.product.id}}
+            {{menuGroup.product.nom}}
             <button mat-button (click)="removeMenuGroup(i)">
                 <mat-icon>delete</mat-icon>
             </button>

@@ -5,6 +5,7 @@ import {Product} from '../class/Product';
 import {BasketService} from '../../basket/basket.service';
 import {ProductGroup} from '../class/productGroup';
 import {FoodGroup} from './foodGroup';
+import {SearchFoodInterface} from '../../interface/SearchInterface';
 
 @Injectable({
     providedIn: 'root'
@@ -28,5 +29,12 @@ export class FoodService {
 
     public productToFood(product: Product) {
         return product as Food;
+    }
+
+    public searchFoodInterfaceTabToClassTab(foods: SearchFoodInterface[]) {
+        return foods.reduce((foodsClass: Food[], elem: SearchFoodInterface) => {
+            foodsClass.push(Food.fromData(elem.product));
+            return foodsClass;
+        }, []);
     }
 }

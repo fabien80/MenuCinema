@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {ClientInterface} from '../interface/ClientInterface';
 import {LocalStorageService} from './local-storage.service';
+import {ClientInterface} from '../interface/ClientInterface';
 
 @Injectable({
     providedIn: 'root'

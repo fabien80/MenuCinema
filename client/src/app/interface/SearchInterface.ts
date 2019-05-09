@@ -1,9 +1,22 @@
 import {ProductType} from '../enum/ProductType';
-import {ProductInterface} from './ProductInterface';
-import {Product} from '../product/class/Product';
+import {FoodInterface} from './FoodInterface';
 
-export interface SearchProductResponse {
-    results?: Product[];
+export interface SearchFoodInterface {
+    product?: FoodInterface;
+}
+
+export interface SearchMenusInterface {
+    menu?: SearchMenuInterface;
+}
+
+export interface SearchMenuInterface {
+    foodGroups: {
+        product: FoodInterface[];
+    };
+    prix: number;
+    nom: string;
+    id: number;
+    type: ProductType;
 }
 
 export interface SearchProductQuery {

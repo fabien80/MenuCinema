@@ -2,9 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {FoodInterface} from '../interface/FoodInterface';
 import {ProductType} from '../enum/ProductType';
-import {SearchProductQuery, SearchProductResponse} from '../interface/SearchInterface';
+import {SearchProductQuery} from '../interface/SearchInterface';
 import {MenuInterface} from '../interface/MenuInterface';
 import {ProductInterface} from '../interface/ProductInterface';
+import {Product} from './class/Product';
 
 const api = '/api';
 
@@ -16,15 +17,15 @@ export class ProductService {
     constructor(private http: HttpClient) {
     }
 
-    public async search(query: SearchProductQuery): Promise<SearchProductResponse> {
-        const params = new HttpParams();
-        params.append('query', query.query);
-        params.append('type', query.type);
-        const url = `${api}/search`;
+    public async search(query: SearchProductQuery): Promise<any> {
+        let params = new HttpParams();
+        params = query.query != null ? params.append('query', query.query) : params;
+        params = query.type != null ? params.append('type', query.type) : params;
+        const url = `/search/product`;
         return await this.http.get(url, {params}).toPromise();
     }
 
-    public async searchMock(query: SearchProductQuery): Promise<SearchProductResponse> {
+    public async searchMock(query: SearchProductQuery): Promise<any> {
         const plat: FoodInterface = {
             description: 'test',
             id: 1,
@@ -60,14 +61,16 @@ export class ProductService {
         const menu1: MenuInterface = {
             id: 1,
             foodGroups: [{product: entree, amount: 1}, {product: boisson, amount: 1}, {product: plat, amount: 1}],
-            prix: 20
+            prix: 20,
+            nom: 'test'
         };
 
         const menu2: MenuInterface = {
 
             id: 2,
             foodGroups: [{amount: 1, product: plat}, {amount: 1, product: dessert}],
-            prix: 10
+            prix: 10,
+            nom: 'test'
         };
 
         const menu3: MenuInterface = {
@@ -76,6 +79,7 @@ export class ProductService {
                 product: dessert,
                 amount: 1
             }],
+            nom: 'test',
             prix: 25
         };
 
@@ -116,7 +120,7 @@ export class ProductService {
             }
         }
 
-        return new Promise<SearchProductResponse>((resolve, reject) => {
+        return new Promise<any>((resolve, reject) => {
             resolve({results});
         });
 

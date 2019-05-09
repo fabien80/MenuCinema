@@ -1,0 +1,427 @@
+<prod:produits xmlns:prod="https://www.univ-grenoble-alpes.fr/francais/l3miage/Produits"
+               xmlns:prod1="https://www.univ-grenoble-alpes.fr/francais/l3miage/Produit"
+               xmlns:foodGroups="https://www.univ-grenoble-alpes.fr/francais/l3miage/FoodGroups"
+               xmlns:nour="https://www.univ-grenoble-alpes.fr/francais/l3miage/Nourriture"
+               xmlns:menu="https://www.univ-grenoble-alpes.fr/francais/l3miage/Menu">
+    <prod:produit>
+        <prod1:product id="1">
+            <nour:type>Entree</nour:type>
+            <nour:nom>Salade</nour:nom>
+            <nour:description>Petite Salade composé : Tomate et Chevre ou Lardon.</nour:description>
+            <nour:prix>4</nour:prix>
+        </prod1:product>
+        <prod1:product id="2">
+            <nour:type>Entree</nour:type>
+            <nour:nom>Arancini</nour:nom>
+            <nour:description>Beignets de risotto x4</nour:description>
+            <nour:prix>5</nour:prix>
+        </prod1:product>
+        <prod1:product id="3">
+            <nour:type>Entree</nour:type>
+            <nour:nom>Tenders</nour:nom>
+            <nour:description>Tenders de poulets x3</nour:description>
+            <nour:prix>5</nour:prix>
+        </prod1:product>
+
+        <!-- Plat -->
+
+        <prod1:product id="10">
+            <nour:type>Plat</nour:type>
+            <nour:nom>Tacos</nour:nom>
+            <nour:description>Tacos poulet, sauce au choix, frites et sauce fromagère.</nour:description>
+            <nour:prix>5</nour:prix>
+            <nour:ingredients>Poulet</nour:ingredients>
+        </prod1:product>
+        <prod1:product id="11">
+            <nour:type>Plat</nour:type>
+            <nour:nom>Pizza Chorizo</nour:nom>
+            <nour:description>Pizza aux Poivrons, Tomates, Mozzarella, et Chorizo</nour:description>
+            <nour:prix>12</nour:prix>
+            <nour:ingredients>Poivron</nour:ingredients>
+            <nour:ingredients>Tomate</nour:ingredients>
+            <nour:ingredients>Mozzarella</nour:ingredients>
+            <nour:ingredients>Chorizo</nour:ingredients>
+        </prod1:product>
+        <prod1:product id="12">
+            <nour:type>Plat</nour:type>
+            <nour:nom>Lasagne</nour:nom>
+            <nour:description>Lasagne au Cheval</nour:description>
+            <nour:prix>11</nour:prix>
+        </prod1:product>
+        <prod1:product id="13">
+            <nour:type>Plat</nour:type>
+            <nour:nom>Gratin de ravioles</nour:nom>
+            <nour:description>Gratins de ravioles saumon</nour:description>
+            <nour:prix>11</nour:prix>
+            <nour:ingredients>Saumon</nour:ingredients>
+        </prod1:product>
+        <prod1:product id="14">
+            <nour:type>Plat</nour:type>
+            <nour:nom>Hamburger</nour:nom>
+            <nour:description>Hamburger Americain taille XXL</nour:description>
+            <nour:prix>12</nour:prix>
+        </prod1:product>
+        <prod1:product id="15">
+            <nour:type>Plat</nour:type>
+            <nour:nom>Pizza Végé</nour:nom>
+            <nour:description>Pizza aux Tomates, Aubergines, Champignons, Mozzarella</nour:description>
+            <nour:prix>12</nour:prix>
+            <nour:ingredients>Tomate</nour:ingredients>
+            <nour:ingredients>Aubergine</nour:ingredients>
+            <nour:ingredients>Champignon</nour:ingredients>
+            <nour:ingredients>Mozzarella</nour:ingredients>
+        </prod1:product>
+        <prod1:product id="16">
+            <nour:type>Plat</nour:type>
+            <nour:nom>Pizza Chevre Miel</nour:nom>
+            <nour:description>Pizza aux fromages de chevre et au miel</nour:description>
+            <nour:prix>11</nour:prix>
+            <nour:ingredients>Chevre</nour:ingredients>
+            <nour:ingredients>Miel</nour:ingredients>
+        </prod1:product>
+        <prod1:product id="17">
+            <nour:type>Plat</nour:type>
+            <nour:nom>Pizza Terre et Mer</nour:nom>
+            <nour:description>Pizza aux saumons, jambons, ananas et emmental</nour:description>
+            <nour:prix>11</nour:prix>
+            <nour:ingredients>Saumon</nour:ingredients>
+            <nour:ingredients>Jambon</nour:ingredients>
+            <nour:ingredients>Ananas</nour:ingredients>
+            <nour:ingredients>Emmental</nour:ingredients>
+        </prod1:product>
+        <prod1:product id="18">
+            <nour:type>Plat</nour:type>
+            <nour:nom>Pizza Deux Viandes</nour:nom>
+            <nour:description>Pizza à la viande hachée, poulet et mozzarella</nour:description>
+            <nour:prix>11</nour:prix>
+            <nour:ingredients>Viande</nour:ingredients>
+            <nour:ingredients>Poulet</nour:ingredients>
+            <nour:ingredients>Mozzarella</nour:ingredients>
+        </prod1:product>
+
+        <!-- Dessert -->
+
+        <prod1:product id="20">
+            <nour:type>Dessert</nour:type>
+            <nour:nom>Glace</nour:nom>
+            <nour:description>Glace nappage chocolat</nour:description>
+            <nour:prix>3</nour:prix>
+        </prod1:product>
+        <prod1:product id="21">
+            <nour:type>Dessert</nour:type>
+            <nour:nom>Gauffre</nour:nom>
+            <nour:description>Gauffre au nutella</nour:description>
+            <nour:prix>4</nour:prix>
+        </prod1:product>
+        <prod1:product id="22">
+            <nour:type>Dessert</nour:type>
+            <nour:nom>Tiramisu</nour:nom>
+            <nour:description>Tiramisu au café</nour:description>
+            <nour:prix>3</nour:prix>
+        </prod1:product>
+        <prod1:product id="23">
+            <nour:type>Dessert</nour:type>
+            <nour:nom>Clafoutis</nour:nom>
+            <nour:description>Clafoutis à la cerise</nour:description>
+            <nour:prix>4</nour:prix>
+        </prod1:product>
+
+        <!-- Boissons -->
+
+        <prod1:product id="30">
+            <nour:type>Boisson</nour:type>
+            <nour:nom>Coca Cola</nour:nom>
+            <nour:description>Canette de 33cl</nour:description>
+            <nour:prix>2</nour:prix>
+        </prod1:product>
+        <prod1:product id="31">
+            <nour:type>Boisson</nour:type>
+            <nour:nom>Ice The</nour:nom>
+            <nour:description>Canette de 33cl</nour:description>
+            <nour:prix>2</nour:prix>
+        </prod1:product>
+        <prod1:product id="32">
+            <nour:type>Boisson</nour:type>
+            <nour:nom>Oasis</nour:nom>
+            <nour:description>Canette de 33cl</nour:description>
+            <nour:prix>2</nour:prix>
+        </prod1:product>
+        <prod1:product id="33">
+            <nour:type>Boisson</nour:type>
+            <nour:nom>Orangina</nour:nom>
+            <nour:description>Canette de 33cl</nour:description>
+            <nour:prix>2</nour:prix>
+        </prod1:product>
+        <prod1:product id="34">
+            <nour:type>Boisson</nour:type>
+            <nour:nom>1664</nour:nom>
+            <nour:description>Canette de 33cl (Alcool)</nour:description>
+            <nour:prix>2</nour:prix>
+        </prod1:product>
+
+        <!--Menus à 4 produits : Entrée + Plat + Dessert + Boisson-->
+
+        <prod1:menu id="50">
+            <menu:nom>La Grosse Faim</menu:nom>
+            <menu:type>Menu</menu:type>
+            <menu:foodGroups>
+                <foodGroups:product id="3">
+                    <nour:type>Entree</nour:type>
+                    <nour:nom>Tenders</nour:nom>
+                    <nour:description>Tenders de poulets x3</nour:description>
+                    <nour:prix>5</nour:prix>
+                </foodGroups:product>
+                <foodGroups:product id="12">
+                    <nour:type>Plat</nour:type>
+                    <nour:nom>Lasagne</nour:nom>
+                    <nour:description>Lasagne au Cheval</nour:description>
+                    <nour:prix>11</nour:prix>
+                </foodGroups:product>
+                <foodGroups:product id="23">
+                    <nour:type>Dessert</nour:type>
+                    <nour:nom>Clafoutis</nour:nom>
+                    <nour:description>Clafoutis à la cerise</nour:description>
+                    <nour:prix>4</nour:prix>
+                </foodGroups:product>
+                <foodGroups:product id="32">
+                    <nour:type>Boisson</nour:type>
+                    <nour:nom>Oasis</nour:nom>
+                    <nour:description>Canette de 33cl</nour:description>
+                    <nour:prix>2</nour:prix>
+                </foodGroups:product>
+            </menu:foodGroups>
+            <menu:prix>20</menu:prix>
+        </prod1:menu>
+
+
+        <prod1:menu id="51">
+            <menu:nom>La Grosse Faim</menu:nom>
+            <menu:type>Menu</menu:type>
+            <menu:foodGroups>
+                <foodGroups:product id="1">
+                    <nour:type>Entree</nour:type>
+                    <nour:nom>Salade</nour:nom>
+                    <nour:description>Petite Salade composé : Tomate et Chevre ou Lardon.</nour:description>
+                    <nour:prix>4</nour:prix>
+                </foodGroups:product>
+                <foodGroups:product id="13">
+                    <nour:type>Plat</nour:type>
+                    <nour:nom>Gratin de ravioles</nour:nom>
+                    <nour:description>Gratins de ravioles saumon</nour:description>
+                    <nour:prix>11</nour:prix>
+                    <nour:ingredients>Saumon</nour:ingredients>
+                </foodGroups:product>
+                <foodGroups:product id="20">
+                    <nour:type>Dessert</nour:type>
+                    <nour:nom>Glace</nour:nom>
+                    <nour:description>Glace nappage chocolat</nour:description>
+                    <nour:prix>3</nour:prix>
+                </foodGroups:product>
+                <foodGroups:product id="33">
+                    <nour:type>Boisson</nour:type>
+                    <nour:nom>Orangina</nour:nom>
+                    <nour:description>Canette de 33cl</nour:description>
+                    <nour:prix>2</nour:prix>
+                </foodGroups:product>
+            </menu:foodGroups>
+            <menu:prix>20</menu:prix>
+        </prod1:menu>
+
+        <!--Menu 3 produits Entrée + Plat + Boisson-->
+
+        <prod1:menu id="52">
+            <menu:nom>L'Americain</menu:nom>
+            <menu:type>Menu</menu:type>
+            <menu:foodGroups>
+                <foodGroups:product id="3">
+                    <nour:type>Entree</nour:type>
+                    <nour:nom>Tenders</nour:nom>
+                    <nour:description>Tenders de poulets x3</nour:description>
+                    <nour:prix>5</nour:prix>
+                </foodGroups:product>
+                <foodGroups:product id="14">
+                    <nour:type>Plat</nour:type>
+                    <nour:nom>Hamburger</nour:nom>
+                    <nour:description>Hamburger Americain taille XXL</nour:description>
+                    <nour:prix>12</nour:prix>
+                </foodGroups:product>
+                <foodGroups:product id="30">
+                    <nour:type>Boisson</nour:type>
+                    <nour:nom>Coca Cola</nour:nom>
+                    <nour:description>Canette de 33cl</nour:description>
+                    <nour:prix>2</nour:prix>
+                </foodGroups:product>
+            </menu:foodGroups>
+            <menu:prix>15</menu:prix>
+        </prod1:menu>
+        <prod1:menu id="53">
+            <menu:nom>L'Italiano</menu:nom>
+            <menu:type>Menu</menu:type>
+            <menu:foodGroups>
+                <foodGroups:product id="2">
+                    <nour:type>Entree</nour:type>
+                    <nour:nom>Arancini</nour:nom>
+                    <nour:description>Beignets de risotto x4</nour:description>
+                    <nour:prix>5</nour:prix>
+                </foodGroups:product>
+                <foodGroups:product id="11">
+                    <nour:type>Plat</nour:type>
+                    <nour:nom>Pizza Chorizo</nour:nom>
+                    <nour:description>Pizza aux Poivrons, Tomates, Mozzarella, et Chorizo</nour:description>
+                    <nour:prix>12</nour:prix>
+                    <nour:ingredients>Poivron</nour:ingredients>
+                    <nour:ingredients>Tomate</nour:ingredients>
+                    <nour:ingredients>Mozzarella</nour:ingredients>
+                    <nour:ingredients>Chorizo</nour:ingredients>
+                </foodGroups:product>
+                <foodGroups:product id="31">
+                    <nour:type>Boisson</nour:type>
+                    <nour:nom>Ice The</nour:nom>
+                    <nour:description>Canette de 33cl</nour:description>
+                    <nour:prix>2</nour:prix>
+                </foodGroups:product>
+            </menu:foodGroups>
+            <menu:prix>15</menu:prix>
+        </prod1:menu>
+
+        <!--Menu 3 produits : Plat + Dessert + Boisson-->
+
+        <prod1:menu id="54">
+            <menu:nom>La Ravioline</menu:nom>
+            <menu:type>Menu</menu:type>
+            <menu:foodGroups>
+                <foodGroups:product id="13">
+                    <nour:type>Plat</nour:type>
+                    <nour:nom>Gratin de ravioles</nour:nom>
+                    <nour:description>Gratins de ravioles saumon</nour:description>
+                    <nour:prix>11</nour:prix>
+                    <nour:ingredients>Saumon</nour:ingredients>
+                </foodGroups:product>
+                <foodGroups:product id="22">
+                    <nour:type>Dessert</nour:type>
+                    <nour:nom>Tiramisu</nour:nom>
+                    <nour:description>Tiramisu au café</nour:description>
+                    <nour:prix>3</nour:prix>
+                </foodGroups:product>
+                <foodGroups:product id="31">
+                    <nour:type>Boisson</nour:type>
+                    <nour:nom>Ice The</nour:nom>
+                    <nour:description>Canette de 33cl</nour:description>
+                    <nour:prix>2</nour:prix>
+                </foodGroups:product>
+            </menu:foodGroups>
+            <menu:prix>15</menu:prix>
+        </prod1:menu>
+        <prod1:menu id="55">
+            <menu:nom>La Spécialité</menu:nom>
+            <menu:type>Menu</menu:type>
+            <menu:foodGroups>
+                <foodGroups:product id="12">
+                    <nour:type>Plat</nour:type>
+                    <nour:nom>Lasagne</nour:nom>
+                    <nour:description>Lasagne au Cheval</nour:description>
+                    <nour:prix>11</nour:prix>
+                </foodGroups:product>
+                <foodGroups:product id="23">
+                    <nour:type>Dessert</nour:type>
+                    <nour:nom>Clafoutis</nour:nom>
+                    <nour:description>Clafoutis à la cerise</nour:description>
+                    <nour:prix>4</nour:prix>
+                </foodGroups:product>
+                <foodGroups:product id="23">
+                    <nour:type>Boisson</nour:type>
+                    <nour:nom>Orangina</nour:nom>
+                    <nour:description>Canette de 33cl</nour:description>
+                    <nour:prix>2</nour:prix>
+                </foodGroups:product>
+            </menu:foodGroups>
+            <menu:prix>15</menu:prix>
+        </prod1:menu>
+
+        <!-- Menu 2 produits : Plat + Boisson -->
+
+        <prod1:menu id="56">
+            <menu:nom>Le Tacos</menu:nom>
+            <menu:type>Menu</menu:type>
+            <menu:foodGroups>
+                <foodGroups:product id="10">
+                    <nour:type>Plat</nour:type>
+                    <nour:nom>Tacos</nour:nom>
+                    <nour:description>Tacos poulet, sauce au choix, frites et sauce fromagère.</nour:description>
+                    <nour:prix>5</nour:prix>
+                    <nour:ingredients>Poulet</nour:ingredients>
+                </foodGroups:product>
+                <foodGroups:product id="30">
+                    <nour:type>Boisson</nour:type>
+                    <nour:nom>Coca Cola</nour:nom>
+                    <nour:description>Canette de 33cl</nour:description>
+                    <nour:prix>2</nour:prix>
+                </foodGroups:product>
+            </menu:foodGroups>
+            <menu:prix>6</menu:prix>
+        </prod1:menu>
+        <prod1:menu id="57">
+            <menu:nom>La Végetarienne</menu:nom>
+            <menu:type>Menu</menu:type>
+            <menu:foodGroups>
+                <foodGroups:product id="15">
+                    <nour:type>Plat</nour:type>
+                    <nour:nom>Pizza Végé</nour:nom>
+                    <nour:description>Pizza aux Tomates, Aubergines, Champignons, Mozzarella</nour:description>
+                    <nour:prix>12</nour:prix>
+                    <nour:ingredients>Tomate</nour:ingredients>
+                    <nour:ingredients>Aubergine</nour:ingredients>
+                    <nour:ingredients>Champignon</nour:ingredients>
+                    <nour:ingredients>Mozzarella</nour:ingredients>
+                </foodGroups:product>
+                <foodGroups:product id="30">
+                    <nour:type>Boisson</nour:type>
+                    <nour:nom>Ice The</nour:nom>
+                    <nour:description>Canette de 33cl</nour:description>
+                    <nour:prix>2</nour:prix>
+                </foodGroups:product>
+            </menu:foodGroups>
+            <menu:prix>12</menu:prix>
+        </prod1:menu>
+        <prod1:menu id="58">
+            <menu:nom>Le Petit Américain</menu:nom>
+            <menu:type>Menu</menu:type>
+            <menu:foodGroups>
+                <foodGroups:product id="14">
+                    <nour:type>Plat</nour:type>
+                    <nour:nom>Hamburger</nour:nom>
+                    <nour:description>Hamburger Americain taille XXL</nour:description>
+                    <nour:prix>12</nour:prix>
+                </foodGroups:product>
+                <foodGroups:product id="30">
+                    <nour:type>Boisson</nour:type>
+                    <nour:nom>Coca Cola</nour:nom>
+                    <nour:description>Canette de 33cl</nour:description>
+                    <nour:prix>2</nour:prix>
+                </foodGroups:product>
+            </menu:foodGroups>
+            <menu:prix>12</menu:prix>
+        </prod1:menu>
+        <prod1:menu id="59">
+            <menu:nom>La Dauphine</menu:nom>
+            <menu:type>Menu</menu:type>
+            <menu:foodGroups>
+                <foodGroups:product id="13">
+                    <nour:type>Plat</nour:type>
+                    <nour:nom>Gratin de ravioles</nour:nom>
+                    <nour:description>Gratins de ravioles saumon</nour:description>
+                    <nour:prix>11</nour:prix>
+                    <nour:ingredients>Saumon</nour:ingredients>
+                </foodGroups:product>
+                <foodGroups:product id="33">
+                    <nour:type>Boisson</nour:type>
+                    <nour:nom>Orangina</nour:nom>
+                    <nour:description>Canette de 33cl</nour:description>
+                    <nour:prix>2</nour:prix>
+                </foodGroups:product>
+            </menu:foodGroups>
+            <menu:prix>12</menu:prix>
+        </prod1:menu>
+
+    </prod:produit>
+</prod:produits>

@@ -9,7 +9,11 @@ import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.servlet.ServletHandler;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
+import servlets.Commande.CreateCommandeServlet;
+import servlets.Commande.GetCommandeServlet;
+import servlets.Commande.GetCommandesServlet;
 import servlets.GetParametersServlet;
+import servlets.Produit.SearchProduitServlet;
 
 
 public class PizzaServer extends HttpServlet {
@@ -41,6 +45,10 @@ public class PizzaServer extends HttpServlet {
         servletHandler.addServletWithMapping(CreateClientServlet.class, "/addClient");
         servletHandler.addServletWithMapping(EditClientServlet.class, "/editClient");
         servletHandler.addServletWithMapping(GetParametersServlet.class, "/parameters");
+        servletHandler.addServletWithMapping(CreateCommandeServlet.class, "/addCommande");
+        servletHandler.addServletWithMapping(GetCommandeServlet.class, "/commande");
+        servletHandler.addServletWithMapping(GetCommandesServlet.class, "/commandes");
+	    servletHandler.addServletWithMapping(SearchProduitServlet.class, "/search/product");
 
         server.start();
     }

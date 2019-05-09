@@ -12,15 +12,19 @@ xsd schéma de Produit
            elementFormDefault="qualified">
 
     <xs:import schemaLocation="Menu.xsd" namespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/Menu"/>
-    <xs:import schemaLocation="Nourriture.xsd" namespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/Nourriture"/>
+    <xs:import schemaLocation="Nourriture.xsd"
+               namespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/Nourriture"/>
 
     <xs:element name="produit" type="pl:Produit"/>
 
     <xs:complexType name="Produit">
-        <xs:choice>
-            <xs:element name="nourriture" type="nourriture:Nourriture"/>
-            <xs:element name="menu" type="mn:Menu"/>
-        </xs:choice>
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="product" type="nourriture:Nourriture"/>
+                <xs:element name="menu" type="mn:Menu"/>
+            </xs:choice>
+        </xs:sequence>
+
     </xs:complexType>
 
 

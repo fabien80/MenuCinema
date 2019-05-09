@@ -29,7 +29,7 @@ public class Properties
             path = System.getProperty("user.dir") + "\\.properties";
         } else
         {
-            path = System.getProperty("user.dir") + "/.properties";
+            path = System.getProperty("user.dir") + "/serveur/.properties";
         }
 
         return path;

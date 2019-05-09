@@ -6,7 +6,10 @@ import java.sql.SQLException;
 
 public class Connection
 {
-    static final String CONN_URL = "jdbc:mysql://localhost:3306/projetfinal";
+    static final String CONN_URL_REMOTE = "jdbc:mysql://l3miageprojetfinal.ci4ctohe4wul.eu-west-3.rds.amazonaws" +
+            ".com:3306/projetfinal";
+    static final String CONN_URL_LOCAL = "jdbc:mysql://localhost/projetfinal?serverTimezone=UTC";
+    static final String CONN_URL = "jdbc:mysql://localhost:3306/projetfinal?serverTimezone=UTC";
 
     public static java.sql.Connection conn;
 
@@ -23,7 +26,7 @@ public class Connection
             // Etablissement de la connection
             Properties.init();
             System.out.print("Connecting to the database... ");
-            conn = DriverManager.getConnection(CONN_URL, Properties.user, Properties.password);
+            conn = DriverManager.getConnection(CONN_URL_LOCAL, Properties.user, Properties.password);
             System.out.println("connected");
 
             conn.setAutoCommit(false);

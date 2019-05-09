@@ -5,29 +5,29 @@
            version="1.0"
            targetNamespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP"
            elementFormDefault="qualified">
-    
 
-    <xs:element name="commande" type="Commande"/>
 
-    <xs:complexType name="Commande">
-        <xs:sequence>
-            <xs:element name="commandeId" type="xs:string"/>
-            <xs:element name="dateHeure" type="xs:string"/>
-            <xs:element name="clientId" type="xs:string"/>
-            <xs:element name="idPlats" type="IdList" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="idFilms" type="IdList" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="idMenu" type="IdList" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="prix" type="xs:double"/>
-            <xs:element name="numeroRue" type = "xs:int"/>
-            <xs:element name="rue" type = "xs:string"/>
-            <xs:element name="ville" type = "xs:string"/>
-            <xs:element name="codePostal" type = "xs:string"/>
+<xs:element name="commande" type="Commande"/>
 
-        </xs:sequence>
-    </xs:complexType>
+<xs:complexType name="Commande">
+    <xs:sequence>
+        <xs:element name="commandeId" type="xs:int"/>
+        <xs:element name="dateHeure" type="xs:string"/>
+        <xs:element name="clientId" type="xs:int"/>
+        <xs:element name="idPlats" type="IdList" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="idFilms" type="IdList" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="idMenu" type="IdList" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="prix" type="xs:double"/>
+        <xs:element name="numeroRue" type = "xs:int"/>
+        <xs:element name="rue" type = "xs:string"/>
+        <xs:element name="ville" type = "xs:string"/>
+        <xs:element name="codePostal" type = "xs:string"/>
 
-    <xs:simpleType name="IdList">
-        <xs:restriction base="xs:string"/>
-    </xs:simpleType>
+    </xs:sequence>
+</xs:complexType>
+
+<xs:simpleType name="IdList">
+    <xs:restriction base="xs:string"/>
+</xs:simpleType>
 
 </xs:schema>
