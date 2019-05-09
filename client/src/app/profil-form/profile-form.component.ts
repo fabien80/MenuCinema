@@ -19,7 +19,7 @@ import {AuthService} from '../auth/auth.service';
     styleUrls: ['./profile-form.component.scss']
 })
 
-export class ProfileFormComponent implements OnInit {
+export class profileFormComponent implements OnInit{
 
     @Input() myClient:ClientInterface;
     tmpClient:ClientInterface;
