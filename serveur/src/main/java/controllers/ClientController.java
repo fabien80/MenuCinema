@@ -47,7 +47,8 @@ public class ClientController extends Controller<Client> {
 			ville = result.getString("ville");
 			codePostal = result.getString("code_postal");
 			mail = result.getString("mail");
-			client = new Client(id, nom, prenom, photo, mail, tel, fidelite, token, numeroRue, rue, ville, codePostal);
+
+			client = new Client(id, nom, prenom, mail, photo, tel, fidelite, token, numeroRue, rue, ville, codePostal);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -134,6 +135,7 @@ public class ClientController extends Controller<Client> {
 
 
 		Client client = requestBodyToClass(request);
+		System.out.println(client.toString());
 		String res = "UPDATE client SET";
 		res += " nom = '" + client.getNom() + "' ,";
 		res += " prenom = '" + client.getPrenom() + "' ,";
@@ -144,7 +146,7 @@ public class ClientController extends Controller<Client> {
 		res += " numero_rue = " + client.getNumeroRue() + " ,";
 		res += " rue = '" + client.getRue() + "' ,";
 		res += " ville = '" + client.getVille() + "' ,";
-		res += " code_postal = '" + client.getCodePostal() + "'" ;
+		res += " code_postal = '" + client.getCodePostal() + "'";
 		res += "WHERE token = " + "'" + client.getToken() + "'";
 
 		return res;
@@ -183,13 +185,14 @@ public class ClientController extends Controller<Client> {
 		ville = request.getParameter("ville");
 		codePostal = request.getParameter("code_postal");
 		token = request.getParameter("token");
-
-		client = new Client(id, nom, prenom, photo, mail, tel, fidelite, token, numeroRue, rue, ville, codePostal);
+		System.out.println(photo);
+		System.out.println(mail);
+		client = new Client(id, nom, prenom, mail, photo, tel, fidelite, token, numeroRue, rue, ville, codePostal);
 
 		return client;
 	}
 
-	public int getClientIdByToken(String token) {
+	public int getClientIdByToken (String token) {
 		int clientId = -1;
 		ResultSet res;
 		String query = "SELECT client_id ";
