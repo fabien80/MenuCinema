@@ -19,11 +19,11 @@ CREATE TABLE client(
         rue         Varchar (50) ,
         ville       Varchar (50) ,
         code_postal varchar (12),
-        token       Varchar (1024) NOT NULL
+        token       Varchar (512) NOT NULL
         ,CONSTRAINT client_token_unique UNIQUE (token)
         ,CONSTRAINT client_PK PRIMARY KEY (client_id)
         ,CONSTRAINT numero_rue_domain CHECK (numero_rue > 0)
-        ,CONSTRAINT fidelite_domain CHECK (fidelite > 0)
+        ,CONSTRAINT fidelite_domain CHECK (fidelite >= 0)
 
 ) ENGINE = InnoDB;
 

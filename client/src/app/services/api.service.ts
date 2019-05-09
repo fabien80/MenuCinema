@@ -20,25 +20,38 @@ export class ApiService {
     }
 
     public postClient(client: ClientInterface): Promise<any> {
-        let body: HttpParams = new HttpParams();
-        body = body.set('token', client.token);
-        body = body.set('nom', client.nom);
-        body = body.set('prenom', client.prenom);
-        body = body.set('rue', client.rue);
-        body = body.set('code_postal', client.code_postal);
-        body = body.set('numero_rue', client.numero_rue.toString());
-        body = body.set('client_id', client.client_id.toString());
-        body = body.set('mail', client.mail);
-        body = body.set('photo', client.photo);
-        body = body.set('tel', client.tel.replace(/\s/g, ''));
-        body = body.set('fidelite', client.fidelite.toString());
-        body = body.set('ville', client.ville);
-        console.log(body);
-        return this.http.post('/addClient', body.toString(),
+        const params: HttpParams = this.getClientParams(client);
+        console.log(params);
+        return this.http.post('/addClient', params.toString(),
             {
                 headers: new HttpHeaders()
                 .set('Content-Type', 'application/x-www-form-urlencoded')
             }).toPromise();
+    }
+
+    public putClient(client: ClientInterface): Promise<any> {
+        const params: HttpParams = this.getClientParams(client);
+        return this.http.put('/updateClient', params.toString(), {
+            headers: new HttpHeaders()
+            .set('Content-Type', 'application/x-www-form-urlencoded')
+        }).toPromise();
+    }
+
+    getClientParams(client: ClientInterface) {
+        let params: HttpParams = new HttpParams();
+        params = params.set('token', client.token);
+        params = params.set('nom', client.nom);
+        params = params.set('prenom', client.prenom);
+        params = params.set('rue', client.rue);
+        params = params.set('code_postal', client.code_postal);
+        params = params.set('numero_rue', client.numero_rue.toString());
+        params = params.set('client_id', client.client_id != null ? client.client_id.toString() : '0');
+        params = params.set('mail', client.mail);
+        params = params.set('photo', client.photo);
+        params = params.set('tel', client.tel.replace(/\s/g, ''));
+        params = params.set('fidelite', client.fidelite != null ? client.fidelite.toString() : '0');
+        params = params.set('ville', client.ville);
+        return params;
     }
 
 

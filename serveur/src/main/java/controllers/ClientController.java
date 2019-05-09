@@ -133,7 +133,6 @@ public class ClientController extends Controller<Client> {
 
 		Client client = requestBodyToClass(request);
 		String res = "UPDATE client SET";
-		res += " client_id = " + client.getClientId() + " ,";
 		res += " nom = '" + client.getNom() + "' ,";
 		res += " prenom = '" + client.getPrenom() + "' ,";
 		res += " mail = '" + client.getMail() + "' ,";
@@ -143,9 +142,8 @@ public class ClientController extends Controller<Client> {
 		res += " numero_rue = " + client.getNumeroRue() + " ,";
 		res += " rue = '" + client.getRue() + "' ,";
 		res += " ville = '" + client.getVille() + "' ,";
-		res += " code_postal = '" + client.getCodePostal() + "' ,";
-		res += " token = '" + client.getToken() + "' ";
-		res += "WHERE client_id = " + client.getClientId();
+		res += " code_postal = '" + client.getCodePostal() + "'" ;
+		res += "WHERE token = " + "'" + client.getToken() + "'";
 
 		return res;
 	}

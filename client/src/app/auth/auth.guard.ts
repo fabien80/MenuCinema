@@ -15,7 +15,6 @@ import {LocalStorageService} from '../services/local-storage.service';
 import * as firebase from 'firebase';
 import {ClientService} from '../services/client.service';
 import {ClientInterface} from '../interface/ClientInterface';
-import {ClientService} from '../services/client.service';
 
 @Injectable({
     providedIn: 'root'
