@@ -1,12 +1,16 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {ClientInterface} from '../interface/ClientInterface';
 import {NgForm} from '@angular/forms';
 import {ApiService} from '../services/api.service';
+import {from} from 'rxjs/internal/observable/from';
+import {Observable} from 'rxjs';
+import {of} from 'rxjs/internal/observable/of';
 import {MatDialog} from '@angular/material';
+import {GenericDialogModule} from '../dialogs/generic-dialog/generic-dialog.module';
 import {LocalStorageService} from '../services/local-storage.service';
 import {Router} from '@angular/router';
 import {ClientService} from '../services/client.service';
 import {AuthService} from '../auth/auth.service';
-import {ClientInterface} from '../interface/ClientInterface';
 
 
 @Component({
@@ -15,7 +19,7 @@ import {ClientInterface} from '../interface/ClientInterface';
     styleUrls: ['./profile-form.component.scss']
 })
 
-export class ProfileFormComponent implements OnInit {
+export class profileFormComponent implements OnInit{
 
     @Input() myClient:ClientInterface;
     tmpClient:ClientInterface;
@@ -83,16 +87,5 @@ export class ProfileFormComponent implements OnInit {
     onCancel() {
         this.tileDisplayer(3);
         this.edit = false;
-    }
-}
-
-    onCancel() {
-        this.edit = false;
-        this.tileDisplayer(3);
-    }
-
-    tileDisplayer(tileId){
-        this.displayTile = tileId;
-        setTimeout(a=>{this.displayTile = 0},4000);
     }
 }
