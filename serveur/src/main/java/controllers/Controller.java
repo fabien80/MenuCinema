@@ -8,55 +8,62 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Controller<T>
-{
+public abstract class Controller<T> {
     protected abstract T serialize(ResultSet result);
 
     protected abstract String getCreateString(HttpServletRequest request);
 
-    public boolean create(HttpServletRequest request)
-    {
+    public boolean create(HttpServletRequest request) {
         return Connection.create(getCreateString(request));
     }
 
-    public List<T> get(String tableName)
-    {
+    public List<T> get(String tableName) {
         List<T> list = new ArrayList<>();
 
-        try
-        {
+        try {
             ResultSet result =
                     Connection.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
                             .executeQuery("SELECT * FROM " + tableName + ";");
-            while (result.next())
-            {
+            while (result.next()) {
                 list.add(serialize(result));
             }
-        } catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return list;
     }
 
-    public T getElem(String tableName, HttpServletRequest request)
-    {
+    public List<T> getList(String query) {
+        List<T> list = new ArrayList<>();
+        try {
+            ResultSet result =
+                    Connection.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+                            .executeQuery(query);
+            while (result.next()) {
+                list.add(serialize(result));
+            }
+            result.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+
+    public T getElem(String tableName, HttpServletRequest request) {
         T elem = null;
         String id = request.getParameter("id");
 
-        try
-        {
+        try {
             ResultSet result =
                     Connection.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
                             .executeQuery("SELECT * from " + tableName + " WHERE " + tableName + "_id =" + id);
 
-            if (result.first())
-            {
+            if (result.first()) {
                 elem = serialize(result);
             }
             result.close();
-        } catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return elem;
@@ -64,34 +71,41 @@ public abstract class Controller<T>
 
     protected abstract String getUpdateString(HttpServletRequest request);
 
-    public boolean update(HttpServletRequest request)
-    {
-        try
-        {
+    public boolean update(HttpServletRequest request) {
+        try {
             Connection.update(getUpdateString(request));
             return true;
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
 
-    public boolean delete(String tableName, HttpServletRequest request)
-    {
+    public boolean delete(String tableName, HttpServletRequest request) {
         String id = request.getParameter("id");
-        try
-        {
+        try {
             Connection.conn.createStatement().executeUpdate("DELETE FROM " + tableName + " WHERE " + tableName + "_id=" + id);
             Connection.commit();
             return true;
-        } catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
 
     protected abstract T requestBodyToClass(HttpServletRequest request);
+
+    public ResultSet getResultSet(String query) {
+        ResultSet result = null;
+        try {
+            result = Connection.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+                    .executeQuery(query);
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 
 }
