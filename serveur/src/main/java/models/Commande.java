@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="commandeId" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="commandeId" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="dateHeure" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="clientId" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="idPlats" type="{https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP}IdList" maxOccurs="unbounded" minOccurs="0"/>
@@ -54,12 +54,12 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class Commande {
 
-    @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP", required = true)
-    protected String commandeId;
+    @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP")
+    protected int commandeId;
     @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP", required = true)
     protected String dateHeure;
     @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP", required = true)
-    protected String clientId;
+    protected int clientId;
     @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP")
     protected List<String> idPlats;
     @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP")
@@ -77,7 +77,10 @@ public class Commande {
     @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP", required = true)
     protected String codePostal;
 
-    public Commande(String commandeId, String dateHeure, String clientId, List<String> idPlats, List<String> idFilms, List<String> idMenu, double prix, int numeroRue, String rue, String ville, String codePostal) {
+    public Commande() {
+    }
+
+    public Commande(int commandeId, String dateHeure, int clientId, List<String> idPlats, List<String> idFilms, List<String> idMenu, double prix, int numeroRue, String rue, String ville, String codePostal) {
         this.commandeId = commandeId;
         this.dateHeure = dateHeure;
         this.clientId = clientId;
@@ -91,30 +94,32 @@ public class Commande {
         this.codePostal = codePostal;
     }
 
-    public Commande() {
+    public Commande(int clientId, List<String> idPlats, List<String> idFilms, List<String> idMenu, double prix, int numeroRue, String rue, String ville, String codePostal) {
+        this.clientId = clientId;
+        this.idPlats = idPlats;
+        this.idFilms = idFilms;
+        this.idMenu = idMenu;
+        this.prix = prix;
+        this.numeroRue = numeroRue;
+        this.rue = rue;
+        this.ville = ville;
+        this.codePostal = codePostal;
     }
+
 
     /**
      * Obtient la valeur de la propri�t� commandeId.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
-    public String getCommandeId() {
+    public int getCommandeId() {
         return commandeId;
     }
 
     /**
      * D�finit la valeur de la propri�t� commandeId.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
-    public void setCommandeId(String value) {
+    public void setCommandeId(int value) {
         this.commandeId = value;
     }
 
@@ -150,7 +155,7 @@ public class Commande {
      *     {@link String }
      *     
      */
-    public String getClientId() {
+    public int getClientId() {
         return clientId;
     }
 
@@ -162,7 +167,7 @@ public class Commande {
      *     {@link String }
      *     
      */
-    public void setClientId(String value) {
+    public void setClientId(int value) {
         this.clientId = value;
     }
 

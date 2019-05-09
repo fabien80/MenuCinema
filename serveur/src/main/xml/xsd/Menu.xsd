@@ -14,9 +14,9 @@ xsd schéma du Menu
                namespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/FoodGroups"/>
     <xs:import schemaLocation="TypeDeProduit.xsd" namespace="https://www.univ-grenoble-alpes.fr/francais/l3miage/TDP"/>
 
-    <xs:element name="menu" type="Menu"/>
+    <xs:element name="plats" type="Produits"/>
 
-    <xs:complexType name="Menu">
+    <xs:complexType name="Produits">
         <xs:sequence>
             <xs:element name="nom" type="xs:string"/>
             <xs:element name="type" type="TDP:TypeDeProduit"/>
