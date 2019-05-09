@@ -79,6 +79,11 @@ export class ProfileFormComponent implements OnInit {
         this.displayTile = tileId;
         setTimeout(a=>{this.displayTile = 0},4000);
     }
+
+    onCancel() {
+        this.tileDisplayer(3);
+        this.edit = false;
+    }
 }
 
     onCancel() {
