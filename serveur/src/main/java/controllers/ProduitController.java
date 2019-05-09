@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class ProduitController {
@@ -22,7 +23,7 @@ public class ProduitController {
 		SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 		saxParserFactory.setNamespaceAware(true);
 		SAXParser saxParser = saxParserFactory.newSAXParser();
-		FileInputStream is = new FileInputStream(new File("serveur/src/main/xml/xml/Produits.xml").getAbsolutePath());
+		FileInputStream is = new FileInputStream(new File("src/main/xml/xml/Produits.xml").getAbsolutePath());
 		ParsingHandler parsingHandler = new ParsingHandler();
 		saxParser.parse(is, parsingHandler);
 
@@ -43,11 +44,12 @@ public class ProduitController {
 			res = searchByQuery(paramQuery, produits);
 		} else if (paramType != null) {
 			TypeDeProduit type = TypeDeProduit.fromValue(paramType);
+			System.out.println(type);
 			res = searchByType(type, produits);
 		} else {
 			res = JsonConverter.convertObjectToJson(produits);
 		}
-
+		System.out.println(res);
 		return res;
 	}
 

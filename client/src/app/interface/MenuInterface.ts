@@ -6,5 +6,6 @@ export interface MenuInterface {
     foodGroups: ProductGroupInterface<FoodInterface>[];
     prix: number;
     id: number;
+    nom: string;
 
 }

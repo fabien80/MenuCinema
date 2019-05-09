@@ -4,6 +4,7 @@ import {MenuClass} from './menu';
 import {MenuInterface} from '../../interface/MenuInterface';
 import {MenuGroup} from './MenuGroup';
 import {ProductGroupInterface} from '../../interface/ProductInterface';
+import {SearchMenuInterface, SearchMenusInterface} from '../../interface/SearchInterface';
 
 @Injectable({
     providedIn: 'root'
@@ -31,6 +32,13 @@ export class MenuService {
     public interfaceTabToClassTab(menus: MenuInterface[]) {
         return menus.reduce((menusClass: MenuClass[], elem: MenuInterface) => {
             menusClass.push(MenuClass.fromData(elem));
+            return menusClass;
+        }, []);
+    }
+
+    public searchMenuInterfaceTabToClassTab(menus: SearchMenusInterface[]) {
+        return menus.reduce((menusClass: MenuClass[], elem: SearchMenusInterface) => {
+            menusClass.push(MenuClass.fromSearchData(elem.menu));
             return menusClass;
         }, []);
     }
