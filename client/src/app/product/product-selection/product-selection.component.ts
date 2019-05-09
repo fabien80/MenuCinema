@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductType} from '../../enum/ProductType';
-import {SearchProductQuery} from '../../interface/SearchInterface';
+import {SearchFoodInterface, SearchProductQuery} from '../../interface/SearchInterface';
 import {ProductService} from '../product.service';
 import {Food} from '../food/food';
 import {MenuClass} from '../menu/menu';
@@ -51,20 +51,24 @@ export class ProductSelectionComponent implements OnInit {
     }
 
     async getMenus() {
-        const res = await this.search(ProductType.Menu);
-        return this.menuService.interfaceTabToClassTab(res.results as MenuInterface[]);
+        const res: any = await this.search(ProductType.Menu);
+        console.log(res);
+        return this.menuService.searchMenuInterfaceTabToClassTab(res);
+        // return this.menuService.interfaceTabToClassTab(res as MenuInterface[]);
     }
 
     async getFoods(type: ProductType) {
-        const res = await this.search(type);
-        return this.foodService.interfaceTabToClassTab(res.results as FoodInterface[]);
+        const res: any = await this.search(type);
+        console.log(res);
+        return this.foodService.searchFoodInterfaceTabToClassTab(res);
+        // return this.foodService.interfaceTabToClassTab(res as FoodInterface[]);
     }
 
     async search(type: ProductType) {
         const query: SearchProductQuery = {
             type
         };
-        return await this.productService.searchMock(query);
+        return await this.productService.search(query);
         // return this.foodService.interfaceTabToClassTab(res.results as FoodInterface[]);
     }
 

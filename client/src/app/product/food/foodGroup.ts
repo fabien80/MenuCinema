@@ -5,6 +5,10 @@ import {FoodInterface} from '../../interface/FoodInterface';
 
 export class FoodGroup extends ProductGroup<Food> {
 
+    public static fromFoodInterface(data: FoodInterface) {
+        const food: Food = Food.fromData(data);
+        return new this(food, 1);
+    }
 
     public static fromData(data: ProductGroupInterface<FoodInterface>) {
         const {amount, product} = data;
