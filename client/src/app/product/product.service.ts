@@ -83,9 +83,6 @@ export class ProductService {
             prix: 25
         };
 
-        console.log(JSON.stringify(menu1));
-        console.log(JSON.stringify(entree));
-
         if (query.type == null) {
             results.push(entree);
             results.push(plat);

@@ -11,6 +11,9 @@ import {
 } from '@angular/router';
 import {Observable} from 'rxjs';
 import {AuthService} from './auth.service';
+import {LocalStorageService} from '../services/local-storage.service';
+import * as firebase from 'firebase';
+import {ClientService} from '../services/client.service';
 
 @Injectable({
     providedIn: 'root'
@@ -18,7 +21,9 @@ import {AuthService} from './auth.service';
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
     constructor(private authService: AuthService,
-                private router: Router) {
+                private router: Router,
+                private localStorageService: LocalStorageService,
+                private clientService: ClientService) {
 
     }
 
@@ -44,10 +49,16 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
     private async checkLogin(url: string) {
         console.log(url);
-
+        const firebaseUser: firebase.User = this.authService.firebaseUser;
+        const client: ClientInterface = this.clientService.client.value;
         console.log(this.authService.isSignedIn());
         if (this.authService.isSignedIn()) {
             return true;
+        }
+
+        if (client == null && firebaseUser != null) {
+            this.router.navigate(['/profile']);
+            return false;
         }
 
         // Navigate to the login page with extras

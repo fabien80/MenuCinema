@@ -11,7 +11,8 @@ import {AuthService} from './auth.service';
 })
 export class AuthComponent implements OnInit {
 
-    constructor(private authService: AuthService) {
+    constructor(private authService: AuthService,
+                private router: Router) {
     }
 
     ngOnInit() {
@@ -25,4 +26,7 @@ export class AuthComponent implements OnInit {
         this.authService.signInSuccess();
     }
 
+    goToProfil() {
+        this.router.navigate(['/profile']);
+    }
 }
