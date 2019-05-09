@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour Client complex type.
  * 
- * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="Client">
@@ -99,7 +99,7 @@ public class Client {
 
     /**
      *
-     * Obtient la valeur de la propriété clientId.
+     * Obtient la valeur de la propriï¿½tï¿½ clientId.
      * 
      */
     public int getClientId() {
@@ -107,7 +107,7 @@ public class Client {
     }
 
     /**
-     * Définit la valeur de la propriété clientId.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ clientId.
      * 
      */
     public void setClientId(int value) {
@@ -115,7 +115,7 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriété nom.
+     * Obtient la valeur de la propriï¿½tï¿½ nom.
      * 
      * @return
      *     possible object is
@@ -127,7 +127,7 @@ public class Client {
     }
 
     /**
-     * Définit la valeur de la propriété nom.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ nom.
      * 
      * @param value
      *     allowed object is
@@ -139,7 +139,7 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriété prenom.
+     * Obtient la valeur de la propriï¿½tï¿½ prenom.
      * 
      * @return
      *     possible object is
@@ -151,7 +151,7 @@ public class Client {
     }
 
     /**
-     * Définit la valeur de la propriété prenom.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ prenom.
      * 
      * @param value
      *     allowed object is
@@ -163,7 +163,7 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriété mail.
+     * Obtient la valeur de la propriï¿½tï¿½ mail.
      * 
      * @return
      *     possible object is
@@ -175,7 +175,7 @@ public class Client {
     }
 
     /**
-     * Définit la valeur de la propriété mail.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ mail.
      * 
      * @param value
      *     allowed object is
@@ -187,7 +187,7 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriété photo.
+     * Obtient la valeur de la propriï¿½tï¿½ photo.
      * 
      * @return
      *     possible object is
@@ -199,7 +199,7 @@ public class Client {
     }
 
     /**
-     * Définit la valeur de la propriété photo.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ photo.
      * 
      * @param value
      *     allowed object is
@@ -211,7 +211,7 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriété tel.
+     * Obtient la valeur de la propriï¿½tï¿½ tel.
      * 
      * @return
      *     possible object is
@@ -223,7 +223,7 @@ public class Client {
     }
 
     /**
-     * Définit la valeur de la propriété tel.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ tel.
      * 
      * @param value
      *     allowed object is
@@ -235,7 +235,7 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriété fidelite.
+     * Obtient la valeur de la propriï¿½tï¿½ fidelite.
      * 
      */
     public int getFidelite() {
@@ -243,7 +243,7 @@ public class Client {
     }
 
     /**
-     * Définit la valeur de la propriété fidelite.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ fidelite.
      * 
      */
     public void setFidelite(int value) {
@@ -251,7 +251,7 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriété token.
+     * Obtient la valeur de la propriï¿½tï¿½ token.
      * 
      * @return
      *     possible object is
@@ -263,7 +263,7 @@ public class Client {
     }
 
     /**
-     * Définit la valeur de la propriété token.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ token.
      * 
      * @param value
      *     allowed object is
@@ -275,7 +275,7 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriété numeroRue.
+     * Obtient la valeur de la propriï¿½tï¿½ numeroRue.
      * 
      */
     public int getNumeroRue() {
@@ -283,7 +283,7 @@ public class Client {
     }
 
     /**
-     * Définit la valeur de la propriété numeroRue.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ numeroRue.
      * 
      */
     public void setNumeroRue(int value) {
@@ -291,7 +291,7 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriété rue.
+     * Obtient la valeur de la propriï¿½tï¿½ rue.
      * 
      * @return
      *     possible object is
@@ -303,7 +303,7 @@ public class Client {
     }
 
     /**
-     * Définit la valeur de la propriété rue.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ rue.
      * 
      * @param value
      *     allowed object is
@@ -315,7 +315,7 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriété ville.
+     * Obtient la valeur de la propriï¿½tï¿½ ville.
      * 
      * @return
      *     possible object is
@@ -327,7 +327,7 @@ public class Client {
     }
 
     /**
-     * Définit la valeur de la propriété ville.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ ville.
      * 
      * @param value
      *     allowed object is
@@ -339,7 +339,7 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriété codePostal.
+     * Obtient la valeur de la propriï¿½tï¿½ codePostal.
      * 
      * @return
      *     possible object is
@@ -351,7 +351,7 @@ public class Client {
     }
 
     /**
-     * Définit la valeur de la propriété codePostal.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ codePostal.
      * 
      * @param value
      *     allowed object is
@@ -362,4 +362,11 @@ public class Client {
         this.codePostal = value;
     }
 
+    @Override
+    public String toString () {
+        return "Client{" + "clientId=" + clientId + ", nom='" + nom + '\'' + ", prenom='" + prenom + '\'' + ", mail='" +
+                mail + '\'' + ", photo='" + photo + '\'' + ", tel='" + tel + '\'' + ", fidelite=" + fidelite +
+                ", token='" + token + '\'' + ", numeroRue=" + numeroRue + ", rue='" + rue + '\'' + ", ville='" + ville +
+                '\'' + ", codePostal='" + codePostal + '\'' + '}';
+    }
 }

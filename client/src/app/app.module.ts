@@ -18,7 +18,10 @@ import {ProductModule} from './product/product.module';
 import {HomeModule} from './home/home.module';
 import {MatButtonModule, MatIconModule, MatToolbarModule} from '@angular/material';
 import {MovieModule} from './product/movie/movie.module';
-import {ProfileFormModule} from './profil-form/profile-form.module';
+import {ProfileInformationModule} from './profile/profile-information/profile-information.module';
+import {ProfileComponent} from './profile/profile.component';
+import {ProfileModule} from './profile/profile.module';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -42,7 +45,7 @@ import {ProfileFormModule} from './profil-form/profile-form.module';
         MatIconModule,
         MatToolbarModule,
         MovieModule,
-        ProfileFormModule
+        ProfileModule
     ],
     providers: [TmdbService, AngularFirestore],
     bootstrap: [AppComponent],

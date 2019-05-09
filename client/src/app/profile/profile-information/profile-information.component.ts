@@ -1,26 +1,27 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ClientInterface} from '../interface/ClientInterface';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ClientInterface} from '../../interface/ClientInterface';
 import {NgForm} from '@angular/forms';
-import {ApiService} from '../services/api.service';
+import {ApiService} from '../../services/api.service';
 import {from} from 'rxjs/internal/observable/from';
 import {Observable} from 'rxjs';
 import {of} from 'rxjs/internal/observable/of';
 import {MatDialog} from '@angular/material';
-import {LocalStorageService} from '../services/local-storage.service';
+import {LocalStorageService} from '../../services/local-storage.service';
 import {Router} from '@angular/router';
-import {ClientService} from '../services/client.service';
-import {AuthService} from '../auth/auth.service';
+import {ClientService} from '../../services/client.service';
+import {AuthService} from '../../auth/auth.service';
 
 
 @Component({
-    selector: 'app-profile-form',
-    templateUrl: './profile-form.component.html',
-    styleUrls: ['./profile-form.component.scss']
+    selector: 'app-profile-information',
+    templateUrl: './profile-information.component.html',
+    styleUrls: ['./profile-information.component.scss']
 })
 
-export class ProfileFormComponent implements OnInit {
+export class ProfileInformationComponent implements OnInit {
 
     @Input() myClient: ClientInterface;
+    @Output() editMode: EventEmitter<void> = new EventEmitter<void>();
     tmpClient: ClientInterface;
     edit = false;
     displayTile = 0;
@@ -48,8 +49,6 @@ export class ProfileFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.tmpClient = {...this.myClient};
-
-
     }
 
     onSubmit(myForm: NgForm) {
@@ -77,9 +76,7 @@ export class ProfileFormComponent implements OnInit {
         }, 4000);
     }
 
-    onCancel() {
-        this.tileDisplayer(3);
-        this.tmpClient = {...this.myClient};
-        this.edit = false;
+    goEdit() {
+        this.editMode.emit();
     }
 }

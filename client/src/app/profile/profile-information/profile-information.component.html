@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="form-row">
+        <img alt="image de profil" class="picture col-lg-2" src="{{myClient.photo}}">
+        <span class="name display">
+                {{myClient.prenom}} {{myClient.nom}}
+            </span>
+    </div>
+    <div class="form-group row">
+        <label class="col-form-label col-lg-2">Email: </label>
+        <span class="display">{{myClient.mail}}</span>
+    </div>
+    <div class="form-group row">
+        <label class="col-form-label col-lg-2">Telephone: </label>
+        <span class="display">{{myClient.tel}}</span>
+    </div>
+    <div class="form-row">
+        <label class="col-form-label col-lg-2">Adresse: </label>
+        <span class="display">{{myClient.numero_rue}} </span>
+        <span class="display">{{myClient.rue}} </span>
+        <span class="display">{{myClient.code_postal}} </span>
+        <span class="display">{{myClient.ville}}</span>
+
+    </div>
+    <button class="btn btn-primary" *ngIf="!edit" (click)="goEdit()">Edit</button>
+</div>

@@ -51,23 +51,33 @@ export class ClientService {
     }
 
     createNewUserInApi(newClient: ClientInterface) {
-        this.apiService.postClient(newClient)
-        .then(() => {
-            console.log('ok');
-            this.setClientValue(newClient);
-            this.router.navigate(['/homepage']);
-        }).catch((error: Error) => {
-            console.log(error);
+        return new Promise((resolve, reject) => {
+            this.apiService.postClient(newClient)
+            .then(() => {
+                console.log('ok');
+                this.setClientValue(newClient);
+                this.router.navigate(['/homepage']);
+                return resolve();
+            }).catch((error: Error) => {
+                console.log(error);
+                return reject(error);
+            });
         });
+
     }
 
     updateUserInApi(updateClient: ClientInterface) {
-        this.apiService.putClient(updateClient)
-        .then(() => {
-            this.setClientValue(updateClient);
-        }).catch((error: Error) => {
-            console.log(error);
+        return new Promise((resolve, reject) => {
+            this.apiService.putClient(updateClient)
+            .then(() => {
+                this.setClientValue(updateClient);
+                return resolve();
+            }).catch((error: Error) => {
+                console.log(error);
+                return reject(error);
+            });
         });
+
     }
 
     getEmptyClient(): ClientInterface {
@@ -79,7 +89,7 @@ export class ClientService {
             tel: '',
             ville: '',
             mail: '',
-            numero_rue: 0,
+            numero_rue: 1,
             code_postal: '',
             rue: '',
             prenom: '',
