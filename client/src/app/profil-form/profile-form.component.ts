@@ -6,6 +6,7 @@ import {LocalStorageService} from '../services/local-storage.service';
 import {Router} from '@angular/router';
 import {ClientService} from '../services/client.service';
 import {AuthService} from '../auth/auth.service';
+import {ClientInterface} from '../interface/ClientInterface';
 
 
 @Component({
