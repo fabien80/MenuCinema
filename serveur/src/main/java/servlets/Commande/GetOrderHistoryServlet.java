@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class GetOrderHistory extends HttpServlet {
+public class GetOrderHistoryServlet extends HttpServlet {
     private static final long servialVersionUID = 1L;
 
     @Override

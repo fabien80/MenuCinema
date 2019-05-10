@@ -192,13 +192,14 @@ public class ClientController extends Controller<Client> {
 		return client;
 	}
 
-	public int getClientIdByToken (String token) {
+
+	public static int getClientIdByToken(String token) {
 		int clientId = -1;
 		ResultSet res;
 		String query = "SELECT client_id ";
 		query += "FROM CLIENT ";
 		query += " WHERE token =  " + "'" + token + "'";
-		res = super.getResultSet(query);
+		res = Controller.getResultSet(query);
 		try {
 			res.next();
 			clientId = res.getInt("client_id");
