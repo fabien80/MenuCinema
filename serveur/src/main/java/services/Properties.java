@@ -51,6 +51,7 @@ public class Properties
         java.util.Properties prop = new java.util.Properties();
         FileInputStream stream = new FileInputStream(path);
 
+
         prop.load(stream);
         user = prop.getProperty("user");
         password = prop.getProperty("password");

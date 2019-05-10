@@ -19,10 +19,15 @@ public class GetOrderHistoryServlet extends HttpServlet {
     {
         CommandeController controller = new CommandeController();
         response.setContentType("application/json");
-        StringBuilder res = new StringBuilder("{\n");
+        StringBuilder res = new StringBuilder("[\n");
         ArrayList<Commande> orders = (ArrayList<Commande>) controller.getOrderHistory(request);
-        orders.forEach((commande -> res.append(JsonConverter.convertObjectToJson(commande) + ",\n")));
-        res.append("}");
+        for(int i =0; i< orders.size() ; ++i){
+            res.append( JsonConverter.convertObjectToJson(orders.get(i)) );
+            if (i+1 < orders.size()){
+                res.append(",");
+            }
+        }
+        res.append("]");
         response.setStatus(HttpServletResponse.SC_OK);
         response.getWriter().println(res.toString());
     }

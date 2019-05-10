@@ -1,25 +1,24 @@
 INSERT into client(nom, prenom, mail, photo, tel, fidelite, numero_rue, rue, ville, code_postal, token)
 VALUES ('client1', 'Populate1', 'somemail@somemail.fr', '/lienversphotos', '+33614648701', 1, 10, 'rue des pommes',
-        'Grenoble', '38000', 'letokentoken'),
+                   'Grenoble', '38000', 'letokentoken0'),
        ('client2', 'Populate2', 'somemail@somemail.fr', '/lienversphotos', '+33614648701', 6, 10, 'rue des pommes',
-        'Grenoble', '38000', 'letokentoken'),
+                   'Grenoble', '38000', 'letokentoken1'),
        ('client3', 'Populate3', 'somemail@somemail.fr', '/lienversphotos', '+33614648701', 4, 10, 'rue des pommes',
-        'Grenoble', '38000', 'letokentoken'),
+                   'Grenoble', '38000', 'letokentoken2'),
        ('client4', 'Populate4', 'somemail@somemail.fr', '/lienversphotos', '+33614648701', 4, 10, 'rue des pommes',
-        'Grenoble', '38000', 'letokentoken'),
+                   'Grenoble', '38000', 'letokentoken3'),
        ('client5', 'Populate5', 'somemail@somemail.fr', '/lienversphotos', '+33614648701', 0, 10, 'rue des pommes',
-        'Grenoble', '38000', 'letokentoken'),
+                   'Grenoble', '38000', 'letokentoken4'),
        ('client6', 'Populate6', 'somemail@somemail.fr', '/lienversphotos', '+33614648701', 9, 10, 'rue des pommes',
-        'Grenoble', '38000', 'letokentoken'),
+                   'Grenoble', '38000', 'letokentoken5'),
        ('client7', 'Populate7', 'somemail@somemail.fr', '/lienversphotos', '+33614648701', 3, 10, 'rue des pommes',
-        'Grenoble', '38000', 'letokentoken'),
+                   'Grenoble', '38000', 'letokentoken6'),
        ('client8', 'Populate8', 'somemail@somemail.fr', '/lienversphotos', '+33614648701', 5, 10, 'rue des pommes',
-        'Grenoble', '38000', 'letokentoken'),
+                   'Grenoble', '38000', 'letokentoken7'),
        ('client9', 'Populate9', 'somemail@somemail.fr', '/lienversphotos', '+33614648701', 7, 10, 'rue des pommes',
-        'Grenoble', '38000', 'letokentoken'),
+                   'Grenoble', '38000', 'letokentoken8'),
        ('client10', 'Populate10', 'somemail@somemail.fr', '/lienversphotos', '+33614648701', 2, 10,
-        'rue des pommes', 'Grenoble', '38000', 'letokentoken');
-
+                    'rue des pommes', 'Grenoble', '38000', 'letokentoken9');
 
 INSERT into commande (commande_id, date_heure, prix, numero_rue, rue, ville, code_postal)
 VALUES (1, '2019-05-10 11:29:10', 15.0, 10, 'rue des pommes', 'Grenoble', '38000'),
