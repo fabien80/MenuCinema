@@ -74,6 +74,17 @@ export class ApiService {
 
     }
 
+    async getProductsIds(productsIds: string): Promise<any> {
+        let params: HttpParams = new HttpParams();
+        params = params.set('ids', productsIds);
+        return await this.http.get('/produitsIds', {
+            params: params,
+            headers: new HttpHeaders()
+                .set('Content-Type', 'application/x-www-form-urlencoded')
+        }).toPromise();
+
+    }
+
     payement(basket: Basket, address: AddressInterface, token: string) {
         let params: HttpParams = new HttpParams();
         params = params.set('prix', basket.total.toString());

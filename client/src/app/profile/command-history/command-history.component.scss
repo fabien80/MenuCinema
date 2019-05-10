@@ -1,0 +1,26 @@
+.my-tab{
+  position: relative;
+}
+.one-command {
+  width: 100%;
+  background-color: grey;
+  display: block;
+  position: relative;
+}
+.cell{
+  position: relative;
+  display: inline-block;
+  border: 1px solid black;
+  vertical-align: top;
+}
+.all-detail{
+  width: 100%;
+  display: block;
+  position: relative;
+}
+.one-detail{
+  width: 100%;
+  background-color: lightgray;
+  display: block;
+  position: relative;
+}
