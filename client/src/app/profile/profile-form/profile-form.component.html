@@ -41,7 +41,7 @@
         <div class="form-row">
             <label for="street_number" class="col-form-label col-lg-2">Adresse: </label>
             <div class="col-lg-2">
-                <input type="text" required [(ngModel)]="tmpClient.numeroRue" class="form-control edit"
+                <input type="text" required [(ngModel)]="tmpClient.numero_rue" class="form-control edit"
                        id="street_number" name="street_number" placeholder="Numéro"
                        pattern="^\d{0,5}\s?(bis|ter|Bis|Ter)?$">
                 <div class="invalid-feedback offset-lg-2 invalid-addr">
@@ -55,8 +55,8 @@
             </div>
             <div class="col-lg-2">
                 <label class="sr-only" for="postal_code">Code postal: </label>
-                <input type="text" required [(ngModel)]="tmpClient.codePostal" class="form-control edit"
-                       id="postal_code" name="postal_code" placeholder="Code postal" pattern="^(([0-8][0-9])|(9[0-5])|(2[ab]))[0-9]{3}$">
+                <input type="text" required [(ngModel)]="tmpClient.code_postal" class="form-control edit"
+                       id="postal_code" name="postal_code" placeholder="Code postal" pattern="^[0-9]{5}$">
                 <div class="invalid-feedback offset-lg-10  ">
                     Entrez un code postal valide. (5 chiffres)
                 </div>
@@ -79,6 +79,4 @@
             Pas de changement enregistré.
         </small>
     </form>
-    <button class="btn btn-danger" *ngIf="!firstConn" (click)="onCancel()">Cancel change</button>
-
 </div>
