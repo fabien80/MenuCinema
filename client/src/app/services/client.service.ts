@@ -5,6 +5,7 @@ import {LocalStorageService} from './local-storage.service';
 import {ClientInterface} from '../interface/ClientInterface';
 import {Router} from '@angular/router';
 import {HttpResponse} from "@angular/common/http";
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Injectable({
     providedIn: 'root'
@@ -103,5 +104,44 @@ export class ClientService {
         formData.append('file', value);
 
         return this.apiService.uploadFile(formData, this.client.value.token);
+    }
+
+    async getClientHistory(){
+        let data = {
+            "commandeId":0,
+            "dateHeure":"2019-05-09 14:11:54",
+            "clientId":0,
+            "idPlats":[],
+            "idFilms":[],
+            "idMenu":[],
+            "prix":0.0,
+            "numeroRue":0,
+            "rue":"",
+            "ville":"",
+            "codePostal":""
+
+        };
+        await this.apiService.getClientHistory(this._client.getValue().token).then(data => {
+                console.log("OK");
+                console.log(data);
+
+            }).catch((e) => {
+                console.log("ERR");
+                console.log(e);
+            });
+        //data.plat = [];
+        data.idPlats.forEach((oneIdPlat, index) => {
+            this.apiService.getClientHistory(this._client.getValue().token).then(data => {
+                console.log("OK");
+                console.log(data);
+
+            }).catch((e) => {
+                console.log("ERR");
+                console.log(e);
+            });
+        });
+        console.log("toto");
+        return "working";
+
     }
 }
