@@ -1,5 +1,5 @@
 <div *ngIf="displayedArray" class="department_table">
-    <h2>Crew</h2>
+    <h2>Équipe de tournage</h2>
     <div *ngFor="let one_department of displayedArray">
         <div class="each_department" (click)="one_department.hidden=!one_department.hidden">
             <mat-icon [hidden]="!one_department.hidden" class="dropdown_icon_left">keyboard_arrow_down</mat-icon>
