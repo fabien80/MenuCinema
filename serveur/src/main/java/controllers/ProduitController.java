@@ -154,19 +154,19 @@ public class ProduitController
         return res;
     }
 
-    public List<String> getFilmsByFood(HttpServletRequest request)
-    {
-        List<String> idsFilm;
-        String idFood = request.getParameter("id");
-        String query = getFilmsByFoodQuery(idFood);
+    public List<String> getProductIdByOtherProduct(HttpServletRequest request) {
+        List<String> ids;
+        String id = request.getParameter("id");
+        String typeRecherche = request.getParameter("type_recherche");
+        String typeDonne = request.getParameter("type_donne");
+        String query = getQuery(id,typeRecherche,typeDonne);
         ResultSet res;
         res = Controller.getResultSet(query);
-        idsFilm = getAllidsFilm(res);
-        return idsFilm;
+        ids = getAllsProductIds(res);
+        return ids;
     }
 
-    private List<String> getAllidsFilm(ResultSet res)
-    {
+    private List<String> getAllsProductIds(ResultSet res) {
         List<String> idsFilm = new ArrayList<>();
         try
         {
@@ -184,18 +184,17 @@ public class ProduitController
         return idsFilm;
     }
 
-    private String getFilmsByFoodQuery(String idFood)
-    {
+    private String getQuery(String idFood, String typeRecherche, String typeDonne) {
         String query;
         String subQuery;
 
         subQuery = "SELECT commande_id";
         subQuery += " FROM produitCommande";
         subQuery += " WHERE produit_id = " + idFood;
-        subQuery += " AND type_produit <> 'Film'";
+        subQuery += " AND type_produit =" + "'" + typeDonne + "'";
 
         query = "SELECT produit_id, sum(nb_commande) as nbs FROM produitCommande";
-        query += " WHERE type_produit = 'Film' ";
+        query += " WHERE type_produit =" + "'" + typeRecherche + "'";
         query += " AND commande_id IN  ( " + subQuery + ")";
         query += " group by produit_id";
         query += " order by nbs desc";
