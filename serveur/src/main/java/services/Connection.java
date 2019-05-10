@@ -20,7 +20,7 @@ public class Connection
 
             // Enregistrement du driver Oracle
             System.out.print("Loading Oracle driver... ");
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
             System.out.println("loaded");
 
             // Etablissement de la connection

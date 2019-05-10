@@ -14,7 +14,6 @@ import java.util.List;
 
 public class CommandeController extends Controller<Commande> {
 
-    private ClientController clientController = new ClientController();
 
     /**
      * Fonction qui va sérialisé le resultset en objet Commande
@@ -167,7 +166,7 @@ public class CommandeController extends Controller<Commande> {
         idMenu = getParsedString(request.getParameter("id_menus"));
         idFilms = getParsedString(request.getParameter("id_films"));
 
-        clientId = clientController.getClientIdByToken(clientToken);
+        clientId = ClientController.getClientIdByToken(clientToken);
         cmd = new Commande(clientId, idPlats, idFilms, idMenu, prix, numeroRue, rue, ville, codePostal);
 
         System.out.println(cmd);
@@ -301,7 +300,7 @@ public class CommandeController extends Controller<Commande> {
      */
     public List getOrderHistory(HttpServletRequest request) {
         String tokenCLient = request.getParameter("token");
-        int clientId = clientController.getClientIdByToken(tokenCLient);
+        int clientId = ClientController.getClientIdByToken(tokenCLient);
         String query = getQueryOrderHistory(clientId);
         return super.getList(query);
     }

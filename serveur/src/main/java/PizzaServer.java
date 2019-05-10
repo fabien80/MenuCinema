@@ -12,8 +12,9 @@ import org.eclipse.jetty.util.thread.QueuedThreadPool;
 import servlets.Commande.CreateCommandeServlet;
 import servlets.Commande.GetCommandeServlet;
 import servlets.Commande.GetCommandesServlet;
-import servlets.Commande.GetOrderHistory;
+import servlets.Commande.GetOrderHistoryServlet;
 import servlets.GetParametersServlet;
+import servlets.Produit.GetFilmsByFoodServlet;
 import servlets.Produit.SearchProduitServlet;
 
 
@@ -49,8 +50,9 @@ public class PizzaServer extends HttpServlet {
         servletHandler.addServletWithMapping(CreateCommandeServlet.class, "/addCommande");
         servletHandler.addServletWithMapping(GetCommandeServlet.class, "/commande");
         servletHandler.addServletWithMapping(GetCommandesServlet.class, "/commandes");
-        servletHandler.addServletWithMapping(GetOrderHistory.class, "/orderHistory");
+        servletHandler.addServletWithMapping(GetOrderHistoryServlet.class, "/orderHistory");
         servletHandler.addServletWithMapping(SearchProduitServlet.class, "/search/product");
+        servletHandler.addServletWithMapping(GetFilmsByFoodServlet.class, "/filmsByFood");
 
         server.start();
     }

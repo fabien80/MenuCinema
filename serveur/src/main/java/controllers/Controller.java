@@ -95,7 +95,7 @@ public abstract class Controller<T> {
 
     protected abstract T requestBodyToClass(HttpServletRequest request);
 
-    public ResultSet getResultSet(String query) {
+    public static ResultSet getResultSet(String query) {
         ResultSet result = null;
         try {
             result = Connection.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
