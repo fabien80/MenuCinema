@@ -54,12 +54,12 @@ export class ClientService {
     createNewUserInApi(newClient: ClientInterface) {
         return new Promise((resolve, reject) => {
             this.apiService.postClient(newClient)
-            .then(() => {
-                console.log('ok');
-                this.setClientValue(newClient);
-                this.router.navigate(['/homepage']);
-                return resolve();
-            }).catch((error: Error) => {
+                .then(() => {
+                    console.log('ok');
+                    this.setClientValue(newClient);
+                    this.router.navigate(['/homepage']);
+                    return resolve();
+                }).catch((error: Error) => {
                 console.log(error);
                 return reject(error);
             });
@@ -70,10 +70,10 @@ export class ClientService {
     updateUserInApi(updateClient: ClientInterface) {
         return new Promise((resolve, reject) => {
             this.apiService.putClient(updateClient)
-            .then(() => {
-                this.setClientValue(updateClient);
-                return resolve();
-            }).catch((error: Error) => {
+                .then(() => {
+                    this.setClientValue(updateClient);
+                    return resolve();
+                }).catch((error: Error) => {
                 console.log(error);
                 return reject(error);
             });
@@ -99,40 +99,26 @@ export class ClientService {
     }
 
     async getClientHistory(){
-        let data = {
-            "commandeId":0,
-            "dateHeure":"2019-05-09 14:11:54",
-            "clientId":0,
-            "idPlats":[],
-            "idFilms":[],
-            "idMenu":[],
-            "prix":0.0,
-            "numeroRue":0,
-            "rue":"",
-            "ville":"",
-            "codePostal":""
+       return await this.apiService.getClientHistory(this._client.getValue().token).then(allCommand => {
+            console.log("OK");
+            console.log(allCommand);
 
-        };
-        await this.apiService.getClientHistory(this._client.getValue().token).then(data => {
-                console.log("OK");
-                console.log(data);
+            allCommand.forEach(oneCommand => {
+                this.apiService.getProductsIds(oneCommand.idPlats.join(";")+";"+oneCommand.idMenu.join(";")).then(foodDetail => {
+                    oneCommand.nestedFood = foodDetail;
+                    console.log("OsqddK");
+                    console.log(foodDetail);
 
-            }).catch((e) => {
-                console.log("ERR");
-                console.log(e);
+
+                }).catch((e) => {
+                    console.log("ERR");
+                    console.log(e);
+                });
             });
-        //data.plat = [];
-        data.idPlats.forEach((oneIdPlat, index) => {
-            this.apiService.getClientHistory(this._client.getValue().token).then(data => {
-                console.log("OK");
-                console.log(data);
-
-            }).catch((e) => {
-                console.log("ERR");
-                console.log(e);
-            });
+            return allCommand;
+        }).catch((e) => {
+            console.log("ERR");
+            console.log(e);
         });
-        return "working";
-
     }
 }
