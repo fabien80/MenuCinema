@@ -136,7 +136,7 @@
         </prod1:product>
         <prod1:product id="31">
             <nour:type>Boisson</nour:type>
-            <nour:nom>Ice Tea</nour:nom>
+            <nour:nom>Ice tea</nour:nom>
             <nour:description>Canette de 33cl</nour:description>
             <nour:prix>2</nour:prix>
         </prod1:product>
@@ -276,7 +276,7 @@
                 </foodGroups:product>
                 <foodGroups:product id="31">
                     <nour:type>Boisson</nour:type>
-                    <nour:nom>Ice Tea</nour:nom>
+                    <nour:nom>Ice tea</nour:nom>
                     <nour:description>Canette de 33cl</nour:description>
                     <nour:prix>2</nour:prix>
                 </foodGroups:product>
@@ -305,7 +305,7 @@
                 </foodGroups:product>
                 <foodGroups:product id="31">
                     <nour:type>Boisson</nour:type>
-                    <nour:nom>Ice Tea</nour:nom>
+                    <nour:nom>Ice tea</nour:nom>
                     <nour:description>Canette de 33cl</nour:description>
                     <nour:prix>2</nour:prix>
                 </foodGroups:product>
@@ -376,7 +376,7 @@
                 </foodGroups:product>
                 <foodGroups:product id="30">
                     <nour:type>Boisson</nour:type>
-                    <nour:nom>Ice Tea</nour:nom>
+                    <nour:nom>Ice tea</nour:nom>
                     <nour:description>Canette de 33cl</nour:description>
                     <nour:prix>2</nour:prix>
                 </foodGroups:product>
