@@ -21,11 +21,9 @@ public class GetClientsServlet extends HttpServlet
     {
         ClientController controller = new ClientController();
         response.setContentType("application/json");
-        StringBuilder res = new StringBuilder("{\n");
         ArrayList<Client> clients = (ArrayList<Client>) controller.get("client");
-        clients.forEach((client -> res.append(JsonConverter.convertObjectToJson(client) + ",\n")));
-        res.append("}");
+        String res = JsonConverter.convertObjectToJson(clients);
         response.setStatus(HttpServletResponse.SC_OK);
-        response.getWriter().println(res.toString());
+        response.getWriter().println(res);
     }
 }
