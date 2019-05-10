@@ -1,0 +1,53 @@
+<button mat-button (click)="onClick()">
+    <mat-icon *ngIf="!isActivated">
+        keyboard_arrow_right
+    </mat-icon>
+    <mat-icon *ngIf="isActivated">
+        keyboard_arrow_down
+    </mat-icon>
+</button>
+
+<div *ngIf="isActivated">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">
+                Type
+            </th>
+            <th scope="col">
+                Produit
+            </th>
+            <th scope="col">
+                Description
+            </th>
+            <th scope="col">
+                Quantité
+            </th>
+            <th scope="col">
+                Prix unitaire
+            </th>
+            <th scope="col">
+                Prix total
+            </th>
+        </tr>
+        </thead>
+        <ng-container *ngFor="let foodGroup of menu.foodGroups">
+            <tr>
+                <th>{{foodGroup.product.type}}</th>
+
+                <td>{{foodGroup.product.nom}}</td>
+
+                <td>{{foodGroup.product.description}}</td>
+
+                <td> {{foodGroup.amount}}</td>
+
+                <td>{{foodGroup.product.prix}} €</td>
+
+                <td>{{foodGroup.getTotal()}} €</td>
+            </tr>
+
+        </ng-container>
+    </table>
+</div>
+
+

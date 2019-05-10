@@ -1,14 +1,14 @@
 export interface ClientInterface {
-    client_id: number;
+    clientId: number;
     nom: string;
     prenom: string;
     mail: string;
     photo: string;
     tel: string;
     fidelite: number;
-    numero_rue: number;
+    numeroRue: number;
     rue: string;
     ville: string;
-    code_postal: string;
+    codePostal: string;
     token: string;
 }

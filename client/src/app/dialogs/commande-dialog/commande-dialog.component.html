@@ -1,0 +1,34 @@
+<mat-horizontal-stepper [linear]="true" #stepper>
+    <mat-step [stepControl]="addressGroup">
+        <form [formGroup]="addressGroup" class="form-div">
+            <ng-template matStepLabel>Renseignez l'adresse de livraison</ng-template>
+            <mat-form-field>
+                <input matInput placeholder="numero de rue" [formControlName]="numeroRueCtrl" required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="rue" [formControlName]="rueCtrl" required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="code postal" [formControlName]="codePostalCtrl" required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="ville" [formControlName]="villeCtrl" required>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperNext class="btn btn-outline-success">Suivant</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [editable]="false">
+        <ng-template matStepLabel>Paiement</ng-template>
+        <mat-dialog-content>
+            <app-bill [basket]="basket"></app-bill>
+        </mat-dialog-content>
+        <div>
+            <button mat-button matStepperPrevious class="btn btn-outline-dark">Back</button>
+            <button mat-button matStepperNext (click)="pay()" class="btn btn-outline-success">Payer</button>
+            <button mat-button (click)="reset(stepper)" class="btn btn-outline-danger">Reset</button>
+        </div>
+    </mat-step>
+
+</mat-horizontal-stepper>

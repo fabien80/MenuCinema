@@ -18,10 +18,7 @@ import {ProductModule} from './product/product.module';
 import {HomeModule} from './home/home.module';
 import {MatButtonModule, MatIconModule, MatToolbarModule} from '@angular/material';
 import {MovieModule} from './product/movie/movie.module';
-import {ProfileInformationModule} from './profile/profile-information/profile-information.module';
-import {ProfileComponent} from './profile/profile.component';
 import {ProfileModule} from './profile/profile.module';
-import {FormsModule} from '@angular/forms';
 
 @NgModule({
     declarations: [

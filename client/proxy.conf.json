@@ -22,6 +22,12 @@
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true
+  },
+  "/addCommande": {
+    "target": "http://localhost:8090",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
   }
 }
 

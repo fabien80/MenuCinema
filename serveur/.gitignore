@@ -94,3 +94,4 @@ hs_err_pid*
 serveur/pizzaserverstudent.iml
 serveur/src/main/main.iml
 serveur/src/test/test.iml
+.properties

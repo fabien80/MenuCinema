@@ -26,26 +26,28 @@ export class ProfileFormComponent implements OnInit {
 
     onCancel() {
         this.displayTile = Tile.NoChange;
+        console.log('ici');
         this.editDone.emit(null);
     }
 
     onSubmit(myForm: NgForm) {
+        console.log('ici');
         if (myForm.form.valid) {
             this.tileDisplayer(Tile.GoodChange);
             myForm.form.markAsPristine();
             this.tmpClient.token = this.authService.firebaseUser.uid;
             if (this.firstConn) {
                 this.clientService.createNewUserInApi(this.tmpClient)
-                .then(() => {
-                    this.editDone.emit(this.tmpClient);
-                }).catch((error: Error) => {
+                    .then(() => {
+                        this.editDone.emit(this.tmpClient);
+                    }).catch((error: Error) => {
                     this.editDone.emit(null);
                 });
             } else {
                 this.clientService.updateUserInApi(this.tmpClient)
-                .then(() => {
-                    this.editDone.emit(this.tmpClient);
-                }).catch((error: Error) => {
+                    .then(() => {
+                        this.editDone.emit(this.tmpClient);
+                    }).catch((error: Error) => {
                     this.editDone.emit(null);
                 });
             }

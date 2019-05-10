@@ -1,3 +1,6 @@
-<h3>{{menu.nom}}</h3>
-<p>{{menu.prix}} €</p>
+<h3 *ngIf="amount !== undefined" [matBadge]="amount.toString()" matBadgeOverlap="false">
+    {{menu.nom}}
+</h3>
+<h3 *ngIf="amount === undefined"> {{menu.nom}}</h3>
+{{menu.prix}} €
 
