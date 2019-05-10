@@ -5,6 +5,7 @@ import models.Commande;
 import services.Connection;
 import models.Produit;
 import models.Commande;
+import services.Utils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.*;
@@ -162,29 +163,15 @@ public class CommandeController extends Controller<Commande> {
         ville = request.getParameter("ville");
         codePostal = request.getParameter("code_postal");
 
-        idPlats = getParsedString(request.getParameter("id_plats"));
-        idMenu = getParsedString(request.getParameter("id_menus"));
-        idFilms = getParsedString(request.getParameter("id_films"));
+        idPlats = Utils.getListFromString(request.getParameter("id_plats"));
+        idMenu = Utils.getListFromString(request.getParameter("id_menus"));
+        idFilms = Utils.getListFromString(request.getParameter("id_films"));
 
         clientId = ClientController.getClientIdByToken(clientToken);
         cmd = new Commande(clientId, idPlats, idFilms, idMenu, prix, numeroRue, rue, ville, codePostal);
 
         System.out.println(cmd);
         return cmd;
-    }
-
-    /**
-     * Comme en URCENCODED il est difficile de traité des tableaux, le front envoie les tableaux d'ids sous forme de chaine avec des ";" comme séparateur
-     * Du coup on pase cette string
-     *
-     * @param str : al string à parsé
-     * @return La liste des idées
-     */
-    private List<String> getParsedString(String str) {
-        System.out.println(str);
-        List<String> ids = new ArrayList<>();
-        ids = Arrays.asList(str.split(";"));
-        return ids;
     }
 
 

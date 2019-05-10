@@ -14,8 +14,9 @@ import servlets.Commande.GetCommandeServlet;
 import servlets.Commande.GetCommandesServlet;
 import servlets.Commande.GetOrderHistoryServlet;
 import servlets.GetParametersServlet;
-import servlets.Produit.GetProductByOtherProduct;
+import servlets.Produit.GetProductByOtherProductServlet;
 import servlets.Produit.GetProduitServlet;
+import servlets.Produit.GetProduitsByIdsServlet;
 import servlets.Produit.SearchProduitServlet;
 
 
@@ -53,8 +54,9 @@ public class PizzaServer extends HttpServlet {
         servletHandler.addServletWithMapping(GetCommandesServlet.class, "/commandes");
         servletHandler.addServletWithMapping(GetOrderHistoryServlet.class, "/orderHistory");
         servletHandler.addServletWithMapping(SearchProduitServlet.class, "/search/product");
-        servletHandler.addServletWithMapping(GetProductByOtherProduct.class, "/filmsByFood");
+        servletHandler.addServletWithMapping(GetProductByOtherProductServlet.class, "/filmsByFood");
         servletHandler.addServletWithMapping(GetProduitServlet.class, "/produit");
+        servletHandler.addServletWithMapping(GetProduitsByIdsServlet.class, "/produitsIds");
         server.start();
     }
 
