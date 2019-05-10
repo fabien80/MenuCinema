@@ -1,5 +1,5 @@
 <div *ngIf="displayedArray">
-    <h2>Cast</h2>
+    <h2>Casting</h2>
     <table class="cast_table">
         <tr class="each_member each_member_cast" *ngFor="let oneMember of displayedArray; index as i"
             [hidden]="oneMember.order > displayTreshold">

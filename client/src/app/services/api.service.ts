@@ -54,5 +54,29 @@ export class ApiService {
         return params;
     }
 
+    async getClientHistory(token: string): Promise<any> {
+        let params: HttpParams = new HttpParams();
+        params = params.set('token', token);
+        console.log("api service");
+        console.log(params);
+        return await this.http.get('/orderHistory', {
+            params: params,
+            headers: new HttpHeaders()
+                .set('Content-Type', 'application/x-www-form-urlencoded')
+        }).toPromise();
+        // return {
+        //     "commandeId":44,
+        //     "dateHeure":"2019-05-09 14:11:54"
+        //     ,"clientId":2,
+        //     "idPlats":["1","2","3","4","5","5"]
+        //     ,"idFilms":[],"idMenu":[],
+        //     "prix":20.0,
+        //     "numeroRue":10,
+        //     "rue":"rue",
+        //     "ville":"ville",
+        //     "codePostal":"null"
+        // };
+
+    }
 
 }
