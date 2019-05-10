@@ -29,12 +29,6 @@ public class ParsingHandler extends DefaultHandler
         currentValue = "";
     }
 
-
-    @Override
-    public void endDocument() throws SAXException
-    {
-    }
-
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException
     {

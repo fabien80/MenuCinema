@@ -7,7 +7,6 @@ import org.xml.sax.SAXException;
 import services.JsonConverter;
 import services.ParsingHandler;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -18,14 +17,23 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import controllers.Controller;
+public class ProduitController
+{
 
-public class ProduitController {
-    public String search(HttpServletRequest request) throws ParserConfigurationException, SAXException, IOException {
+    /**
+     * Instancie le parser SAX et renvoie les elements du menu correspondants aux criteres demandes
+     *
+     * @param request La requete http pouvant contenir ou non les parametres pour trier les resultats
+     * @return le json correspondant aux elements demandes
+     * @throws ParserConfigurationException Si la configuration du parser ne fonctionnent pas
+     * @throws SAXException                 Si il y a une erreur lors du parsing
+     * @throws IOException                  Si il y a un probleme avec l'ouverture du fichier XML
+     */
+    public String search(HttpServletRequest request) throws ParserConfigurationException, SAXException, IOException
+    {
         SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
         saxParserFactory.setNamespaceAware(true);
         SAXParser saxParser = saxParserFactory.newSAXParser();
@@ -41,29 +49,52 @@ public class ProduitController {
         return res;
     }
 
-    private String search(String paramQuery, String paramType, ArrayList<Produit> produits) {
+    /**
+     * Effectue les differents tests en fonction de la presence ou non des parametres. Si il n'y en a pas, retourne le tableau transformer en JSON
+     *
+     * @param paramQuery le parametre query, une string de recherche
+     * @param paramType  un parametre correspondant a l'enumeration TypeDeProduit
+     * @param produits   la liste de tout les produits fait a partir du XML
+     * @return le json correspondant aux elements correspondants aux parametres
+     */
+    private String search(String paramQuery, String paramType, ArrayList<Produit> produits)
+    {
         String res;
-        if (paramQuery != null && paramType != null) {
+        if (paramQuery != null && paramType != null)
+        {
             TypeDeProduit type = TypeDeProduit.fromValue(paramType);
             res = searchByAllParams(type, paramQuery, produits);
-        } else if (paramQuery != null) {
+        } else if (paramQuery != null)
+        {
             res = searchByQuery(paramQuery, produits);
-        } else if (paramType != null) {
+        } else if (paramType != null)
+        {
             TypeDeProduit type = TypeDeProduit.fromValue(paramType);
             System.out.println(type);
             res = searchByType(type, produits);
-        } else {
+        } else
+        {
             res = JsonConverter.convertObjectToJson(produits);
         }
         System.out.println(res);
         return res;
     }
 
-    private static String searchByQuery(String query, ArrayList<Produit> produits) {
+    /**
+     * Trie le tableau en fonction du parametre query
+     *
+     * @param query    une string de recherche
+     * @param produits un tableau de produits
+     * @return le json correspondant au parametre
+     */
+    private static String searchByQuery(String query, ArrayList<Produit> produits)
+    {
         String res;
-        ArrayList<Produit> filteredArray = produits.stream().filter((Produit produit) -> {
+        ArrayList<Produit> filteredArray = produits.stream().filter((Produit produit) ->
+        {
             Menu menu = produit.getMenu();
-            if (menu != null) {
+            if (menu != null)
+            {
                 return menu.toString().toLowerCase().contains(query.toLowerCase());
             }
 
@@ -73,11 +104,21 @@ public class ProduitController {
         return res;
     }
 
-    private static String searchByType(TypeDeProduit type, ArrayList<Produit> produits) {
+    /**
+     * Permet de trier le tableau en fonction du type
+     *
+     * @param type     une string correspondant a l'enumeration TypeDeProduit
+     * @param produits un tableau de produits
+     * @return le json correspondant au parametre
+     */
+    private static String searchByType(TypeDeProduit type, ArrayList<Produit> produits)
+    {
         String res;
-        ArrayList<Produit> filteredArray = produits.stream().filter((Produit produit) -> {
+        ArrayList<Produit> filteredArray = produits.stream().filter((Produit produit) ->
+        {
             Menu menu = produit.getMenu();
-            if (menu != null) {
+            if (menu != null)
+            {
                 return type.equals(TypeDeProduit.MENU);
             }
             return type.equals(produit.getProduct().getType());
@@ -87,11 +128,22 @@ public class ProduitController {
         return res;
     }
 
-    private static String searchByAllParams(TypeDeProduit type, String query, ArrayList<Produit> produits) {
+    /**
+     * Permet de trier le tableau en fonction du type et de la requete
+     *
+     * @param type     une string correspondant a l'enumeration TypeDeProduit
+     * @param query    une string de recherche
+     * @param produits un tableau de produits
+     * @return le json correspondant au parametre
+     */
+    private static String searchByAllParams(TypeDeProduit type, String query, ArrayList<Produit> produits)
+    {
         String res;
-        ArrayList<Produit> filteredArray = produits.stream().filter((Produit produit) -> {
+        ArrayList<Produit> filteredArray = produits.stream().filter((Produit produit) ->
+        {
             Menu menu = produit.getMenu();
-            if (menu != null) {
+            if (menu != null)
+            {
                 return type == TypeDeProduit.MENU && menu.toString().toLowerCase().contains(query.toLowerCase());
             }
             return produit.getProduct().getType() == type &&
@@ -102,7 +154,8 @@ public class ProduitController {
         return res;
     }
 
-    public List<String> getFilmsByFood(HttpServletRequest request) {
+    public List<String> getFilmsByFood(HttpServletRequest request)
+    {
         List<String> idsFilm;
         String idFood = request.getParameter("id");
         String query = getFilmsByFoodQuery(idFood);
@@ -112,21 +165,27 @@ public class ProduitController {
         return idsFilm;
     }
 
-    private List<String> getAllidsFilm(ResultSet res) {
+    private List<String> getAllidsFilm(ResultSet res)
+    {
         List<String> idsFilm = new ArrayList<>();
-        try {
-            while (res.next()) {
+        try
+        {
+            while (res.next())
+            {
                 idsFilm.add(res.getString("produit_id"));
             }
             res.close();
         } catch (
-                SQLException e) {
-            e.printStackTrace();;
+                SQLException e)
+        {
+            e.printStackTrace();
+            ;
         }
         return idsFilm;
     }
 
-    private String getFilmsByFoodQuery(String idFood) {
+    private String getFilmsByFoodQuery(String idFood)
+    {
         String query;
         String subQuery;
 
