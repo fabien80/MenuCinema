@@ -21,12 +21,34 @@ public class GetProduitsByIdsServlet extends HttpServlet {
         try {
             ProduitController controller = new ProduitController();
             response.setContentType("application/json");
-            StringBuilder res = new StringBuilder("{\n");
+            StringBuilder resMenu = new StringBuilder("");
+            StringBuilder resProduct = new StringBuilder("");
             ArrayList<Produit> produits = (ArrayList<Produit>) controller.getAllProductsById(request);
-            produits.forEach((produit -> res.append(JsonConverter.convertObjectToJson(produit) + ",\n")));
-            res.append("}");
+
+
+            for(int i =0; i< produits.size() ; ++i){
+                if (produits.get(i).getMenu() != null){
+
+                    if (!resMenu.toString().equals("")){// not first time
+                        resMenu.append(",");
+                    }
+                    resMenu.append( JsonConverter.convertObjectToJson(produits.get(i).getMenu()) );
+                }
+                if (produits.get(i).getProduct() != null){
+                    if (!resProduct.toString().equals("")){// not first time
+                        resProduct.append(",");
+                    }
+                    resProduct.append( JsonConverter.convertObjectToJson(produits.get(i).getProduct()) );
+                }
+            }
+
+
+            String res = "{\n" +
+                    "\"product\":[\n" + resProduct +"],\n" +
+                    "\"menu\":[\n" + resMenu + "]" +
+                    "}";
             response.setStatus(HttpServletResponse.SC_OK);
-            response.getWriter().println(res.toString());
+            response.getWriter().println(res);
         } catch (
                 ParserConfigurationException e) {
             e.printStackTrace();
