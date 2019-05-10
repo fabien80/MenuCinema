@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class GetFilmsByFoodServlet extends HttpServlet {
+public class GetProductByOtherProduct extends HttpServlet {
     private static final long servialVersionUID = 1L;
 
     @Override
@@ -22,7 +22,7 @@ public class GetFilmsByFoodServlet extends HttpServlet {
         ProduitController controller = new ProduitController();
         response.setContentType("application/json");
         StringBuilder res = new StringBuilder("{\n");
-        ArrayList<String> idsFilm = (ArrayList<String>) controller.getFilmsByFood(request);
+        ArrayList<String> idsFilm = (ArrayList<String>) controller.getProductIdByOtherProduct(request);
         idsFilm.forEach((idFilm -> res.append(JsonConverter.convertObjectToJson(idFilm) + ",\n")));
         res.append("}");
         response.setStatus(HttpServletResponse.SC_OK);
