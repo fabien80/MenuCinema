@@ -14,12 +14,14 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import services.Utils;
 
 public class ProduitController {
 
@@ -42,6 +44,12 @@ public class ProduitController {
         return parsingHandler;
     }
 
+    private ArrayList<Produit> getAllProducts() throws ParserConfigurationException, SAXException, IOException {
+        ParsingHandler parsingHandler = initParse();
+        ArrayList<Produit> produits = parsingHandler.getProduitList();
+        return produits;
+    }
+
     /**
      * @param request La requete http pouvant contenir ou non les parametres pour trier les resultats
      * @return le json correspondant aux elements demandes
@@ -50,9 +58,7 @@ public class ProduitController {
      * @throws IOException                  Si il y a un probleme avec l'ouverture du fichier XML
      */
     public String search(HttpServletRequest request) throws ParserConfigurationException, SAXException, IOException {
-
-        ParsingHandler parsingHandler = initParse();
-        ArrayList<Produit> produits = parsingHandler.getProduitList();
+        ArrayList<Produit> produits = getAllProducts();
         String res;
         String paramQuery = request.getParameter("query");
         String paramType = request.getParameter("type");
@@ -155,6 +161,20 @@ public class ProduitController {
         return res;
     }
 
+    public List<Produit> getAllProductsById(HttpServletRequest request) throws ParserConfigurationException, SAXException, IOException {
+        String ids = request.getParameter("ids");
+        List<String> idsList = Utils.getListFromString(ids);
+        System.out.println(idsList);
+        List<Produit> allProducts = getAllProducts();
+        List<Produit> productWanted = new ArrayList<>();
+        for(String id : idsList){
+            Produit prod = getProductById(allProducts,id);
+            if(prod != null) {
+                productWanted.add(prod);
+            }
+        }
+        return productWanted;
+    }
 
     private Produit getProductById(List<Produit> produits, String id){
         Produit prod = null;
@@ -171,12 +191,12 @@ public class ProduitController {
         if (filteredArray.size() != 0) {
             prod = filteredArray.get(0);
         }
+        System.out.println(prod);
         return prod;
     }
 
     public Produit getElem(HttpServletRequest request) throws ParserConfigurationException, SAXException, IOException {
-        ParsingHandler parsingHandler = initParse();
-        ArrayList<Produit> produits = parsingHandler.getProduitList();
+        ArrayList<Produit> produits = getAllProducts();
         String id = request.getParameter("id");
         Produit prod= getProductById(produits,id);
         return prod;

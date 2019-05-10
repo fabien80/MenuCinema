@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class GetProductByOtherProduct extends HttpServlet {
+public class GetProductByOtherProductServlet extends HttpServlet {
     private static final long servialVersionUID = 1L;
 
     @Override
