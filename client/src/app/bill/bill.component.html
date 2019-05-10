@@ -1,0 +1,93 @@
+<div class="content-to-convert">
+    <div class="header-div content-to-convert">
+        <div class="logo-div">
+            <a>
+                <img width="200px" height="150" class="logo" src="../../assets/images/icon.png" alt="">
+            </a>
+        </div>
+        <div class="company-name-div">
+            <h1>Menu Cinema</h1>
+        </div>
+        <div class="client-div">
+            <b>Expediteur : Menu Cinema</b>
+            <div class="client-infos">
+                <b>Destinataire</b>
+                <div class="client">
+                    <p>{{client.nom}} {{client.prenom}}</p>
+                    <p>{{client.numeroRue}} {{client.rue}} {{client.codePostal}} {{client.ville}}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <table class="table content-to-convert">
+        <thead>
+        <tr>
+            <th scope="col">
+                Type
+            </th>
+            <th scope="col">
+                Produit
+            </th>
+            <th scope="col">
+                Description
+            </th>
+            <th scope="col">
+                Quantité
+            </th>
+            <th scope="col">
+                Prix unitaire
+            </th>
+            <th scope="col">
+                Prix total
+            </th>
+            <th scope="col">
+                Détails
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let menuGroup of basket.menuGroups">
+            <tr>
+                <th scope="row">Menu</th>
+                <td>{{menuGroup.product.nom}}</td>
+                <td></td>
+                <td>{{menuGroup.amount}}</td>
+                <td>{{menuGroup.product.prix}} €</td>
+                <td>{{menuGroup.getTotal()}} €</td>
+                <td>
+                    <app-bill-menu-information [menu]="menuGroup.product"></app-bill-menu-information>
+                </td>
+            </tr>
+        </ng-container>
+        <tr *ngFor="let foodGroup of basket.foodGroups">
+            <th scope="row">{{foodGroup.product.type}}</th>
+            <td>{{foodGroup.product.nom}}</td>
+            <td>{{foodGroup.product.description}}</td>
+            <td>{{foodGroup.amount}} </td>
+            <td>{{foodGroup.product.prix}} €</td>
+            <td>{{foodGroup.getTotal()}} €</td>
+            <td></td>
+        </tr>
+        <tr *ngFor="let movie of basket.movies">
+            <th scope="row">Film</th>
+            <td>{{movie.title}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{movie.prix}} €</td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <p>Fait le  {{getDate()}}</p>
+        <p><b>Prix à payer : {{basket.total}} € TTC </b></p>
+    </div>
+
+    <button mat-button (click)="captureScreen()">
+        Obtenir la facture en pdf
+    </button>
+</div>
+

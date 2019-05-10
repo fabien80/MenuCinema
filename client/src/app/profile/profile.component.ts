@@ -29,9 +29,10 @@ export class ProfileComponent implements OnInit {
 
     editDone(client: ClientInterface) {
         if (client != null) {
-            this.edit = false;
             this.clientService.setClientValue(client);
         }
+        this.edit = false;
+
     }
 
     goEdit() {

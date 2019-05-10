@@ -1,0 +1,30 @@
+.header-div {
+  display: flex;
+}
+
+.logo-div {
+  justify-content: flex-start;
+}
+
+.company-name-div {
+  justify-content: center;
+}
+
+.client-div {
+  display: inline-grid;
+  margin-left: 20px;
+  justify-content: flex-end;
+}
+
+.client-infos {
+  display: inline-flex;
+}
+
+.client {
+  margin-left: 10px;
+}
+
+
+.menu-infos {
+  margin-top: 100px;
+}

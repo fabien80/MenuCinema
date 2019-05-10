@@ -4,6 +4,7 @@ import {BasketComponent} from './basket.component';
 import {MatButtonModule, MatIconModule} from '@angular/material';
 import {AmountButtonsModule} from '../amount-buttons/amount-buttons.module';
 import {RouterModule} from '@angular/router';
+import {DialogsModule} from '../dialogs/dialogs.module';
 
 @NgModule({
     declarations: [
@@ -14,7 +15,8 @@ import {RouterModule} from '@angular/router';
         MatIconModule,
         AmountButtonsModule,
         MatButtonModule,
-        RouterModule
+        RouterModule,
+        DialogsModule
     ], exports: [BasketComponent]
 })
 export class BasketModule {

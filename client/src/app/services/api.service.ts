@@ -2,6 +2,11 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {LocalStorageService} from './local-storage.service';
 import {ClientInterface} from '../interface/ClientInterface';
+import {Basket} from '../basket/Basket';
+import {AddressInterface} from '../interface/AddressInterface';
+import {MenuGroup} from '../product/menu/MenuGroup';
+import {ProductGroup} from '../product/class/productGroup';
+import {Movie} from '../product/movie/Movie';
 
 @Injectable({
     providedIn: 'root'
@@ -43,9 +48,9 @@ export class ApiService {
         params = params.set('nom', client.nom);
         params = params.set('prenom', client.prenom);
         params = params.set('rue', client.rue);
-        params = params.set('code_postal', client.code_postal);
-        params = params.set('numero_rue', client.numero_rue.toString());
-        params = params.set('client_id', client.client_id != null ? client.client_id.toString() : '0');
+        params = params.set('code_postal', client.codePostal);
+        params = params.set('numero_rue', client.numeroRue.toString());
+        params = params.set('client_id', client.clientId != null ? client.clientId.toString() : '0');
         params = params.set('mail', client.mail);
         params = params.set('photo', client.photo);
         params = params.set('tel', client.tel.replace(/\s/g, ''));
@@ -55,4 +60,42 @@ export class ApiService {
     }
 
 
+    payement(basket: Basket, address: AddressInterface, token: string) {
+        let params: HttpParams = new HttpParams();
+        params = params.set('prix', basket.total.toString());
+        params = params.set('token', token);
+        params = params.set('numero_rue', address.numeroRue.toString());
+        params = params.set('rue', address.rue);
+        params = params.set('ville', address.ville);
+        params = params.set('code_postal', address.codePostal);
+        params = params.set('id_plats', this.productGroupToIds(basket.foodGroups));
+        params = params.set('id_menus', this.productGroupToIds(basket.menuGroups));
+        params = params.set('id_films', this.moviesToIds(basket.movies));
+        return this.http.post('/addCommande', params.toString(),
+            {
+                headers: new HttpHeaders()
+                .set('Content-Type', 'application/x-www-form-urlencoded')
+            }).toPromise();
+
+    }
+
+    private moviesToIds(movies: Movie[]): string {
+        return movies.reduce((ids: string, currentValue: Movie) => {
+            ids += `${currentValue.id};`;
+            return ids;
+        }, '');
+
+    }
+
+    private productGroupToIds(groups: ProductGroup<any>[]): string {
+        const res = groups.reduce((ids: string, currentValue: any) => {
+            for (let i = 0; i < currentValue.amount; i++) {
+                ids += `${currentValue.product.id};`;
+            }
+            return ids;
+        }, '');
+        console.log(res);
+        return res;
+
+    }
 }

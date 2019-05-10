@@ -15,12 +15,12 @@ export class ClientService {
                 private localStorageService: LocalStorageService,
                 private router: Router) {
         this._client = new BehaviorSubject<ClientInterface>({
-            client_id: 0,
-            code_postal: '0',
+            clientId: 0,
+            codePostal: '0',
             fidelite: 0,
             mail: '',
             nom: '',
-            numero_rue: 0,
+            numeroRue: 0,
             photo: '',
             prenom: '',
             rue: '',
@@ -83,14 +83,14 @@ export class ClientService {
     getEmptyClient(): ClientInterface {
         return {
             fidelite: 0,
-            client_id: 0,
+            clientId: 0,
             photo: '',
             token: '',
             tel: '',
             ville: '',
             mail: '',
-            numero_rue: 1,
-            code_postal: '',
+            numeroRue: 1,
+            codePostal: '',
             rue: '',
             prenom: '',
             nom: ''
