@@ -6,7 +6,6 @@ import {ClientInterface} from '../interface/ClientInterface';
 import {Router} from '@angular/router';
 import {forEach} from "@angular/router/src/utils/collection";
 import {HttpResponse} from "@angular/common/http";
-import {forEach} from "@angular/router/src/utils/collection";
 
 @Injectable({
     providedIn: 'root'
@@ -100,34 +99,42 @@ export class ClientService {
         };
     }
 
-    uploadFile(value: any) {
-        const formData = new FormData();
-        formData.append('file', value);
-
-        return this.apiService.uploadFile(formData, this.client.value.token);
-    }
-
     async getClientHistory(){
-       return await this.apiService.getClientHistory(this._client.getValue().token).then(allCommand => {
-            console.log("OK");
-            console.log(allCommand);
+        let data = {
+            "commandeId":0,
+            "dateHeure":"2019-05-09 14:11:54",
+            "clientId":0,
+            "idPlats":[],
+            "idFilms":[],
+            "idMenu":[],
+            "prix":0.0,
+            "numeroRue":0,
+            "rue":"",
+            "ville":"",
+            "codePostal":""
 
-            allCommand.forEach(oneCommand => {
-                this.apiService.getProductsIds(oneCommand.idPlats.join(";")+";"+oneCommand.idMenu.join(";")).then(foodDetail => {
-                    oneCommand.nestedFood = foodDetail;
-                    console.log("OsqddK");
-                    console.log(foodDetail);
+        };
+        await this.apiService.getClientHistory(this._client.getValue().token).then(data => {
+                console.log("OK");
+                console.log(data);
 
-
-                }).catch((e) => {
-                    console.log("ERR");
-                    console.log(e);
-                });
+            }).catch((e) => {
+                console.log("ERR");
+                console.log(e);
             });
-            return allCommand;
-        }).catch((e) => {
-            console.log("ERR");
-            console.log(e);
+        //data.plat = [];
+        data.idPlats.forEach((oneIdPlat, index) => {
+            this.apiService.getClientHistory(this._client.getValue().token).then(data => {
+                console.log("OK");
+                console.log(data);
+
+            }).catch((e) => {
+                console.log("ERR");
+                console.log(e);
+            });
         });
+        console.log("toto");
+        return "working";
+
     }
 }
