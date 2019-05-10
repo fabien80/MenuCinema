@@ -30,8 +30,7 @@ import javax.xml.bind.annotation.XmlType;
         "product",
         "menu"
 })
-public class Produit
-{
+public class Produit {
 
     @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Produit")
     protected Nourriture product;
@@ -44,8 +43,7 @@ public class Produit
      * @return possible object is
      * {@link Nourriture }
      */
-    public Nourriture getProduct()
-    {
+    public Nourriture getProduct() {
         return product;
     }
 
@@ -55,8 +53,7 @@ public class Produit
      * @param value allowed object is
      *              {@link Nourriture }
      */
-    public void setProduct(Nourriture value)
-    {
+    public void setProduct(Nourriture value) {
         this.product = value;
     }
 
@@ -66,8 +63,7 @@ public class Produit
      * @return possible object is
      * {@link Menu }
      */
-    public Menu getMenu()
-    {
+    public Menu getMenu() {
         return menu;
     }
 
@@ -77,21 +73,20 @@ public class Produit
      * @param value allowed object is
      *              {@link Menu }
      */
-    public void setMenu(Menu value)
-    {
+    public void setMenu(Menu value) {
         this.menu = value;
     }
 
 
     @Override
-    public String toString()
-    {
-        if (menu != null)
-        {
-            return menu.toString();
-        } else
-        {
-            return product.toString();
+    public String toString() {
+        String str;
+        if (menu != null) {
+            str =  menu.toString();
+        } else {
+            str = product.toString();
         }
+        return str;
     }
+
 }
