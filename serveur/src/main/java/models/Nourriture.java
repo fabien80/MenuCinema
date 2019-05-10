@@ -40,8 +40,7 @@ import java.util.List;
         "prix",
         "ingredients"
 })
-public class Nourriture
-{
+public class Nourriture {
 
     @XmlElement(namespace = "https://www.univ-grenoble-alpes.fr/francais/l3miage/Nourriture", required = true)
     protected String id;
@@ -64,8 +63,7 @@ public class Nourriture
      * @return possible object is
      * {@link String }
      */
-    public String getId()
-    {
+    public String getId() {
         return id;
     }
 
@@ -75,8 +73,7 @@ public class Nourriture
      * @param value allowed object is
      *              {@link String }
      */
-    public void setId(String value)
-    {
+    public void setId(String value) {
         this.id = value;
     }
 
@@ -86,8 +83,7 @@ public class Nourriture
      * @return possible object is
      * {@link TypeDeProduit }
      */
-    public TypeDeProduit getType()
-    {
+    public TypeDeProduit getType() {
         return type;
     }
 
@@ -97,56 +93,49 @@ public class Nourriture
      * @param value allowed object is
      *              {@link TypeDeProduit }
      */
-    public void setType(TypeDeProduit value)
-    {
+    public void setType(TypeDeProduit value) {
         this.type = value;
     }
 
     /**
      * @return Le nom de la product
      */
-    public String getNom()
-    {
+    public String getNom() {
         return nom;
     }
 
     /**
      * @param nom le nouveau nom de la product
      */
-    public void setNom(String nom)
-    {
+    public void setNom(String nom) {
         this.nom = nom;
     }
 
     /**
      * @return la description de la product
      */
-    public String getDescription()
-    {
+    public String getDescription() {
         return description;
     }
 
     /**
      * @param description la nouvelle description de la product
      */
-    public void setDescription(String description)
-    {
+    public void setDescription(String description) {
         this.description = description;
     }
 
     /**
      * Obtient la valeur de la propri�t� prix.
      */
-    public double getPrix()
-    {
+    public double getPrix() {
         return prix;
     }
 
     /**
      * D�finit la valeur de la propri�t� prix.
      */
-    public void setPrix(double value)
-    {
+    public void setPrix(double value) {
         this.prix = value;
     }
 
@@ -170,18 +159,15 @@ public class Nourriture
      * Objects of the following type(s) are allowed in the list
      * {@link Ingredient }
      */
-    public List<Ingredient> getIngredients()
-    {
-        if (ingredients == null)
-        {
+    public List<Ingredient> getIngredients() {
+        if (ingredients == null) {
             ingredients = new ArrayList<Ingredient>();
         }
         return this.ingredients;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "Nourriture{" +
                 "id='" + id + '\'' +
                 ", type=" + type +
@@ -189,7 +175,16 @@ public class Nourriture
                 ", description='" + description + '\'' +
                 ", prix=" + prix +
                 ", ingredients=" + ingredients +
-                '}'+"\n";
+                '}' + "\n";
 
+    }
+
+    public String getNomDescription() {
+        String nomDescription;
+
+        nomDescription = nom;
+        nomDescription += description;
+
+        return nomDescription;
     }
 }
