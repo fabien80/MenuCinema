@@ -1,18 +1,41 @@
-<div>
-    <table>
-        <thead>
-        <tr>
-            <th>Date</th>
-            <th>Contenu</th>
-            <th>Prix </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-           <td>2015</td>
-           <td>1 menu</td>
-           <td>13</td>
-        </tr>
-        </tbody>
-    </table>
+<div class="container-fluid">
+    <div class="row">
+        <div  class="col-3">Date</div>
+        <div class="col-3">Contenu</div>
+        <div class="col-3">Prix </div>
+    </div>
+    <div class="row my-tab">
+        <div *ngFor="let oneCommand of data" class="one-command " >
+            <div class="row"(click)="oneCommand.isOpen = !oneCommand.isOpen">
+                <div class="col-3 cell">{{oneCommand.dateHeure | date:"d/MM/yyyy HH:mm"}}</div>
+                <div  class="col-3 cell" >
+                    <div>{{oneCommand.idFilms.length}} film</div>
+                    <div>{{oneCommand.idMenu.length}} menu(s)</div>
+                    <div>{{oneCommand.idPlats.length}} plat(s)</div>
+                </div>
+                <div class="col-3 cell">{{oneCommand.prix}}</div>
+            </div>
+            <div class="row all-detail" *ngIf="oneCommand.isOpen">
+                <div class="one-detail" *ngIf="oneCommand.idFilms.length>0">Movie title ({{oneCommand.idFilms[0]}})</div>
+                <div class="one-detail" *ngIf="oneCommand.idMenu.length > 0">
+                    <ng-container *ngFor="let oneMenu of oneCommand.nestedFood.menu">
+                        <div class="col-6 cell" >
+                            {{oneMenu.nom}}
+                        </div>
+                        <div class="col-3 cell">
+                            {{oneMenu.prix}}
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="one-detail" *ngFor="let oneProduct of oneCommand.nestedFood.product">
+                    <div class="col-6 cell" >
+                        {{oneProduct.nom}}
+                    </div>
+                    <div class="col-3 cell">
+                        {{oneProduct.prix}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
