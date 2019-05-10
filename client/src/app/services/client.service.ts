@@ -133,7 +133,6 @@ export class ClientService {
                 console.log(e);
             });
         });
-        console.log("toto");
         return "working";
 
     }
