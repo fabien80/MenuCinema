@@ -7,7 +7,7 @@ import {MenuClass} from '../../product/menu/menu';
     styleUrls: ['./bill-menu-information.component.scss']
 })
 export class BillMenuInformationComponent implements OnInit {
-    private isActivated = false;
+    private isActivated = true;
     @Input() menu: MenuClass;
 
     constructor() {

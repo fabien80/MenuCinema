@@ -42,24 +42,30 @@
             <th scope="col">
                 Prix total
             </th>
-            <th scope="col">
-                Détails
-            </th>
         </tr>
         </thead>
         <tbody>
         <ng-container *ngFor="let menuGroup of basket.menuGroups">
             <tr>
+
                 <th scope="row">Menu</th>
                 <td>{{menuGroup.product.nom}}</td>
                 <td></td>
                 <td>{{menuGroup.amount}}</td>
                 <td>{{menuGroup.product.prix}} €</td>
                 <td>{{menuGroup.getTotal()}} €</td>
-                <td>
-                    <app-bill-menu-information [menu]="menuGroup.product"></app-bill-menu-information>
-                </td>
+
             </tr>
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Détails du menu
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-bill-menu-information [menu]="menuGroup.product"></app-bill-menu-information>
+                </mat-expansion-panel>
+            </mat-accordion>
         </ng-container>
         <tr *ngFor="let foodGroup of basket.foodGroups">
             <th scope="row">{{foodGroup.product.type}}</th>
@@ -68,7 +74,6 @@
             <td>{{foodGroup.amount}} </td>
             <td>{{foodGroup.product.prix}} €</td>
             <td>{{foodGroup.getTotal()}} €</td>
-            <td></td>
         </tr>
         <tr *ngFor="let movie of basket.movies">
             <th scope="row">Film</th>
@@ -77,7 +82,6 @@
             <td></td>
             <td></td>
             <td>{{movie.prix}} €</td>
-            <td></td>
         </tr>
         </tbody>
     </table>
