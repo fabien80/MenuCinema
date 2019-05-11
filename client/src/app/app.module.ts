@@ -19,10 +19,11 @@ import {HomeModule} from './home/home.module';
 import {MatButtonModule, MatIconModule, MatToolbarModule} from '@angular/material';
 import {MovieModule} from './product/movie/movie.module';
 import {ProfileModule} from './profile/profile.module';
+import { CommandeComponent } from './commande/commande.component';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
     ],
     imports: [
         BrowserModule,
