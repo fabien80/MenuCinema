@@ -3,16 +3,16 @@
         <form [formGroup]="addressGroup" class="form-div">
             <ng-template matStepLabel>Renseignez l'adresse de livraison</ng-template>
             <mat-form-field>
-                <input matInput placeholder="numero de rue" [formControlName]="numeroRueCtrl" required>
+                <input matInput placeholder="numero de rue" [formControlName]="numeroRueCtrl" required  [(ngModel)]="address.numeroRue" >
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="rue" [formControlName]="rueCtrl" required>
+                <input matInput placeholder="rue" [formControlName]="rueCtrl"   required [(ngModel)]="address.rue" >
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="code postal" [formControlName]="codePostalCtrl" required>
+                <input matInput placeholder="code postal" [formControlName]="codePostalCtrl" required [(ngModel)]="address.codePostal" >
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="ville" [formControlName]="villeCtrl" required>
+                <input matInput placeholder="ville" [formControlName]="villeCtrl" required [(ngModel)]="address.ville" >
             </mat-form-field>
             <div>
                 <button mat-button matStepperNext class="btn btn-outline-success">Suivant</button>
