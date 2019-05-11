@@ -1,31 +1,60 @@
 <div class="container-fluid page">
     <div class="row movie_desc">
-        <img id="custom_bg" *ngIf="movie && movie.backdrop_path" src="https://image.tmdb.org/t/p/original/{{movie.backdrop_path}}">
+        <img
+                id="custom_bg"
+                *ngIf="movie && movie.backdrop_path"
+                src="https://image.tmdb.org/t/p/original/{{movie.backdrop_path}}"
+        >
         <div *ngIf="movie != undefined" class="col-xs-12 col-lg-9 ">
             <div class="">
-                <img class="poster_img " src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}" alt="poster">
+                <img
+                        class="poster_img "
+                        src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}"
+                        alt="poster"
+                >
                 <div class="movie_info">
-                    <span class="info movie-title" >{{movie.title}}</span>({{movie.release_date | date:"yyyy"}})
-                    <a *ngIf="movie.imdb_id" class="info out_link" href="https://www.imdb.com/title/{{movie.imdb_id}}" target="_blank">  IMDB<mat-icon class="nd-18">open_in_new</mat-icon></a>
-                    <a *ngIf="movie.homepage" class="info out_link" href="{{movie.homepage}}" target="_blank">  Officiel<mat-icon>open_in_new</mat-icon></a>
+                    <span class="info movie-title">{{movie.title}}</span>({{movie.release_date | date:"yyyy"}})
+                    <a
+                            *ngIf="movie.imdb_id"
+                            class="info out_link"
+                            href="https://www.imdb.com/title/{{movie.imdb_id}}"
+                            target="_blank"
+                    > IMDB
+                        <mat-icon class="nd-18">open_in_new</mat-icon>
+                    </a>
+                    <a
+                            *ngIf="movie.homepage"
+                            class="info out_link"
+                            href="{{movie.homepage}}"
+                            target="_blank"
+                    > Officiel
+                        <mat-icon>open_in_new</mat-icon>
+                    </a>
                     <br/>
                     <div class="tagline info" *ngIf="movie.tagline">{{movie.tagline}}</div>
                     <span *ngIf="movie.adult" class="adult_tile info genre_tile">Adult</span>
-                    <span *ngFor="let genre of movie.genres; index as i" class="info genre_tile " >
-                {{genre.name}}
-                <br *ngIf="(i+1)%5 == 0">
-            </span>
-                    <star-rating class="info " [starType]="'svg'"
-                                 [labelText]="'Score MovieDB'"
-                                 [readOnly]="true"
-                                 [rating]="movie.vote_average / 2">
+                    <span *ngFor="let genre of movie.genres; index as i" class="info genre_tile ">
+                        {{genre.name}}
+                        <br *ngIf="(i+1)%5 == 0">
+                    </span>
+                    <star-rating
+                            class="info "
+                            [starType]="'svg'"
+                            [labelText]="'Score MovieDB'"
+                            [readOnly]="true"
+                            [rating]="movie.vote_average / 2">
                     </star-rating>
-                    <star-rating class="info " [starType]="'svg'"
-                                 [labelText]="'Score MenuCinema'"
-                                 [readOnly]="true"
-                                 [rating]="0">
+                    <star-rating
+                            class="info "
+                            [starType]="'svg'"
+                            [labelText]="'Score MenuCinema'"
+                            [readOnly]="true"
+                            [rating]="0">
                     </star-rating>
-                    <button class="add-button" (click)="addToCart()" mat-button><mat-icon>shopping_cart</mat-icon> Ajouter au panier</button>
+                    <button class="add-button" (click)="addToCart()" mat-button>
+                        <mat-icon>shopping_cart</mat-icon>
+                        Ajouter au panier
+                    </button>
                 </div>
             </div>
             <div>
@@ -38,8 +67,16 @@
         </div>
     </div>
     <div class="row">
-        <app-cast-table class="col-xs-12 col-lg-6" *ngIf="castNCrew && castNCrew.cast" [castArray]="castNCrew.cast"></app-cast-table>
-        <app-crew-table class="col-xs-12 col-lg-6" *ngIf="castNCrew && castNCrew.crew" [crewArray]="castNCrew.crew"></app-crew-table>
+        <app-cast-table
+                class="col-xs-12 col-lg-6"
+                *ngIf="castNCrew && castNCrew.cast"
+                [castArray]="castNCrew.cast"
+        ></app-cast-table>
+        <app-crew-table
+                class="col-xs-12 col-lg-6"
+                *ngIf="castNCrew && castNCrew.crew"
+                [crewArray]="castNCrew.crew"
+        ></app-crew-table>
     </div>
 </div>
 <div *ngIf="movie === undefined">

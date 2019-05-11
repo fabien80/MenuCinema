@@ -6,6 +6,8 @@ import {SearchProductQuery} from '../interface/SearchInterface';
 import {MenuInterface} from '../interface/MenuInterface';
 import {ProductInterface} from '../interface/ProductInterface';
 import {Product} from './class/Product';
+import {environment} from "../../environments/environment";
+import {ApiService} from "../services/api.service";
 
 const api = '/api';
 
@@ -14,15 +16,13 @@ const api = '/api';
 })
 export class ProductService {
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient,
+                private apiService: ApiService) {
     }
 
-    public async search(query: SearchProductQuery): Promise<any> {
-        let params = new HttpParams();
-        params = query.query != null ? params.append('query', query.query) : params;
-        params = query.type != null ? params.append('type', query.type) : params;
-        const url = `/search/product`;
-        return await this.http.get(url, {params}).toPromise();
+    public search(query: SearchProductQuery): Promise<any> {
+
+        return this.apiService.searchProduct(query);
     }
 
     public async searchMock(query: SearchProductQuery): Promise<any> {

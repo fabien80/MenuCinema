@@ -1,35 +1,5 @@
 {
-  "/client": {
-    "target": "http://localhost:8090",
-    "secure": false,
-    "logLevel": "debug",
-    "changeOrigin": true
-  },
-  "/search": {
-    "target": "http://localhost:8090",
-    "secure": false,
-    "logLevel": "debug",
-    "changeOrigin": true
-  },
-  "/addClient": {
-    "target": "http://localhost:8090",
-    "secure": false,
-    "logLevel": "debug",
-    "changeOrigin": true
-  },
-  "/updateClient": {
-    "target": "http://localhost:8090",
-    "secure": false,
-    "logLevel": "debug",
-    "changeOrigin": true
-  },
-  "/addCommande": {
-    "target": "http://localhost:8090",
-    "secure": false,
-    "logLevel": "debug",
-    "changeOrigin": true
-  },
-  "/uploadPhoto": {
+  "/api": {
     "target": "http://localhost:8090",
     "secure": false,
     "logLevel": "debug",
