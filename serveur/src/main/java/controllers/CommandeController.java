@@ -43,9 +43,9 @@ public class CommandeController extends Controller<Commande> {
             commandeId = result.getInt("commande_id");
             dateHeure = result.getString("date_heure");
             clientId = result.getInt("client_id");
-            idPlats = getProductsIds(commandeId, "plat");
-            idFilms = getProductsIds(commandeId, "film");
-            idMenu = getProductsIds(commandeId, "menu");
+            idPlats = getProductsIds(commandeId, "Nourriture");
+            idFilms = getProductsIds(commandeId, "Film");
+            idMenu = getProductsIds(commandeId, "Menu");
             prix = result.getDouble("prix");
             numeroRue = result.getInt("numero_rue");
             rue = result.getString("rue");
@@ -184,6 +184,7 @@ public class CommandeController extends Controller<Commande> {
     public boolean create(HttpServletRequest request) {
 
         Commande commande = requestBodyToClass(request);
+        System.out.println(commande);
         boolean result = super.create(request);
         commande.setCommandeId(getLastCommande());
 
@@ -225,6 +226,7 @@ public class CommandeController extends Controller<Commande> {
      */
     private boolean insertAProduct(int commandeId, String idProduct, String productType) {
         try {
+            System.out.println("CommandeId : " + commandeId + "|| idProduit : " + idProduct + "|| type_produit : " + productType);
             if (!idProduct.equals("")) {
                 int j = 1;
                 CallableStatement cstmt = Connection.conn.prepareCall("{call insertProduct(?, ?,?)}");
