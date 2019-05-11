@@ -21,7 +21,7 @@ export class ApiService {
 
     public getClient(uid: string): Promise<any> {
         let params: HttpParams = new HttpParams();
-        params = params.append('uid', uid);
+        params = params.append('token', uid);
         console.log(params);
         return this.http.get(environment.proxyBaseUrl + '/client', {params}).toPromise();
     }
