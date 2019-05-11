@@ -30,7 +30,7 @@ export class ApiService {
         return this.http.post('/addClient', params.toString(),
             {
                 headers: new HttpHeaders()
-                .set('Content-Type', 'application/x-www-form-urlencoded')
+                    .set('Content-Type', 'application/x-www-form-urlencoded')
             }).toPromise();
     }
 
@@ -38,7 +38,7 @@ export class ApiService {
         const params: HttpParams = this.getClientParams(client);
         return this.http.put('/updateClient', params.toString(), {
             headers: new HttpHeaders()
-            .set('Content-Type', 'application/x-www-form-urlencoded')
+                .set('Content-Type', 'application/x-www-form-urlencoded')
         }).toPromise();
     }
 
@@ -74,7 +74,7 @@ export class ApiService {
         return this.http.post('/addCommande', params.toString(),
             {
                 headers: new HttpHeaders()
-                .set('Content-Type', 'application/x-www-form-urlencoded')
+                    .set('Content-Type', 'application/x-www-form-urlencoded')
             }).toPromise();
 
     }
@@ -97,5 +97,10 @@ export class ApiService {
         console.log(res);
         return res;
 
+    }
+
+    uploadFile(formData: FormData, uid: string) {
+        const params = new HttpParams().append('uid', uid);
+        return this.http.post<any>("/uploadPhoto", formData, {params, observe: 'response'}).toPromise();
     }
 }

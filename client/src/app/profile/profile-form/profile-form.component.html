@@ -1,84 +1,104 @@
-<div class="container" *ngIf="tmpClient != undefined">
-    <form [class]="formClass" novalidate (ngSubmit)="onSubmit(myForm)" #myForm="ngForm">
-        <div class="form-row">
-            <div class="form-group col-lg-2">
-                <label class="sr-only" for="firstname">Prénom</label>
-                <input type="text" required [(ngModel)]="tmpClient.prenom" class="form-control form-control-lg col"
-                       id="firstname" name="firstname" placeholder="Prénom"
-                       pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$">
-                <div class="invalid-feedback offset-lg-2">
-                    Entrez un prénom valide. (pattern: Lettres, espaces, virgules, points, apostrophes, tirets,
-                    acceptés)
-                </div>
-            </div>
-            <div class="form-group col-lg-2 ">
-                <label class="sr-only" for="name">Nom</label>
-                <input type="text" required [(ngModel)]="tmpClient.nom" class="form-control form-control-lg col "
-                       id="name" name="name" placeholder="Nom"
-                       pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$">
-                <div class="invalid-feedback offset-lg-2">
-                    Entrez un nom valide. (pattern: Lettres, espaces, virgules, points, apostrophes, tirets, acceptés)
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="email" class="col-form-label col-lg-2">Email: </label>
-            <input type="email" [(ngModel)]="tmpClient.mail" class="form-control col-lg-4" id="email"
-                   name="email" placeholder="Email"
-                   pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required>
-            <div class="invalid-feedback offset-lg-2">
-                Entrez un email valide. (pattern: exemple@ndd.ext)
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="tel" class="col-form-label col-lg-2">Telephone: </label>
-            <input type="tel" required [(ngModel)]="tmpClient.tel" class="form-control col-lg-4" id="tel"
-                   name="tel" placeholder="Téléphone" pattern="^(\+33\s?|0)[1-9]((\s|\.|-)?\d\d){4}$">
-            <div class="invalid-feedback offset-lg-2">
-                Entrez un numéro de téléphone valide. (pattern: 01 02 03 04 05 ou 0102030405 ou 01.02.03.04.05 ou
-                01-02-03-04-05 ou avec +33)
-            </div>
-        </div>
-        <div class="form-row">
-            <label for="street_number" class="col-form-label col-lg-2">Adresse: </label>
-            <div class="col-lg-2">
-                <input type="text" required [(ngModel)]="tmpClient.numeroRue" class="form-control edit"
-                       id="street_number" name="street_number" placeholder="Numéro"
-                       pattern="^\d{0,5}\s?(bis|ter|Bis|Ter)?$">
-                <div class="invalid-feedback offset-lg-2 invalid-addr">
-                    Entrez un numéro de numéro de maison valide. (pattern: entre 0 99999 ( bis ou ter autorisé)
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <label class="sr-only" for="street_name">Nom de rue: </label>
-                <input type="text" required [(ngModel)]="tmpClient.rue" class="form-control edit"
-                       id="street_name" name="street_name" placeholder="Nom de rue">
-            </div>
-            <div class="col-lg-2">
-                <label class="sr-only" for="postal_code">Code postal: </label>
-                <input type="text" required [(ngModel)]="tmpClient.codePostal" class="form-control edit"
-                       id="postal_code" name="postal_code" placeholder="Code postal" pattern="^(([0-8][0-9])|(9[0-5])|(2[ab]))[0-9]{3}$">
-                <div class="invalid-feedback offset-lg-10  ">
+<div class="main-div">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <div class="form-div">
+            <label *ngIf="!firstConn">
+                Photo de profil :
+                <input
+                       type="file"
+                       name="profile"
+                       (change)="onFileSelect($event)"
+                />
+            </label>
+            <mat-form-field>
+                <input
+                        matInput
+                        formControlName="firstName"
+                        placeholder="Prénom"
+                        required
+                >
+                <mat-error *ngIf="formGroup.get('firstName').invalid">
+                    Entrez un prénom valide
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input
+                        matInput
+                        formControlName="lastName"
+                        placeholder="Nom"
+                        required
+                >
+                <mat-error *ngIf="formGroup.get('lastName').invalid">
+                    Entrez un nom valide
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input
+                        matInput
+                        formControlName="mail"
+                        placeholder="Mail"
+                        required
+                >
+                <mat-error *ngIf="formGroup.get('mail').invalid">
+                    Entrez un mail valide
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input
+                        matInput
+                        formControlName="tel"
+                        placeholder="Tel"
+                        required
+                >
+                <mat-error *ngIf="formGroup.get('tel').invalid">
+                    Entrez un numéro de téléphone valide
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input
+                        matInput
+                        formControlName="streetNumber"
+                        placeholder="Numéro de rue"
+                        required
+                >
+                <mat-error *ngIf="formGroup.get('streetNumber').invalid">
+                    Entrez un numéro de numéro de rue valide. (pattern: entre 0 99999 ( bis ou ter autorisé)
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input
+                        matInput
+                        formControlName="streetName"
+                        placeholder="Rue"
+                        required
+                >
+                <mat-error *ngIf="formGroup.get('streetName').invalid">
+                    Entrez un nom de rue valide
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input
+                        matInput
+                        formControlName="postalCode"
+                        placeholder="Code postal"
+                        required
+                >
+                <mat-error *ngIf="formGroup.get('postalCode').invalid">
                     Entrez un code postal valide. (pattern: 5 chiffres)
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <label class="sr-only" for="city">Ville: </label>
-                <input type="text" required [(ngModel)]="tmpClient.ville" class="form-control edit"
-                       id="city" name="city" placeholder="Ville">
-            </div>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input
+                        matInput
+                        formControlName="city"
+                        placeholder="Ville"
+                >
+                <mat-error *ngIf="formGroup.get('city').invalid">
+                    Entrez un nom de ville valide
+                </mat-error>
+            </mat-form-field>
         </div>
-        <button type="submit" class="btn btn-success" [disabled]="myForm.form.pristine">Submit</button>
-        <small *ngIf="goodChange()">
-            Mise à jour avec success
-        </small>
-        <small *ngIf="wrongChange()">
-            Echec de la mise à jour
-        </small>
-        <small *ngIf="noChange()">
-            Pas de changement fait
-        </small>
-    </form>
-    <button class="btn btn-danger" *ngIf="!firstConn" (click)="onCancel()">Cancel change</button>
+        <button mat-button class="btn btn-outline-success" type="submit">Submit</button>
 
+    </form>
+    <button mat-button class="btn btn-outline-success" (click)="onCancel()" *ngIf="!firstConn">Annuler</button>
 </div>

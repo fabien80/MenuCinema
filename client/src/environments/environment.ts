@@ -47,5 +47,6 @@ export const environment = {
     nbItemsPerRow: 5,
     basketStorageKey: 'basket',
     firebaseUserStorageKey: 'firebaseUser',
-    apiClientStorageKey: 'apiUser'
+    apiClientStorageKey: 'apiUser',
+    apiBaseUrl: 'http://localhost:8090/'
 };

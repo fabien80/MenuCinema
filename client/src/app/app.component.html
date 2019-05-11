@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
     <a href="/homepage" class="logo">
-        <img class="logo" src="../assets/images/icon.png" alt="">
+        <img class="logo" [src]="getLogoPath()" alt="">
         <span>MenuCinema</span>
     </a>
     <span class="spacer"></span>
@@ -14,4 +14,18 @@
         <mat-icon>power_settings_new</mat-icon>
     </button>
 </mat-toolbar>
+
+<!--<div>
+    <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">
+        <div>
+            <input type="file" name="profile" (change)="onFileSelect($event)" />
+        </div>
+        <div>
+            <button type="submit">Upload</button>
+        </div>
+    </form>
+</div>-->
+
+
 <router-outlet></router-outlet>
+

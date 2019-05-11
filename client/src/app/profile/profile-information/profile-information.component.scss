@@ -1,8 +1,9 @@
 .picture {
-  position: relative;
   width: 100px;
   height: 100px;
-  border: 1px solid black
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border: 1px solid black;
 }
 .form-group{
   //line-height: 2;
@@ -17,4 +18,8 @@
 }
 .invalid-addr{
   width: max-content;
+}
+
+.main-div {
+  margin-top: 10px;
 }

@@ -46,7 +46,7 @@ public class ClientController extends Controller<Client>
             codePostal = result.getString("code_postal");
             mail = result.getString("mail");
 
-            client = new Client(id, nom, prenom, photo, mail, tel, fidelite, token, numeroRue, rue, ville, codePostal);
+            client = new Client(id, nom, prenom, mail, photo, tel, fidelite, token, numeroRue, rue, ville, codePostal);
         } catch (SQLException e)
         {
             e.printStackTrace();
