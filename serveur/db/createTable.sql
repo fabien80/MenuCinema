@@ -54,7 +54,7 @@ CREATE TABLE produit(
 	produit_id   Varchar (50) NOT NULL ,
 	type_produit Varchar (50) NOT NULL
 	,CONSTRAINT produit_PK PRIMARY KEY (produit_id,type_produit)
-	,CONSTRAINT  type_produit_domain CHECK (type_produit IN ('Plat','Film','Menu'))
+	,CONSTRAINT  type_produit_domain CHECK (type_produit IN ('Nourriture','Film','Menu'))
 )ENGINE=InnoDB;
 
 
