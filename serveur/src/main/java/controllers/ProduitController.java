@@ -283,5 +283,86 @@ public class ProduitController {
         return average;
     }
 
+
+
+    public  boolean updateReview(HttpServletRequest request){
+        int idCommande = Integer.parseInt(request.getParameter("commande_id"));
+        String idProduit = request.getParameter("produit_id");
+        String typeProduit = request.getParameter("type_produit");
+        double note = Double.parseDouble(request.getParameter("note"));
+        String message = request.getParameter("message");
+        try
+        {
+            Connection.conn.createStatement().executeUpdate("UPDATE produitCommande SET  note = " + note + ",  review = " + message + " WHERE produit_id = " + idProduit + " AND type_produit = " + typeProduit + " AND commande_id = " + idCommande );
+            Connection.commit();
+            return true;
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean deleteReview(HttpServletRequest request) {
+        int idCommande = Integer.parseInt(request.getParameter("commande_id"));
+        String idProduit = request.getParameter("produit_id");
+        String typeProduit = request.getParameter("type_produit");
+        try {
+            Connection.conn.createStatement().executeUpdate("DELETE FROM produitCommande WHERE produit_id = " + idProduit + " AND type_produit = " + typeProduit + " AND commande_id = " + idCommande);
+            Connection.commit();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    public List<String> getReview(HttpServletRequest request) {
+        List<String> review;
+        int idCommande = Integer.parseInt(request.getParameter("commande_id"));
+        String idProduit = request.getParameter("produit_id");
+        String typeProduit = request.getParameter("type_produit");
+        String query = getQueryReview(idCommande, idProduit, typeProduit);
+        ResultSet res;
+        res = Controller.getResultSet(query);
+        review = getNoteMessage(res);
+        return review;
+    }
+
+        private List<String> getNoteMessage(ResultSet res) {
+            List<String> review = new ArrayList<>();
+
+            try {
+                    review.add(res.getString("note"));
+                    review.add(res.getString("review"));
+                    res.close();
+            } catch (
+                    SQLException e) {
+                e.printStackTrace();
+
+            }
+            return review;
+        }
+
+        private String getQueryReview(int idCommande , String idProduit, String typeProduit ) {
+            String query;
+            query = "SELECT note, review FROM produitCommande";
+            query += " WHERE type_produit = " + "'" + typeProduit + "'";
+            query += " AND commande_id  = " + idCommande ;
+            query += " AND produit_id  = " + "'" + idProduit + "'" ;
+            return query;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 }
 
