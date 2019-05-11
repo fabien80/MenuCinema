@@ -4,8 +4,8 @@ import {BehaviorSubject} from 'rxjs';
 import {LocalStorageService} from './local-storage.service';
 import {ClientInterface} from '../interface/ClientInterface';
 import {Router} from '@angular/router';
-import {forEach} from "@angular/router/src/utils/collection";
-import {HttpResponse} from "@angular/common/http";
+import {forEach} from '@angular/router/src/utils/collection';
+import {HttpResponse} from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
@@ -99,27 +99,33 @@ export class ClientService {
         };
     }
 
-    async getClientHistory(){
+    async getClientHistory() {
        return await this.apiService.getClientHistory(this._client.getValue().token).then(allCommand => {
-            console.log("OK");
+            console.log('OK');
             console.log(allCommand);
 
             allCommand.forEach(oneCommand => {
-                this.apiService.getProductsIds(oneCommand.idPlats.join(";")+";"+oneCommand.idMenu.join(";")).then(foodDetail => {
+                this.apiService.getProductsIds(oneCommand.idPlats.join(';') + ';' + oneCommand.idMenu.join(';')).then(foodDetail => {
                     oneCommand.nestedFood = foodDetail;
-                    console.log("OsqddK");
+                    console.log('OsqddK');
                     console.log(foodDetail);
 
 
                 }).catch((e) => {
-                    console.log("ERR");
+                    console.log('ERR');
                     console.log(e);
                 });
             });
             return allCommand;
         }).catch((e) => {
-            console.log("ERR");
+            console.log('ERR');
             console.log(e);
         });
+    }
+    uploadFile(value: any) {
+        const formData = new FormData();
+        formData.append('file', value);
+
+        return this.apiService.uploadFile(formData, this.client.value.token);
     }
 }
