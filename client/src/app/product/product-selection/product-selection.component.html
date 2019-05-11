@@ -1,43 +1,48 @@
 <mat-tab-group>
     <mat-tab label="Les menus">
-        <app-product-list *ngIf="menus != undefined"
-                          [type]="MENU"
-                          [products]="menus"
-                          (addEvent)="onAdd($event)"
-                          [eventType]="getAddEventMenu()"
+        <app-product-list
+                *ngIf="menus != undefined"
+                [type]="MENU"
+                [products]="menus"
+                (addEvent)="onAdd($event)"
+                [eventType]="getAddEventMenu()"
         ></app-product-list>
     </mat-tab>
     <mat-tab label="Les entrées">
-        <app-product-list *ngIf="entrees != undefined"
-                          [type]="ENTREE"
-                          [products]="entrees"
-                          (addEvent)="onAdd($event)"
-                          [eventType]="getAddEventFood()"
+        <app-product-list
+                *ngIf="entrees != undefined"
+                [type]="ENTREE"
+                [products]="entrees"
+                (addEvent)="onAdd($event)"
+                [eventType]="getAddEventFood()"
         ></app-product-list>
     </mat-tab>
     <mat-tab label="Les plats">
-        <app-product-list *ngIf="plats != undefined"
-                          [type]="PLAT"
-                          [products]="plats "
-                          (addEvent)="onAdd($event)"
-                          [eventType]="getAddEventFood()"
+        <app-product-list
+                *ngIf="plats != undefined"
+                [type]="PLAT"
+                [products]="plats "
+                (addEvent)="onAdd($event)"
+                [eventType]="getAddEventFood()"
         ></app-product-list>
     </mat-tab>
     <mat-tab label="Les desserts">
-        <app-product-list *ngIf="desserts != undefined"
-                          [type]="DESSERT"
-                          [products]="desserts"
-                          (addEvent)="onAdd($event)"
-                          [eventType]="getAddEventFood()"
+        <app-product-list
+                *ngIf="desserts != undefined"
+                [type]="DESSERT"
+                [products]="desserts"
+                (addEvent)="onAdd($event)"
+                [eventType]="getAddEventFood()"
         ></app-product-list>
 
     </mat-tab>
     <mat-tab label="Les boissons">
-        <app-product-list *ngIf="boissons != undefined"
-                          [type]="BOISSON"
-                          [products]="boissons"
-                          (addEvent)="onAdd($event)"
-                          [eventType]="getAddEventFood()"
+        <app-product-list
+                *ngIf="boissons != undefined"
+                [type]="BOISSON"
+                [products]="boissons"
+                (addEvent)="onAdd($event)"
+                [eventType]="getAddEventFood()"
         ></app-product-list>
     </mat-tab>
 </mat-tab-group>

@@ -7,6 +7,8 @@ import {AddressInterface} from '../interface/AddressInterface';
 import {MenuGroup} from '../product/menu/MenuGroup';
 import {ProductGroup} from '../product/class/productGroup';
 import {Movie} from '../product/movie/Movie';
+import {environment} from "../../environments/environment";
+import {SearchProductQuery} from "../interface/SearchInterface";
 
 @Injectable({
     providedIn: 'root'
@@ -21,13 +23,13 @@ export class ApiService {
         let params: HttpParams = new HttpParams();
         params = params.append('token', token);
         console.log(params);
-        return this.http.get('/client', {params}).toPromise();
+        return this.http.get(environment.proxyBaseUrl + '/client', {params}).toPromise();
     }
 
     public postClient(client: ClientInterface): Promise<any> {
         const params: HttpParams = this.getClientParams(client);
         console.log(params);
-        return this.http.post('/addClient', params.toString(),
+        return this.http.post(environment.proxyBaseUrl + '/addClient', params.toString(),
             {
                 headers: new HttpHeaders()
                     .set('Content-Type', 'application/x-www-form-urlencoded')
@@ -36,7 +38,7 @@ export class ApiService {
 
     public putClient(client: ClientInterface): Promise<any> {
         const params: HttpParams = this.getClientParams(client);
-        return this.http.put('/updateClient', params.toString(), {
+        return this.http.put(environment.proxyBaseUrl + '/updateClient', params.toString(), {
             headers: new HttpHeaders()
                 .set('Content-Type', 'application/x-www-form-urlencoded')
         }).toPromise();
@@ -71,7 +73,7 @@ export class ApiService {
         params = params.set('id_plats', this.productGroupToIds(basket.foodGroups));
         params = params.set('id_menus', this.productGroupToIds(basket.menuGroups));
         params = params.set('id_films', this.moviesToIds(basket.movies));
-        return this.http.post('/addCommande', params.toString(),
+        return this.http.post(environment.proxyBaseUrl + '/addCommande', params.toString(),
             {
                 headers: new HttpHeaders()
                     .set('Content-Type', 'application/x-www-form-urlencoded')
@@ -101,6 +103,18 @@ export class ApiService {
 
     uploadFile(formData: FormData, uid: string) {
         const params = new HttpParams().append('uid', uid);
-        return this.http.post<any>("/uploadPhoto", formData, {params, observe: 'response'}).toPromise();
+        return this.http.post<any>(environment.proxyBaseUrl + "/uploadPhoto", formData, {
+            params,
+            observe: 'response'
+        }).toPromise();
+    }
+
+    searchProduct(query: SearchProductQuery) {
+        let params = new HttpParams();
+        params = query.query != null ? params.append('query', query.query) : params;
+        params = query.type != null ? params.append('type', query.type) : params;
+        const url = environment.proxyBaseUrl + `/search/product`;
+        return this.http.get(url, {params}).toPromise();
+
     }
 }

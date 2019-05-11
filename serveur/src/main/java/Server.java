@@ -31,6 +31,7 @@ public class Server extends HttpServlet {
 	private static final int minThreads = 10;
 	private static final int idleTimeout = 120;
 	private static final String fileUploadPath = "/ressources/photo";
+	private static final String apiDefaultPath = "/api";
 
 	private org.eclipse.jetty.server.Server server;
 
@@ -70,24 +71,25 @@ public class Server extends HttpServlet {
 
 		Connection.init();
 
-		servletHandler.addServletWithMapping(BlockingServlet.class, "/status");
-		servletHandler.addServletWithMapping(ClientAuthentificationServlet.class, "/api/authentification");
-		servletHandler.addServletWithMapping(GetClientsServlet.class, "/clients");
-		servletHandler.addServletWithMapping(GetClientServlet.class, "/client");
-		servletHandler.addServletWithMapping(DeleteClientServlet.class, "/deleteClient");
-		servletHandler.addServletWithMapping(CreateClientServlet.class, "/addClient");
-		servletHandler.addServletWithMapping(EditClientServlet.class, "/updateClient");
-		servletHandler.addServletWithMapping(GetParametersServlet.class, "/parameters");
-		servletHandler.addServletWithMapping(CreateCommandeServlet.class, "/addCommande");
-		servletHandler.addServletWithMapping(GetCommandeServlet.class, "/commande");
-		servletHandler.addServletWithMapping(GetCommandesServlet.class, "/commandes");
-		servletHandler.addServletWithMapping(GetOrderHistoryServlet.class, "/orderHistory");
-		servletHandler.addServletWithMapping(SearchProduitServlet.class, "/search/product");
-		servletHandler.addServletWithMapping(GetProductByOtherProductServlet.class, "/filmsByFood");
-		servletHandler.addServletWithMapping(GetProduitServlet.class, "/produit");
-		servletHandler.addServletWithMapping(GetProduitsByIdsServlet.class, "/produitsIds");
-		servletHandler.addServletWithMapping(PostClientPhoto.class, "/uploadPhoto");
-		servletHandler.addServletWithMapping(GetReviewAverageServlet.class, "/reviewAverage");
+		servletHandler.addServletWithMapping(BlockingServlet.class, apiDefaultPath + "/status");
+		servletHandler
+				.addServletWithMapping(ClientAuthentificationServlet.class, apiDefaultPath + "/api/authentification");
+		servletHandler.addServletWithMapping(GetClientsServlet.class, apiDefaultPath + "/clients");
+		servletHandler.addServletWithMapping(GetClientServlet.class, apiDefaultPath + "/client");
+		servletHandler.addServletWithMapping(DeleteClientServlet.class, apiDefaultPath + "/deleteClient");
+		servletHandler.addServletWithMapping(CreateClientServlet.class, apiDefaultPath + "/addClient");
+		servletHandler.addServletWithMapping(EditClientServlet.class, apiDefaultPath + "/updateClient");
+		servletHandler.addServletWithMapping(GetParametersServlet.class, apiDefaultPath + "/parameters");
+		servletHandler.addServletWithMapping(CreateCommandeServlet.class, apiDefaultPath + "/addCommande");
+		servletHandler.addServletWithMapping(GetCommandeServlet.class, apiDefaultPath + "/commande");
+		servletHandler.addServletWithMapping(GetCommandesServlet.class, apiDefaultPath + "/commandes");
+		servletHandler.addServletWithMapping(GetOrderHistoryServlet.class, apiDefaultPath + "/orderHistory");
+		servletHandler.addServletWithMapping(SearchProduitServlet.class, apiDefaultPath + "/search/product");
+		servletHandler.addServletWithMapping(GetProductByOtherProductServlet.class, apiDefaultPath + "/filmsByFood");
+		servletHandler.addServletWithMapping(GetProduitServlet.class, apiDefaultPath + "/produit");
+		servletHandler.addServletWithMapping(GetProduitsByIdsServlet.class, apiDefaultPath + "/produitsIds");
+		servletHandler.addServletWithMapping(PostClientPhoto.class, apiDefaultPath + "/uploadPhoto");
+		servletHandler.addServletWithMapping(GetReviewAverageServlet.class, apiDefaultPath + "/reviewAverage");
 		server.start();
 		// server.join();
 	}

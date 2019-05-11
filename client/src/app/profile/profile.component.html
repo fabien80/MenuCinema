@@ -1,14 +1,16 @@
 <div *ngIf="client != null">
 
-    <app-profile-information *ngIf="!edit"
-                             [myClient]="client"
-                             (editMode)="goEdit()"
+    <app-profile-information
+            *ngIf="!edit"
+            [myClient]="client"
+            (editMode)="goEdit()"
     ></app-profile-information>
 
-    <app-profile-form *ngIf="edit"
-                      [firstConn]="firstConn"
-                      [tmpClient]="client"
-                      (editDone)="editDone($event)"
+    <app-profile-form
+            *ngIf="edit"
+            [firstConn]="firstConn"
+            [tmpClient]="client"
+            (editDone)="editDone($event)"
     ></app-profile-form>
 
 </div>

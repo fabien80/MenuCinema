@@ -48,5 +48,6 @@ export const environment = {
     basketStorageKey: 'basket',
     firebaseUserStorageKey: 'firebaseUser',
     apiClientStorageKey: 'apiUser',
-    apiBaseUrl: 'http://localhost:8090/'
+    apiBaseUrl: 'http://localhost:8090/',
+    proxyBaseUrl: '/api'
 };
