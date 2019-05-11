@@ -30,5 +30,6 @@ public class GetOrderHistoryServlet extends HttpServlet {
         res.append("]");
         response.setStatus(HttpServletResponse.SC_OK);
         response.getWriter().println(res.toString());
+
     }
 }

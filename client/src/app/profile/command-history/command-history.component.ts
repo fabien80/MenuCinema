@@ -19,8 +19,10 @@ export class CommandHistoryComponent implements OnInit {
     ngOnInit() {
         this.clientService.getClientHistory().then( data => {
             this.data = data;
-
+            console.log("Data !!");
+            console.log(data);
         });
+
     }
 
 }

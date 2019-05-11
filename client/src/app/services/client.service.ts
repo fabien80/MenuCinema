@@ -99,29 +99,33 @@ export class ClientService {
         };
     }
 
-    async getClientHistory() {
-       return await this.apiService.getClientHistory(this._client.getValue().token).then(allCommand => {
-            console.log('OK');
+
+
+    async getClientHistory(){
+        return await this.apiService.getClientHistory(this._client.getValue().token).then(allCommand => {
+            console.log("OK");
             console.log(allCommand);
 
             allCommand.forEach(oneCommand => {
-                this.apiService.getProductsIds(oneCommand.idPlats.join(';') + ';' + oneCommand.idMenu.join(';')).then(foodDetail => {
+                this.apiService.getProductsIds(oneCommand.idPlats.join(";")+";"+oneCommand.idMenu.join(";")).then(foodDetail => {
                     oneCommand.nestedFood = foodDetail;
-                    console.log('OsqddK');
+                    console.log("OsqddK");
                     console.log(foodDetail);
 
 
                 }).catch((e) => {
-                    console.log('ERR');
+                    console.log("ERR");
                     console.log(e);
                 });
             });
             return allCommand;
         }).catch((e) => {
-            console.log('ERR');
+            console.log("ERR");
             console.log(e);
         });
     }
+
+
     uploadFile(value: any) {
         const formData = new FormData();
         formData.append('file', value);
