@@ -4,6 +4,7 @@ import enums.TypeDeProduit;
 import models.Menu;
 import models.Produit;
 import org.xml.sax.SAXException;
+import services.Connection;
 import services.JsonConverter;
 import services.ParsingHandler;
 
@@ -14,10 +15,13 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.CallableStatement;
 import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
+import java.text.Format;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -247,5 +251,37 @@ public class ProduitController {
 
         return query;
     }
+
+    public static double getReviewAverage(HttpServletRequest request) {
+        double average;
+        String idProduit = request.getParameter("produit_id");
+        String typeProduit = request.getParameter("type_produit");
+        average = createReviewAverage(idProduit,typeProduit);
+        return average;
+    }
+
+    public static double createReviewAverage(String idProduit, String typeProduit){
+
+        CallableStatement cstmt = null;
+        System.out.println("IdProduit : " + idProduit + " Type Produit : " + typeProduit);
+        double average = 0;
+        try{
+            int i = 1;
+            cstmt = Connection.conn.prepareCall("{? = call reviewAverage(?,?)}");
+            cstmt.registerOutParameter(i++, Types.DOUBLE);
+            cstmt.setString(i++, idProduit);
+            cstmt.setString(i, typeProduit);
+            cstmt.execute();
+            average = cstmt.getDouble(1);
+            cstmt.close();
+            Connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        System.out.println("ici : " + average);
+        return average;
+    }
+
 }
 
