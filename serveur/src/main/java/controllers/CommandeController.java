@@ -187,7 +187,7 @@ public class CommandeController extends Controller<Commande> {
         Commande commande = requestBodyToClass(request);
         boolean result = super.create(request);
         commande.setCommandeId(getLastCommande());
-        result = insertProducts(commande.getCommandeId(), commande.getIdPlats(), "Plat");
+        result = insertProducts(commande.getCommandeId(), commande.getIdPlats(), "Nourriture");
         result = insertProducts(commande.getCommandeId(), commande.getIdFilms(), "Film");
         result = insertProducts(commande.getCommandeId(), commande.getIdMenu(), "Menu");
         return result;
