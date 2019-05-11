@@ -10,6 +10,7 @@ import {LocalStorageService} from '../../services/local-storage.service';
 import {Router} from '@angular/router';
 import {ClientService} from '../../services/client.service';
 import {AuthService} from '../../auth/auth.service';
+import {environment} from "../../../environments/environment";
 
 
 @Component({
@@ -22,11 +23,10 @@ export class ProfileInformationComponent implements OnInit {
 
     @Input() myClient: ClientInterface;
     @Output() editMode: EventEmitter<void> = new EventEmitter<void>();
-    tmpClient: ClientInterface;
-    edit = false;
-    displayTile = 0;
-    formClass = '';
-    firstConn: boolean;
+    private tmpClient: ClientInterface;
+    private imgSrc;
+    private edit = false;
+    private firstConn: boolean;
 
     constructor(private apiService: ApiService,
                 private dialog: MatDialog,
@@ -37,6 +37,8 @@ export class ProfileInformationComponent implements OnInit {
         this.clientService.client.subscribe((client: ClientInterface) => {
             if (client != null) {
                 this.myClient = client;
+                console.log(client);
+                this.imgSrc = this.getPhotoPath();
             } else {
                 this.myClient = this.clientService.getEmptyClient();
             }
@@ -49,34 +51,18 @@ export class ProfileInformationComponent implements OnInit {
 
     ngOnInit(): void {
         this.tmpClient = {...this.myClient};
-    }
-
-    onSubmit(myForm: NgForm) {
-        if (myForm.form.valid) {
-            this.edit = false;
-            this.tileDisplayer(1);
-            this.myClient = this.tmpClient;
-            myForm.form.markAsPristine();
-            this.myClient.token = this.authService.firebaseUser.uid;
-            if (this.firstConn) {
-                this.clientService.createNewUserInApi(this.myClient);
-            } else {
-                this.clientService.updateUserInApi(this.myClient);
-            }
-        } else {
-            this.formClass = 'was-validated';
-            this.tileDisplayer(2);
-        }
-    }
-
-    tileDisplayer(tileId) {
-        this.displayTile = tileId;
-        setTimeout(a => {
-            this.displayTile = 0;
-        }, 4000);
+        this.imgSrc = this.getPhotoPath();
     }
 
     goEdit() {
         this.editMode.emit();
+    }
+
+    getPhotoPath() {
+        if (this.myClient.photo) {
+            return `${environment.apiBaseUrl}${this.myClient.photo}?${(new Date()).getTime()}`
+        }
+        return `${environment.apiBaseUrl}photo/anonymous.png`
+
     }
 }

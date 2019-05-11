@@ -16,9 +16,12 @@ import {AuthRoutingModule} from './auth/auth-routing.module';
 import {AuthModule} from './auth/auth.module';
 import {ProductModule} from './product/product.module';
 import {HomeModule} from './home/home.module';
-import {MatButtonModule, MatIconModule, MatToolbarModule} from '@angular/material';
+import {MatButtonModule, MatFormFieldModule, MatIconModule, MatToolbarModule} from '@angular/material';
 import {MovieModule} from './product/movie/movie.module';
 import {ProfileModule} from './profile/profile.module';
+import {ReactiveFormsModule} from "@angular/forms";
+import {ProfileFormModule} from "./profile/profile-form/profile-form.module";
+import {MDBBootstrapModule} from "angular-bootstrap-md";
 
 @NgModule({
     declarations: [
@@ -42,7 +45,11 @@ import {ProfileModule} from './profile/profile.module';
         MatIconModule,
         MatToolbarModule,
         MovieModule,
-        ProfileModule
+        ProfileModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        ProfileFormModule,
+        MDBBootstrapModule.forRoot()
     ],
     providers: [TmdbService, AngularFirestore],
     bootstrap: [AppComponent],

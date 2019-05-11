@@ -4,6 +4,7 @@ import {BehaviorSubject} from 'rxjs';
 import {LocalStorageService} from './local-storage.service';
 import {ClientInterface} from '../interface/ClientInterface';
 import {Router} from '@angular/router';
+import {HttpResponse} from "@angular/common/http";
 
 @Injectable({
     providedIn: 'root'
@@ -53,12 +54,12 @@ export class ClientService {
     createNewUserInApi(newClient: ClientInterface) {
         return new Promise((resolve, reject) => {
             this.apiService.postClient(newClient)
-            .then(() => {
-                console.log('ok');
-                this.setClientValue(newClient);
-                this.router.navigate(['/homepage']);
-                return resolve();
-            }).catch((error: Error) => {
+                .then(() => {
+                    console.log('ok');
+                    this.setClientValue(newClient);
+                    this.router.navigate(['/homepage']);
+                    return resolve();
+                }).catch((error: Error) => {
                 console.log(error);
                 return reject(error);
             });
@@ -69,10 +70,10 @@ export class ClientService {
     updateUserInApi(updateClient: ClientInterface) {
         return new Promise((resolve, reject) => {
             this.apiService.putClient(updateClient)
-            .then(() => {
-                this.setClientValue(updateClient);
-                return resolve();
-            }).catch((error: Error) => {
+                .then(() => {
+                    this.setClientValue(updateClient);
+                    return resolve();
+                }).catch((error: Error) => {
                 console.log(error);
                 return reject(error);
             });
@@ -95,5 +96,12 @@ export class ClientService {
             prenom: '',
             nom: ''
         };
+    }
+
+    uploadFile(value: any) {
+        const formData = new FormData();
+        formData.append('file', value);
+
+        return this.apiService.uploadFile(formData, this.client.value.token);
     }
 }
