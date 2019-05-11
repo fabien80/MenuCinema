@@ -7,7 +7,7 @@
         <prod1:product id="1">
             <nour:type>Entree</nour:type>
             <nour:nom>Salade</nour:nom>
-            <nour:description>Petite Salade composé : Tomate et Chevre ou Lardon.</nour:description>
+            <nour:description>Petite Salade composée : Tomate et Chèvre ou Lardon.</nour:description>
             <nour:prix>4</nour:prix>
         </prod1:product>
         <prod1:product id="2">
@@ -19,7 +19,7 @@
         <prod1:product id="3">
             <nour:type>Entree</nour:type>
             <nour:nom>Tenders</nour:nom>
-            <nour:description>Tenders de poulets x3</nour:description>
+            <nour:description>Tenders de poulet x3</nour:description>
             <nour:prix>5</nour:prix>
         </prod1:product>
 
@@ -28,7 +28,7 @@
         <prod1:product id="10">
             <nour:type>Plat</nour:type>
             <nour:nom>Tacos</nour:nom>
-            <nour:description>Tacos poulet, sauce au choix, frites et sauce fromagère.</nour:description>
+            <nour:description>Tacos poulet, frites et sauce fromagère.</nour:description>
             <nour:prix>5</nour:prix>
             <nour:ingredients>Poulet</nour:ingredients>
         </prod1:product>
@@ -44,14 +44,14 @@
         </prod1:product>
         <prod1:product id="12">
             <nour:type>Plat</nour:type>
-            <nour:nom>Lasagne</nour:nom>
-            <nour:description>Lasagne au Cheval</nour:description>
+            <nour:nom>Lasagnes</nour:nom>
+            <nour:description>Lasagnes au Cheval</nour:description>
             <nour:prix>11</nour:prix>
         </prod1:product>
         <prod1:product id="13">
             <nour:type>Plat</nour:type>
             <nour:nom>Gratin de ravioles</nour:nom>
-            <nour:description>Gratins de ravioles saumon</nour:description>
+            <nour:description>Gratin de ravioles saumon</nour:description>
             <nour:prix>11</nour:prix>
             <nour:ingredients>Saumon</nour:ingredients>
         </prod1:product>
@@ -73,8 +73,8 @@
         </prod1:product>
         <prod1:product id="16">
             <nour:type>Plat</nour:type>
-            <nour:nom>Pizza Chevre Miel</nour:nom>
-            <nour:description>Pizza aux fromages de chevre et au miel</nour:description>
+            <nour:nom>Pizza Chèvre Miel</nour:nom>
+            <nour:description>Pizza au fromage de chèvre et au miel</nour:description>
             <nour:prix>11</nour:prix>
             <nour:ingredients>Chevre</nour:ingredients>
             <nour:ingredients>Miel</nour:ingredients>
@@ -82,7 +82,7 @@
         <prod1:product id="17">
             <nour:type>Plat</nour:type>
             <nour:nom>Pizza Terre et Mer</nour:nom>
-            <nour:description>Pizza aux saumons, jambons, ananas et emmental</nour:description>
+            <nour:description>Pizza au saumon, jambon, ananas et emmental</nour:description>
             <nour:prix>11</nour:prix>
             <nour:ingredients>Saumon</nour:ingredients>
             <nour:ingredients>Jambon</nour:ingredients>
@@ -109,8 +109,8 @@
         </prod1:product>
         <prod1:product id="21">
             <nour:type>Dessert</nour:type>
-            <nour:nom>Gauffre</nour:nom>
-            <nour:description>Gauffre au nutella</nour:description>
+            <nour:nom>Gaufre</nour:nom>
+            <nour:description>Gaufre au nutella</nour:description>
             <nour:prix>4</nour:prix>
         </prod1:product>
         <prod1:product id="22">
@@ -136,7 +136,7 @@
         </prod1:product>
         <prod1:product id="31">
             <nour:type>Boisson</nour:type>
-            <nour:nom>Ice The</nour:nom>
+            <nour:nom>Ice Tea</nour:nom>
             <nour:description>Canette de 33cl</nour:description>
             <nour:prix>2</nour:prix>
         </prod1:product>
@@ -168,13 +168,13 @@
                 <foodGroups:product id="3">
                     <nour:type>Entree</nour:type>
                     <nour:nom>Tenders</nour:nom>
-                    <nour:description>Tenders de poulets x3</nour:description>
+                    <nour:description>Tenders de poulet x3</nour:description>
                     <nour:prix>5</nour:prix>
                 </foodGroups:product>
                 <foodGroups:product id="12">
                     <nour:type>Plat</nour:type>
-                    <nour:nom>Lasagne</nour:nom>
-                    <nour:description>Lasagne au Cheval</nour:description>
+                    <nour:nom>Lasagnes</nour:nom>
+                    <nour:description>Lasagnes au Cheval</nour:description>
                     <nour:prix>11</nour:prix>
                 </foodGroups:product>
                 <foodGroups:product id="23">
@@ -201,7 +201,7 @@
                 <foodGroups:product id="1">
                     <nour:type>Entree</nour:type>
                     <nour:nom>Salade</nour:nom>
-                    <nour:description>Petite Salade composé : Tomate et Chevre ou Lardon.</nour:description>
+                    <nour:description>Petite Salade composée : Tomates et Chèvre ou Lardons.</nour:description>
                     <nour:prix>4</nour:prix>
                 </foodGroups:product>
                 <foodGroups:product id="13">
@@ -276,7 +276,7 @@
                 </foodGroups:product>
                 <foodGroups:product id="31">
                     <nour:type>Boisson</nour:type>
-                    <nour:nom>Ice The</nour:nom>
+                    <nour:nom>Ice Tea</nour:nom>
                     <nour:description>Canette de 33cl</nour:description>
                     <nour:prix>2</nour:prix>
                 </foodGroups:product>
@@ -305,7 +305,7 @@
                 </foodGroups:product>
                 <foodGroups:product id="31">
                     <nour:type>Boisson</nour:type>
-                    <nour:nom>Ice The</nour:nom>
+                    <nour:nom>Ice Tea</nour:nom>
                     <nour:description>Canette de 33cl</nour:description>
                     <nour:prix>2</nour:prix>
                 </foodGroups:product>
@@ -318,8 +318,8 @@
             <menu:foodGroups>
                 <foodGroups:product id="12">
                     <nour:type>Plat</nour:type>
-                    <nour:nom>Lasagne</nour:nom>
-                    <nour:description>Lasagne au Cheval</nour:description>
+                    <nour:nom>Lasagnes</nour:nom>
+                    <nour:description>Lasagnes au Cheval</nour:description>
                     <nour:prix>11</nour:prix>
                 </foodGroups:product>
                 <foodGroups:product id="23">
@@ -347,7 +347,7 @@
                 <foodGroups:product id="10">
                     <nour:type>Plat</nour:type>
                     <nour:nom>Tacos</nour:nom>
-                    <nour:description>Tacos poulet, sauce au choix, frites et sauce fromagère.</nour:description>
+                    <nour:description>Tacos poulet, frites et sauce fromagère.</nour:description>
                     <nour:prix>5</nour:prix>
                     <nour:ingredients>Poulet</nour:ingredients>
                 </foodGroups:product>
@@ -376,7 +376,7 @@
                 </foodGroups:product>
                 <foodGroups:product id="30">
                     <nour:type>Boisson</nour:type>
-                    <nour:nom>Ice The</nour:nom>
+                    <nour:nom>Ice Tea</nour:nom>
                     <nour:description>Canette de 33cl</nour:description>
                     <nour:prix>2</nour:prix>
                 </foodGroups:product>
@@ -409,7 +409,7 @@
                 <foodGroups:product id="13">
                     <nour:type>Plat</nour:type>
                     <nour:nom>Gratin de ravioles</nour:nom>
-                    <nour:description>Gratins de ravioles saumon</nour:description>
+                    <nour:description>Gratin de ravioles saumon</nour:description>
                     <nour:prix>11</nour:prix>
                     <nour:ingredients>Saumon</nour:ingredients>
                 </foodGroups:product>

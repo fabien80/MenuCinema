@@ -9,10 +9,7 @@ import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.servlet.ServletHandler;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
-import servlets.Commande.CreateCommandeServlet;
-import servlets.Commande.GetCommandeServlet;
-import servlets.Commande.GetCommandesServlet;
-import servlets.Commande.GetOrderHistoryServlet;
+import servlets.Commande.*;
 import servlets.GetParametersServlet;
 import servlets.Produit.GetProductByOtherProductServlet;
 import servlets.Produit.GetProduitServlet;
@@ -57,6 +54,8 @@ public class PizzaServer extends HttpServlet {
         servletHandler.addServletWithMapping(GetProductByOtherProductServlet.class, "/filmsByFood");
         servletHandler.addServletWithMapping(GetProduitServlet.class, "/produit");
         servletHandler.addServletWithMapping(GetProduitsByIdsServlet.class, "/produitsIds");
+        servletHandler.addServletWithMapping(GetReviewAverageServlet.class, "/reviewAverage");
+
         server.start();
     }
 

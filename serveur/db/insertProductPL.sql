@@ -29,7 +29,7 @@ BEGIN
       AND type_produit = type_product;
     ELSE
       INSERT INTO PRODUITCOMMANDE
-      VALUES (id_product,  type_product ,id_commande,1);
+      VALUES (id_product,  type_product ,id_commande,1,null,null);
     END IF;
 END;
 //
