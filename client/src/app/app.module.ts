@@ -22,6 +22,7 @@ import {ProfileModule} from './profile/profile.module';
 import {ReactiveFormsModule} from "@angular/forms";
 import {ProfileFormModule} from "./profile/profile-form/profile-form.module";
 import {MDBBootstrapModule} from "angular-bootstrap-md";
+import { CommandeComponent } from './commande/commande.component';
 
 @NgModule({
     declarations: [
