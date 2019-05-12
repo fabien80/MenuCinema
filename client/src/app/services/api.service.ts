@@ -9,6 +9,7 @@ import {ProductGroup} from '../product/class/productGroup';
 import {Movie} from '../product/movie/Movie';
 import {environment} from '../../environments/environment';
 import {SearchProductQuery} from '../interface/SearchInterface';
+import {DBProductType} from "../enum/DBProductType";
 
 @Injectable({
     providedIn: 'root'

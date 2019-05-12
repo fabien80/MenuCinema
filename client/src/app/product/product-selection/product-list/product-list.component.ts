@@ -45,7 +45,8 @@ export class ProductListComponent implements OnInit {
     openDialog(product: Product) {
         const dialogRef = this.dialog.open(AddProductToBasketComponent, {
             width: '250',
-            data: product
+            data: product,
+            closeOnNavigation: true
         });
 
         dialogRef.afterClosed().toPromise().then((productGroupInterface: ProductGroupInterface<any>) => {

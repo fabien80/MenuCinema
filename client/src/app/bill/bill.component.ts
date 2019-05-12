@@ -26,7 +26,7 @@ export class BillComponent implements OnInit {
 
     getDate() {
         const date: Date = new Date(Date.now());
-        return `${date.getDay()} / ${date.getMonth() + 1} / ${date.getFullYear()} `;
+        return date.getUTCDate();
     }
 
     public captureScreen() {

@@ -42,4 +42,8 @@ export class AppComponent implements OnInit {
     getLogoPath() {
         return `${environment.apiBaseUrl}photo/icon.png`
     }
+
+    goToHomepage() {
+        this.router.navigate(['/homepage']);
+    }
 }

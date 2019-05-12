@@ -32,9 +32,8 @@ export class BillCommandeInformationComponent implements OnInit {
     }
 
     ngOnInit() {
-
-        this._menus = this.fillMenus(this.order.nestedProduct.menu);
-        this._foods = this.fillFoods(this.order.nestedProduct.product);
+        this._menus = this.fillMenus(this.order.nestedProduct.menus);
+        this._foods = this.fillFoods(this.order.nestedProduct.foods);
 
         this.getAllMovies().then((movies: MovieResponse[]) => {
             movies.forEach(movie => {
@@ -44,6 +43,7 @@ export class BillCommandeInformationComponent implements OnInit {
     }
 
     private fillMenus(searchMenuInterfaces: SearchMenuInterface[]): MenuGroup[] {
+        console.log(searchMenuInterfaces);
         let menus: MenuClass[] = searchMenuInterfaces.reduce((acc: MenuClass[], currentValue: SearchMenuInterface) => {
             acc.push(MenuClass.fromSearchData(currentValue));
             return acc;

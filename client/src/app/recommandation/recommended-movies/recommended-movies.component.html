@@ -7,10 +7,11 @@
               [keyboard]="true"
 >
     <ng-template ngbSlide *ngFor="let movie of movies">
-
-        <img class="poster-img"
-             [src]="tmdbService.getPosterPath(movie)"
-             alt="{{movie.original_title}}"
-             (click)="goToMoviePage(movie)">
+        <img
+                class="poster-img"
+                [src]="tmdbService.getPosterPath(movie)"
+                alt="{{movie.original_title}}"
+                (click)="goToMoviePage(movie)"
+        >
     </ng-template>
 </ngb-carousel>

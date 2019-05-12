@@ -19,16 +19,13 @@ import {MenuGroup} from "../../product/menu/MenuGroup";
 })
 export class CommandHistoryComponent implements OnInit {
 
-
-    private clientService: ClientService;
     private data: CommandeInterface[];
 
-    constructor(clientService: ClientService) {
-        this.clientService = clientService;
+    constructor(private clientService: ClientService) {
     }
 
     ngOnInit() {
-        this.clientService.getClientHistory().then(data => {
+        this.clientService.getClientHistory().then((data) => {
             this.data = data;
             console.log(data);
         });
