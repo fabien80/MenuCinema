@@ -1,4 +1,4 @@
-import {NestedFoodInterface} from './NestedFoodInterface';
+import {NestedProductInterface} from './NestedProductInterface';
 
 export interface CommandeInterface {
     commandeId: number;
@@ -7,7 +7,7 @@ export interface CommandeInterface {
     idFilms: string[];
     idMenu: string[];
     idPlats: string[];
-    nestedFood: NestedFoodInterface;
+    nestedProduct: NestedProductInterface;
     numeroRue: number;
     rue: string;
     ville: string;

@@ -6,6 +6,8 @@ import {ClientInterface} from '../interface/ClientInterface';
 import {Router} from '@angular/router';
 import {forEach} from '@angular/router/src/utils/collection';
 import {HttpResponse} from '@angular/common/http';
+import {CommandeInterface} from '../interface/CommandeInterface';
+import {NestedProductInterface} from '../interface/NestedProductInterface';
 
 @Injectable({
     providedIn: 'root'
@@ -99,29 +101,29 @@ export class ClientService {
         };
     }
 
-    async getClientHistory() {
-       return await this.apiService.getClientHistory(this._client.getValue().token).then(allCommand => {
-            console.log('OK');
+
+
+    async getClientHistory(): Promise<CommandeInterface[]>{
+        return await this.apiService.getClientHistory(this._client.getValue().token).then(allCommand => {
+            console.log("OK");
             console.log(allCommand);
 
-            allCommand.forEach(oneCommand => {
-                this.apiService.getProductsIds(oneCommand.idPlats.join(';') + ';' + oneCommand.idMenu.join(';')).then(foodDetail => {
-                    oneCommand.nestedFood = foodDetail;
-                    console.log('OsqddK');
+            allCommand.forEach((oneCommand: CommandeInterface) => {
+                this.apiService.getProductsIds(oneCommand.idPlats.join(";")+";"+oneCommand.idMenu.join(";")).then((foodDetail: NestedProductInterface) => {
+                     oneCommand.nestedProduct = foodDetail;
                     console.log(foodDetail);
-
-
                 }).catch((e) => {
-                    console.log('ERR');
                     console.log(e);
                 });
             });
+
             return allCommand;
         }).catch((e) => {
-            console.log('ERR');
             console.log(e);
         });
     }
+
+
     uploadFile(value: any) {
         const formData = new FormData();
         formData.append('file', value);

@@ -1,10 +1,59 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-3">Date</div>
-        <div class="col-3">Commande</div>
-        <div class="col-3">Coût total</div>
-    </div>
-    <div class="row my-tab">
-        <app-commande *ngFor="let oneCommand of data" class="one-command" [_order]="oneCommand">  {{ oneCommand }} </app-commande>
-    </div>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Numéro de commande</th>
+        <th scope="col">Date</th>
+        <th scope="col">Commande</th>
+        <th scope="col">Coût total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let oneCommand of data">
+
+        <td>{{oneCommand.commandeId}}</td>
+        <td>{{oneCommand.dateHeure | date:"d/MM/yyyy HH:mm"}}</td>
+        <td>
+            <div>
+                <p>{{oneCommand.idFilms.length}} film</p>
+                <p>{{oneCommand.idMenu.length}} menu(s)</p>
+                <p>{{oneCommand.idPlats.length}} plat(s)</p>
+            </div>
+        </td>
+        <td>{{oneCommand.prix}}€</td>
+        <td>
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Détails de la commande
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-bill-commande-information
+                            *ngIf="oneCommand.nestedProduct != undefined"
+                            [_order]="oneCommand"
+                    ></app-bill-commande-information>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!--
+-<div class="table-responsive text-nowrap">
+    <table class="table-responsive text-nowrap">
+        <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Commande</th>
+            <th scope="col">Coût total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <app-commande *ngFor="let oneCommand of data" class="one-command"
+                      [_order]="oneCommand">  <tr> {{ oneCommand }} </app-commande>
+        </tbody>
+    </table>
 </div>
+-->
+

@@ -72,8 +72,7 @@ public class Server extends HttpServlet {
 		Connection.init();
 
 		servletHandler.addServletWithMapping(BlockingServlet.class, apiDefaultPath + "/status");
-		servletHandler
-				.addServletWithMapping(ClientAuthentificationServlet.class, apiDefaultPath + "/api/authentification");
+		servletHandler.addServletWithMapping(ClientAuthentificationServlet.class, apiDefaultPath + "/authentification");
 		servletHandler.addServletWithMapping(GetClientsServlet.class, apiDefaultPath + "/clients");
 		servletHandler.addServletWithMapping(GetClientServlet.class, apiDefaultPath + "/client");
 		servletHandler.addServletWithMapping(DeleteClientServlet.class, apiDefaultPath + "/deleteClient");

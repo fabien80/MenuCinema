@@ -1,4 +1,16 @@
-<div class="row" (click)="order.isOpen = !order.isOpen">
+<td scope="row" >{{order.commandeId}}</td>
+<td >{{order.dateHeure | date:"d/MM/yyyy HH:mm"}}</td>
+<td>
+    <div (click)="order.isOpen = !order.isOpen">
+        <div>{{order.idFilms.length}} film</div>
+        <div>{{order.idMenu.length}} menu(s)</div>
+        <div>{{order.idPlats.length}} plat(s)</div>
+    </div>
+</td>
+<td>{{order.prix}}€</td>
+
+
+<!-- <div class="row" (click)="order.isOpen = !order.isOpen">
     <div class="col-3 cell">{{order.dateHeure | date:"d/MM/yyyy HH:mm"}}</div>
     <div class="col-3 cell">
         <div>{{order.idFilms.length}} film</div>
@@ -7,12 +19,15 @@
     </div>
     <div class="col-3 cell">{{order.prix}}€</div>
 </div>
+
+
+
 <div class="row all-detail" *ngIf="order.isOpen">
     <strong> Film(s) </strong>
     <div class="one-detail" *ngFor="let movie of movies">  Titre : {{movie.title}} </div>
     <strong> Plat(s) et Menu(s) </strong>
     <div class="one-detail">
-        <ng-container *ngFor="let oneMenu of order.nestedFood.menu">
+        <ng-container *ngFor="let oneMenu of order.nestedProduct.menu">
             <div class="col-6 cell">
                 Nom du menu : {{oneMenu.nom}}
             </div>
@@ -21,7 +36,7 @@
             </div>
         </ng-container>
     </div>
-    <div class="one-detail" *ngFor="let oneProduct of order.nestedFood.product">
+    <div class="one-detail" *ngFor="let oneProduct of order.nestedProduct.product">
         <div class="col-6 cell">
             Nom : {{oneProduct.nom}}
         </div>
@@ -30,3 +45,4 @@
         </div>
     </div>
 </div>
+-->

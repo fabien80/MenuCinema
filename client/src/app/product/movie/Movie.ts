@@ -1,5 +1,6 @@
 import {Product} from '../class/Product';
 import {MovieResult, SearchMovieResponse} from '../../tmdb-data/searchMovie';
+import {MovieResponse} from "../../tmdb-data/Movie";
 
 export class Movie extends Product implements MovieResult {
     public adult: boolean;
@@ -15,7 +16,6 @@ export class Movie extends Product implements MovieResult {
     public video: boolean;
     public vote_average: number;
     public vote_count: number;
-
 
     public static fromData(movieResult: MovieResult) {
         const {adult, backdrop_path, genre_ids, id, original_language, original_title, overview, popularity, poster_path, release_date, title, video, vote_average, vote_count} = movieResult;

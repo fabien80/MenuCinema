@@ -1,3 +1,5 @@
+import {ProductType} from "../enum/ProductType";
+
 export interface ProductGroupInterface<T> {
     product: T;
     amount: number;
