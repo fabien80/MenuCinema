@@ -6,6 +6,7 @@ import {BasketService} from '../../basket/basket.service';
 import {Movie} from './Movie';
 import {RecommandationService} from "../../recommandation/recommandation.service";
 import {ProductType} from "../../enum/ProductType";
+import {Product} from "../class/Product";
 
 @Component({
     selector: 'app-movie',
@@ -16,6 +17,7 @@ export class MovieComponent implements OnInit {
     movie: MovieResponse;
     idMovie: number;
     castNCrew: CreditsResponse;
+    movieClass: Movie;
 
     constructor(private tmdbService: TmdbService,
                 private route: ActivatedRoute,
@@ -43,6 +45,7 @@ export class MovieComponent implements OnInit {
             this.idMovie = +params.get('id');
             this.tmdbService.getMovie(this.idMovie).then((data) => {
                 this.movie = data;
+                this.movieClass = Movie.fromData(data);
             });
             this.tmdbService.getMovieCastAndCrew(this.idMovie).then((data) => {
                 this.castNCrew = data;

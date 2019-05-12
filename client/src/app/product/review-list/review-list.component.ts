@@ -13,6 +13,7 @@ import {UserReviewInterface} from "../../interface/UserReviewInterface";
 export class ReviewListComponent implements OnInit {
     @Input() private product: Product;
     private userReviews: UserReviewInterface[];
+    private averageRating: number;
 
     constructor(private apiService: ApiService,
                 private productService: ProductService) {
@@ -20,6 +21,7 @@ export class ReviewListComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log(this.product);
         const review: ReviewInterface = {
             produitId: this.product.id.toString(),
             typeProduit: this.productService.productTypeToDBProduct(this.product.type)
@@ -29,9 +31,16 @@ export class ReviewListComponent implements OnInit {
             console.log(value);
         });
 
+        this.apiService.getAverageRating(review)
+            .then((value: number) => {
+                this.averageRating = value;
+            })
+            .catch(reason => {
+                console.log(reason);
+            })
+
 
     }
-
 
 
 }

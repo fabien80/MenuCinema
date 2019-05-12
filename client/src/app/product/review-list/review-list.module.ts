@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 
 import {ReviewListRoutingModule} from './review-list-routing.module';
 import {ReviewListComponent} from "./review-list.component";
-import {MatExpansionModule} from "@angular/material";
+import {MatDividerModule, MatExpansionModule} from "@angular/material";
 import {ReviewModule} from "./review/review.module";
 import {StarRatingModule} from "angular-star-rating";
 
@@ -14,7 +14,8 @@ import {StarRatingModule} from "angular-star-rating";
         ReviewListRoutingModule,
         MatExpansionModule,
         ReviewModule,
-        StarRatingModule
+        StarRatingModule,
+        MatDividerModule
     ], exports: [ReviewListComponent]
 })
 export class ReviewListModule {

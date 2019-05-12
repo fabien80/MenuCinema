@@ -44,13 +44,9 @@
                             [readOnly]="true"
                             [rating]="movie.vote_average / 2">
                     </star-rating>
-                    <star-rating
-                            class="info "
-                            [starType]="'svg'"
-                            [labelText]="'Score MenuCinema'"
-                            [readOnly]="true"
-                            [rating]="0">
-                    </star-rating>
+                    <div *ngIf="movieClass != null">
+                        <app-review-list [product]="movieClass"></app-review-list>
+                    </div>
                     <button class="add-button" (click)="addToCart()" mat-button>
                         <mat-icon>shopping_cart</mat-icon>
                         Ajouter au panier
@@ -82,4 +78,5 @@
 <div *ngIf="movie === undefined">
     <h1>404 - Movie not found</h1>
 </div>
-<app-recommandation class="recommandation-div" *ngIf="movie.id !== undefined" [productId]="movie.id" [givenType]="getGivenType()" [searchType]="getSearchType()"></app-recommandation>
+<app-recommandation class="recommandation-div" *ngIf="movie.id !== undefined" [productId]="movie.id"
+                    [givenType]="getGivenType()" [searchType]="getSearchType()"></app-recommandation>

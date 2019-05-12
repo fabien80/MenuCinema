@@ -271,22 +271,22 @@ public class ProduitController {
 		return query;
 	}
 
-	public static double getReviewAverage (HttpServletRequest request) {
+	public static double getAverageRating (HttpServletRequest request) {
 		double average;
 		String idProduit = request.getParameter("produit_id");
 		String typeProduit = request.getParameter("type_produit");
-		average = createReviewAverage(idProduit, typeProduit);
+		average = averageRating(idProduit, typeProduit);
 		return average;
 	}
 
-	public static double createReviewAverage (String idProduit, String typeProduit) {
+	public static double averageRating (String idProduit, String typeProduit) {
 
 		CallableStatement cstmt = null;
 		System.out.println("IdProduit : " + idProduit + " Type Produit : " + typeProduit);
 		double average = 0;
 		try {
 			int i = 1;
-			cstmt = Connection.conn.prepareCall("{? = call reviewAverage(?,?)}");
+			cstmt = Connection.conn.prepareCall("{? = call averageRating(?,?)}");
 			cstmt.registerOutParameter(i++, Types.DOUBLE);
 			cstmt.setString(i++, idProduit);
 			cstmt.setString(i, typeProduit);
@@ -417,11 +417,24 @@ public class ProduitController {
 		try {
 			while (res.next()) {
 				System.out.println("ici");
-				userReviewDTOS.add(getUserReviewDTO(res));
+				UserReviewDTO userReviewDTO = getUserReviewDTO(res);
+				boolean added = false;
+				for (UserReviewDTO userReview : userReviewDTOS) {
+					if (userReview.getClient().getClientId() == userReviewDTO.getClient().getClientId()) {
+						userReview.getReviews().add(userReviewDTO.getReviews().get(0));
+						added = true;
+					}
+				}
+
+				if (!added) {
+					userReviewDTOS.add(userReviewDTO);
+				}
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
 		return userReviewDTOS;
 	}
 

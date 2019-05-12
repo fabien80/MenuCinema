@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class GetReviewAverageServlet extends HttpServlet {
+public class GetAverageRatingServlet extends HttpServlet {
 	private static final long servialVersionUID = 1L;
 
 	@Override
@@ -18,7 +18,7 @@ public class GetReviewAverageServlet extends HttpServlet {
 	                                                                                       IOException {
 		CommandeController controller = new CommandeController();
 		response.setContentType("application/json");
-		Double res = ProduitController.getReviewAverage(request);
+		Double res = ProduitController.getAverageRating(request);
 		response.setStatus(HttpServletResponse.SC_OK);
 		response.getWriter().println(JsonConverter.convertObjectToJson(res));
 	}

@@ -175,8 +175,14 @@ export class ApiService {
         params = params.append('type_produit', review.typeProduit);
 
         return this.http.get(environment.proxyBaseUrl + '/reviewsOfProduct', {params}).toPromise();
+    }
 
+    getAverageRating(review: ReviewInterface) {
+        let params = new HttpParams();
+        params = params.append('produit_id', review.produitId);
+        params = params.append('type_produit', review.typeProduit);
 
+        return this.http.get(environment.proxyBaseUrl + '/averageRating', {params}).toPromise();
     }
 }
 
