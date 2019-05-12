@@ -2,8 +2,10 @@ package controllers;
 
 import dto.NourrituresMenusDTO;
 import dto.ReviewDTO;
+import dto.UserReviewDTO;
 import enums.DBProductType;
 import enums.TypeDeProduit;
+import models.Client;
 import models.Menu;
 import models.Nourriture;
 import models.Produit;
@@ -20,12 +22,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.CallableStatement;
-import java.lang.reflect.Array;
-import java.lang.reflect.Type;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.text.Format;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -189,7 +188,7 @@ public class ProduitController {
 			}
 		});
 
-		return new NourrituresMenusDTO(menusWanted,nourrituresWanted);
+		return new NourrituresMenusDTO(menusWanted, nourrituresWanted);
 	}
 
 	private Produit getProductById (List<Produit> produits, String id) {
@@ -305,31 +304,35 @@ public class ProduitController {
 
 
 	public ReviewDTO getReview (HttpServletRequest request) {
-		ReviewDTO reviewDTO;
-		ResultSet res;
-		int idCommande = Integer.parseInt(request.getParameter("commande_id"));
-		String idProduit = request.getParameter("produit_id");
-		String typeProduit = request.getParameter("type_produit");
-		String query = getQueryReview(idCommande, idProduit, typeProduit);
-		res = Controller.getResultSet(query);
-		reviewDTO = getNoteMessage(res);
+		ReviewDTO reviewDTO = null;
+
+
+		try {
+			ResultSet res;
+			int idCommande = Integer.parseInt(request.getParameter("commande_id"));
+			String idProduit = request.getParameter("produit_id");
+			String typeProduit = request.getParameter("type_produit");
+			String query = getQueryReview(idCommande, idProduit, typeProduit);
+			res = Controller.getResultSet(query);
+			res.first();
+			reviewDTO = getReviewDTO(res);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return reviewDTO;
 	}
 
-	private ReviewDTO getNoteMessage (ResultSet res) {
+	private ReviewDTO getReviewDTO (ResultSet res) {
 		ReviewDTO reviewDTO = null;
 		Double note;
 		String review;
 
 		try {
-			if (res.first()) {
-				note = res.getDouble("note");
-				review = res.getString("review");
-				reviewDTO = new ReviewDTO(note, review);
-			}
+			note = res.getDouble("note");
+			review = res.getString("review");
+			reviewDTO = new ReviewDTO(note, review);
 			System.out.println(reviewDTO);
 
-			res.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 
@@ -342,6 +345,15 @@ public class ProduitController {
 		query = "SELECT note, review FROM produitCommande";
 		query += " WHERE type_produit = " + "'" + typeProduit + "'";
 		query += " AND commande_id  = " + idCommande;
+		query += " AND produit_id  = " + "'" + idProduit + "'";
+		System.out.println(query);
+		return query;
+	}
+
+	private String getQueryReview (String idProduit, String typeProduit) {
+		String query;
+		query = "SELECT note, review FROM produitCommande";
+		query += " WHERE type_produit = " + "'" + typeProduit + "'";
 		query += " AND produit_id  = " + "'" + idProduit + "'";
 		System.out.println(query);
 		return query;
@@ -387,6 +399,57 @@ public class ProduitController {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	public List<UserReviewDTO> getAllReviewOfProduct (HttpServletRequest request) {
+		List<UserReviewDTO> userReviewDTOS;
+		ResultSet res;
+		String idProduit = request.getParameter("produit_id");
+		String typeProduit = request.getParameter("type_produit");
+		String query = getUserReviewQuery(idProduit, typeProduit);
+		res = Controller.getResultSet(query);
+		userReviewDTOS = getUserReviewDTOArray(res);
+		return userReviewDTOS;
+	}
+
+	private List<UserReviewDTO> getUserReviewDTOArray (ResultSet res) {
+		List<UserReviewDTO> userReviewDTOS = new ArrayList<>();
+		try {
+			while (res.next()) {
+				System.out.println("ici");
+				userReviewDTOS.add(getUserReviewDTO(res));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return userReviewDTOS;
+	}
+
+	private UserReviewDTO getUserReviewDTO (ResultSet res) {
+		UserReviewDTO userReviewDTO;
+		Client client = new ClientController().serialize(res);
+		List<ReviewDTO> reviewDTOS = getReviewDTOArray(res);
+		userReviewDTO = new UserReviewDTO(client, reviewDTOS);
+		return userReviewDTO;
+	}
+
+
+	private String getUserReviewQuery (String idProduit, String typeProduit) {
+		String query;
+		query = "SELECT * FROM produitCommande";
+		query += " NATURAL JOIN commande ";
+		query += " NATURAL JOIN client ";
+		query += " WHERE type_produit = " + "'" + typeProduit + "'";
+		query += " AND produit_id  = " + "'" + idProduit + "'";
+		System.out.println(query);
+		return query;
+	}
+
+	private List<ReviewDTO> getReviewDTOArray (ResultSet res) {
+		List<ReviewDTO> reviewDTOS = new ArrayList<>();
+		reviewDTOS.add(getReviewDTO(res));
+		return reviewDTOS;
+
 	}
 }
 

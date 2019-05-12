@@ -88,6 +88,7 @@ public class Server extends HttpServlet {
 		servletHandler.addServletWithMapping(GetReviewAverageServlet.class, apiDefaultPath + "/reviewAverage");
 		servletHandler.addServletWithMapping(AddReviewServlet.class, apiDefaultPath + "/addReview");
 		servletHandler.addServletWithMapping(GetReviewServlet.class, apiDefaultPath + "/review");
+		servletHandler.addServletWithMapping(GetAllReviewOfProduct.class, apiDefaultPath + "/reviewsOfProduct");
 		server.start();
 		// server.join();
 	}
