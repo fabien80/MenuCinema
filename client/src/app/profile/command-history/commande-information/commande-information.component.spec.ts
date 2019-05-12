@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CommandeComponent } from './commande.component';
+import { CommandeInformationComponent } from './commande-information.component';
 
-describe('CommandeComponent', () => {
-  let component: CommandeComponent;
-  let fixture: ComponentFixture<CommandeComponent>;
+describe('CommandeInformationComponent', () => {
+  let component: CommandeInformationComponent;
+  let fixture: ComponentFixture<CommandeInformationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CommandeComponent ]
+      declarations: [ CommandeInformationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CommandeComponent);
+    fixture = TestBed.createComponent(CommandeInformationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,11 @@
+<star-rating [disabled]="false" (ratingChange)="ratingChage($event)"></star-rating>
+
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <label>
+            <input formControlName="review" matInput type="text">
+        </label>
+    </mat-form-field>
+    <button mat-button type="submit" >valider</button>
+
+</form>

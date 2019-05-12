@@ -6,6 +6,7 @@ import {SearchProductQuery} from '../interface/SearchInterface';
 import {MenuInterface} from '../interface/MenuInterface';
 import {ProductInterface} from '../interface/ProductInterface';
 import {ApiService} from "../services/api.service";
+import {DBProductType} from "../enum/DBProductType";
 
 const api = '/api';
 
@@ -125,6 +126,18 @@ export class ProductService {
             resolve({results});
         });
 
+    }
+
+    productTypeToDBProduct(type: ProductType) {
+
+        switch (type) {
+            case ProductType.Menu:
+                return DBProductType.Menu;
+            case ProductType.Movie:
+                return DBProductType.Film;
+            default:
+                return DBProductType.Nourriture;
+        }
     }
 
 }

@@ -1,26 +1,37 @@
-<div>
-    <div *ngIf="isMenu()">
-        <app-menu [menu]="menuService.productToMenu(data)"></app-menu>
-        <mat-divider></mat-divider>
-        <div *ngFor="let foodGroup of menuService.productToMenu(data).foodGroups">
-            <app-food [food]=" foodService.productToFood(foodGroup.product)"></app-food>
+<mat-dialog-content>
+    <div>
+        <div *ngIf="isMenu()">
+            <app-menu [menu]="menuService.productToMenu(data)"></app-menu>
+            <div>
+                <app-review-list [product]="data"></app-review-list>
+            </div>
+            <mat-divider></mat-divider>
+            <div *ngFor="let foodGroup of menuService.productToMenu(data).foodGroups">
+                <app-food [food]=" foodService.productToFood(foodGroup.product)"></app-food>
+            </div>
         </div>
+        <ng-container *ngIf="!isMenu()">
+            <app-food  [food]="foodService.productToFood(data)"></app-food>
+            <div>
+                <app-review-list [product]="data"></app-review-list>
+            </div>
+        </ng-container>
+        <div class="amount-div">
+            <app-amount-buttons [(amount)]="amount" (amountChange)="calculatePrice()"></app-amount-buttons>
+        </div>
+        Total : {{price}} €
     </div>
-    <app-food *ngIf="!isMenu()" [food]="foodService.productToFood(data)"></app-food>
-    <div class="amount-div">
-        <app-amount-buttons [(amount)]="amount" (amountChange)="calculatePrice()"></app-amount-buttons>
+    <div>
+        <app-recommandation [searchType]="getSearchType()" [givenType]="getGivenType()"
+                            [productId]="data.id"></app-recommandation>
     </div>
-    Total : {{price}} €
-</div>
-<div>
-    <app-recommandation [searchType]="getSearchType()" [givenType]="getGivenType()" [productId]="data.id" ></app-recommandation>
-</div>
-<div>
-    <button mat-button class="btn btn-danger" (click)="close()">
-        Annuler
-    </button>
-    <button mat-button class="btn btn-success" (click)="onValid()">
-        Valider
-    </button>
-</div>
+    <div>
+        <button mat-button class="btn btn-danger" (click)="close()">
+            Annuler
+        </button>
+        <button mat-button class="btn btn-success" (click)="onValid()">
+            Valider
+        </button>
+    </div>
 
+</mat-dialog-content>

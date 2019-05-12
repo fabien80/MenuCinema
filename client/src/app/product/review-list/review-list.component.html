@@ -1,0 +1,36 @@
+<div *ngIf="averageRating != undefined && averageRating != -1" class="">
+    <star-rating
+            labelText="Note moyenne"
+            [showHalfStars]="true"
+            [rating]="averageRating"
+            [readOnly]="true"
+            class="star-rating"
+    ></star-rating>
+</div>
+<mat-accordion *ngIf="userReviews != undefined && userReviews.length !== 0">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Reviews
+            </mat-panel-title>
+            <mat-panel-description>
+                Les reviews des clients
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <ng-container *ngFor="let userReview of userReviews">
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{userReview.client.nom }} {{userReview.client.prenom}}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <ng-container *ngFor="let review of userReview.reviews">
+                        <app-review [review]="review"></app-review>
+                    </ng-container>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </ng-container>
+    </mat-expansion-panel>
+</mat-accordion>

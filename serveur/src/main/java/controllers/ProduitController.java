@@ -1,9 +1,12 @@
 package controllers;
 
 import dto.NourrituresMenusDTO;
+import dto.ReviewDTO;
+import dto.UserReviewDTO;
 import enums.DBProductType;
 import dto.ReviewDTO;
 import enums.TypeDeProduit;
+import models.Client;
 import models.Menu;
 import models.Nourriture;
 import models.Produit;
@@ -20,12 +23,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.CallableStatement;
-import java.lang.reflect.Array;
-import java.lang.reflect.Type;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.text.Format;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -189,7 +189,7 @@ public class ProduitController {
 			}
 		});
 
-		return new NourrituresMenusDTO(menusWanted,nourrituresWanted);
+		return new NourrituresMenusDTO(menusWanted, nourrituresWanted);
 	}
 
 	private Produit getProductById (List<Produit> produits, String id) {
@@ -272,22 +272,22 @@ public class ProduitController {
 		return query;
 	}
 
-	public static double getReviewAverage (HttpServletRequest request) {
+	public static double getAverageRating (HttpServletRequest request) {
 		double average;
 		String idProduit = request.getParameter("produit_id");
 		String typeProduit = request.getParameter("type_produit");
-		average = createReviewAverage(idProduit, typeProduit);
+		average = averageRating(idProduit, typeProduit);
 		return average;
 	}
 
-	public static double createReviewAverage (String idProduit, String typeProduit) {
+	public static double averageRating (String idProduit, String typeProduit) {
 
 		CallableStatement cstmt = null;
 		System.out.println("IdProduit : " + idProduit + " Type Produit : " + typeProduit);
 		double average = 0;
 		try {
 			int i = 1;
-			cstmt = Connection.conn.prepareCall("{? = call reviewAverage(?,?)}");
+			cstmt = Connection.conn.prepareCall("{? = call averageRating(?,?)}");
 			cstmt.registerOutParameter(i++, Types.DOUBLE);
 			cstmt.setString(i++, idProduit);
 			cstmt.setString(i, typeProduit);
@@ -301,6 +301,63 @@ public class ProduitController {
 		}
 		System.out.println("ici : " + average);
 		return average;
+	}
+
+
+	public ReviewDTO getReview (HttpServletRequest request) {
+		ReviewDTO reviewDTO = null;
+
+
+		try {
+			ResultSet res;
+			int idCommande = Integer.parseInt(request.getParameter("commande_id"));
+			String idProduit = request.getParameter("produit_id");
+			String typeProduit = request.getParameter("type_produit");
+			String query = getQueryReview(idCommande, idProduit, typeProduit);
+			res = Controller.getResultSet(query);
+			res.first();
+			reviewDTO = getReviewDTO(res);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reviewDTO;
+	}
+
+	private ReviewDTO getReviewDTO (ResultSet res) {
+		ReviewDTO reviewDTO = null;
+		Double note;
+		String review;
+
+		try {
+			note = res.getDouble("note");
+			review = res.getString("review");
+			reviewDTO = new ReviewDTO(note, review);
+			System.out.println(reviewDTO);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		}
+		return reviewDTO;
+	}
+
+	private String getQueryReview (int idCommande, String idProduit, String typeProduit) {
+		String query;
+		query = "SELECT note, review FROM produitCommande";
+		query += " WHERE type_produit = " + "'" + typeProduit + "'";
+		query += " AND commande_id  = " + idCommande;
+		query += " AND produit_id  = " + "'" + idProduit + "'";
+		System.out.println(query);
+		return query;
+	}
+
+	private String getQueryReview (String idProduit, String typeProduit) {
+		String query;
+		query = "SELECT note, review FROM produitCommande";
+		query += " WHERE type_produit = " + "'" + typeProduit + "'";
+		query += " AND produit_id  = " + "'" + idProduit + "'";
+		System.out.println(query);
+		return query;
 	}
 
 
@@ -345,48 +402,69 @@ public class ProduitController {
 		}
 	}
 
-
-	public ReviewDTO getReview (HttpServletRequest request) {
-		ReviewDTO reviewDTO;
+	public List<UserReviewDTO> getAllReviewOfProduct (HttpServletRequest request) {
+		List<UserReviewDTO> userReviewDTOS;
 		ResultSet res;
-		int idCommande = Integer.parseInt(request.getParameter("commande_id"));
 		String idProduit = request.getParameter("produit_id");
 		String typeProduit = request.getParameter("type_produit");
-		String query = getQueryReview(idCommande, idProduit, typeProduit);
+		String query = getUserReviewQuery(idProduit, typeProduit);
 		res = Controller.getResultSet(query);
-		reviewDTO = getNoteMessage(res);
-		return reviewDTO;
+		userReviewDTOS = getUserReviewDTOArray(res);
+		return userReviewDTOS;
 	}
 
-	private ReviewDTO getNoteMessage (ResultSet res) {
-		ReviewDTO reviewDTO = null;
-		Double note;
-		String review;
-
+	private List<UserReviewDTO> getUserReviewDTOArray (ResultSet res) {
+		List<UserReviewDTO> userReviewDTOS = new ArrayList<>();
 		try {
-			if (res.first()) {
-				note = res.getDouble("note");
-				review = res.getString("review");
-				reviewDTO = new ReviewDTO(note, review);
-			}
-			System.out.println(reviewDTO);
+			while (res.next()) {
+				System.out.println("ici");
+				UserReviewDTO userReviewDTO = getUserReviewDTO(res);
+				boolean added = false;
+				for (UserReviewDTO userReview : userReviewDTOS) {
+					if (userReview.getClient().getClientId() == userReviewDTO.getClient().getClientId()) {
+						userReview.getReviews().add(userReviewDTO.getReviews().get(0));
+						added = true;
+					}
+				}
 
-			res.close();
+				if (!added) {
+					userReviewDTOS.add(userReviewDTO);
+				}
+
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-
 		}
-		return reviewDTO;
+
+		return userReviewDTOS;
 	}
 
-	private String getQueryReview (int idCommande, String idProduit, String typeProduit) {
+	private UserReviewDTO getUserReviewDTO (ResultSet res) {
+		UserReviewDTO userReviewDTO;
+		Client client = new ClientController().serialize(res);
+		List<ReviewDTO> reviewDTOS = getReviewDTOArray(res);
+		userReviewDTO = new UserReviewDTO(client, reviewDTOS);
+		return userReviewDTO;
+	}
+
+
+	private String getUserReviewQuery (String idProduit, String typeProduit) {
 		String query;
-		query = "SELECT note, review FROM produitCommande";
+		query = "SELECT * FROM produitCommande";
+		query += " NATURAL JOIN commande ";
+		query += " NATURAL JOIN client ";
 		query += " WHERE type_produit = " + "'" + typeProduit + "'";
-		query += " AND commande_id  = " + idCommande;
 		query += " AND produit_id  = " + "'" + idProduit + "'";
+		query += " AND note is NOT NULL ";
 		System.out.println(query);
 		return query;
+	}
+
+	private List<ReviewDTO> getReviewDTOArray (ResultSet res) {
+		List<ReviewDTO> reviewDTOS = new ArrayList<>();
+		reviewDTOS.add(getReviewDTO(res));
+		return reviewDTOS;
+
 	}
 }
 

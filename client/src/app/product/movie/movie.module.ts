@@ -9,6 +9,7 @@ import {CrewTableModule} from './crew-table/crew-table.module';
 import {BasketModule} from '../../basket/basket.module';
 import {MovieRoutingModule} from './movie-routing.module';
 import {RecommandationModule} from "../../recommandation/recommandation.module";
+import {ReviewListModule} from "../review-list/review-list.module";
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import {RecommandationModule} from "../../recommandation/recommandation.module";
         CrewTableModule,
         BasketModule,
         MovieRoutingModule,
-        RecommandationModule
+        RecommandationModule,
+        ReviewListModule
     ], exports: [
         MovieComponent
     ]

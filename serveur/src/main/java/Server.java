@@ -2,9 +2,7 @@ import javax.servlet.MultipartConfigElement;
 import javax.servlet.http.HttpServlet;
 
 import handlers.MultipartConfigInjectionHandler;
-import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.handler.HandlerCollection;
-import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import services.Connection;
@@ -17,10 +15,7 @@ import org.eclipse.jetty.servlet.ServletHandler;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
 import servlets.Commande.*;
 import servlets.GetParametersServlet;
-import servlets.Produit.GetProductByOtherProductServlet;
-import servlets.Produit.GetProduitServlet;
-import servlets.Produit.GetProduitsByIdsServlet;
-import servlets.Produit.SearchProduitServlet;
+import servlets.Produit.*;
 
 import java.io.File;
 
@@ -88,7 +83,10 @@ public class Server extends HttpServlet {
 		servletHandler.addServletWithMapping(GetProduitServlet.class, apiDefaultPath + "/produit");
 		servletHandler.addServletWithMapping(GetProduitsByIdsServlet.class, apiDefaultPath + "/produitsIds");
 		servletHandler.addServletWithMapping(PostClientPhoto.class, apiDefaultPath + "/uploadPhoto");
-		servletHandler.addServletWithMapping(GetReviewAverageServlet.class, apiDefaultPath + "/reviewAverage");
+		servletHandler.addServletWithMapping(GetAverageRatingServlet.class, apiDefaultPath + "/averageRating");
+		servletHandler.addServletWithMapping(AddReviewServlet.class, apiDefaultPath + "/addReview");
+		servletHandler.addServletWithMapping(GetReviewServlet.class, apiDefaultPath + "/review");
+		servletHandler.addServletWithMapping(GetAllReviewOfProduct.class, apiDefaultPath + "/reviewsOfProduct");
 		server.start();
 		// server.join();
 	}

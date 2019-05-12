@@ -11,6 +11,7 @@ import {MenuModule} from './menu/menu.module';
 import {FoodModule} from './food/food.module';
 import {MovieModule} from './movie/movie.module';
 import {DialogsModule} from '../dialogs/dialogs.module';
+import { ReviewListComponent } from './review-list/review-list.component';
 
 @NgModule({
     declarations: [
