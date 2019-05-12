@@ -11,17 +11,20 @@
 ### Base de données
 Le projet nécessite une base de données mySql nommée `projetfinal`.
 Pour configurer la base de données, il faut:
-- Éxécuter le fichier `createTable.sql` pour créer les tables,
-- Éxécuter le fichier `dropTables.sql` pour s’assurer qu’elles soient bien vides,
-- Éxécuter le fichier `populate.sql` pour remplir les tables.
+- Exécuter le fichier `createTable.sql` pour créer les tables,
+- Exécuter le fichier `dropTables.sql` pour s’assurer qu’elles soient bien vides,
+- Exécuter le fichier `populate.sql` pour remplir les tables.
+Pour se connecter à la base de données il faut mettre ses identifiants et mot de pass dans le fichier `/serveur/.properties` sous la forme :
 
-
+> user={nom d'utilisateur}  
+password={mot de passe}
+    
 Voici le MCD (Modèle Conceptuel des Données) schéma de notre application:
 
     METTRE IMAGE ICI (A JOUR)
 
 Vous pouvez vous connecter aussi bien sur une Base de Données local que sur une Base de Données distante.
-Pour vous connectez sur l’un ou sur l’autre il faut modifier le fichier `/l3m_menucinema/serveur/src/main/java/services/Connection.java`:  
+Pour vous connecter sur l’un ou sur l’autre il faut modifier le fichier `/l3m_menucinema/serveur/src/main/java/services/Connection.java`:  
 
 #### Pour vous connecter en local
 Changez la ligne 29 : 
@@ -42,18 +45,18 @@ Par :
   
 ### JAVA  
         maven  
-        ?? à voir avec les autre ??  
+        ?? à voir avec les autres ??  
 ## End points
 ###Client  
 
-Le end point pour avoir les détails pour un client est  GET `/client`    
+L'end point pour avoir les détails pour un client est  GET `/client`    
 **Paramètre**:  
 `token`: Chaîne de caractères contenant le token firebase de ce client.    
 
 **Réponse**:     
 Code : 200 OK    
 Content-type: json    
-content:    
+Content:    
 
 Identifiant | Description    
 |---|---|    
@@ -74,7 +77,7 @@ Identifiant | Description
 
 Le end point pour avoir le détail d’une liste de produits est GET `/produitsIds`  
 **Paramètres**:  
-`ids`: liste d’entier séparés par de point virgules  
+`ids`: liste d’entiers séparés par des points-virgules  
 
 **Réponse**:   
 Code : 200 OK  
@@ -139,7 +142,7 @@ Identifant | Description
 
 ## FRONT
 ### npm
-Pour installer le **front-end** il faut installer les dépendances nécessaires. Cela se fait l'exécution de la command `npm install` dans le même dossier que le fichier `/client/packages.json` .  
+Pour installer le **front-end** il faut installer les dépendances nécessaires. Cela se fait l'exécution de la commande `npm install` dans le même dossier que le fichier `/client/packages.json` .  
 Après l’installation terminée vous pouvez à présent lancer le serveur avec la commande `npm start` (toujours au même endroit).  
 Après l'exécution réussie de ces deux commande l’application est disponible à l’adresse `<localhost:4200>`.  
 ## Routing  
