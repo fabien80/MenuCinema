@@ -1,0 +1,85 @@
+<div *ngIf="isActivated">
+    <table class="table ">
+        <thead class="black white-text">
+        <tr>
+            <th scope="col">
+                Type
+            </th>
+            <th scope="col">
+                Produit
+            </th>
+            <th scope="col">
+                Description
+            </th>
+            <th scope="col">
+                Quantité
+            </th>
+            <th scope="col">
+                Prix unitaire
+            </th>
+            <th scope="col">
+                Prix total
+            </th>
+        </tr>
+        </thead>
+        <ng-container *ngFor="let movie of movies">
+            <tr>
+                <th>Film</th>
+
+                <td>{{movie.title}}</td>
+
+                <td>{{movie.overview}}</td>
+
+                <td> 1</td>
+
+                <td> {{movie.prix}}</td>
+
+                <td> {{movie.prix}}</td>
+            </tr>
+        </ng-container>
+        <ng-container *ngFor="let menuGroup of menus">
+            <tr>
+                <th>Menu</th>
+
+                <td>{{menuGroup.product.nom}}</td>
+
+                <td>
+                    <mat-accordion>
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Détails du menu
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <app-bill-menu-information [menu]="menuGroup.product"></app-bill-menu-information>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </td>
+
+                <td> {{menuGroup.amount}}</td>
+
+                <td>{{menuGroup.product.prix}} €</td>
+
+                <td>{{getCoutTotale(menuGroup)}}€</td>
+        </ng-container>
+        <ng-container *ngFor="let food of foods">
+            <tr>
+            <tr>
+                <th>{{food.product.type}}</th>
+
+                <td>{{food.product.nom}}</td>
+
+                <td>{{food.product.description}}</td>
+
+                <td> {{food.amount}}</td>
+
+                <td>{{food.product.prix}} €</td>
+
+                <td>{{getCoutTotale(food)}}€</td>
+            </tr>
+
+        </ng-container>
+
+
+    </table>
+</div>

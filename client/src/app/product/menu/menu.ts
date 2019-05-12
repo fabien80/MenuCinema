@@ -12,7 +12,6 @@ export class MenuClass extends Product implements MenuInterface {
 
     static fromSearchData(data: SearchMenuInterface) {
         const {foodGroups, id, nom, prix} = data;
-        console.log(data);
         const foodGroupsClass = foodGroups.product.reduce((acc: FoodGroup[], currentValue: FoodInterface) => {
             const foodGroup = FoodGroup.fromFoodInterface(currentValue);
             acc.push(foodGroup);

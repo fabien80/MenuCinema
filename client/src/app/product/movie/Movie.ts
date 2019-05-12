@@ -17,7 +17,6 @@ export class Movie extends Product implements MovieResult {
     public vote_average: number;
     public vote_count: number;
 
-
     public static fromData(movieResult: MovieResult) {
         const {adult, backdrop_path, genre_ids, id, original_language, original_title, overview, popularity, poster_path, release_date, title, video, vote_average, vote_count} = movieResult;
         return new this(id, 5, adult, backdrop_path, genre_ids, original_language, original_title, overview, popularity, poster_path, release_date, title, video, vote_average, vote_count);

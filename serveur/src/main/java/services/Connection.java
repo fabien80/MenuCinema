@@ -27,7 +27,7 @@ public class Connection
             Properties.init();
             System.out.print("Connecting to the database... ");
             conn = DriverManager.getConnection(CONN_URL_LOCAL, Properties.user, Properties.password);
-            System.out.println("connected");
+            System.out.println("connected pass:");
 
             conn.setAutoCommit(false);
         } catch (SQLException e)

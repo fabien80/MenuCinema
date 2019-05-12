@@ -9,8 +9,6 @@ import {ProductGroup} from '../product/class/productGroup';
 import {Movie} from '../product/movie/Movie';
 import {environment} from '../../environments/environment';
 import {SearchProductQuery} from '../interface/SearchInterface';
-import {ProductType} from "../enum/ProductType";
-import {DBProductType} from "../enum/DBProductType";
 
 @Injectable({
     providedIn: 'root'
@@ -21,9 +19,9 @@ export class ApiService {
                 private localStorageService: LocalStorageService) {
     }
 
-    public getClient(token: string): Promise<any> {
+    public getClient(uid: string): Promise<any> {
         let params: HttpParams = new HttpParams();
-        params = params.append('token', token);
+        params = params.append('token', uid);
         console.log(params);
         return this.http.get(environment.proxyBaseUrl + '/client', {params}).toPromise();
     }
@@ -40,7 +38,7 @@ export class ApiService {
 
     public putClient(client: ClientInterface): Promise<any> {
         const params: HttpParams = this.getClientParams(client);
-        return this.http.put(environment.proxyBaseUrl + '/updateClient', params.toString(), {
+        return this.http.put(environment.proxyBaseUrl  + '/updateClient', params.toString(), {
             headers: new HttpHeaders()
                 .set('Content-Type', 'application/x-www-form-urlencoded')
         }).toPromise();
@@ -68,12 +66,22 @@ export class ApiService {
         params = params.set('token', token);
         console.log("api service");
         console.log(params);
-        return await this.http.get(environment.proxyBaseUrl + '/orderHistory', {
+        return await this.http.get(environment.proxyBaseUrl +  '/orderHistory', {
             params: params,
             headers: new HttpHeaders()
                 .set('Content-Type', 'application/x-www-form-urlencoded')
         }).toPromise();
 
+    }
+
+    async getProductsIds(productsIds: string): Promise<any> {
+        let params: HttpParams = new HttpParams();
+        params = params.set('ids', productsIds);
+        return await this.http.get(environment.proxyBaseUrl + '/produitsIds', {
+            params: params,
+            headers: new HttpHeaders()
+                .set('Content-Type', 'application/x-www-form-urlencoded')
+        }).toPromise();
 
     }
 
@@ -119,7 +127,7 @@ export class ApiService {
 
     uploadFile(formData: FormData, uid: string) {
         const params = new HttpParams().append('uid', uid);
-        return this.http.post<any>(environment.proxyBaseUrl + "/uploadPhoto", formData, {
+        return this.http.post<any>(environment.proxyBaseUrl + '/uploadPhoto', formData, {
             params,
             observe: 'response'
         }).toPromise();

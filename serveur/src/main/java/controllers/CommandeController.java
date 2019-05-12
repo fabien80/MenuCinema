@@ -38,22 +38,20 @@ public class CommandeController extends Controller<Commande> {
 		String ville;
 		String codePostal;
 
-		Commande commande = null;
-		try {
-			commandeId = result.getInt("commande_id");
-			dateHeure = result.getString("date_heure");
-			clientId = result.getInt("client_id");
-			idPlats = getProductsIds(commandeId, "plat");
-			idFilms = getProductsIds(commandeId, "film");
-			idMenu = getProductsIds(commandeId, "menu");
-			prix = result.getDouble("prix");
-			numeroRue = result.getInt("numero_rue");
-			rue = result.getString("rue");
-			ville = result.getString("ville");
-			codePostal = result.getString("code_postal");
-			commande =
-					new Commande(commandeId, dateHeure, clientId, idPlats, idFilms, idMenu, prix, numeroRue, rue, ville,
-							codePostal);
+        Commande commande = null;
+        try {
+            commandeId = result.getInt("commande_id");
+            dateHeure = result.getString("date_heure");
+            clientId = result.getInt("client_id");
+            idPlats = getProductsIds(commandeId, "Nourriture");
+            idFilms = getProductsIds(commandeId, "Film");
+            idMenu = getProductsIds(commandeId, "Menu");
+            prix = result.getDouble("prix");
+            numeroRue = result.getInt("numero_rue");
+            rue = result.getString("rue");
+            ville = result.getString("ville");
+            codePostal = result.getString("code_postal");
+            commande = new Commande(commandeId, dateHeure, clientId, idPlats, idFilms, idMenu, prix, numeroRue, rue, ville, codePostal);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -185,15 +183,15 @@ public class CommandeController extends Controller<Commande> {
 	@Override
 	public boolean create (HttpServletRequest request) {
 
-		Commande commande = requestBodyToClass(request);
-		boolean result = super.create(request);
-		commande.setCommandeId(getLastCommande());
-
-		result = insertProducts(commande.getCommandeId(), commande.getIdPlats(), "Nourriture") || result;
-		result = insertProducts(commande.getCommandeId(), commande.getIdFilms(), "Film") || result;
-		result = insertProducts(commande.getCommandeId(), commande.getIdMenu(), "Menu") || result;
-		return result;
-	}
+        Commande commande = requestBodyToClass(request);
+        System.out.println(commande);
+        boolean result = super.create(request);
+        commande.setCommandeId(getLastCommande());
+        result = insertProducts(commande.getCommandeId(), commande.getIdPlats(), "Nourriture");
+        result = insertProducts(commande.getCommandeId(), commande.getIdFilms(), "Film");
+        result = insertProducts(commande.getCommandeId(), commande.getIdMenu(), "Menu");
+        return result;
+    }
 
 	/**
 	 * Fonction qui va récupéé l'id de la dernière commande ou -1 s'il n'y en a pas.
@@ -217,32 +215,33 @@ public class CommandeController extends Controller<Commande> {
 
 	}
 
-	/**
-	 * Insère un produit dans produitCommande en faisant appelle à la procédure stoquées insertProduct
-	 *
-	 * @param commandeId
-	 * @param idProduct
-	 * @param productType
-	 * @return true si ça c'est bien passé.
-	 */
-	private boolean insertAProduct (int commandeId, String idProduct, String productType) {
-		try {
-			if (!idProduct.equals("")) {
-				int j = 1;
-				CallableStatement cstmt = Connection.conn.prepareCall("{call insertProduct(?, ?,?)}");
-				cstmt.setString(j++, idProduct);
-				cstmt.setString(j++, productType);
-				cstmt.setInt(j, commandeId);
-				cstmt.executeQuery();
-				cstmt.close();
-				Connection.commit();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
-		return true;
-	}
+    /**
+     * Insère un produit dans produitCommande en faisant appelle à la procédure stoquées insertProduct
+     *
+     * @param commandeId
+     * @param idProduct
+     * @param productType
+     * @return true si ça c'est bien passé.
+     */
+    private boolean insertAProduct(int commandeId, String idProduct, String productType) {
+        try {
+            System.out.println("CommandeId : " + commandeId + "|| idProduit : " + idProduct + "|| type_produit : " + productType);
+            if (!idProduct.equals("")) {
+                int j = 1;
+                CallableStatement cstmt = Connection.conn.prepareCall("{call insertProduct(?, ?,?)}");
+                cstmt.setString(j++, idProduct);
+                cstmt.setString(j++, productType);
+                cstmt.setInt(j, commandeId);
+                cstmt.executeQuery();
+                cstmt.close();
+                Connection.commit();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 
 	/**
 	 * insert tous les produitsIds de type productType dans la base

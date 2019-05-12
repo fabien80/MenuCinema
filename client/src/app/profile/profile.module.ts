@@ -6,6 +6,7 @@ import {ProfileComponent} from './profile.component';
 import {ProfileInformationModule} from './profile-information/profile-information.module';
 import {ProfileFormModule} from './profile-form/profile-form.module';
 import {FormsModule} from '@angular/forms';
+import {CommandHistoryModule} from "./command-history/command-history.module";
 
 @NgModule({
     declarations: [ProfileComponent],
@@ -14,7 +15,8 @@ import {FormsModule} from '@angular/forms';
         FormsModule,
         ProfileRoutingModule,
         ProfileInformationModule,
-        ProfileFormModule
+        ProfileFormModule,
+        CommandHistoryModule
     ], exports: [ProfileComponent]
 })
 export class ProfileModule {

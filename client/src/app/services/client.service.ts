@@ -4,7 +4,10 @@ import {BehaviorSubject} from 'rxjs';
 import {LocalStorageService} from './local-storage.service';
 import {ClientInterface} from '../interface/ClientInterface';
 import {Router} from '@angular/router';
-import {HttpResponse} from "@angular/common/http";
+import {forEach} from '@angular/router/src/utils/collection';
+import {HttpResponse} from '@angular/common/http';
+import {CommandeInterface} from '../interface/CommandeInterface';
+import {NestedProductInterface} from '../interface/NestedProductInterface';
 
 @Injectable({
     providedIn: 'root'
@@ -97,6 +100,29 @@ export class ClientService {
             nom: ''
         };
     }
+
+
+
+    async getClientHistory(): Promise<CommandeInterface[]>{
+        return await this.apiService.getClientHistory(this._client.getValue().token).then(allCommand => {
+            console.log("OK");
+            console.log(allCommand);
+
+            allCommand.forEach((oneCommand: CommandeInterface) => {
+                this.apiService.getProductsIds(oneCommand.idPlats.join(";")+";"+oneCommand.idMenu.join(";")).then((foodDetail: NestedProductInterface) => {
+                     oneCommand.nestedProduct = foodDetail;
+                    console.log(foodDetail);
+                }).catch((e) => {
+                    console.log(e);
+                });
+            });
+
+            return allCommand;
+        }).catch((e) => {
+            console.log(e);
+        });
+    }
+
 
     uploadFile(value: any) {
         const formData = new FormData();

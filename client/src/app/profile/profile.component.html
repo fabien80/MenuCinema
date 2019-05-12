@@ -12,5 +12,8 @@
             [tmpClient]="client"
             (editDone)="editDone($event)"
     ></app-profile-form>
+    <app-command-history *ngIf="!edit">
+
+    </app-command-history>
 
 </div>
