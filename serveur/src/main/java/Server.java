@@ -2,9 +2,7 @@ import javax.servlet.MultipartConfigElement;
 import javax.servlet.http.HttpServlet;
 
 import handlers.MultipartConfigInjectionHandler;
-import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.handler.HandlerCollection;
-import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import services.Connection;
@@ -88,7 +86,7 @@ public class Server extends HttpServlet {
 		servletHandler.addServletWithMapping(GetProductByOtherProductServlet.class, apiDefaultPath + "/recommandation");
 		servletHandler.addServletWithMapping(GetProduitServlet.class, apiDefaultPath + "/produit");
 		servletHandler.addServletWithMapping(GetProduitsByIdsServlet.class, apiDefaultPath + "/produitsIds");
-		servletHandler.addServletWithMapping(PostClientPhoto.class, apiDefaultPath + "/uploadPhoto");
+		servletHandler.addServletWithMapping(PostClientPhotoServlet.class, apiDefaultPath + "/uploadPhoto");
 		servletHandler.addServletWithMapping(GetReviewAverageServlet.class, apiDefaultPath + "/reviewAverage");
 		server.start();
 		// server.join();
