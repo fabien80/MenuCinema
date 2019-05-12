@@ -20,6 +20,9 @@
             <th scope="col">
                 Prix total
             </th>
+            <th scope="col">
+                Review
+            </th>
         </tr>
         </thead>
         <ng-container *ngFor="let movie of movies">
@@ -35,6 +38,12 @@
                 <td> {{movie.prix}}</td>
 
                 <td> {{movie.prix}}</td>
+
+                <td>
+                    <button mat-button (click)="addReview(movie)">
+                        <mat-icon>rate_review </mat-icon>
+                    </button>
+                </td>
             </tr>
         </ng-container>
         <ng-container *ngFor="let menuGroup of menus">
@@ -61,6 +70,12 @@
                 <td>{{menuGroup.product.prix}} €</td>
 
                 <td>{{getCoutTotale(menuGroup)}}€</td>
+
+                <td>
+                    <button mat-button (click)="addReview(menuGroup.product)">
+                        <mat-icon>rate_review </mat-icon>
+                    </button>
+                </td>
         </ng-container>
         <ng-container *ngFor="let food of foods">
             <tr>
@@ -76,7 +91,14 @@
                 <td>{{food.product.prix}} €</td>
 
                 <td>{{getCoutTotale(food)}}€</td>
+
+                <td>
+                    <button mat-button (click)="addReview(food.product)">
+                        <mat-icon>rate_review </mat-icon>
+                    </button>
+                </td>
             </tr>
+
 
         </ng-container>
 

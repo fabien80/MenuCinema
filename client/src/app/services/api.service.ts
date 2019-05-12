@@ -10,6 +10,7 @@ import {Movie} from '../product/movie/Movie';
 import {environment} from '../../environments/environment';
 import {SearchProductQuery} from '../interface/SearchInterface';
 import {DBProductType} from "../enum/DBProductType";
+import {ReviewInterface} from "../interface/ReviewInterface";
 
 @Injectable({
     providedIn: 'root'
@@ -39,7 +40,7 @@ export class ApiService {
 
     public putClient(client: ClientInterface): Promise<any> {
         const params: HttpParams = this.getClientParams(client);
-        return this.http.put(environment.proxyBaseUrl  + '/updateClient', params.toString(), {
+        return this.http.put(environment.proxyBaseUrl + '/updateClient', params.toString(), {
             headers: new HttpHeaders()
                 .set('Content-Type', 'application/x-www-form-urlencoded')
         }).toPromise();
@@ -67,7 +68,7 @@ export class ApiService {
         params = params.set('token', token);
         console.log("api service");
         console.log(params);
-        return await this.http.get(environment.proxyBaseUrl +  '/orderHistory', {
+        return await this.http.get(environment.proxyBaseUrl + '/orderHistory', {
             params: params,
             headers: new HttpHeaders()
                 .set('Content-Type', 'application/x-www-form-urlencoded')
@@ -155,6 +156,17 @@ export class ApiService {
         let params = new HttpParams();
         params = params.append('ids', ids);
         return this.http.get(environment.proxyBaseUrl + '/produitsIds', {params}).toPromise();
+    }
+
+    addReview(review: ReviewInterface) {
+        let params = new HttpParams();
+        params = params.append('commande_id', review.commandeId.toString());
+        params = params.append('produit_id', review.produitId);
+        params = params.append('type_produit', review.typeProduit);
+        params = params.append('note', review.note.toString());
+        params = params.append('review', review.review);
+
+        return this.http.put(environment.proxyBaseUrl + '/addReview', {}, {params}).toPromise();
     }
 }
 

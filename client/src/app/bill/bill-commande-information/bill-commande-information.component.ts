@@ -12,7 +12,12 @@ import {FoodGroup} from "../../product/food/foodGroup";
 import {Food} from "../../product/food/food";
 import {Product} from "../../product/class/Product";
 import {Movie} from "../../product/movie/Movie";
-import {MovieResult} from "../../tmdb-data/searchMovie";
+import {MatDialog} from "@angular/material";
+import {AddReviewComponent} from "../../dialogs/add-review/add-review.component";
+import {ReviewInterface} from "../../interface/ReviewInterface";
+import {ProductType} from "../../enum/ProductType";
+import {DBProductType} from "../../enum/DBProductType";
+import {ProductService} from "../../product/product.service";
 
 @Component({
     selector: 'app-bill-commande-information',
@@ -28,7 +33,9 @@ export class BillCommandeInformationComponent implements OnInit {
     private _movies: Movie[] = [];
     private _isActivated = true;
 
-    constructor(private tmdbService: TmdbService) {
+    constructor(private tmdbService: TmdbService,
+                private dialog: MatDialog,
+                private productService: ProductService) {
     }
 
     ngOnInit() {
@@ -142,4 +149,21 @@ export class BillCommandeInformationComponent implements OnInit {
     public getCoutTotale(productGroup: ProductGroupInterface<FoodInterface | MenuInterface>): number {
         return productGroup.amount * productGroup.product.prix;
     }
+
+    addReview(product: Product) {
+        const review: ReviewInterface = {
+            note: 0,
+            review: '',
+            commandeId: this.order.commandeId,
+            produitId: product.id.toString(),
+            typeProduit: this.productService.productTypeToDBProduct(product.type)
+        };
+        this.dialog.open(AddReviewComponent, {
+            width: "100",
+            data: review
+        })
+
+    }
+
+
 }

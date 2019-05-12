@@ -17,10 +17,7 @@ import org.eclipse.jetty.servlet.ServletHandler;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
 import servlets.Commande.*;
 import servlets.GetParametersServlet;
-import servlets.Produit.GetProductByOtherProductServlet;
-import servlets.Produit.GetProduitServlet;
-import servlets.Produit.GetProduitsByIdsServlet;
-import servlets.Produit.SearchProduitServlet;
+import servlets.Produit.*;
 
 import java.io.File;
 
@@ -89,6 +86,8 @@ public class Server extends HttpServlet {
 		servletHandler.addServletWithMapping(GetProduitsByIdsServlet.class, apiDefaultPath + "/produitsIds");
 		servletHandler.addServletWithMapping(PostClientPhoto.class, apiDefaultPath + "/uploadPhoto");
 		servletHandler.addServletWithMapping(GetReviewAverageServlet.class, apiDefaultPath + "/reviewAverage");
+		servletHandler.addServletWithMapping(AddReviewServlet.class, apiDefaultPath + "/addReview");
+		servletHandler.addServletWithMapping(GetReviewServlet.class, apiDefaultPath + "/review");
 		server.start();
 		// server.join();
 	}
