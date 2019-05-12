@@ -11,10 +11,7 @@ import org.eclipse.jetty.servlet.ServletHandler;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
 import servlets.Commande.*;
 import servlets.GetParametersServlet;
-import servlets.Produit.GetProductByOtherProductServlet;
-import servlets.Produit.GetProduitServlet;
-import servlets.Produit.GetProduitsByIdsServlet;
-import servlets.Produit.SearchProduitServlet;
+import servlets.Produit.*;
 
 
 public class PizzaServer extends HttpServlet {
@@ -55,6 +52,9 @@ public class PizzaServer extends HttpServlet {
         servletHandler.addServletWithMapping(GetProduitServlet.class, "/produit");
         servletHandler.addServletWithMapping(GetProduitsByIdsServlet.class, "/produitsIds");
         servletHandler.addServletWithMapping(GetReviewAverageServlet.class, "/reviewAverage");
+        servletHandler.addServletWithMapping(DeleteReviewServlet.class, "/api/deleteReview");
+        servletHandler.addServletWithMapping(AddReviewServlet.class, "/api/addReview");
+        servletHandler.addServletWithMapping(GetReviewServlet.class, "/api/review");
 
         server.start();
     }

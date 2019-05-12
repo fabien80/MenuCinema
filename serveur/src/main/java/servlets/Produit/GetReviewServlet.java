@@ -1,6 +1,7 @@
 package servlets.Produit;
 
 import controllers.ProduitController;
+import dto.ReviewDTO;
 import models.Commande;
 import services.JsonConverter;
 
@@ -19,11 +20,8 @@ public class GetReviewServlet extends HttpServlet {
     {
         ProduitController controller = new ProduitController();
         response.setContentType("application/json");
-        StringBuilder res = new StringBuilder("{\n");
-        ArrayList<String> reviews = (ArrayList<String>) controller.getReview(request));
-        reviews.forEach((review -> res.append(JsonConverter.convertObjectToJson(review) + ",\n")));
-        res.append("}");
+        ReviewDTO reviewDTO = controller.getReview(request);
         response.setStatus(HttpServletResponse.SC_OK);
-        response.getWriter().println(res.toString());
+        response.getWriter().println(JsonConverter.convertObjectToJson(reviewDTO));
     }
 }
