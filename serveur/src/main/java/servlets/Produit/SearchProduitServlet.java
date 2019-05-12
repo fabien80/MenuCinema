@@ -13,8 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
+
 public class SearchProduitServlet extends HttpServlet {
 
+	/**
+	 * Servlet qui va faire le lien entre le front et le back pour récupérer un produit en fonction d'une query
+	 * @param request : Le servlet de la requête envoyé par le front
+	 * @param response : Le servlet qui va permettre au back de répondre.
+	 */
 	@Override
 	protected void doGet (HttpServletRequest request, HttpServletResponse response)  {
 

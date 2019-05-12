@@ -13,6 +13,13 @@ import java.io.IOException;
 public class GetAverageRatingServlet extends HttpServlet {
 	private static final long servialVersionUID = 1L;
 
+	/**
+	 * Servlet qui va faire le lien entre le front et le back pour la note moyenne d'un produit.
+	 * @param request : Le servlet de la requête envoyé par le front
+	 * @param response : Le servlet qui va permettre au back de répondre.
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException,
 	                                                                                       IOException {

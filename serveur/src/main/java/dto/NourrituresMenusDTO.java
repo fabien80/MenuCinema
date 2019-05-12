@@ -5,7 +5,7 @@ import models.Nourriture;
 
 import java.util.List;
 
-public class NourrituresMenusDTO {
+public class  NourrituresMenusDTO {
 	private List<Menu> menus;
 	private List<Nourriture> foods;
 

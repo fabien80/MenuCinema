@@ -16,6 +16,15 @@ import java.util.ArrayList;
 public class GetProductByOtherProductServlet extends HttpServlet {
 	private static final long servialVersionUID = 1L;
 
+
+	/**
+	 * Servlet qui va faire le lien entre le front et le back pour récupérer les 5 produits les plus commandés par rapport
+	 *  à un autre produit.
+	 * @param request : Le servlet de la requête envoyé par le front
+	 * @param response : Le servlet qui va permettre au back de répondre.
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException,
 	                                                                                       IOException {
