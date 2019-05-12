@@ -1,30 +1,28 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CommandeInterface} from '../../interface/CommandeInterface';
-import {MovieResponse} from '../../tmdb-data/Movie';
-import {TmdbService} from '../../services/tmdb.service';
-import {ProductGroupInterface} from '../../interface/ProductInterface';
-import {MenuInterface} from '../../interface/MenuInterface';
-import {FoodInterface} from '../../interface/FoodInterface';
-import {MenuClass} from '../../product/menu/menu';
-import {MenuGroup} from "../../product/menu/MenuGroup";
-import {SearchMenuInterface} from "../../interface/SearchInterface";
-import {FoodGroup} from "../../product/food/foodGroup";
-import {Food} from "../../product/food/food";
-import {Product} from "../../product/class/Product";
-import {Movie} from "../../product/movie/Movie";
+import {CommandeInterface} from '../../../interface/CommandeInterface';
+import {MovieResponse} from '../../../tmdb-data/Movie';
+import {TmdbService} from '../../../services/tmdb.service';
+import {ProductGroupInterface} from '../../../interface/ProductInterface';
+import {MenuInterface} from '../../../interface/MenuInterface';
+import {FoodInterface} from '../../../interface/FoodInterface';
+import {MenuClass} from '../../../product/menu/menu';
+import {MenuGroup} from "../../../product/menu/MenuGroup";
+import {SearchMenuInterface} from "../../../interface/SearchInterface";
+import {FoodGroup} from "../../../product/food/foodGroup";
+import {Food} from "../../../product/food/food";
+import {Product} from "../../../product/class/Product";
+import {Movie} from "../../../product/movie/Movie";
 import {MatDialog} from "@angular/material";
-import {AddReviewComponent} from "../../dialogs/add-review/add-review.component";
-import {ReviewInterface} from "../../interface/ReviewInterface";
-import {ProductType} from "../../enum/ProductType";
-import {DBProductType} from "../../enum/DBProductType";
-import {ProductService} from "../../product/product.service";
+import {AddReviewComponent} from "../../../dialogs/add-review/add-review.component";
+import {ReviewInterface} from "../../../interface/ReviewInterface";
+import {ProductService} from "../../../product/product.service";
 
 @Component({
-    selector: 'app-bill-commande-information',
-    templateUrl: './bill-commande-information.component.html',
-    styleUrls: ['./bill-commande-information.component.scss']
+    selector: 'app-commande-information',
+    templateUrl: './commande-information.component.html',
+    styleUrls: ['./commande-information.component.scss']
 })
-export class BillCommandeInformationComponent implements OnInit {
+export class CommandeInformationComponent implements OnInit {
 
     @Input() public _order: CommandeInterface;
     private _menus: MenuGroup[] = [];

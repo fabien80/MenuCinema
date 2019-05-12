@@ -40,8 +40,6 @@ export const environment = {
             },
             firebase.auth.PhoneAuthProvider.PROVIDER_ID,
         ],
-        tosUrl: '<your-tos-link>',
-        privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
         credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM
     },
     nbItemsPerRow: 5,

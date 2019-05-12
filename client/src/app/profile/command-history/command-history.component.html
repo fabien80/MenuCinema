@@ -14,7 +14,7 @@
         <td>{{oneCommand.dateHeure | date:"d/MM/yyyy HH:mm"}}</td>
         <td>
             <div>
-                <p>{{oneCommand.idFilms.length}} film</p>
+                <p>{{oneCommand.idFilms.length}} film(s)</p>
                 <p>{{oneCommand.idMenu.length}} menu(s)</p>
                 <p>{{oneCommand.idPlats.length}} plat(s)</p>
             </div>
@@ -28,10 +28,10 @@
                             Détails de la commande
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <app-bill-commande-information
+                    <app-commande-information
                             *ngIf="oneCommand.nestedProduct != undefined"
                             [_order]="oneCommand"
-                    ></app-bill-commande-information>
+                    ></app-commande-information>
                 </mat-expansion-panel>
             </mat-accordion>
         </td>

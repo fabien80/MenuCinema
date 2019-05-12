@@ -4,7 +4,7 @@ import {CommonModule} from '@angular/common';
 import {CommandHistoryRoutingModule} from './command-history-routing.module';
 import {CommandHistoryComponent} from './command-history.component';
 import {MatButtonModule, MatExpansionModule} from '@angular/material';
-import {BillCommandeInformationModule} from '../../bill/bill-commande-information/bill-commande-information.module';
+import {CommandeInformationModule} from './commande-information/commande-information.module';
 
 @NgModule({
     declarations: [CommandHistoryComponent],
@@ -13,7 +13,7 @@ import {BillCommandeInformationModule} from '../../bill/bill-commande-informatio
         CommandHistoryRoutingModule,
         MatButtonModule,
         MatExpansionModule,
-        BillCommandeInformationModule
+        CommandeInformationModule
     ],
     exports: [
         CommandHistoryComponent

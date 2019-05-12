@@ -10,10 +10,12 @@
                 <app-food [food]=" foodService.productToFood(foodGroup.product)"></app-food>
             </div>
         </div>
-        <app-food *ngIf="!isMenu()" [food]="foodService.productToFood(data)"></app-food>
-        <div>
-            <app-review-list [product]="data"></app-review-list>
-        </div>
+        <ng-container *ngIf="!isMenu()">
+            <app-food  [food]="foodService.productToFood(data)"></app-food>
+            <div>
+                <app-review-list [product]="data"></app-review-list>
+            </div>
+        </ng-container>
         <div class="amount-div">
             <app-amount-buttons [(amount)]="amount" (amountChange)="calculatePrice()"></app-amount-buttons>
         </div>

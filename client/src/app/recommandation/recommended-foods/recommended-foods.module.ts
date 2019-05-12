@@ -6,7 +6,7 @@ import { RecommendedFoodsComponent } from './recommended-foods.component';
 import {NgbCarouselModule} from "@ng-bootstrap/ng-bootstrap";
 import {FoodModule} from "../../product/food/food.module";
 import {MenuModule} from "../../product/menu/menu.module";
-import {BillMenuInformationModule} from "../../bill/bill-menu-information/bill-menu-information.module";
+import {MenuInformationModule} from "../../product/menu/menu-information/menu-information.module";
 import {MatButtonModule, MatExpansionModule} from "@angular/material";
 
 @NgModule({
@@ -20,7 +20,7 @@ import {MatButtonModule, MatExpansionModule} from "@angular/material";
         NgbCarouselModule,
         FoodModule,
         MenuModule,
-        BillMenuInformationModule,
+        MenuInformationModule,
         MatExpansionModule,
         MatButtonModule
     ]
