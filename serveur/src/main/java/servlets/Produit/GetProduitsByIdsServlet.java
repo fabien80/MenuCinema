@@ -24,8 +24,6 @@ public class GetProduitsByIdsServlet extends HttpServlet {
             StringBuilder resMenu = new StringBuilder("");
             StringBuilder resProduct = new StringBuilder("");
             ArrayList<Produit> produits = (ArrayList<Produit>) controller.getAllProductsById(request);
-
-
             for(int i =0; i< produits.size() ; ++i){
                 if (produits.get(i).getMenu() != null){
 

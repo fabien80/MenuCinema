@@ -1,4 +1,5 @@
-<td>{{order.dateHeure | date:"d/MM/yyyy HH:mm"}}</td>
+<td scope="row" >{{order.commandeId}}</td>
+<td >{{order.dateHeure | date:"d/MM/yyyy HH:mm"}}</td>
 <td>
     <div (click)="order.isOpen = !order.isOpen">
         <div>{{order.idFilms.length}} film</div>
@@ -43,4 +44,5 @@
             Prix :  {{oneProduct.prix}}€
         </div>
     </div>
-</div> -->
+</div>
+-->

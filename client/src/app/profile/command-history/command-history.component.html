@@ -1,21 +1,45 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col">Numéro de commande</th>
+        <th scope="col">Date</th>
+        <th scope="col">Commande</th>
+        <th scope="col">Coût total</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let oneCommand of data">
-        <app-commande
-                [_order]="oneCommand"> {{ oneCommand }}
-            </app-commande>
+
+        <td scope="row">{{oneCommand.commandeId}}</td>
+        <td>{{oneCommand.dateHeure | date:"d/MM/yyyy HH:mm"}}</td>
+        <td>
+            <div (click)="oneCommand.isOpen = !order.isOpen">
+                <div>{{oneCommand.idFilms.length}} film</div>
+                <div>{{oneCommand.idMenu.length}} menu(s)</div>
+                <div>{{oneCommand.idPlats.length}} plat(s)</div>
+            </div>
+        </td>
+        <td>{{oneCommand.prix}}€</td>
+        <td>
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Détails de la commande
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-bill-commande-information [_order]="oneCommand"
+                                                   [_foods]="fillFoods(oneCommand.nestedFood.product)"
+                                                   [_menus]="fillMenus(oneCommand.nestedFood.menu)"></app-bill-commande-information>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </td>
     </tr>
     </tbody>
 </table>
 
-<!--<div class="table-responsive text-nowrap">
+<!--
+-<div class="table-responsive text-nowrap">
     <table class="table-responsive text-nowrap">
         <thead>
         <tr>
@@ -29,5 +53,6 @@
                       [_order]="oneCommand">  <tr> {{ oneCommand }} </app-commande>
         </tbody>
     </table>
-</div> -->
+</div>
+-->
 

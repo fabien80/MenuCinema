@@ -42,7 +42,7 @@ export class TmdbService {
   // _______________________________________________________________________________________________________________________________________
   // Movies ________________________________________________________________________________________________________________________________
   // _______________________________________________________________________________________________________________________________________
-  async getMovie(id: number, options?: MovieQuery): Promise<> {
+  async getMovie(id: number, options?: MovieQuery): Promise<MovieResponse> {
     const url = `${tmdbApi}/movie/${id}`;
     const res = await this.get<MovieResponse>(url, options);
     return res.body;

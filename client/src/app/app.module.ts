@@ -24,6 +24,7 @@ import {ProfileFormModule} from "./profile/profile-form/profile-form.module";
 import {MDBBootstrapModule} from "angular-bootstrap-md";
 import { CommandeComponent } from './commande/commande.component';
 
+
 @NgModule({
     declarations: [
         AppComponent,
