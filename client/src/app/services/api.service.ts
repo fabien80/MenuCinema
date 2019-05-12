@@ -168,5 +168,15 @@ export class ApiService {
 
         return this.http.put(environment.proxyBaseUrl + '/addReview', {}, {params}).toPromise();
     }
+
+    getReviewsOfProduct(review: ReviewInterface) {
+        let params = new HttpParams();
+        params = params.append('produit_id', review.produitId);
+        params = params.append('type_produit', review.typeProduit);
+
+        return this.http.get(environment.proxyBaseUrl + '/reviewsOfProduct', {params}).toPromise();
+
+
+    }
 }
 

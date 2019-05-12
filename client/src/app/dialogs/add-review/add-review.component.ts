@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {Product} from "../../product/class/Product";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ReviewComponent} from "../../product/review/review.component";
+import {ReviewListComponent} from "../../product/review-list/review-list.component";
 import {ReviewInterface} from "../../interface/ReviewInterface";
 import {RatingChangeEvent} from "angular-star-rating";
 import {ApiService} from "../../services/api.service";
@@ -35,7 +35,7 @@ export class AddReviewComponent implements OnInit {
         console.log(this.data);
         this.apiService.addReview(this.data)
             .then(() => {
-                console.log('review added');
+                console.log('review-list added');
             })
             .catch(reason => {
                 console.log(reason);

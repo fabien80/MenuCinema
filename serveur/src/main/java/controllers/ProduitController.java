@@ -441,6 +441,7 @@ public class ProduitController {
 		query += " NATURAL JOIN client ";
 		query += " WHERE type_produit = " + "'" + typeProduit + "'";
 		query += " AND produit_id  = " + "'" + idProduit + "'";
+		query += " AND note is NOT NULL ";
 		System.out.println(query);
 		return query;
 	}

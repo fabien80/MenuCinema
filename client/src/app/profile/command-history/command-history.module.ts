@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 
 import {CommandHistoryRoutingModule} from './command-history-routing.module';
 import {CommandHistoryComponent} from './command-history.component';
-import {CommandeModule} from '../../commande/commande.module';
 import {MatButtonModule, MatExpansionModule} from '@angular/material';
 import {BillCommandeInformationModule} from '../../bill/bill-commande-information/bill-commande-information.module';
 
@@ -12,7 +11,6 @@ import {BillCommandeInformationModule} from '../../bill/bill-commande-informatio
     imports: [
         CommonModule,
         CommandHistoryRoutingModule,
-        CommandeModule,
         MatButtonModule,
         MatExpansionModule,
         BillCommandeInformationModule

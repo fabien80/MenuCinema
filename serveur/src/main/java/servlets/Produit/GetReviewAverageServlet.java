@@ -1,4 +1,4 @@
-package servlets.Commande;
+package servlets.Produit;
 
 import controllers.CommandeController;
 import controllers.ProduitController;

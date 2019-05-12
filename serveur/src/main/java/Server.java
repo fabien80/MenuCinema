@@ -2,9 +2,7 @@ import javax.servlet.MultipartConfigElement;
 import javax.servlet.http.HttpServlet;
 
 import handlers.MultipartConfigInjectionHandler;
-import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.handler.HandlerCollection;
-import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import services.Connection;
