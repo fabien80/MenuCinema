@@ -1,6 +1,7 @@
 package controllers;
 
 import dto.NourrituresMenusDTO;
+import dto.ReviewDTO;
 import enums.DBProductType;
 import enums.TypeDeProduit;
 import models.Menu;
@@ -302,5 +303,90 @@ public class ProduitController {
 		return average;
 	}
 
+
+	public ReviewDTO getReview (HttpServletRequest request) {
+		ReviewDTO reviewDTO;
+		ResultSet res;
+		int idCommande = Integer.parseInt(request.getParameter("commande_id"));
+		String idProduit = request.getParameter("produit_id");
+		String typeProduit = request.getParameter("type_produit");
+		String query = getQueryReview(idCommande, idProduit, typeProduit);
+		res = Controller.getResultSet(query);
+		reviewDTO = getNoteMessage(res);
+		return reviewDTO;
+	}
+
+	private ReviewDTO getNoteMessage (ResultSet res) {
+		ReviewDTO reviewDTO = null;
+		Double note;
+		String review;
+
+		try {
+			if (res.first()) {
+				note = res.getDouble("note");
+				review = res.getString("review");
+				reviewDTO = new ReviewDTO(note, review);
+			}
+			System.out.println(reviewDTO);
+
+			res.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		}
+		return reviewDTO;
+	}
+
+	private String getQueryReview (int idCommande, String idProduit, String typeProduit) {
+		String query;
+		query = "SELECT note, review FROM produitCommande";
+		query += " WHERE type_produit = " + "'" + typeProduit + "'";
+		query += " AND commande_id  = " + idCommande;
+		query += " AND produit_id  = " + "'" + idProduit + "'";
+		System.out.println(query);
+		return query;
+	}
+
+
+	public boolean addReview (HttpServletRequest request) {
+		int idCommande = Integer.parseInt(request.getParameter("commande_id"));
+		String idProduit = request.getParameter("produit_id");
+		String typeProduit = request.getParameter("type_produit");
+		double note = Double.parseDouble(request.getParameter("note"));
+		String review = request.getParameter("review");
+
+		String query = "UPDATE produitCommande SET ";
+		query += " note = " + note + " , ";
+		query += " review = " + "'" + review + "'";
+		query += " WHERE produit_id = " + "'" + idProduit + "'";
+		query += " AND commande_id = " + idCommande;
+		query += " AND type_produit = " + "'" + typeProduit + "'";
+		System.out.println(query);
+
+		try {
+			Connection.conn.createStatement().executeUpdate(query);
+			Connection.commit();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public boolean deleteReview (HttpServletRequest request) {
+		int idCommande = Integer.parseInt(request.getParameter("commande_id"));
+		String idProduit = request.getParameter("produit_id");
+		String typeProduit = request.getParameter("type_produit");
+		try {
+			Connection.conn.createStatement().executeUpdate(
+					"DELETE FROM produitCommande WHERE produit_id = " + idProduit + " AND type_produit = " +
+							typeProduit + " AND commande_id = " + idCommande);
+			Connection.commit();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }
 
