@@ -27,7 +27,7 @@
     <div class="one-detail" *ngFor="let movie of movies">  Titre : {{movie.title}} </div>
     <strong> Plat(s) et Menu(s) </strong>
     <div class="one-detail">
-        <ng-container *ngFor="let oneMenu of order.nestedFood.menu">
+        <ng-container *ngFor="let oneMenu of order.nestedProduct.menu">
             <div class="col-6 cell">
                 Nom du menu : {{oneMenu.nom}}
             </div>
@@ -36,7 +36,7 @@
             </div>
         </ng-container>
     </div>
-    <div class="one-detail" *ngFor="let oneProduct of order.nestedFood.product">
+    <div class="one-detail" *ngFor="let oneProduct of order.nestedProduct.product">
         <div class="col-6 cell">
             Nom : {{oneProduct.nom}}
         </div>

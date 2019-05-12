@@ -1,4 +1,4 @@
-<table class="table table-striped">
+<table class="table">
     <thead>
     <tr>
         <th scope="col">Numéro de commande</th>
@@ -10,13 +10,13 @@
     <tbody>
     <tr *ngFor="let oneCommand of data">
 
-        <td scope="row">{{oneCommand.commandeId}}</td>
+        <td>{{oneCommand.commandeId}}</td>
         <td>{{oneCommand.dateHeure | date:"d/MM/yyyy HH:mm"}}</td>
         <td>
-            <div (click)="oneCommand.isOpen = !order.isOpen">
-                <div>{{oneCommand.idFilms.length}} film</div>
-                <div>{{oneCommand.idMenu.length}} menu(s)</div>
-                <div>{{oneCommand.idPlats.length}} plat(s)</div>
+            <div>
+                <p>{{oneCommand.idFilms.length}} film</p>
+                <p>{{oneCommand.idMenu.length}} menu(s)</p>
+                <p>{{oneCommand.idPlats.length}} plat(s)</p>
             </div>
         </td>
         <td>{{oneCommand.prix}}€</td>
@@ -28,9 +28,10 @@
                             Détails de la commande
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <app-bill-commande-information [_order]="oneCommand"
-                                                   [_foods]="fillFoods(oneCommand.nestedFood.product)"
-                                                   [_menus]="fillMenus(oneCommand.nestedFood.menu)"></app-bill-commande-information>
+                    <app-bill-commande-information
+                            *ngIf="oneCommand.nestedProduct != undefined"
+                            [_order]="oneCommand"
+                    ></app-bill-commande-information>
                 </mat-expansion-panel>
             </mat-accordion>
         </td>

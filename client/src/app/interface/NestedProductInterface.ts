@@ -3,7 +3,7 @@ import {FoodInterface} from './FoodInterface';
 import {ProductGroupInterface} from './ProductInterface';
 import {SearchMenuInterface} from './SearchInterface';
 
-export interface NestedFoodInterface {
-    menu: MenuInterface[];
+export interface NestedProductInterface {
+    menu: SearchMenuInterface[];
     product: FoodInterface[];
 }

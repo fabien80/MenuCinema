@@ -27,7 +27,7 @@ export class CommandeComponent implements OnInit {
         console.log('La commande !!');
         console.log(this.order);
         console.log('NESTED FOOOOOD');
-        console.log(this.order.nestedFood);
+        console.log(this.order.nestedProduct);
     }
 
 

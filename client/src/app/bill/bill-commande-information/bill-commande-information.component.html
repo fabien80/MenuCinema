@@ -1,6 +1,6 @@
 <div *ngIf="isActivated">
-    <table class="table">
-        <thead>
+    <table class="table ">
+        <thead class="black white-text">
         <tr>
             <th scope="col">
                 Type
@@ -30,17 +30,16 @@
 
                 <td>{{movie.overview}}</td>
 
-                <td> 1€</td>
+                <td> 1</td>
 
-                <td> 1€</td>
+                <td> {{movie.prix}}</td>
 
-                <td> 5€</td>
+                <td> {{movie.prix}}</td>
             </tr>
         </ng-container>
         <ng-container *ngFor="let menuGroup of menus">
             <tr>
-            <tr>
-                <th>{{menuGroup.product.type}}</th>
+                <th>Menu</th>
 
                 <td>{{menuGroup.product.nom}}</td>
 
@@ -52,8 +51,7 @@
                                     Détails du menu
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
-
-                            <app-bill-menu-information [menu]="toMenuClass(menuGroup.product)"></app-bill-menu-information>
+                            <app-bill-menu-information [menu]="menuGroup.product"></app-bill-menu-information>
                         </mat-expansion-panel>
                     </mat-accordion>
                 </td>
@@ -63,8 +61,6 @@
                 <td>{{menuGroup.product.prix}} €</td>
 
                 <td>{{getCoutTotale(menuGroup)}}€</td>
-            </tr>
-
         </ng-container>
         <ng-container *ngFor="let food of foods">
             <tr>

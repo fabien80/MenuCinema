@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
 import {forEach} from '@angular/router/src/utils/collection';
 import {HttpResponse} from '@angular/common/http';
 import {CommandeInterface} from '../interface/CommandeInterface';
-import {NestedFoodInterface} from '../interface/NestedFoodInterface';
+import {NestedProductInterface} from '../interface/NestedProductInterface';
 
 @Injectable({
     providedIn: 'root'
@@ -109,22 +109,16 @@ export class ClientService {
             console.log(allCommand);
 
             allCommand.forEach((oneCommand: CommandeInterface) => {
-                this.apiService.getProductsIds(oneCommand.idPlats.join(";")+";"+oneCommand.idMenu.join(";")).then((foodDetail: NestedFoodInterface) => {
-                     oneCommand.nestedFood = foodDetail;
-                    console.log("OsqddK");
+                this.apiService.getProductsIds(oneCommand.idPlats.join(";")+";"+oneCommand.idMenu.join(";")).then((foodDetail: NestedProductInterface) => {
+                     oneCommand.nestedProduct = foodDetail;
                     console.log(foodDetail);
-
-
-
                 }).catch((e) => {
-                    console.log("ERR");
                     console.log(e);
                 });
             });
 
             return allCommand;
         }).catch((e) => {
-            console.log("ERR");
             console.log(e);
         });
     }

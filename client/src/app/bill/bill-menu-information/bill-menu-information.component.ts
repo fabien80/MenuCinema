@@ -13,8 +13,7 @@ export class BillMenuInformationComponent implements OnInit {
     constructor() {
     }
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     onClick() {
         this.isActivated = !this.isActivated;
