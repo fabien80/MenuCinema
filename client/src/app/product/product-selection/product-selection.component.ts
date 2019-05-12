@@ -74,18 +74,7 @@ export class ProductSelectionComponent implements OnInit {
 
 
     onAdd(addEvent: AddEventInterface) {
-        switch (addEvent.event) {
-            case AddEventType.addFood:
-
-                this.basketService.addFood(FoodGroup.fromData(addEvent.data));
-                break;
-            case AddEventType.addMenu:
-                this.basketService.addMenu(MenuGroup.fromData(addEvent.data));
-                break;
-            case AddEventType.addMovie:
-                break;
-
-        }
+        this.basketService.onAdd(addEvent);
     }
 
     getAddEventMenu() {

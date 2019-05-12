@@ -23,3 +23,9 @@ export interface SearchProductQuery {
     query?: string;
     type?: ProductType;
 }
+
+export interface SearchProductsByIdInterface {
+    menus: SearchMenuInterface[],
+    foods: FoodInterface[]
+}
+

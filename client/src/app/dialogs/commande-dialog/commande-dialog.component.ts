@@ -80,6 +80,9 @@ export class CommandeDialogComponent implements OnInit {
 
     pay() {
         this.done = true;
+        console.log(this.address);
+        this.getNewAdress();
+        console.log(this.address);
         this.apiService.payement(this.basket, this.address, this.client.token)
             .then((res) => {
                 console.log(res);
@@ -99,5 +102,12 @@ export class CommandeDialogComponent implements OnInit {
             });
 
 
+    }
+
+    getNewAdress() {
+        this.address.codePostal = this.addressGroup.get(this.codePostalCtrl).value;
+        this.address.numeroRue = this.addressGroup.get(this.numeroRueCtrl).value;
+        this.address.rue = this.addressGroup.get(this.rueCtrl).value;
+        this.address.ville = this.addressGroup.get(this.villeCtrl).value;
     }
 }

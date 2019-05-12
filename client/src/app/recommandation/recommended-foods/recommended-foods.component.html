@@ -1,0 +1,41 @@
+<mat-accordion *ngIf="products && products.menus.length != 0 && products.foods.length!= 0">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <h3>
+                    Recommandations
+                </h3>
+            </mat-panel-title>
+            <mat-panel-description>
+                <p>Il y a {{products.foods.length}} nourriture(s) recommandé et {{products.menus.length}} menu(s)
+                    recommandé. Cliquez sur un produit pour avoir le détail
+                </p>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div>
+
+            <div *ngFor="let food of products.foods">
+                <button mat-button (click)="openDialog(food)">
+                    <app-food [food]="food"></app-food>
+                </button>
+            </div>
+            <div *ngFor="let menu of products.menus" class="test">
+                <button mat-button (click)="openDialog(menu)">
+                    <app-menu [menu]="menu"></app-menu>
+                </button>
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Détails du menu
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <app-bill-menu-information [menu]="menu"></app-bill-menu-information>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+        </div>
+
+    </mat-expansion-panel>
+</mat-accordion>

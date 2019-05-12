@@ -6,7 +6,9 @@ import {MenuModule} from '../../product/menu/menu.module';
 import {FoodModule} from '../../product/food/food.module';
 import {AppModule} from '../../app.module';
 import {AmountButtonsModule} from '../../amount-buttons/amount-buttons.module';
-import {MatButtonModule} from '@angular/material';
+import {MatButtonModule, MatDividerModule} from '@angular/material';
+import {RecommendedMoviesModule} from "../../recommandation/recommended-movies/recommended-movies.module";
+import {RecommandationModule} from "../../recommandation/recommandation.module";
 
 @NgModule({
     declarations: [AddProductToBasketComponent],
@@ -15,7 +17,10 @@ import {MatButtonModule} from '@angular/material';
         MenuModule,
         FoodModule,
         AmountButtonsModule,
-        MatButtonModule
+        MatButtonModule,
+        RecommendedMoviesModule,
+        RecommandationModule,
+        MatDividerModule
     ], exports: [AddProductToBasketComponent]
     , entryComponents: [AddProductToBasketComponent]
 })

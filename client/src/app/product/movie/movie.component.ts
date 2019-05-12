@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {TmdbService} from '../../services/tmdb.service';
 import {CreditsResponse, MovieResponse} from '../../tmdb-data/Movie';
 import {BasketService} from '../../basket/basket.service';
 import {Movie} from './Movie';
+import {RecommandationService} from "../../recommandation/recommandation.service";
+import {ProductType} from "../../enum/ProductType";
 
 @Component({
     selector: 'app-movie',
@@ -17,7 +19,8 @@ export class MovieComponent implements OnInit {
 
     constructor(private tmdbService: TmdbService,
                 private route: ActivatedRoute,
-                private basketService: BasketService) {
+                private basketService: BasketService,
+                private recommandationService: RecommandationService) {
         this.movie = {
             adult: false,
             genres: [],
@@ -51,4 +54,21 @@ export class MovieComponent implements OnInit {
         this.basketService.addMovie(Movie.fromData(this.movie));
         console.log('On ajoute ' + this.movie.title + ' au panier');
     }
+
+    getBackDropPath() {
+        return this.tmdbService.getBackDropPath(this.movie);
+    }
+
+    getPosterPath() {
+        return this.tmdbService.getPosterPath(this.movie);
+    }
+
+    getGivenType() {
+        return this.recommandationService.getGivenType(ProductType.Movie);
+    }
+
+    getSearchType() {
+        return this.recommandationService.getSearchType(ProductType.Movie);
+    }
+
 }

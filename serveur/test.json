@@ -1,0 +1,108 @@
+[
+  {
+    "product": {
+      "id": "1",
+      "type": "ENTREE",
+      "nom": "Salade",
+      "description": "Petite Salade composée : Tomate et Chèvre ou Lardon.",
+      "prix": 4.0
+    }
+  },
+  {
+    "product": {
+      "id": "2",
+      "type": "ENTREE",
+      "nom": "Arancini",
+      "description": "Beignets de risotto x4",
+      "prix": 5.0
+    }
+  },
+  {
+    "product": {
+      "id": "3",
+      "type": "ENTREE",
+      "nom": "Tenders",
+      "description": "Tenders de poulet x3",
+      "prix": 5.0
+    }
+  },
+  {
+    "product": {
+      "id": "10",
+      "type": "PLAT",
+      "nom": "Tacos",
+      "description": "Tacos poulet, frites et sauce fromagère.",
+      "prix": 5.0,
+      "ingredients": [
+        "POULET"
+      ]
+    }
+  },
+  {
+    "product": {
+      "id": "12",
+      "type": "PLAT",
+      "nom": "Lasagnes",
+      "description": "Lasagnes au Cheval",
+      "prix": 11.0
+    }
+  },
+  {
+    "product": {
+      "id": "15",
+      "type": "PLAT",
+      "nom": "Pizza Végé",
+      "description": "Pizza aux Tomates, Aubergines, Champignons, Mozzarella",
+      "prix": 12.0,
+      "ingredients": [
+        "TOMATE",
+        "AUBERGINE",
+        "CHAMPIGNON",
+        "MOZZARELLA"
+      ]
+    }
+  },
+  {
+    "menu": {
+      "id": "51",
+      "nom": "La Grosse Faim",
+      "type": "MENU",
+      "foodGroups": {
+        "product": [
+          {
+            "id": "1",
+            "type": "ENTREE",
+            "nom": "Salade",
+            "description": "Petite Salade composée : Tomates et Chèvre ou Lardons.",
+            "prix": 4.0
+          },
+          {
+            "id": "13",
+            "type": "PLAT",
+            "nom": "Gratin de ravioles",
+            "description": "Gratins de ravioles saumon",
+            "prix": 11.0,
+            "ingredients": [
+              "SAUMON"
+            ]
+          },
+          {
+            "id": "20",
+            "type": "DESSERT",
+            "nom": "Glace",
+            "description": "Glace nappage chocolat",
+            "prix": 3.0
+          },
+          {
+            "id": "33",
+            "type": "BOISSON",
+            "nom": "Orangina",
+            "description": "Canette de 33cl",
+            "prix": 2.0
+          }
+        ]
+      },
+      "prix": 20.0
+    }
+  }
+]

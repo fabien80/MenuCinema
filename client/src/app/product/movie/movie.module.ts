@@ -8,6 +8,7 @@ import {CastTableModule} from './cast-table/cast-table.module';
 import {CrewTableModule} from './crew-table/crew-table.module';
 import {BasketModule} from '../../basket/basket.module';
 import {MovieRoutingModule} from './movie-routing.module';
+import {RecommandationModule} from "../../recommandation/recommandation.module";
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import {MovieRoutingModule} from './movie-routing.module';
         CastTableModule,
         CrewTableModule,
         BasketModule,
-        MovieRoutingModule
+        MovieRoutingModule,
+        RecommandationModule
     ], exports: [
         MovieComponent
     ]

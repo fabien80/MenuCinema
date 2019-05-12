@@ -85,7 +85,7 @@ public class Server extends HttpServlet {
 		servletHandler.addServletWithMapping(GetCommandesServlet.class, apiDefaultPath + "/commandes");
 		servletHandler.addServletWithMapping(GetOrderHistoryServlet.class, apiDefaultPath + "/orderHistory");
 		servletHandler.addServletWithMapping(SearchProduitServlet.class, apiDefaultPath + "/search/product");
-		servletHandler.addServletWithMapping(GetProductByOtherProductServlet.class, apiDefaultPath + "/filmsByFood");
+		servletHandler.addServletWithMapping(GetProductByOtherProductServlet.class, apiDefaultPath + "/recommandation");
 		servletHandler.addServletWithMapping(GetProduitServlet.class, apiDefaultPath + "/produit");
 		servletHandler.addServletWithMapping(GetProduitsByIdsServlet.class, apiDefaultPath + "/produitsIds");
 		servletHandler.addServletWithMapping(PostClientPhoto.class, apiDefaultPath + "/uploadPhoto");

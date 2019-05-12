@@ -1,0 +1,4 @@
+<div>
+    <app-recommended-movies *ngIf="searchingMovie() && ids != undefined && ids.length != 0 " [movieIds]="ids"></app-recommended-movies>
+    <app-recommended-foods *ngIf="!searchingMovie() && ids != undefined && ids.length != 0" [foodIds]="ids"></app-recommended-foods>
+</div>

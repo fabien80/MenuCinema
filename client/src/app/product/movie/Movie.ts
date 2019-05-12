@@ -1,5 +1,6 @@
 import {Product} from '../class/Product';
-import {MovieResult, SearchMovieResponse} from '../../tmdb-data/searchMovie';
+import {MovieResult} from '../../tmdb-data/searchMovie';
+import {ProductType} from "../../enum/ProductType";
 
 export class Movie extends Product implements MovieResult {
     public adult: boolean;
@@ -24,7 +25,7 @@ export class Movie extends Product implements MovieResult {
     }
 
     constructor(id: number, prix: number, adult: boolean, backdrop_path: string, genre_ids: number[], original_language: string, original_title: string, overview: string, popularity: number, poster_path: string, release_date: string, title: string, video: boolean, vote_average: number, vote_count: number) {
-        super(id, prix);
+        super(id, prix, ProductType.Movie);
         this.adult = adult;
         this.backdrop_path = backdrop_path;
         this.genre_ids = genre_ids;

@@ -6,6 +6,10 @@ import {FoodService} from '../../product/food/food.service';
 import {MenuClass} from '../../product/menu/menu';
 import {MenuService} from '../../product/menu/menu.service';
 import {ProductGroupInterface} from '../../interface/ProductInterface';
+import {ApiService} from "../../services/api.service";
+import {ProductType} from "../../enum/ProductType";
+import {DBProductType} from "../../enum/DBProductType";
+import {RecommandationService} from "../../recommandation/recommandation.service";
 
 @Component({
     selector: 'app-add-food-to-cart',
@@ -20,7 +24,9 @@ export class AddProductToBasketComponent implements OnInit {
                 @Inject(MAT_DIALOG_DATA) public data: Product,
                 private basketService: BasketService,
                 private foodService: FoodService,
-                private menuService: MenuService) {
+                private menuService: MenuService,
+                private apiService: ApiService,
+                private recommandationService: RecommandationService) {
 
     }
 
@@ -44,5 +50,15 @@ export class AddProductToBasketComponent implements OnInit {
         let productGroup: ProductGroupInterface<any>;
         productGroup = {product: this.data, amount: this.amount};
         this.dialogRef.close(productGroup);
+    }
+
+
+    getSearchType() {
+        return this.recommandationService.getSearchType(this.data.type);
+    }
+
+    getGivenType() {
+        return this.recommandationService.getGivenType(this.data.type);
+
     }
 }

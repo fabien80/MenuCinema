@@ -49,5 +49,7 @@ export const environment = {
     firebaseUserStorageKey: 'firebaseUser',
     apiClientStorageKey: 'apiUser',
     apiBaseUrl: 'http://localhost:8090/',
-    proxyBaseUrl: '/api'
+    proxyBaseUrl: '/api',
+    backdropPathBaseUrl: 'https://image.tmdb.org/t/p/original/',
+    posterPathBaseUrl: 'https://image.tmdb.org/t/p/w300/'
 };
