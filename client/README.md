@@ -1,19 +1,20 @@
-# Lisez-moi du projet majeur L3 MIAGE groupe 1
+# Lisez-moi du projet intégrateur de L3 MIAGE du groupe 1
 Étudiants :
-- Jolan
-- Loic
-- Maxence Morand - 11620508
-- Romain
-- Tibault
-
+- Jolan DAUMAS - 11614043
+- Loïc JOVANOVIC - 10207151
+- Maxence MORAND - 11620508
+- Romain BAILLS - 11601334
+- Thibault BLAYE - 11614189
+ 
 ## Back end
 
 ### Base de données
 Le projet nécessite une base de données mySql nommée `projetfinal`.
 Pour configurer la base de données, il faut:
-- Exécuter le fichier `createTable.sql` pour créer les tables,
-- Exécuter le fichier `dropTables.sql` pour s’assurer qu’elles soient bien vides,
-- Exécuter le fichier `populate.sql` pour remplir les tables.
+- Éxécuter le fichier `createTable.sql` pour créer les tables,
+- Il éxiste un fichier dropTable.sql pour delete les tables,
+- Éxécuter le fichier insertProductPL.sql pour créer la procédure,
+- Éxécuter le fichier reviewAverage.sql pour créer la fonction.
 Pour se connecter à la base de données il faut mettre ses identifiants et mot de pass dans le fichier `/serveur/.properties` sous la forme :
 
 > user={nom d'utilisateur}  
@@ -49,9 +50,9 @@ Par :
 ## End points
 ###Client  
 
-L'end point pour avoir les détails pour un client est  GET `/client`    
+L'end point pour avoir les détails pour un client est  GET `/api/client`    
 **Paramètre**:  
-`token`: Chaîne de caractères contenant le token firebase de ce client.    
+`token`: Chaîne de caractères contenant le token firebase du client.    
 
 **Réponse**:     
 Code : 200 OK    
@@ -69,7 +70,9 @@ Identifiant | Description
 `token`| Chaîne de caractères  
 `numeroRue`| Entier  
 `rue`| Chaine de caractères  
-`ville`| Chaîne de caractères  
+`ville`| Chaîne de caractères
+`codePostal`| Chaîne de caractères  
+
 
 
   ----------------
