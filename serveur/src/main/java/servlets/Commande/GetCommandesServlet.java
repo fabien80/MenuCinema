@@ -13,6 +13,14 @@ import java.util.ArrayList;
 
 public class GetCommandesServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+
+    /**
+     * Servlet qui va faire le lien entre le front et le back pour récupérer l'ensemble des commandes.
+     * @param request : Le servlet de la requête envoyé par le front
+     * @param response : Le servlet qui va permettre au back de répondre.
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {

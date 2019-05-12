@@ -20,7 +20,6 @@ public class GetParametersServlet extends HttpServlet
         while (paramNames.hasMoreElements())
         {
             parNames = (String) paramNames.nextElement();
-            out.println("Ouloulou" + parNames + " = " + req.getParameter(parNames));
         }
 
     }

@@ -32,6 +32,5 @@ public class SearchProduitServlet extends HttpServlet {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 }
