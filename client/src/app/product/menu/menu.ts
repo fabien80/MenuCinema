@@ -3,8 +3,8 @@ import {Product} from '../class/Product';
 import {FoodGroup} from '../food/foodGroup';
 import {ProductGroupInterface} from '../../interface/ProductInterface';
 import {FoodInterface} from '../../interface/FoodInterface';
-import {SearchFoodInterface, SearchMenuInterface, SearchMenusInterface} from '../../interface/SearchInterface';
-import {Food} from '../food/food';
+import {SearchMenuInterface} from '../../interface/SearchInterface';
+import {ProductType} from "../../enum/ProductType";
 
 export class MenuClass extends Product implements MenuInterface {
     public foodGroups: FoodGroup[];
@@ -32,7 +32,7 @@ export class MenuClass extends Product implements MenuInterface {
     }
 
     constructor(id: number, prix: number, foodGroups: FoodGroup[], nom: string) {
-        super(id, prix);
+        super(id, prix, ProductType.Menu);
         this.foodGroups = foodGroups;
         this.nom = nom;
     }

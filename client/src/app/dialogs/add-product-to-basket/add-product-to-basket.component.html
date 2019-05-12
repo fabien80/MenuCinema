@@ -1,6 +1,7 @@
 <div>
     <div *ngIf="isMenu()">
         <app-menu [menu]="menuService.productToMenu(data)"></app-menu>
+        <mat-divider></mat-divider>
         <div *ngFor="let foodGroup of menuService.productToMenu(data).foodGroups">
             <app-food [food]=" foodService.productToFood(foodGroup.product)"></app-food>
         </div>
@@ -9,7 +10,10 @@
     <div class="amount-div">
         <app-amount-buttons [(amount)]="amount" (amountChange)="calculatePrice()"></app-amount-buttons>
     </div>
-    {{price}} €
+    Total : {{price}} €
+</div>
+<div>
+    <app-recommandation [searchType]="getSearchType()" [givenType]="getGivenType()" [productId]="data.id" ></app-recommandation>
 </div>
 <div>
     <button mat-button class="btn btn-danger" (click)="close()">
@@ -19,3 +23,4 @@
         Valider
     </button>
 </div>
+

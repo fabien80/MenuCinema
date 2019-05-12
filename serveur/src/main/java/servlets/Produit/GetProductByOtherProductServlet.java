@@ -14,18 +14,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class GetProductByOtherProductServlet extends HttpServlet {
-    private static final long servialVersionUID = 1L;
+	private static final long servialVersionUID = 1L;
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
-        ProduitController controller = new ProduitController();
-        response.setContentType("application/json");
-        StringBuilder res = new StringBuilder("{\n");
-        ArrayList<String> idsFilm = (ArrayList<String>) controller.getProductIdByOtherProduct(request);
-        idsFilm.forEach((idFilm -> res.append(JsonConverter.convertObjectToJson(idFilm) + ",\n")));
-        res.append("}");
-        response.setStatus(HttpServletResponse.SC_OK);
-        response.getWriter().println(res.toString());
-    }
+	@Override
+	protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException,
+	                                                                                       IOException {
+		ProduitController controller = new ProduitController();
+		response.setContentType("application/json");
+		ArrayList<String> ids = (ArrayList<String>) controller.getProductIdByOtherProduct(request);
+		response.setStatus(HttpServletResponse.SC_OK);
+		response.getWriter().println(JsonConverter.convertObjectToJson(ids));
+	}
 }

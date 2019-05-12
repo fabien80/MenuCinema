@@ -5,7 +5,6 @@ import {Product} from '../class/Product';
 export class Food extends Product implements FoodInterface {
     public description: string;
     public nom: string;
-    public type: ProductType;
 
     static fromData(data: FoodInterface) {
         const {description, id, nom, prix, type} = data;
@@ -13,10 +12,9 @@ export class Food extends Product implements FoodInterface {
     }
 
     constructor(id: number, prix: number, description: string, nom: string, type: ProductType) {
-        super(id, prix);
+        super(id, prix,type);
         this.description = description;
         this.nom = nom;
-        this.type = type;
     }
 
 

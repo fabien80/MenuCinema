@@ -1,6 +1,7 @@
 package servlets.Produit;
 
 import controllers.ProduitController;
+import dto.NourrituresMenusDTO;
 import models.Produit;
 import org.xml.sax.SAXException;
 import services.JsonConverter;
@@ -14,27 +15,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class GetProduitsByIdsServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            ProduitController controller = new ProduitController();
-            response.setContentType("application/json");
-            StringBuilder res = new StringBuilder("{\n");
-            ArrayList<Produit> produits = (ArrayList<Produit>) controller.getAllProductsById(request);
-            produits.forEach((produit -> res.append(JsonConverter.convertObjectToJson(produit) + ",\n")));
-            res.append("}");
-            response.setStatus(HttpServletResponse.SC_OK);
-            response.getWriter().println(res.toString());
-        } catch (
-                ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (
-                SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+	@Override
+	protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException,
+	                                                                                       IOException {
+		try {
+			ProduitController controller = new ProduitController();
+			response.setContentType("application/json");
+			NourrituresMenusDTO produits = controller.getAllProductsById(request);
+			String produitsJson = JsonConverter.convertObjectToJson(produits);
+			System.out.println(produitsJson);
+			response.setStatus(HttpServletResponse.SC_OK);
+			response.getWriter().println(produitsJson);
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -7,8 +7,10 @@ import {AddressInterface} from '../interface/AddressInterface';
 import {MenuGroup} from '../product/menu/MenuGroup';
 import {ProductGroup} from '../product/class/productGroup';
 import {Movie} from '../product/movie/Movie';
-import {environment} from "../../environments/environment";
-import {SearchProductQuery} from "../interface/SearchInterface";
+import {environment} from '../../environments/environment';
+import {SearchProductQuery} from '../interface/SearchInterface';
+import {ProductType} from "../enum/ProductType";
+import {DBProductType} from "../enum/DBProductType";
 
 @Injectable({
     providedIn: 'root'
@@ -61,6 +63,19 @@ export class ApiService {
         return params;
     }
 
+    async getClientHistory(token: string): Promise<any> {
+        let params: HttpParams = new HttpParams();
+        params = params.set('token', token);
+        console.log("api service");
+        console.log(params);
+        return await this.http.get(environment.proxyBaseUrl + '/orderHistory', {
+            params: params,
+            headers: new HttpHeaders()
+                .set('Content-Type', 'application/x-www-form-urlencoded')
+        }).toPromise();
+
+
+    }
 
     payement(basket: Basket, address: AddressInterface, token: string) {
         let params: HttpParams = new HttpParams();
@@ -73,13 +88,14 @@ export class ApiService {
         params = params.set('id_plats', this.productGroupToIds(basket.foodGroups));
         params = params.set('id_menus', this.productGroupToIds(basket.menuGroups));
         params = params.set('id_films', this.moviesToIds(basket.movies));
+        console.log(basket.foodGroups);
         return this.http.post(environment.proxyBaseUrl + '/addCommande', params.toString(),
             {
                 headers: new HttpHeaders()
                     .set('Content-Type', 'application/x-www-form-urlencoded')
             }).toPromise();
-
     }
+
 
     private moviesToIds(movies: Movie[]): string {
         return movies.reduce((ids: string, currentValue: Movie) => {
@@ -117,4 +133,19 @@ export class ApiService {
         return this.http.get(url, {params}).toPromise();
 
     }
+
+    getRecommandations(productId: string, givenType: DBProductType, searchType: DBProductType) {
+        let params = new HttpParams();
+        params = params.append('id', productId);
+        params = params.append('type_donne', givenType);
+        params = params.append('type_recherche', searchType);
+        return this.http.get(environment.proxyBaseUrl + '/recommandation', {params, responseType: "json"}).toPromise();
+    }
+
+    getProductsByIds(ids: string) {
+        let params = new HttpParams();
+        params = params.append('ids', ids);
+        return this.http.get(environment.proxyBaseUrl + '/produitsIds', {params}).toPromise();
+    }
 }
+

@@ -3,13 +3,13 @@
         <img
                 id="custom_bg"
                 *ngIf="movie && movie.backdrop_path"
-                src="https://image.tmdb.org/t/p/original/{{movie.backdrop_path}}"
+                [src]="getBackDropPath()"
         >
         <div *ngIf="movie != undefined" class="col-xs-12 col-lg-9 ">
             <div class="">
                 <img
                         class="poster_img "
-                        src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}"
+                        [src]="getPosterPath()"
                         alt="poster"
                 >
                 <div class="movie_info">
@@ -82,3 +82,4 @@
 <div *ngIf="movie === undefined">
     <h1>404 - Movie not found</h1>
 </div>
+<app-recommandation class="recommandation-div" *ngIf="movie.id !== undefined" [productId]="movie.id" [givenType]="getGivenType()" [searchType]="getSearchType()"></app-recommandation>

@@ -1,12 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {FoodInterface} from '../interface/FoodInterface';
 import {ProductType} from '../enum/ProductType';
 import {SearchProductQuery} from '../interface/SearchInterface';
 import {MenuInterface} from '../interface/MenuInterface';
 import {ProductInterface} from '../interface/ProductInterface';
-import {Product} from './class/Product';
-import {environment} from "../../environments/environment";
 import {ApiService} from "../services/api.service";
 
 const api = '/api';
@@ -27,14 +25,14 @@ export class ProductService {
 
     public async searchMock(query: SearchProductQuery): Promise<any> {
         const plat: FoodInterface = {
-            description: 'test',
+            description: 'recommandation-div',
             id: 1,
             nom: 'pizza',
             prix: 6,
             type: ProductType.Plat
         };
         const dessert: FoodInterface = {
-            description: 'test',
+            description: 'recommandation-div',
             id: 2,
             nom: 'glace',
             prix: 2.50,
@@ -42,7 +40,7 @@ export class ProductService {
         };
 
         const entree: FoodInterface = {
-            description: 'test',
+            description: 'recommandation-div',
             id: 3,
             nom: 'salade',
             prix: 3,
@@ -50,7 +48,7 @@ export class ProductService {
         };
 
         const boisson: FoodInterface = {
-            description: 'test',
+            description: 'recommandation-div',
             id: 4,
             nom: 'coca',
             prix: 2,
@@ -62,7 +60,8 @@ export class ProductService {
             id: 1,
             foodGroups: [{product: entree, amount: 1}, {product: boisson, amount: 1}, {product: plat, amount: 1}],
             prix: 20,
-            nom: 'test'
+            nom: 'recommandation-div',
+            type: ProductType.Menu
         };
 
         const menu2: MenuInterface = {
@@ -70,7 +69,8 @@ export class ProductService {
             id: 2,
             foodGroups: [{amount: 1, product: plat}, {amount: 1, product: dessert}],
             prix: 10,
-            nom: 'test'
+            nom: 'recommandation-div',
+            type: ProductType.Menu
         };
 
         const menu3: MenuInterface = {
@@ -79,8 +79,9 @@ export class ProductService {
                 product: dessert,
                 amount: 1
             }],
-            nom: 'test',
-            prix: 25
+            nom: 'recommandation-div',
+            prix: 25,
+            type: ProductType.Menu
         };
 
         if (query.type == null) {

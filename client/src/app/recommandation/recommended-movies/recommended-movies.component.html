@@ -1,0 +1,16 @@
+<p>
+    Films apprécié avec votre commande :
+</p>
+<ngb-carousel *ngIf="movies != null"
+              [showNavigationArrows]="showNavigationArrows"
+              [showNavigationIndicators]="showNavigationIndicators"
+              [keyboard]="true"
+>
+    <ng-template ngbSlide *ngFor="let movie of movies">
+
+        <img class="poster-img"
+             [src]="tmdbService.getPosterPath(movie)"
+             alt="{{movie.original_title}}"
+             (click)="goToMoviePage(movie)">
+    </ng-template>
+</ngb-carousel>

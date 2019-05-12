@@ -9,6 +9,8 @@ import {MenuService} from '../product/menu/menu.service';
 import {FoodService} from '../product/food/food.service';
 import {Basket} from './Basket';
 import {Movie} from '../product/movie/Movie';
+import {AddEventInterface} from "../interface/AddEventInterface";
+import {AddEventType} from "../enum/AddEventType";
 
 
 @Injectable({
@@ -159,5 +161,19 @@ export class BasketService {
         this._basket.value.movies.splice(index, 1);
         this.updateTotalPrice();
         this.setBasketToLocalStorage();
+    }
+
+    onAdd(addEvent: AddEventInterface) {
+        switch (addEvent.event) {
+            case AddEventType.addFood:
+                this.addFood(FoodGroup.fromData(addEvent.data));
+                break;
+            case AddEventType.addMenu:
+                this.addMenu(MenuGroup.fromData(addEvent.data));
+                break;
+            case AddEventType.addMovie:
+                break;
+
+        }
     }
 }
