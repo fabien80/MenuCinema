@@ -22,7 +22,8 @@ password={mot de passe}
     
 Voici le MCD (Modèle Conceptuel des Données) schéma de notre application:
 
-    METTRE IMAGE ICI (A JOUR)
+ ![alt text](./serveur/db/mcd.png "MCD")	
+  
 
 Vous pouvez vous connecter aussi bien sur une Base de Données local que sur une Base de Données distante.
 Pour vous connecter sur l’un ou sur l’autre il faut modifier le fichier `/l3m_menucinema/serveur/src/main/java/services/Connection.java`:  
