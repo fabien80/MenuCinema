@@ -33,6 +33,10 @@ public class Server extends HttpServlet {
 
 	private org.eclipse.jetty.server.Server server;
 
+	/**
+	 * Fonction main du serveur.
+	 * @throws Exception
+	 */
 	void start () throws Exception {
 
 		QueuedThreadPool threadPool = new QueuedThreadPool(maxThreads, minThreads, idleTimeout);
@@ -69,6 +73,7 @@ public class Server extends HttpServlet {
 
 		Connection.init();
 
+		// La liste de tous les endpoints
 		servletHandler.addServletWithMapping(BlockingServlet.class, apiDefaultPath + "/status");
 		servletHandler
 				.addServletWithMapping(ClientAuthentificationServlet.class, apiDefaultPath + "/api/authentification");
@@ -92,11 +97,20 @@ public class Server extends HttpServlet {
 		// server.join();
 	}
 
+	/**
+	 * Fonction qui arrête le serveur
+	 * @throws Exception
+	 */
 	void stop () throws Exception {
 		System.out.println("Server stop");
 		server.stop();
 	}
 
+	/**
+	 * Fonction main.
+	 * @param args
+	 * @throws Exception
+	 */
 	public static void main (String[] args) throws Exception {
 		Server server = new Server();
 
