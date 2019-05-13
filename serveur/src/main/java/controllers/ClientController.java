@@ -8,133 +8,120 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ClientController extends Controller<Client>
-{
+public class ClientController extends Controller<Client> {
 
 
-    @Override
-    protected Client serialize(ResultSet result)
-    {
-        int id;
-        String nom;
-        String prenom;
-        String mail;
-        String photo;
-        String tel;
-        int fidelite;
-        int numeroRue;
-        String rue;
-        String ville;
-        String codePostal;
-        String token;
+	@Override
+	protected Client serialize (ResultSet result) {
+		int id;
+		String nom;
+		String prenom;
+		String mail;
+		String photo;
+		String tel;
+		int fidelite;
+		int numeroRue;
+		String rue;
+		String ville;
+		String codePostal;
+		String token;
 
 
-        Client client = null;
+		Client client = null;
 
-        try
-        {
-            id = result.getInt("client_id");
-            nom = result.getString("nom");
-            prenom = result.getString("prenom");
-            photo = result.getString("photo");
-            tel = result.getString("tel");
-            fidelite = result.getInt("fidelite");
-            token = result.getString("token");
-            numeroRue = result.getInt("numero_rue");
-            rue = result.getString("rue");
-            ville = result.getString("ville");
-            codePostal = result.getString("code_postal");
-            mail = result.getString("mail");
+		try {
+			id = result.getInt("client_id");
+			nom = result.getString("nom");
+			prenom = result.getString("prenom");
+			photo = result.getString("photo");
+			tel = result.getString("tel");
+			fidelite = result.getInt("fidelite");
+			token = result.getString("token");
+			numeroRue = result.getInt("numero_rue");
+			rue = result.getString("rue");
+			ville = result.getString("ville");
+			codePostal = result.getString("code_postal");
+			mail = result.getString("mail");
 
-            client = new Client(id, nom, prenom, mail, photo, tel, fidelite, token, numeroRue, rue, ville, codePostal);
-        } catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
+			client = new Client(id, nom, prenom, mail, photo, tel, fidelite, token, numeroRue, rue, ville, codePostal);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-        return client;
-    }
+		return client;
+	}
 
-    @Override
-    public boolean create(HttpServletRequest request)
-    {
-        return super.create(request);
-    }
+	@Override
+	public boolean create (HttpServletRequest request) {
+		return super.create(request);
+	}
 
-    @Override
-    public List<Client> get(String tableName)
-    {
-        return super.get(tableName);
-    }
+	@Override
+	public List<Client> get (String tableName) {
+		return super.get(tableName);
+	}
 
-    @Override
-    public Client getElem(String tableName, HttpServletRequest request)
-    {
-        Client elem = null;
-        String token = request.getParameter("token");
+	@Override
+	public Client getElem (String tableName, HttpServletRequest request) {
+		Client elem = null;
+		String token = request.getParameter("token");
 
-        try
-        {
-            ResultSet result =
-                    Connection.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
-                            .executeQuery("SELECT * from client WHERE token = " + "'" + token + "'");
+		try {
+			ResultSet result =
+					Connection.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+							.executeQuery("SELECT * from client WHERE token = " + "'" + token + "'");
 
-            if (result.first())
-            {
-                elem = serialize(result);
-            }
-            result.close();
-        } catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-        return elem;
-    }
+			if (result.first()) {
+				elem = serialize(result);
+			}
+			result.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return elem;
+	}
 
 
-    @Override
-    protected String getCreateString(HttpServletRequest request)
-    {
-        Client client = requestBodyToClass(request);
+	@Override
+	protected String getCreateString (HttpServletRequest request) {
+		Client client = requestBodyToClass(request);
 
-        String res = "INSERT INTO client ";
-        res += " ( ";
-        res += " nom , ";
-        res += " prenom , ";
-        res += " mail , ";
-        res += " photo , ";
-        res += " tel , ";
-        res += " fidelite , ";
-        res += " numero_rue , ";
-        res += " rue , ";
-        res += " ville , ";
-        res += " code_postal , ";
-        res += " token ";
-        res += " ) ";
-        res += "VALUES(";
-        res += "'" + client.getNom() + "',";
-        res += "'" + client.getPrenom() + "',";
-        res += "'" + client.getMail() + "',";
-        res += "'" + client.getPhoto() + "',";
-        res += "'" + client.getTel() + "',";
-        res += client.getFidelite() + ",";
-        res += client.getNumeroRue() + ",";
-        res += "'" + client.getRue() + "',";
-        res += "'" + client.getVille() + "',";
-        res += "'" + client.getCodePostal() + "',";
-        res += "'" + client.getToken() + "')";
-        return res;
-    }
+		String res = "INSERT INTO client ";
+		res += " ( ";
+		res += " nom , ";
+		res += " prenom , ";
+		res += " mail , ";
+		res += " photo , ";
+		res += " tel , ";
+		res += " fidelite , ";
+		res += " numero_rue , ";
+		res += " rue , ";
+		res += " ville , ";
+		res += " code_postal , ";
+		res += " token ";
+		res += " ) ";
+		res += "VALUES(";
+		res += "'" + client.getNom() + "',";
+		res += "'" + client.getPrenom() + "',";
+		res += "'" + client.getMail() + "',";
+		res += "'" + client.getPhoto() + "',";
+		res += "'" + client.getTel() + "',";
+		res += client.getFidelite() + ",";
+		res += client.getNumeroRue() + ",";
+		res += "'" + client.getRue() + "',";
+		res += "'" + client.getVille() + "',";
+		res += "'" + client.getCodePostal() + "',";
+		res += "'" + client.getToken() + "')";
+		return res;
+	}
 
-    @Override
-    public boolean update(HttpServletRequest request)
-    {
-        return super.update(request);
-    }
+	@Override
+	public boolean update (HttpServletRequest request) {
+		return super.update(request);
+	}
 
-    @Override
-    protected String getUpdateString(HttpServletRequest request)
-    {
+	@Override
+	protected String getUpdateString (HttpServletRequest request) {
 
 
 		Client client = requestBodyToClass(request);
@@ -152,31 +139,29 @@ public class ClientController extends Controller<Client>
 		res += " code_postal = '" + client.getCodePostal() + "'";
 		res += "WHERE token = " + "'" + client.getToken() + "'";
 
-        return res;
-    }
+		return res;
+	}
 
-    @Override
-    public boolean delete(String tableName, HttpServletRequest request)
-    {
-        return super.delete(tableName, request);
-    }
+	@Override
+	public boolean delete (String tableName, HttpServletRequest request) {
+		return super.delete(tableName, request);
+	}
 
-    @Override
-    protected Client requestBodyToClass(HttpServletRequest request)
-    {
-        Client client = null;
-        int id;
-        String nom;
-        String prenom;
-        String mail;
-        String photo;
-        String tel;
-        int fidelite;
-        int numeroRue;
-        String rue;
-        String ville;
-        String codePostal;
-        String token;
+	@Override
+	protected Client requestBodyToClass (HttpServletRequest request) {
+		Client client = null;
+		int id;
+		String nom;
+		String prenom;
+		String mail;
+		String photo;
+		String tel;
+		int fidelite;
+		int numeroRue;
+		String rue;
+		String ville;
+		String codePostal;
+		String token;
 
 		id = Integer.parseInt(request.getParameter("client_id"));
 		nom = request.getParameter("nom");
@@ -198,7 +183,7 @@ public class ClientController extends Controller<Client>
 	}
 
 
-	public static int getClientIdByToken(String token) {
+	public static int getClientIdByToken (String token) {
 		int clientId = -1;
 		ResultSet res;
 		String query = "SELECT client_id ";
@@ -206,8 +191,9 @@ public class ClientController extends Controller<Client>
 		query += " WHERE token =  " + "'" + token + "'";
 		res = Controller.getResultSet(query);
 		try {
-			res.next();
-			clientId = res.getInt("client_id");
+			if (res.first()) {
+				clientId = res.getInt("client_id");
+			}
 			res.close();
 		} catch (SQLException e) {
 			e.printStackTrace();

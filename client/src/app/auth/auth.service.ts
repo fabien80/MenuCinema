@@ -13,7 +13,7 @@ import {ClientInterface} from '../interface/ClientInterface';
     providedIn: 'root'
 })
 export class AuthService {
-    private _firebaseUser;
+    private _firebaseUser: firebase.User;
     private _isLogged = false;
 
     constructor(private firebaseApp: FirebaseApp,
@@ -22,6 +22,15 @@ export class AuthService {
                 private localStorageService: LocalStorageService,
                 private dialog: MatDialog) {
         this._firebaseUser = this.localStorageService.getFirebaseUser();
+        if (this._firebaseUser) {
+            this.clientService.init(this._firebaseUser.uid)
+            .then(() => {
+                console.log('logged');
+            })
+            .catch(() => {
+                this.signOut();
+            });
+        }
     }
 
     signOut() {
@@ -44,7 +53,12 @@ export class AuthService {
     }
 
     isSignedIn() {
-        this._isLogged = (this._firebaseUser != null && this.clientService.client.value !== null) || this._isLogged;
+        this._isLogged = (
+            this._firebaseUser != null &&
+            this.clientService.client !== undefined &&
+            this.clientService.client.value != null &&
+            this.clientService.client.value.clientId !== 0
+        ) || this._isLogged;
         return this._isLogged;
     }
 
