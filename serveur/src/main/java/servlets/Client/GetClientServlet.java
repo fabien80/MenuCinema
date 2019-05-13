@@ -15,8 +15,8 @@ public class GetClientServlet extends HttpServlet
 
     /**
      * Servlet qui va faire le lien entre le front et le back pour récupéré un client dont l'id est passé en paramètre
-     * @param request : Le servlet de la requête envoyé par le front
-     * @param response : Le servlet qui va permettre au back de répondre.
+     * @param request
+     * @param response
      * @throws ServletException
      * @throws IOException
      */

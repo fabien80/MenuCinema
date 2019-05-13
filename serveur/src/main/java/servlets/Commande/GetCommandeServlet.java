@@ -16,8 +16,8 @@ public class GetCommandeServlet extends HttpServlet {
     /**
      * Servlet qui va faire le lien entre le front et le back pour récupérer une commande dont l'id est est passé dans
      * la requête
-     * @param request : Le servlet de la requête envoyé par le front
-     * @param response : Le servlet qui va permettre au back de répondre.
+     * @param request Le servlet de la requête envoyé par le front
+     * @param response Le servlet qui va permettre au back de répondre.
      * @throws ServletException
      * @throws IOException
      */

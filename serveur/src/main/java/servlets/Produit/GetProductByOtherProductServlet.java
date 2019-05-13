@@ -20,8 +20,8 @@ public class GetProductByOtherProductServlet extends HttpServlet {
 	/**
 	 * Servlet qui va faire le lien entre le front et le back pour récupérer les 5 produits les plus commandés par rapport
 	 *  à un autre produit.
-	 * @param request : Le servlet de la requête envoyé par le front
-	 * @param response : Le servlet qui va permettre au back de répondre.
+	 * @param request Le servlet de la requête envoyé par le front
+	 * @param response Le servlet qui va permettre au back de répondre.
 	 * @throws ServletException
 	 * @throws IOException
 	 */

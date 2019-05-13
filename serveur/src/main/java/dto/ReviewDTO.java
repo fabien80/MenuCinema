@@ -1,5 +1,8 @@
 package dto;
 
+/**
+ * Classe qui permet de formalisé ce que le back va renvoyé au front pour les reviews
+ */
 public class ReviewDTO {
 	private Double note;
 	private String review;

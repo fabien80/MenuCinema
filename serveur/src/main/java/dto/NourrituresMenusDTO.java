@@ -5,6 +5,9 @@ import models.Nourriture;
 
 import java.util.List;
 
+/**
+ * Classe qui va servir à formalisé  les données envoyés au front pour la nourriture et les menus.
+ */
 public class  NourrituresMenusDTO {
 	private List<Menu> menus;
 	private List<Nourriture> foods;

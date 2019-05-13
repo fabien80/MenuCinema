@@ -18,8 +18,8 @@ public class GetProduitServlet extends HttpServlet {
 
     /**
      * Servlet qui va faire le lien entre le front et le back pour récupérer un produit à partir de son id
-     * @param request : Le servlet de la requête envoyé par le front
-     * @param response : Le servlet qui va permettre au back de répondre.
+     * @param request Le servlet de la requête envoyé par le front
+     * @param response Le servlet qui va permettre au back de répondre.
      * @throws ServletException
      * @throws IOException
      */

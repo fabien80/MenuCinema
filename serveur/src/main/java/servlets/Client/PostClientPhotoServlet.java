@@ -19,8 +19,8 @@ public class PostClientPhotoServlet extends HttpServlet {
 
 	/**
 	 * Reconstitue le fichier et le met dans le répertoire ressouce
-	 * @param request
-	 * @param response
+	 * @param request Le servlet de la requête envoyé par le front
+	 * @param response Le servlet qui va permettre au back de répondre.
 	 * @throws ServletException
 	 * @throws IOException
 	 */

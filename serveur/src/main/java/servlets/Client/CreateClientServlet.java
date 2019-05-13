@@ -12,9 +12,9 @@ public class CreateClientServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Servlet qui va faire le lien entre le front et le back pour la création d'un client
-	 * @param request : Le servlet de la requête envoyé par le front
-	 * @param response : Le servlet qui va permettre au back de répondre.
+	 *  Servlet qui va faire le lien entre le front et le back pour la création d'un client
+	 * @param request
+	 * @param response
 	 * @throws ServletException
 	 * @throws IOException
 	 */

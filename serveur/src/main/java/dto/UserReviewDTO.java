@@ -4,6 +4,9 @@ import models.Client;
 
 import java.util.List;
 
+/**
+ * Classe qui va permettre de formalisé les review du client pour un produit.
+ */
 public class UserReviewDTO {
 	Client client;
 	List<ReviewDTO> reviews;
