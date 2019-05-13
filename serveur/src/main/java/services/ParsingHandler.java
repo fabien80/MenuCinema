@@ -21,6 +21,10 @@ public class ParsingHandler extends DefaultHandler
     private FoodGroups currentFoodGroups;
     private ArrayList<Produit> produitList;
 
+    /**
+     * Fonction du parser qui va être appelé à l'ouverture du document.
+     * @throws SAXException
+     */
     @Override
     public void startDocument() throws SAXException
     {
@@ -29,6 +33,15 @@ public class ParsingHandler extends DefaultHandler
         currentValue = "";
     }
 
+    /**
+     * Fonction du parseur qui va être appelé au début d'un élément dans le XML et qui va dans le switch
+     * appelé les fonctions qu'il faut pour remplir la liste des produits.
+     * @param uri
+     * @param localName
+     * @param qName
+     * @param attributes
+     * @throws SAXException
+     */
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException
     {
@@ -55,6 +68,13 @@ public class ParsingHandler extends DefaultHandler
         }
     }
 
+    /**
+     * Fonction du parser qui est appelé lorsqu'on arrive à une balise fermante d'élément.
+     * @param uri
+     * @param localName
+     * @param qName
+     * @throws SAXException
+     */
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException
     {
