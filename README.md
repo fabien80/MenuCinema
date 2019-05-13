@@ -23,7 +23,12 @@ password={mot de passe}
 Voici le MCD (Modèle Conceptuel des Données) schéma de notre application:
 
  ![alt text](./serveur/db/mcd.png "MCD")	
-  
+ 
+Nous avons fait le choix de stocker les id's et le type du produit dans la base de données,
+pour différencier les films, de la nourriture et des menus.
+Pour cela nous utilisons une table qui contient l'id du produit et son type parmis ('Film','Nourriture','Menu'),
+Le choix de mettre le type du produit dans la clef de produit a été fait parce qu'on ne connait pas le domaine exacte
+des identifiants. 
 
 Vous pouvez vous connecter aussi bien sur une Base de Données local que sur une Base de Données distante.
 Pour vous connecter sur l’un ou sur l’autre il faut modifier le fichier `/l3m_menucinema/serveur/src/main/java/services/Connection.java`:  
@@ -155,3 +160,7 @@ la page d’acceuil : `/homepage`
 la page de connection : `/login`  
 la page de consultation/modification du profil : `/profile`  
 la page de detail de film: `/movie`  
+
+Voici un schéma pour la représenté, celui-ci est non exhaustif mais présente les composants les plus importants.
+
+ ![alt text](./images/angularSchema.png "angularSchema")	s
