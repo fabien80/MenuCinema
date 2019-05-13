@@ -13,6 +13,11 @@ public class Connection
 
     public static java.sql.Connection conn;
 
+    /**
+     * Fonction qui va initialisé la connection à l base de données en récupérant le
+     * password et le nom d'uttilisateur dans le fichier Properties.
+     *
+     */
     public static void init()
     {
         try

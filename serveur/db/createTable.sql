@@ -67,7 +67,7 @@ CREATE TABLE produitCommande(
         type_produit Varchar (50) NOT NULL ,
         commande_id  Int NOT NULL ,
         nb_commande  Int NOT NULL,
-        note Int,
+        note DOUBLE ,
         review Varchar (500)
         ,CONSTRAINT produitCommande_PK PRIMARY KEY (produit_id,type_produit,commande_id)
         ,CONSTRAINT produitCommande_produit_FK FOREIGN KEY (produit_id,type_produit) REFERENCES produit(produit_id,type_produit)

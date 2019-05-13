@@ -1,25 +1,28 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CommandeInterface} from '../../interface/CommandeInterface';
-import {MovieResponse} from '../../tmdb-data/Movie';
-import {TmdbService} from '../../services/tmdb.service';
-import {ProductGroupInterface} from '../../interface/ProductInterface';
-import {MenuInterface} from '../../interface/MenuInterface';
-import {FoodInterface} from '../../interface/FoodInterface';
-import {MenuClass} from '../../product/menu/menu';
-import {MenuGroup} from "../../product/menu/MenuGroup";
-import {SearchMenuInterface} from "../../interface/SearchInterface";
-import {FoodGroup} from "../../product/food/foodGroup";
-import {Food} from "../../product/food/food";
-import {Product} from "../../product/class/Product";
-import {Movie} from "../../product/movie/Movie";
-import {MovieResult} from "../../tmdb-data/searchMovie";
+import {CommandeInterface} from '../../../interface/CommandeInterface';
+import {MovieResponse} from '../../../tmdb-data/Movie';
+import {TmdbService} from '../../../services/tmdb.service';
+import {ProductGroupInterface} from '../../../interface/ProductInterface';
+import {MenuInterface} from '../../../interface/MenuInterface';
+import {FoodInterface} from '../../../interface/FoodInterface';
+import {MenuClass} from '../../../product/menu/menu';
+import {MenuGroup} from "../../../product/menu/MenuGroup";
+import {SearchMenuInterface} from "../../../interface/SearchInterface";
+import {FoodGroup} from "../../../product/food/foodGroup";
+import {Food} from "../../../product/food/food";
+import {Product} from "../../../product/class/Product";
+import {Movie} from "../../../product/movie/Movie";
+import {MatDialog} from "@angular/material";
+import {AddReviewComponent} from "../../../dialogs/add-review/add-review.component";
+import {ReviewInterface} from "../../../interface/ReviewInterface";
+import {ProductService} from "../../../product/product.service";
 
 @Component({
-    selector: 'app-bill-commande-information',
-    templateUrl: './bill-commande-information.component.html',
-    styleUrls: ['./bill-commande-information.component.scss']
+    selector: 'app-commande-information',
+    templateUrl: './commande-information.component.html',
+    styleUrls: ['./commande-information.component.scss']
 })
-export class BillCommandeInformationComponent implements OnInit {
+export class CommandeInformationComponent implements OnInit {
 
     @Input() public _order: CommandeInterface;
     private _menus: MenuGroup[] = [];
@@ -28,7 +31,9 @@ export class BillCommandeInformationComponent implements OnInit {
     private _movies: Movie[] = [];
     private _isActivated = true;
 
-    constructor(private tmdbService: TmdbService) {
+    constructor(private tmdbService: TmdbService,
+                private dialog: MatDialog,
+                private productService: ProductService) {
     }
 
     ngOnInit() {
@@ -142,4 +147,21 @@ export class BillCommandeInformationComponent implements OnInit {
     public getCoutTotale(productGroup: ProductGroupInterface<FoodInterface | MenuInterface>): number {
         return productGroup.amount * productGroup.product.prix;
     }
+
+    addReview(product: Product) {
+        const review: ReviewInterface = {
+            note: 0,
+            review: '',
+            commandeId: this.order.commandeId,
+            produitId: product.id.toString(),
+            typeProduit: this.productService.productTypeToDBProduct(product.type)
+        };
+        this.dialog.open(AddReviewComponent, {
+            width: "100",
+            data: review
+        })
+
+    }
+
+
 }

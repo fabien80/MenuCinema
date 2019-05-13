@@ -11,6 +11,13 @@ import java.io.IOException;
 public class EditClientServlet extends HttpServlet
 {
     @Override
+    /**
+     * Servlet qui va faire le lien entre le front et le back pour l'édition d'un client
+     * @param request : Le servlet de la requête envoyé par le front
+     * @param response : Le servlet qui va permettre au back de répondre.
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         boolean res;

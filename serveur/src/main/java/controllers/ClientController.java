@@ -12,6 +12,11 @@ public class ClientController extends Controller<Client>
 {
 
 
+    /**
+     *
+     * @param result : Un resultSet d'un n-uplet de la table lié au controller de type Client
+     * @return
+     */
     @Override
     protected Client serialize(ResultSet result)
     {
@@ -55,18 +60,34 @@ public class ClientController extends Controller<Client>
         return client;
     }
 
+    /**
+     *  Ajoute un client dans la base de données
+     * @param request
+     * @return : Vrai si l'opération a réussi, faux sinon.
+     */
     @Override
     public boolean create(HttpServletRequest request)
     {
         return super.create(request);
     }
 
+    /**
+     * Renvoie la liste de tous les n-uplets de la table passé en paramètre
+     * @param tableName le nom de la table voulue
+     * @return : la liste des clients.
+     */
     @Override
     public List<Client> get(String tableName)
     {
         return super.get(tableName);
     }
 
+    /**
+     *
+     * @param tableName le nom de la table de l'element voulu
+     * @param request   la requete qui contient le token du client
+     * @return : Le client de token token.
+     */
     @Override
     public Client getElem(String tableName, HttpServletRequest request)
     {
@@ -91,7 +112,11 @@ public class ClientController extends Controller<Client>
         return elem;
     }
 
-
+    /**
+     * Fonction qui renvoie la requète de création d'un client dans le base de données sous la forme d'une string
+     * @param request La requete http recue
+     * @return : La string contenant la requête de création d'un client.
+     */
     @Override
     protected String getCreateString(HttpServletRequest request)
     {
@@ -126,12 +151,22 @@ public class ClientController extends Controller<Client>
         return res;
     }
 
+    /**
+     * Edit un client.
+     * @param request La requete http passee dans getUpdateString
+     * @return : Vrai si l'opération a réussi, faux sinon.
+     */
     @Override
     public boolean update(HttpServletRequest request)
     {
         return super.update(request);
     }
 
+    /**
+     *
+     * @param request la requete HTTP concernant les nouvelle information
+     * @return : La requête d'update sous forme de String
+     */
     @Override
     protected String getUpdateString(HttpServletRequest request)
     {
@@ -155,12 +190,23 @@ public class ClientController extends Controller<Client>
         return res;
     }
 
+    /**
+     * Supprime un client dans la db.
+     * @param tableName le nom de la table ou il faut supprimer l'element
+     * @param request   la requete contenant l'id de l'element a supprimer
+     * @return : Vrai si l'opération, faux sinon.
+     */
     @Override
     public boolean delete(String tableName, HttpServletRequest request)
     {
         return super.delete(tableName, request);
     }
 
+    /**
+     * Transforme les informations de la requête en un Client
+     * @param request une requete HTTP contenant les informations de l'objet au format url-encoded
+     * @return : Le client ainsi créer.
+     */
     @Override
     protected Client requestBodyToClass(HttpServletRequest request)
     {
@@ -190,14 +236,17 @@ public class ClientController extends Controller<Client>
 		ville = request.getParameter("ville");
 		codePostal = request.getParameter("code_postal");
 		token = request.getParameter("token");
-		System.out.println(photo);
-		System.out.println(mail);
 		client = new Client(id, nom, prenom, mail, photo, tel, fidelite, token, numeroRue, rue, ville, codePostal);
 
 		return client;
 	}
 
 
+    /**
+     * Fonction statique qui renvoie l'id d'un client en fonction du token passé en paramètre.
+     * @param token
+     * @return
+     */
 	public static int getClientIdByToken(String token) {
 		int clientId = -1;
 		ResultSet res;

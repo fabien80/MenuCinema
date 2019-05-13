@@ -174,6 +174,11 @@ public abstract class Controller<T>
      */
     protected abstract T requestBodyToClass(HttpServletRequest request);
 
+    /**
+     *
+     * @param query : une requête sql
+     * @return le résulset obtenu après l'éxécution de la requête passé en paramètre
+     */
     public static ResultSet getResultSet(String query)
     {
         {

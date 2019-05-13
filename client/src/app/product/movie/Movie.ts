@@ -1,6 +1,7 @@
 import {Product} from '../class/Product';
 import {MovieResult} from '../../tmdb-data/searchMovie';
 import {ProductType} from "../../enum/ProductType";
+import {MovieResponse} from "../../tmdb-data/Movie";
 
 export class Movie extends Product implements MovieResult {
     public adult: boolean;
@@ -16,6 +17,26 @@ export class Movie extends Product implements MovieResult {
     public video: boolean;
     public vote_average: number;
     public vote_count: number;
+
+    public static fromMovieResponse(movieReponse: MovieResponse) {
+        const {
+            vote_count,
+            vote_average,
+            video,
+            title,
+            release_date,
+            popularity,
+            overview,
+            original_language,
+            adult,
+            backdrop_path,
+            poster_path,
+            id,
+            original_title
+        } = movieReponse;
+        return new this(id, 5, adult, backdrop_path, null, original_language, original_title, overview, popularity, poster_path, release_date, title, video, vote_average, vote_count);
+
+    }
 
     public static fromData(movieResult: MovieResult) {
         const {adult, backdrop_path, genre_ids, id, original_language, original_title, overview, popularity, poster_path, release_date, title, video, vote_average, vote_count} = movieResult;

@@ -9,7 +9,7 @@ import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 
-public class PostClientPhoto extends HttpServlet {
+public class PostClientPhotoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/***** This Method Is Called By The Servlet Container To Process A 'POST' Request *****/
@@ -17,6 +17,13 @@ public class PostClientPhoto extends HttpServlet {
 		handleRequest(request, response);
 	}
 
+	/**
+	 * Reconstitue le fichier et le met dans le répertoire ressouce
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	public void handleRequest (HttpServletRequest request, HttpServletResponse response) throws ServletException,
 	                                                                                            IOException {
 

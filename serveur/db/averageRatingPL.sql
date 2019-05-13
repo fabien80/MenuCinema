@@ -1,5 +1,5 @@
 DELIMITER //
-CREATE FUNCTION reviewAverage
+CREATE FUNCTION averageRating
 (id_product VARCHAR(50),  type_product VARCHAR(50))
 RETURNS DOUBLE
 BEGIN

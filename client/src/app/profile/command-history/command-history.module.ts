@@ -3,19 +3,17 @@ import {CommonModule} from '@angular/common';
 
 import {CommandHistoryRoutingModule} from './command-history-routing.module';
 import {CommandHistoryComponent} from './command-history.component';
-import {CommandeModule} from '../../commande/commande.module';
 import {MatButtonModule, MatExpansionModule} from '@angular/material';
-import {BillCommandeInformationModule} from '../../bill/bill-commande-information/bill-commande-information.module';
+import {CommandeInformationModule} from './commande-information/commande-information.module';
 
 @NgModule({
     declarations: [CommandHistoryComponent],
     imports: [
         CommonModule,
         CommandHistoryRoutingModule,
-        CommandeModule,
         MatButtonModule,
         MatExpansionModule,
-        BillCommandeInformationModule
+        CommandeInformationModule
     ],
     exports: [
         CommandHistoryComponent
