@@ -37,9 +37,7 @@ public class PostClientPhotoServlet extends HttpServlet {
 
 
 		for (Part part : request.getParts()) {
-			System.out.println();
 			part.write(uid);
-			System.out.println("oui");
 		}
 		path += "/" + uid;
 		response.setHeader("path", path);

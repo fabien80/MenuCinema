@@ -225,7 +225,6 @@ public class CommandeController extends Controller<Commande> {
      */
     private boolean insertAProduct(int commandeId, String idProduct, String productType) {
         try {
-            System.out.println("CommandeId : " + commandeId + "|| idProduit : " + idProduct + "|| type_produit : " + productType);
             if (!idProduct.equals("")) {
                 int j = 1;
                 CallableStatement cstmt = Connection.conn.prepareCall("{call insertProduct(?, ?,?)}");

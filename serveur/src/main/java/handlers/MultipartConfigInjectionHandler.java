@@ -76,10 +76,8 @@ public class MultipartConfigInjectionHandler extends HandlerWrapper {
 	@Override
 	public void handle (String target, Request baseRequest, HttpServletRequest request,
 	                    HttpServletResponse response) throws IOException, ServletException {
-		System.out.println("mamalkaja");
 		boolean multipartRequest = HttpMethod.POST.is(request.getMethod()) && isMultipartRequest(request);
 		if (multipartRequest) {
-			System.out.println("bawi");
 			enableMultipartSupport(request);
 		}
 
@@ -89,7 +87,6 @@ public class MultipartConfigInjectionHandler extends HandlerWrapper {
 			if (multipartRequest) {
 				MultiPartInputStreamParser multipartInputStream =
 						(MultiPartInputStreamParser) request.getAttribute(Request.__MULTIPART_INPUT_STREAM);
-				System.out.println();
 				if (multipartInputStream != null) {
 					try {
 						// a multipart request to a servlet will have the parts cleaned up correctly, but

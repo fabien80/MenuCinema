@@ -93,7 +93,6 @@ public class ProduitController {
             res = searchByQuery(paramQuery, produits);
         } else if (paramType != null) {
             TypeDeProduit type = TypeDeProduit.fromValue(paramType);
-            System.out.println(type);
             res = searchByType(type, produits);
         } else {
             res = JsonConverter.convertObjectToJson(produits);
@@ -171,7 +170,6 @@ public class ProduitController {
             SAXException, IOException {
         String ids = request.getParameter("ids");
         List<String> idsList = Utils.getListFromString(ids);
-        System.out.println(idsList);
         List<Produit> allProducts = getAllProducts();
         List<Menu> menusWanted = new ArrayList<>();
         List<Nourriture> nourrituresWanted = new ArrayList<>();
@@ -240,8 +238,6 @@ public class ProduitController {
     public List<String> getProductIdByOtherProduct(HttpServletRequest request) {
         List<String> ids;
         String id = request.getParameter("id");
-        System.out.println(DBProductType.Menu);
-        System.out.println(request.getParameter("type_recherche"));
         DBProductType typeRecherche = DBProductType.valueOf(request.getParameter("type_recherche").trim());
         DBProductType typeDonne = DBProductType.valueOf(request.getParameter("type_donne"));
         String query = getQuery(id, typeRecherche, typeDonne);
@@ -287,7 +283,7 @@ public class ProduitController {
         subQuery += " FROM produitCommande";
         subQuery += " WHERE produit_id = " + "'" + idFood + "'";
         subQuery += " AND type_produit = " + "'" + typeDonne.toString() + "'";
-        System.out.println(subQuery);
+
 
         query = "SELECT produit_id, sum(nb_commande) as nbs FROM produitCommande";
         if (typeRecherche == DBProductType.All) {
@@ -300,7 +296,6 @@ public class ProduitController {
         query += " order by nbs desc";
         query += " LIMIT 5";
 
-        System.out.println(query);
 
         return query;
     }
@@ -330,7 +325,6 @@ public class ProduitController {
 	public static double averageRating (String idProduit, String typeProduit) {
 
         CallableStatement cstmt = null;
-        System.out.println("IdProduit : " + idProduit + " Type Produit : " + typeProduit);
         double average = 0;
         try {
             int i = 1;
@@ -408,7 +402,6 @@ public class ProduitController {
 		query += " WHERE type_produit = " + "'" + typeProduit + "'";
 		query += " AND commande_id  = " + idCommande;
 		query += " AND produit_id  = " + "'" + idProduit + "'";
-		System.out.println(query);
 		return query;
 	}
 
@@ -430,7 +423,6 @@ public class ProduitController {
 		query += " WHERE produit_id = " + "'" + idProduit + "'";
 		query += " AND commande_id = " + idCommande;
 		query += " AND type_produit = " + "'" + typeProduit + "'";
-		System.out.println(query);
 
 		try {
 			Connection.conn.createStatement().executeUpdate(query);
@@ -489,7 +481,6 @@ public class ProduitController {
 		List<UserReviewDTO> userReviewDTOS = new ArrayList<>();
 		try {
 			while (res.next()) {
-				System.out.println("ici");
 				UserReviewDTO userReviewDTO = getUserReviewDTO(res);
 				boolean added = false;
 				for (UserReviewDTO userReview : userReviewDTOS) {
@@ -539,7 +530,6 @@ public class ProduitController {
 		query += " WHERE type_produit = " + "'" + typeProduit + "'";
 		query += " AND produit_id  = " + "'" + idProduit + "'";
 		query += " AND note is NOT NULL ";
-		System.out.println(query);
 		return query;
 	}
 
