@@ -4,7 +4,7 @@ import {Form, FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@an
 import {AuthService} from '../../auth/auth.service';
 import {ClientService} from '../../services/client.service';
 import {Tile} from '../../enum/Tile';
-import {HttpResponse} from "@angular/common/http";
+import {HttpResponse} from '@angular/common/http';
 
 @Component({
     selector: 'app-profile-form',
@@ -140,18 +140,20 @@ export class ProfileFormComponent implements OnInit {
 
     private updateUser() {
         this.clientService.updateUserInApi(this.tmpClient)
-            .then(() => {
-                this.editDone.emit(this.tmpClient);
-            }).catch((error: Error) => {
+        .then(() => {
+            this.clientService.client.next(this.tmpClient);
+            this.editDone.emit(this.tmpClient);
+        }).catch((error: Error) => {
             this.editDone.emit(null);
         });
     }
 
     private createNewUser() {
         this.clientService.createNewUserInApi(this.tmpClient)
-            .then(() => {
-                this.editDone.emit(this.tmpClient);
-            }).catch((error: Error) => {
+        .then(() => {
+            this.clientService.client.next(this.tmpClient);
+            this.editDone.emit(this.tmpClient);
+        }).catch((error: Error) => {
             this.editDone.emit(null);
         });
     }
