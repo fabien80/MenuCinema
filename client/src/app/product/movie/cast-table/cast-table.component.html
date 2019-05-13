@@ -4,7 +4,7 @@
         <tr class="each_member each_member_cast" *ngFor="let oneMember of displayedArray; index as i"
             [hidden]="oneMember.order > displayTreshold">
             <td class="profile_pic_cast"><img
-                    src="https://image.tmdb.org/t/p/w138_and_h175_face{{oneMember.profile_path}}" alt="profil picture">
+                    [src]=" getPhoto(oneMember)" alt="profil picture">
             </td>
             <td class="member_name_cast">{{oneMember.name}}</td>
             <td class="member_job_cast">{{oneMember.character}}</td>

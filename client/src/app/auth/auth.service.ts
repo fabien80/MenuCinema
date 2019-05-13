@@ -49,7 +49,7 @@ export class AuthService {
     }
 
     signWithApi() {
-        return this.localStorageService.getApiClient() != null;
+        return this.clientService.client.value.clientId !== 0;
     }
 
     isSignedIn() {
@@ -58,7 +58,7 @@ export class AuthService {
             this.clientService.client !== undefined &&
             this.clientService.client.value != null &&
             this.clientService.client.value.clientId !== 0
-        ) || this._isLogged;
+        );
         return this._isLogged;
     }
 
@@ -69,7 +69,6 @@ export class AuthService {
     public signInSuccess() {
         this._firebaseUser = firebase.auth().currentUser;
         this.localStorageService.setFirebaseUser(this._firebaseUser);
-        console.log('ici');
         this.clientService.init(this._firebaseUser.uid)
         .then(() => {
                 if (this.localStorageService.getApiClient() == null) {

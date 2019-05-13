@@ -72,7 +72,8 @@ export class BasketComponent implements OnInit {
             throw new Error(msg);
         }
 
-        console.log(msg);
+        return msg;
+
     }
 
 
@@ -84,10 +85,10 @@ export class BasketComponent implements OnInit {
                 data: this.basket
             });
 
-        } catch (e) {
+        } catch (error) {
             this.dialog.open(GenericDialogComponent, {
                 width: '250',
-                data: e
+                data: error
             });
         }
 

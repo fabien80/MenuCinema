@@ -60,14 +60,12 @@ export class ClientService {
         return new Promise((resolve, reject) => {
             this.apiService.postClient(newClient)
             .then(() => {
-                console.log('ok');
                 this.apiService.getClient(newClient.token).then(value => {
                     this.setClientValue(value);
                     this.router.navigate(['/homepage']);
                     return resolve();
                 });
             }).catch((error: Error) => {
-                console.log(error);
                 return reject(error);
             });
         });
@@ -81,7 +79,6 @@ export class ClientService {
                 this.setClientValue(updateClient);
                 return resolve();
             }).catch((error: Error) => {
-                console.log(error);
                 return reject(error);
             });
         });
@@ -108,12 +105,10 @@ export class ClientService {
 
     async getClientHistory(): Promise<CommandeInterface[]> {
         return await this.apiService.getClientHistory(this._client.getValue().token).then(allCommand => {
-            console.log(allCommand);
 
             allCommand.forEach((oneCommand: CommandeInterface) => {
                 this.apiService.getProductsIds(oneCommand.idPlats.join(';') + ';' + oneCommand.idMenu.join(';')).then((foodDetail: NestedProductInterface) => {
                     oneCommand.nestedProduct = foodDetail;
-                    console.log(foodDetail);
                 }).catch((e) => {
                     console.log(e);
                 });

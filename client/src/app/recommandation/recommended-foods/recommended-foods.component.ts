@@ -1,20 +1,20 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FoodInterface} from "../../interface/FoodInterface";
-import {NgbCarouselConfig} from "@ng-bootstrap/ng-bootstrap";
-import {Router} from "@angular/router";
-import {ProductsByIdInterface} from "../../interface/ProductsByIdInterface";
-import {ApiService} from "../../services/api.service";
-import {MenuClass} from "../../product/menu/menu";
-import {SearchMenuInterface, SearchProductsByIdInterface} from "../../interface/SearchInterface";
-import {Food} from "../../product/food/food";
-import {MatDialog} from "@angular/material";
-import {Product} from "../../product/class/Product";
-import {AddProductToBasketComponent} from "../../dialogs/add-product-to-basket/add-product-to-basket.component";
-import {ProductType} from "../../enum/ProductType";
-import {AddEventType} from "../../enum/AddEventType";
-import {AddEventInterface} from "../../interface/AddEventInterface";
-import {ProductGroupInterface} from "../../interface/ProductInterface";
-import {BasketService} from "../../basket/basket.service";
+import {FoodInterface} from '../../interface/FoodInterface';
+import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
+import {Router} from '@angular/router';
+import {ProductsByIdInterface} from '../../interface/ProductsByIdInterface';
+import {ApiService} from '../../services/api.service';
+import {MenuClass} from '../../product/menu/menu';
+import {SearchMenuInterface, SearchProductsByIdInterface} from '../../interface/SearchInterface';
+import {Food} from '../../product/food/food';
+import {MatDialog} from '@angular/material';
+import {Product} from '../../product/class/Product';
+import {AddProductToBasketComponent} from '../../dialogs/add-product-to-basket/add-product-to-basket.component';
+import {ProductType} from '../../enum/ProductType';
+import {AddEventType} from '../../enum/AddEventType';
+import {AddEventInterface} from '../../interface/AddEventInterface';
+import {ProductGroupInterface} from '../../interface/ProductInterface';
+import {BasketService} from '../../basket/basket.service';
 
 @Component({
     selector: 'app-recommended-foods',
@@ -40,20 +40,16 @@ export class RecommendedFoodsComponent implements OnInit {
     }
 
     ngOnInit() {
-        const stringIds = this.foodIds.join(";");
+        const stringIds = this.foodIds.join(';');
         this.apiService.getProductsByIds(stringIds).then((value: SearchProductsByIdInterface) => {
-            console.log(value);
             value.menus.forEach((menu: SearchMenuInterface) => {
                 this.products.menus.push(MenuClass.fromSearchData(menu));
             });
-
-            console.log(value.foods);
 
             value.foods.forEach((food: FoodInterface) => {
                 this.products.foods.push(Food.fromData(food));
             });
 
-            console.log(this.products);
         });
     }
 

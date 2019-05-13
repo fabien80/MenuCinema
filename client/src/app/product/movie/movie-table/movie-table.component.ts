@@ -36,7 +36,6 @@ export class MovieTableComponent implements OnInit, OnChanges {
     ngOnChanges(changes: SimpleChanges) {
         this._selectedTab = 1;
         this.searchMovie(this._searchString, this._selectedTab);
-        console.log('ngOnChange');
         this.sortName = false;
         this.sortScore = false;
     }
@@ -55,9 +54,7 @@ export class MovieTableComponent implements OnInit, OnChanges {
                 page
             };
             this.tmdbService.searchMovie(searchMovie).then((response: SearchMovieResponse) => {
-                console.log('searchMovie promise');
                 this.moviesFound = response;
-                console.log(response);
             });
         } else {
             this.moviesFound = this.emptyResult;

@@ -101,10 +101,9 @@ export class ProfileFormComponent implements OnInit {
     onSubmit() {
         if (this.formGroup.valid) {
             this.updateTmpClient();
-            console.log(this.tmpClient);
             if (this.formGroup.get('photo').value != null) {
                 this.uploadPhoto().then((data: HttpResponse<any>) => {
-                    this.tmpClient.photo = data.headers.get("path");
+                    this.tmpClient.photo = data.headers.get('path');
                     this.clientSubmition();
                 });
             } else {

@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Crew} from '../../../tmdb-data/Movie';
+import {environment} from '../../../../environments/environment';
 
 
 @Component({
@@ -33,6 +34,14 @@ export class CrewTableComponent implements OnInit {
     }
 
     ngOnInit(): void {
+    }
+
+    getPhoto(oneMember: Crew) {
+        if (oneMember.profile_path == null) {
+            return `${environment.apiBaseUrl}photo/anonymous.png`;
+        }
+        return `https://image.tmdb.org/t/p/w138_and_h175_face${oneMember.profile_path}`;
+
     }
 
 }
