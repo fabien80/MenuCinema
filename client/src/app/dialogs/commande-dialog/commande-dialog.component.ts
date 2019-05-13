@@ -9,7 +9,7 @@ import {AddressInterface} from '../../interface/AddressInterface';
 import {StepState} from '@angular/cdk/stepper/typings/stepper';
 import {ApiService} from '../../services/api.service';
 import {GenericDialogComponent} from '../generic-dialog/generic-dialog.component';
-import {BasketService} from "../../basket/basket.service";
+import {BasketService} from '../../basket/basket.service';
 
 @Component({
     selector: 'app-commande-dialog',
@@ -46,7 +46,6 @@ export class CommandeDialogComponent implements OnInit {
     ngOnInit() {
         this.clientService.client.subscribe((client: ClientInterface) => {
             this.client = client;
-            console.log(client);
             this.address.numeroRue = client.numeroRue;
             this.address.rue = client.rue;
             this.address.ville = client.ville;
@@ -80,26 +79,23 @@ export class CommandeDialogComponent implements OnInit {
 
     pay() {
         this.done = true;
-        console.log(this.address);
         this.getNewAdress();
-        console.log(this.address);
         this.apiService.payement(this.basket, this.address, this.client.token)
-            .then((res) => {
-                console.log(res);
-                this.dialog.open(GenericDialogComponent, {
-                    width: '250',
-                    data: 'Merci d\'avoir commandé ! '
-                });
-                this.basketService.clear();
-                this.dialogRef.close();
-            })
-            .catch(reason => {
-                console.log(reason);
-                this.dialog.open(GenericDialogComponent, {
-                    width: '250',
-                    data: 'La commande n\' pas pu aboutir, merci de réessayer '
-                });
+        .then((res) => {
+            this.dialog.open(GenericDialogComponent, {
+                width: '250',
+                data: 'Merci d\'avoir commandé ! '
             });
+            this.basketService.clear();
+            this.dialogRef.close();
+        })
+        .catch(reason => {
+            console.log(reason);
+            this.dialog.open(GenericDialogComponent, {
+                width: '250',
+                data: 'La commande n\' pas pu aboutir, merci de réessayer '
+            });
+        });
 
 
     }

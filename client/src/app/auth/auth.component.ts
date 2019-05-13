@@ -29,4 +29,8 @@ export class AuthComponent implements OnInit {
     goToProfil() {
         this.router.navigate(['/profile']);
     }
+
+    goToHomepage() {
+        this.router.navigate(['/homepage']);
+    }
 }

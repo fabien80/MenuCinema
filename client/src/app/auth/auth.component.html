@@ -11,6 +11,9 @@
     </div>
     <div *ngIf="authService.isSignedIn()">
         Vous êtes actuellement connecté
+        <button mat-button class="btn btn-outline-success" (click)="goToHomepage()">
+            Aller vers la page d'acceuil
+        </button>
         <button mat-button class="btn btn-outline-danger">
             Deconnexion
         </button>

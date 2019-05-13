@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ApiService} from "../../services/api.service";
-import {ReviewInterface} from "../../interface/ReviewInterface";
-import {ProductService} from "../product.service";
-import {Product} from "../class/Product";
-import {UserReviewInterface} from "../../interface/UserReviewInterface";
+import {ApiService} from '../../services/api.service';
+import {ReviewInterface} from '../../interface/ReviewInterface';
+import {ProductService} from '../product.service';
+import {Product} from '../class/Product';
+import {UserReviewInterface} from '../../interface/UserReviewInterface';
 
 @Component({
     selector: 'app-review-list',
@@ -28,16 +28,15 @@ export class ReviewListComponent implements OnInit {
         };
         this.apiService.getReviewsOfProduct(review).then((value: UserReviewInterface[]) => {
             this.userReviews = value;
-            console.log(value);
         });
 
         this.apiService.getAverageRating(review)
-            .then((value: number) => {
-                this.averageRating = value;
-            })
-            .catch(reason => {
-                console.log(reason);
-            })
+        .then((value: number) => {
+            this.averageRating = value;
+        })
+        .catch(reason => {
+            console.log(reason);
+        });
 
 
     }

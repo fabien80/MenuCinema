@@ -1,14 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {TmdbService} from './services/tmdb.service';
-import {MovieResponse} from './tmdb-data/Movie';
 import {environment} from '../environments/environment';
-import {AngularFirestore} from '@angular/fire/firestore';
-import {Observable} from 'rxjs';
-import {AngularFireAuth} from '@angular/fire/auth';
 import {AuthService} from './auth/auth.service';
 import {Router} from '@angular/router';
-import {HttpClient} from "@angular/common/http";
-import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
     selector: 'app-root',
@@ -40,7 +34,7 @@ export class AppComponent implements OnInit {
 
 
     getLogoPath() {
-        return `${environment.apiBaseUrl}photo/icon.png`
+        return `${environment.apiBaseUrl}photo/icon.png`;
     }
 
     goToHomepage() {

@@ -16,7 +16,7 @@
             <table class="all_dpt_member">
                 <tr *ngFor="let oneMember of one_department.crew" class="each_member" [hidden]="one_department.hidden">
                     <td class="profile_pic"><img
-                            src="https://image.tmdb.org/t/p/w138_and_h175_face{{oneMember.profile_path}}" alt=" "></td>
+                            [src]="getPhoto(oneMember)" alt=" "></td>
                     <td class="member_name">{{oneMember.name}}</td>
                     <td class="member_job">{{oneMember.job}}</td>
                 </tr>

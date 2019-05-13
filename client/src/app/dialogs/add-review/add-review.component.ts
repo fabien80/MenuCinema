@@ -1,12 +1,12 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
-import {Product} from "../../product/class/Product";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ReviewListComponent} from "../../product/review-list/review-list.component";
-import {ReviewInterface} from "../../interface/ReviewInterface";
-import {RatingChangeEvent} from "angular-star-rating";
-import {ApiService} from "../../services/api.service";
-import {GenericDialogComponent} from "../generic-dialog/generic-dialog.component";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
+import {Product} from '../../product/class/Product';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ReviewListComponent} from '../../product/review-list/review-list.component';
+import {ReviewInterface} from '../../interface/ReviewInterface';
+import {RatingChangeEvent} from 'angular-star-rating';
+import {ApiService} from '../../services/api.service';
+import {GenericDialogComponent} from '../generic-dialog/generic-dialog.component';
 
 @Component({
     selector: 'app-add-review',
@@ -34,23 +34,21 @@ export class AddReviewComponent implements OnInit {
 
     onSubmit() {
         this.data.review = this.reviewCtrl.value;
-        console.log(this.data);
         this.apiService.addReview(this.data)
-            .then(() => {
-                console.log('review-list added');
-                this.dialogRef.close();
-                this.dialog.open(GenericDialogComponent, {
-                    width: '250',
-                    data: 'Merci de votre retour !'
-                })
-            })
-            .catch(reason => {
-                console.log(reason);
-                this.dialog.open(GenericDialogComponent, {
-                    width: '250',
-                    data: 'Review impossible, merci de ressayer '
-                })
-            })
+        .then(() => {
+            this.dialogRef.close();
+            this.dialog.open(GenericDialogComponent, {
+                width: '250',
+                data: 'Merci de votre retour !'
+            });
+        })
+        .catch(reason => {
+            console.log(reason);
+            this.dialog.open(GenericDialogComponent, {
+                width: '250',
+                data: 'Review impossible, merci de ressayer '
+            });
+        });
 
     }
 

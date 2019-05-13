@@ -6,10 +6,10 @@ import {FoodService} from '../../product/food/food.service';
 import {MenuClass} from '../../product/menu/menu';
 import {MenuService} from '../../product/menu/menu.service';
 import {ProductGroupInterface} from '../../interface/ProductInterface';
-import {ApiService} from "../../services/api.service";
-import {ProductType} from "../../enum/ProductType";
-import {DBProductType} from "../../enum/DBProductType";
-import {RecommandationService} from "../../recommandation/recommandation.service";
+import {ApiService} from '../../services/api.service';
+import {ProductType} from '../../enum/ProductType';
+import {DBProductType} from '../../enum/DBProductType';
+import {RecommandationService} from '../../recommandation/recommandation.service';
 
 @Component({
     selector: 'app-add-food-to-cart',

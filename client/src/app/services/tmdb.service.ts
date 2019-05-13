@@ -6,7 +6,7 @@ import {SearchPeopleQuery, SearchPeopleResponse} from '../tmdb-data/SearchPeople
 import {TVQuery, TVResponse} from '../tmdb-data/TV';
 import {SearchTVQuery, SearchTVResponse} from '../tmdb-data/SearchTV';
 import {CreditsResponse, MovieQuery, MovieResponse} from '../tmdb-data/Movie';
-import {environment} from "../../environments/environment";
+import {environment} from '../../environments/environment';
 
 const tmdbApi = 'https://api.themoviedb.org/3';
 type HTTP_METHOD = 'GET' | 'POST' | 'DELETE' | 'PUT';
@@ -42,7 +42,8 @@ export class TmdbService {
     }
 
     // _______________________________________________________________________________________________________________________________________
-    // Movies ________________________________________________________________________________________________________________________________
+    // Movies
+    // ________________________________________________________________________________________________________________________________
     // _______________________________________________________________________________________________________________________________________
     async getMovie(id: number, options?: MovieQuery): Promise<MovieResponse> {
         const url = `${tmdbApi}/movie/${id}`;
@@ -63,7 +64,8 @@ export class TmdbService {
     }
 
     // _______________________________________________________________________________________________________________________________________
-    // Person / People _______________________________________________________________________________________________________________________
+    // Person / People
+    // _______________________________________________________________________________________________________________________
     // _______________________________________________________________________________________________________________________________________
     async getPerson(id: number, options?: PersonQuery): Promise<PersonResponse> {
         const url = `${tmdbApi}/person/${id}`;
@@ -78,7 +80,8 @@ export class TmdbService {
     }
 
     // _______________________________________________________________________________________________________________________________________
-    // TV ____________________________________________________________________________________________________________________________________
+    // TV
+    // ____________________________________________________________________________________________________________________________________
     // _______________________________________________________________________________________________________________________________________
     async getTV(id: number, options?: TVQuery): Promise<TVResponse> {
         const url = `${tmdbApi}/tv/${id}`;
@@ -93,12 +96,11 @@ export class TmdbService {
     }
 
     public getBackDropPath(movie: MovieResponse) {
-        console.log(movie);
-        return `${environment.backdropPathBaseUrl}${movie.backdrop_path}`
+        return `${environment.backdropPathBaseUrl}${movie.backdrop_path}`;
     }
 
     public getPosterPath(movie: MovieResponse) {
-        return `${environment.posterPathBaseUrl}${movie.poster_path}`
+        return `${environment.posterPathBaseUrl}${movie.poster_path}`;
     }
 
 }

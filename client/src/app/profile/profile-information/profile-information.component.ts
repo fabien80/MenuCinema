@@ -37,7 +37,6 @@ export class ProfileInformationComponent implements OnInit {
         this.clientService.client.subscribe((client: ClientInterface) => {
             if (client != null) {
                 this.myClient = client;
-                console.log(client);
                 this.imgSrc = this.getPhotoPath();
             } else {
                 this.myClient = this.clientService.getEmptyClient();

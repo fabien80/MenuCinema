@@ -49,10 +49,9 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     }
 
     private async checkLogin(url: string) {
-        console.log(url);
         const firebaseUser: firebase.User = this.authService.firebaseUser;
-        const client: ClientInterface = this.clientService.client.value;
-        console.log(this.authService.isSignedIn());
+        const client: ClientInterface = this.clientService.client !== undefined ? this.clientService.client.value : null;
+
         if (this.authService.isSignedIn()) {
             return true;
         }
