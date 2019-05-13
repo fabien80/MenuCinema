@@ -49,7 +49,9 @@ export class AuthService {
     }
 
     signWithApi() {
-        return this.clientService.client.value.clientId !== 0;
+        return this.clientService.client != null &&
+            this.clientService.client.value != null &&
+            this.clientService.client.value.clientId !== 0;
     }
 
     isSignedIn() {
