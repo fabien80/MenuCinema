@@ -99,7 +99,7 @@ public class Server extends HttpServlet {
 	/**
 	 * Fonction qui arrête le serveur
 	 * @throws Exception
-	 */
+	 */     
 	void stop () throws Exception {
 		System.out.println("Server stop");
 		server.stop();
