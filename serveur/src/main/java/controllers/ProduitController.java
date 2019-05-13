@@ -304,6 +304,13 @@ public class ProduitController {
 
         return query;
     }
+
+    /**
+     * Fonction qui récupère la note de moyenne d'un produit dans les informations
+     * sont passé dans la request
+     * @param request
+     * @return la note moyenne
+     */
 	public static double getAverageRating (HttpServletRequest request) {
 		double average;
 		String idProduit = request.getParameter("produit_id");
@@ -312,38 +319,44 @@ public class ProduitController {
 		return average;
 	}
 
-	public static double averageRating (String idProduit, String typeProduit) {
-
-		CallableStatement cstmt = null;
-		System.out.println("IdProduit : " + idProduit + " Type Produit : " + typeProduit);
-		double average = 0;
-		try {
-			int i = 1;
-			cstmt = Connection.conn.prepareCall("{? = call averageRating(?,?)}");
-			cstmt.registerOutParameter(i++, Types.DOUBLE);
-			cstmt.setString(i++, idProduit);
-			cstmt.setString(i, typeProduit);
-			cstmt.execute();
-			average = cstmt.getDouble(1);
-			cstmt.close();
-			Connection.commit();
-		} catch (SQLException e) {
-			e.printStackTrace();
 
     /**
-     * Fonction qui va faire appelle à une fonction Pl pour récupéré la moyenne du produit dont l'id et le type
-     * sont passé en paramètre
+     * Retourne la note moyenne d'un produit dont l'id et le type sont passé en paramètre en appelant la fonction
+     * mysql averageRating
      * @param idProduit
      * @param typeProduit
-     * @return la moyenne
+     * @return : La note moyenne.
      */
-    public static double getProductReviewAverage(String idProduit, String typeProduit) {
+	public static double averageRating (String idProduit, String typeProduit) {
 
+        CallableStatement cstmt = null;
+        System.out.println("IdProduit : " + idProduit + " Type Produit : " + typeProduit);
+        double average = 0;
+        try {
+            int i = 1;
+            cstmt = Connection.conn.prepareCall("{? = call averageRating(?,?)}");
+            cstmt.registerOutParameter(i++, Types.DOUBLE);
+            cstmt.setString(i++, idProduit);
+            cstmt.setString(i, typeProduit);
+            cstmt.execute();
+            average = cstmt.getDouble(1);
+            cstmt.close();
+            Connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
 
+        }
+        return average;
+
+    }
+
+    /**
+     * Fonction qui va récupéré la review d'un produit pour une commande donnée
+     * @param request
+     * @return Un review DTO
+     */
 	public ReviewDTO getReview (HttpServletRequest request) {
 		ReviewDTO reviewDTO = null;
-
-
 		try {
 			ResultSet res;
 			int idCommande = Integer.parseInt(request.getParameter("commande_id"));
@@ -359,6 +372,11 @@ public class ProduitController {
 		return reviewDTO;
 	}
 
+    /**
+     * Fonction qui transforme le résultat du ResultSet en un reviewDTO
+     * @param res
+     * @return
+     */
 	private ReviewDTO getReviewDTO (ResultSet res) {
 		ReviewDTO reviewDTO = null;
 		Double note;
@@ -377,6 +395,13 @@ public class ProduitController {
 		return reviewDTO;
 	}
 
+    /**
+     * Fonction qui va retourner la string de la requête sql pour obtenir les informations d'une review d'un produit
+     * @param idCommande
+     * @param idProduit
+     * @param typeProduit
+     * @return
+     */
 	private String getQueryReview (int idCommande, String idProduit, String typeProduit) {
 		String query;
 		query = "SELECT note, review FROM produitCommande";
@@ -387,16 +412,11 @@ public class ProduitController {
 		return query;
 	}
 
-	private String getQueryReview (String idProduit, String typeProduit) {
-		String query;
-		query = "SELECT note, review FROM produitCommande";
-		query += " WHERE type_produit = " + "'" + typeProduit + "'";
-		query += " AND produit_id  = " + "'" + idProduit + "'";
-		System.out.println(query);
-		return query;
-	}
-
-
+    /**
+     * Fonction qui permet d'ajouter la review passé en paramètre dans la request dans la bdd
+     * @param request
+     * @return : Vrai si ça a réussi, faux sinon.
+     */
 	public boolean addReview (HttpServletRequest request) {
 		int idCommande = Integer.parseInt(request.getParameter("commande_id"));
 		String idProduit = request.getParameter("produit_id");
@@ -422,6 +442,11 @@ public class ProduitController {
 		}
 	}
 
+    /**
+     * Fonction qui va delete la review passé dans la request
+     * @param request
+     * @return : Vrai si ça a réussi, faux sinon.
+     */
 	public boolean deleteReview (HttpServletRequest request) {
 		int idCommande = Integer.parseInt(request.getParameter("commande_id"));
 		String idProduit = request.getParameter("produit_id");
@@ -438,6 +463,12 @@ public class ProduitController {
 		}
 	}
 
+    /**
+     * Fonction qui va renvoyé toutes les review d'un produit plus le client qui a fait la review, un client peut
+     * faire plusieurs review sur un même produit.
+     * @param request
+     * @return Une liste d'UserReviewDTO
+     */
 	public List<UserReviewDTO> getAllReviewOfProduct (HttpServletRequest request) {
 		List<UserReviewDTO> userReviewDTOS;
 		ResultSet res;
@@ -449,6 +480,11 @@ public class ProduitController {
 		return userReviewDTOS;
 	}
 
+    /**
+     * Fonction qui transforme le résultat d'un ResulSet en une liste d'UserReviewDTO
+     * @param res
+     * @return : La liste d'UserReviewDTO
+     */
 	private List<UserReviewDTO> getUserReviewDTOArray (ResultSet res) {
 		List<UserReviewDTO> userReviewDTOS = new ArrayList<>();
 		try {
@@ -475,6 +511,11 @@ public class ProduitController {
 		return userReviewDTOS;
 	}
 
+    /**
+     *  Fonction qui transforme le résultat du Resulset en un UserReviewDTO
+     * @param res
+     * @return : UserReviewDTO.
+     */
 	private UserReviewDTO getUserReviewDTO (ResultSet res) {
 		UserReviewDTO userReviewDTO;
 		Client client = new ClientController().serialize(res);
@@ -483,7 +524,13 @@ public class ProduitController {
 		return userReviewDTO;
 	}
 
-
+    /**
+     * Fonction qui renvoie la string de la requête  pour obtenir toutes les infomations utiles pour faire un
+     * UserReviewDTO.
+     * @param idProduit
+     * @param typeProduit
+     * @return Sreinf
+     */
 	private String getUserReviewQuery (String idProduit, String typeProduit) {
 		String query;
 		query = "SELECT * FROM produitCommande";
@@ -496,6 +543,12 @@ public class ProduitController {
 		return query;
 	}
 
+    /**
+     * Comme un client peut donner plusieurs fois un avis sur le même produit, on  récupère tous ses avis et on les
+     * renvoies
+     * @param res
+     * @return
+     */
 	private List<ReviewDTO> getReviewDTOArray (ResultSet res) {
 		List<ReviewDTO> reviewDTOS = new ArrayList<>();
 		reviewDTOS.add(getReviewDTO(res));

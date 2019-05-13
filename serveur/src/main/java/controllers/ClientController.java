@@ -236,8 +236,6 @@ public class ClientController extends Controller<Client>
 		ville = request.getParameter("ville");
 		codePostal = request.getParameter("code_postal");
 		token = request.getParameter("token");
-		System.out.println(photo);
-		System.out.println(mail);
 		client = new Client(id, nom, prenom, mail, photo, tel, fidelite, token, numeroRue, rue, ville, codePostal);
 
 		return client;
