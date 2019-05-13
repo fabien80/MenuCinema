@@ -4,9 +4,9 @@ import {TmdbService} from '../../services/tmdb.service';
 import {CreditsResponse, MovieResponse} from '../../tmdb-data/Movie';
 import {BasketService} from '../../basket/basket.service';
 import {Movie} from './Movie';
-import {RecommandationService} from "../../recommandation/recommandation.service";
-import {ProductType} from "../../enum/ProductType";
-import {Product} from "../class/Product";
+import {RecommandationService} from '../../recommandation/recommandation.service';
+import {ProductType} from '../../enum/ProductType';
+import {Product} from '../class/Product';
 
 @Component({
     selector: 'app-movie',
@@ -55,7 +55,6 @@ export class MovieComponent implements OnInit {
 
     addToCart() {
         this.basketService.addMovie(Movie.fromData(this.movie));
-        console.log('On ajoute ' + this.movie.title + ' au panier');
     }
 
     getBackDropPath() {

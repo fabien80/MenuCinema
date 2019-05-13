@@ -13,7 +13,7 @@ import {ClientInterface} from '../interface/ClientInterface';
     providedIn: 'root'
 })
 export class AuthService {
-    private _firebaseUser;
+    private _firebaseUser: firebase.User;
     private _isLogged = false;
 
     constructor(private firebaseApp: FirebaseApp,
@@ -22,6 +22,15 @@ export class AuthService {
                 private localStorageService: LocalStorageService,
                 private dialog: MatDialog) {
         this._firebaseUser = this.localStorageService.getFirebaseUser();
+        if (this._firebaseUser) {
+            this.clientService.init(this._firebaseUser.uid)
+            .then(() => {
+                console.log('logged');
+            })
+            .catch(() => {
+                this.signOut();
+            });
+        }
     }
 
     signOut() {
@@ -40,11 +49,18 @@ export class AuthService {
     }
 
     signWithApi() {
-        return this.localStorageService.getApiClient() != null;
+        return this.clientService.client != null &&
+            this.clientService.client.value != null &&
+            this.clientService.client.value.clientId !== 0;
     }
 
     isSignedIn() {
-        this._isLogged = (this._firebaseUser != null && this.clientService.client.value !== null) || this._isLogged;
+        this._isLogged = (
+            this._firebaseUser != null &&
+            this.clientService.client !== undefined &&
+            this.clientService.client.value != null &&
+            this.clientService.client.value.clientId !== 0
+        );
         return this._isLogged;
     }
 
@@ -55,7 +71,6 @@ export class AuthService {
     public signInSuccess() {
         this._firebaseUser = firebase.auth().currentUser;
         this.localStorageService.setFirebaseUser(this._firebaseUser);
-        console.log('ici');
         this.clientService.init(this._firebaseUser.uid)
         .then(() => {
                 if (this.localStorageService.getApiClient() == null) {

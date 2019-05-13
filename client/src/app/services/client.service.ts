@@ -32,21 +32,23 @@ export class ClientService {
             token: '',
             ville: ''
         });
-        console.log(this.localStorageService.getApiClient());
-        this._client.next(this.localStorageService.getApiClient());
+        /*
+         console.log(this.localStorageService.getApiClient());
+         this.apiService.getClient()
+         this._client.next(this.localStorageService.getApiClient()); */
     }
 
     async init(token: string) {
+        console.log(token);
         const client = await this.apiService.getClient(token);
-        console.log(client);
         this._client.next(client);
         console.log(client);
-        this.localStorageService.setApiClient(client);
+        // this.localStorageService.setApiClient(client);
     }
 
     public setClientValue(client: ClientInterface) {
         this.client.next(client);
-        this.localStorageService.setApiClient(client);
+        // this.localStorageService.setApiClient(client);
     }
 
 
@@ -57,13 +59,13 @@ export class ClientService {
     createNewUserInApi(newClient: ClientInterface) {
         return new Promise((resolve, reject) => {
             this.apiService.postClient(newClient)
-                .then(() => {
-                    console.log('ok');
-                    this.setClientValue(newClient);
+            .then(() => {
+                this.apiService.getClient(newClient.token).then(value => {
+                    this.setClientValue(value);
                     this.router.navigate(['/homepage']);
                     return resolve();
-                }).catch((error: Error) => {
-                console.log(error);
+                });
+            }).catch((error: Error) => {
                 return reject(error);
             });
         });
@@ -73,11 +75,10 @@ export class ClientService {
     updateUserInApi(updateClient: ClientInterface) {
         return new Promise((resolve, reject) => {
             this.apiService.putClient(updateClient)
-                .then(() => {
-                    this.setClientValue(updateClient);
-                    return resolve();
-                }).catch((error: Error) => {
-                console.log(error);
+            .then(() => {
+                this.setClientValue(updateClient);
+                return resolve();
+            }).catch((error: Error) => {
                 return reject(error);
             });
         });
@@ -102,16 +103,12 @@ export class ClientService {
     }
 
 
-
-    async getClientHistory(): Promise<CommandeInterface[]>{
+    async getClientHistory(): Promise<CommandeInterface[]> {
         return await this.apiService.getClientHistory(this._client.getValue().token).then(allCommand => {
-            console.log("OK");
-            console.log(allCommand);
 
             allCommand.forEach((oneCommand: CommandeInterface) => {
-                this.apiService.getProductsIds(oneCommand.idPlats.join(";")+";"+oneCommand.idMenu.join(";")).then((foodDetail: NestedProductInterface) => {
-                     oneCommand.nestedProduct = foodDetail;
-                    console.log(foodDetail);
+                this.apiService.getProductsIds(oneCommand.idPlats.join(';') + ';' + oneCommand.idMenu.join(';')).then((foodDetail: NestedProductInterface) => {
+                    oneCommand.nestedProduct = foodDetail;
                 }).catch((e) => {
                     console.log(e);
                 });

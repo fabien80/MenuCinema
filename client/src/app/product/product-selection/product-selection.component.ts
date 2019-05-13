@@ -52,14 +52,13 @@ export class ProductSelectionComponent implements OnInit {
 
     async getMenus() {
         const res: any = await this.search(ProductType.Menu);
-        console.log(res);
+
         return this.menuService.searchMenuInterfaceTabToClassTab(res);
         // return this.menuService.interfaceTabToClassTab(res as MenuInterface[]);
     }
 
     async getFoods(type: ProductType) {
         const res: any = await this.search(type);
-        console.log(res);
         return this.foodService.searchFoodInterfaceTabToClassTab(res);
         // return this.foodService.interfaceTabToClassTab(res as FoodInterface[]);
     }

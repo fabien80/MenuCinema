@@ -8,8 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ClientController extends Controller<Client>
-{
+public class ClientController extends Controller<Client> {
 
 
     /**
@@ -34,31 +33,29 @@ public class ClientController extends Controller<Client>
         String token;
 
 
-        Client client = null;
+		Client client = null;
 
-        try
-        {
-            id = result.getInt("client_id");
-            nom = result.getString("nom");
-            prenom = result.getString("prenom");
-            photo = result.getString("photo");
-            tel = result.getString("tel");
-            fidelite = result.getInt("fidelite");
-            token = result.getString("token");
-            numeroRue = result.getInt("numero_rue");
-            rue = result.getString("rue");
-            ville = result.getString("ville");
-            codePostal = result.getString("code_postal");
-            mail = result.getString("mail");
+		try {
+			id = result.getInt("client_id");
+			nom = result.getString("nom");
+			prenom = result.getString("prenom");
+			photo = result.getString("photo");
+			tel = result.getString("tel");
+			fidelite = result.getInt("fidelite");
+			token = result.getString("token");
+			numeroRue = result.getInt("numero_rue");
+			rue = result.getString("rue");
+			ville = result.getString("ville");
+			codePostal = result.getString("code_postal");
+			mail = result.getString("mail");
 
-            client = new Client(id, nom, prenom, mail, photo, tel, fidelite, token, numeroRue, rue, ville, codePostal);
-        } catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
+			client = new Client(id, nom, prenom, mail, photo, tel, fidelite, token, numeroRue, rue, ville, codePostal);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-        return client;
-    }
+		return client;
+	}
 
     /**
      *  Ajoute un client dans la base de données
@@ -94,23 +91,20 @@ public class ClientController extends Controller<Client>
         Client elem = null;
         String token = request.getParameter("token");
 
-        try
-        {
-            ResultSet result =
-                    Connection.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
-                            .executeQuery("SELECT * from client WHERE token = " + "'" + token + "'");
+		try {
+			ResultSet result =
+					Connection.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)
+							.executeQuery("SELECT * from client WHERE token = " + "'" + token + "'");
 
-            if (result.first())
-            {
-                elem = serialize(result);
-            }
-            result.close();
-        } catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-        return elem;
-    }
+			if (result.first()) {
+				elem = serialize(result);
+			}
+			result.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return elem;
+	}
 
     /**
      * Fonction qui renvoie la requète de création d'un client dans le base de données sous la forme d'une string
@@ -122,34 +116,34 @@ public class ClientController extends Controller<Client>
     {
         Client client = requestBodyToClass(request);
 
-        String res = "INSERT INTO client ";
-        res += " ( ";
-        res += " nom , ";
-        res += " prenom , ";
-        res += " mail , ";
-        res += " photo , ";
-        res += " tel , ";
-        res += " fidelite , ";
-        res += " numero_rue , ";
-        res += " rue , ";
-        res += " ville , ";
-        res += " code_postal , ";
-        res += " token ";
-        res += " ) ";
-        res += "VALUES(";
-        res += "'" + client.getNom() + "',";
-        res += "'" + client.getPrenom() + "',";
-        res += "'" + client.getMail() + "',";
-        res += "'" + client.getPhoto() + "',";
-        res += "'" + client.getTel() + "',";
-        res += client.getFidelite() + ",";
-        res += client.getNumeroRue() + ",";
-        res += "'" + client.getRue() + "',";
-        res += "'" + client.getVille() + "',";
-        res += "'" + client.getCodePostal() + "',";
-        res += "'" + client.getToken() + "')";
-        return res;
-    }
+		String res = "INSERT INTO client ";
+		res += " ( ";
+		res += " nom , ";
+		res += " prenom , ";
+		res += " mail , ";
+		res += " photo , ";
+		res += " tel , ";
+		res += " fidelite , ";
+		res += " numero_rue , ";
+		res += " rue , ";
+		res += " ville , ";
+		res += " code_postal , ";
+		res += " token ";
+		res += " ) ";
+		res += "VALUES(";
+		res += "'" + client.getNom() + "',";
+		res += "'" + client.getPrenom() + "',";
+		res += "'" + client.getMail() + "',";
+		res += "'" + client.getPhoto() + "',";
+		res += "'" + client.getTel() + "',";
+		res += client.getFidelite() + ",";
+		res += client.getNumeroRue() + ",";
+		res += "'" + client.getRue() + "',";
+		res += "'" + client.getVille() + "',";
+		res += "'" + client.getCodePostal() + "',";
+		res += "'" + client.getToken() + "')";
+		return res;
+	}
 
     /**
      * Edit un client.
@@ -187,8 +181,8 @@ public class ClientController extends Controller<Client>
 		res += " code_postal = '" + client.getCodePostal() + "'";
 		res += "WHERE token = " + "'" + client.getToken() + "'";
 
-        return res;
-    }
+		return res;
+	}
 
     /**
      * Supprime un client dans la db.
@@ -255,8 +249,9 @@ public class ClientController extends Controller<Client>
 		query += " WHERE token =  " + "'" + token + "'";
 		res = Controller.getResultSet(query);
 		try {
-			res.next();
-			clientId = res.getInt("client_id");
+			if (res.first()) {
+				clientId = res.getInt("client_id");
+			}
 			res.close();
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -9,8 +9,8 @@ import {ProductGroup} from '../product/class/productGroup';
 import {Movie} from '../product/movie/Movie';
 import {environment} from '../../environments/environment';
 import {SearchProductQuery} from '../interface/SearchInterface';
-import {DBProductType} from "../enum/DBProductType";
-import {ReviewInterface} from "../interface/ReviewInterface";
+import {DBProductType} from '../enum/DBProductType';
+import {ReviewInterface} from '../interface/ReviewInterface';
 
 @Injectable({
     providedIn: 'root'
@@ -24,17 +24,15 @@ export class ApiService {
     public getClient(uid: string): Promise<any> {
         let params: HttpParams = new HttpParams();
         params = params.append('token', uid);
-        console.log(params);
         return this.http.get(environment.proxyBaseUrl + '/client', {params}).toPromise();
     }
 
     public postClient(client: ClientInterface): Promise<any> {
         const params: HttpParams = this.getClientParams(client);
-        console.log(params);
         return this.http.post(environment.proxyBaseUrl + '/addClient', params.toString(),
             {
                 headers: new HttpHeaders()
-                    .set('Content-Type', 'application/x-www-form-urlencoded')
+                .set('Content-Type', 'application/x-www-form-urlencoded')
             }).toPromise();
     }
 
@@ -42,7 +40,7 @@ export class ApiService {
         const params: HttpParams = this.getClientParams(client);
         return this.http.put(environment.proxyBaseUrl + '/updateClient', params.toString(), {
             headers: new HttpHeaders()
-                .set('Content-Type', 'application/x-www-form-urlencoded')
+            .set('Content-Type', 'application/x-www-form-urlencoded')
         }).toPromise();
     }
 
@@ -66,12 +64,10 @@ export class ApiService {
     async getClientHistory(token: string): Promise<any> {
         let params: HttpParams = new HttpParams();
         params = params.set('token', token);
-        console.log("api service");
-        console.log(params);
         return await this.http.get(environment.proxyBaseUrl + '/orderHistory', {
-            params: params,
+            params,
             headers: new HttpHeaders()
-                .set('Content-Type', 'application/x-www-form-urlencoded')
+            .set('Content-Type', 'application/x-www-form-urlencoded')
         }).toPromise();
 
     }
@@ -80,9 +76,9 @@ export class ApiService {
         let params: HttpParams = new HttpParams();
         params = params.set('ids', productsIds);
         return await this.http.get(environment.proxyBaseUrl + '/produitsIds', {
-            params: params,
+            params,
             headers: new HttpHeaders()
-                .set('Content-Type', 'application/x-www-form-urlencoded')
+            .set('Content-Type', 'application/x-www-form-urlencoded')
         }).toPromise();
 
     }
@@ -98,11 +94,11 @@ export class ApiService {
         params = params.set('id_plats', this.productGroupToIds(basket.foodGroups));
         params = params.set('id_menus', this.productGroupToIds(basket.menuGroups));
         params = params.set('id_films', this.moviesToIds(basket.movies));
-        console.log(basket.foodGroups);
+
         return this.http.post(environment.proxyBaseUrl + '/addCommande', params.toString(),
             {
                 headers: new HttpHeaders()
-                    .set('Content-Type', 'application/x-www-form-urlencoded')
+                .set('Content-Type', 'application/x-www-form-urlencoded')
             }).toPromise();
     }
 
@@ -122,7 +118,6 @@ export class ApiService {
             }
             return ids;
         }, '');
-        console.log(res);
         return res;
 
     }
@@ -149,7 +144,7 @@ export class ApiService {
         params = params.append('id', productId);
         params = params.append('type_donne', givenType);
         params = params.append('type_recherche', searchType);
-        return this.http.get(environment.proxyBaseUrl + '/recommandation', {params, responseType: "json"}).toPromise();
+        return this.http.get(environment.proxyBaseUrl + '/recommandation', {params, responseType: 'json'}).toPromise();
     }
 
     getProductsByIds(ids: string) {

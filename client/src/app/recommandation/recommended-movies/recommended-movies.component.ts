@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MovieResponse} from "../../tmdb-data/Movie";
-import {TmdbService} from "../../services/tmdb.service";
-import {NgbCarouselConfig} from "@ng-bootstrap/ng-bootstrap";
-import {Router} from "@angular/router";
-import {MatDialog} from "@angular/material";
+import {MovieResponse} from '../../tmdb-data/Movie';
+import {TmdbService} from '../../services/tmdb.service';
+import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
+import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material';
 
 @Component({
     selector: 'app-recommended-movies',
@@ -25,19 +25,17 @@ export class RecommendedMoviesComponent implements OnInit {
     }
 
     async ngOnInit() {
-        for (let movieId of this.movieIds) {
+        for (const movieId of this.movieIds) {
             this.movies.push(await this.tmdbService.getMovie(parseInt(movieId)));
         }
-        console.log(this.movies);
-        console.log('ici');
     }
 
     goToMoviePage(movie: MovieResponse) {
         this.dialog.closeAll();
-        this.router.navigate([`/movie/${movie.id}`])
+        this.router.navigate([`/movie/${movie.id}`]);
     }
 
     getMovieUrl(movie: MovieResponse) {
-        return `/movie/${movie.id}`
+        return `/movie/${movie.id}`;
     }
 }
