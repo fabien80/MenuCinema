@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
     private _searchString: string;
 
     constructor() {
-        this._searchString = '';
+        this._searchString = 'A';
     }
 
     ngOnInit() {

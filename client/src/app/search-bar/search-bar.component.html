@@ -1,16 +1,14 @@
 <div class="search-div">
-    <button mat-button (click)="searchBar.focus()">
-        <mat-icon>search</mat-icon>
-    </button>
-    <mat-form-field class="search-label">
-        <input
+
+        <input class="form-control mr-sm-2"
                 matInput
                 #searchBar
                 type="text"
                 [value]="searchValue"
                 placeholder="Entrez votre recherche"
                 (keyup)="onChange($event.target)"
+               ria-label="Search"
         >
-    </mat-form-field>
+
 
 </div>

@@ -12,8 +12,10 @@ const maxPage = 1000;
 })
 
 export class MovieTableComponent implements OnInit, OnChanges {
+
     moviesFound: SearchMovieResponse;
     @Input() private _searchString;
+    @Input() private _searchRating;
     private _selectedTab = 1;
     private sortName = false;
     private sortScore = false;
@@ -123,7 +125,6 @@ export class MovieTableComponent implements OnInit, OnChanges {
                 res = ('' + a.title).localeCompare(b.title);
             }
             return res;
-
         });
         this.sortName = !this.sortName;
     }
@@ -162,4 +163,13 @@ export class MovieTableComponent implements OnInit, OnChanges {
     set selectedTab(value: number) {
         this._selectedTab = value;
     }
+
+    get searchRating() {
+        return this._searchRating;
+    }
+
+    set searchRating(value) {
+        this._searchRating = value;
+    }
 }
+

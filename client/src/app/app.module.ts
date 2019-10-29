@@ -22,6 +22,8 @@ import {ProfileModule} from './profile/profile.module';
 import {ReactiveFormsModule} from "@angular/forms";
 import {ProfileFormModule} from "./profile/profile-form/profile-form.module";
 import {MDBBootstrapModule} from "angular-bootstrap-md";
+import {SearchBarModule} from "./search-bar/search-bar.module";
+import {MovieTableModule} from "./product/movie/movie-table/movie-table.module";
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import {MDBBootstrapModule} from "angular-bootstrap-md";
         MatFormFieldModule,
         ReactiveFormsModule,
         ProfileFormModule,
-        MDBBootstrapModule.forRoot()
+        MDBBootstrapModule.forRoot(),
+        SearchBarModule,
+        MovieTableModule
     ],
     providers: [TmdbService, AngularFirestore],
     bootstrap: [AppComponent],
