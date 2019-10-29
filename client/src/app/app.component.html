@@ -38,15 +38,15 @@
                                 <br><br><br>
                                 <a class="nav-link pl-0" href="#">Filtre par note</a>
                                 <div class="rate">
-                                    <input type="radio" id="star5" name="rate" value="5" />
+                                    <input type="radio" id="star5" name="rate" value="5" (click)="rating5()" />
                                     <label for="star5" title="text">5 stars</label>
-                                    <input type="radio" id="star4" name="rate" value="4" />
+                                    <input type="radio" id="star4" name="rate" value="4" (click)="rating4()"/>
                                     <label for="star4" title="text">4 stars</label>
-                                    <input type="radio" id="star3" name="rate" value="3" />
+                                    <input type="radio" id="star3" name="rate" value="3" (click)="rating3()"/>
                                     <label for="star3" title="text">3 stars</label>
-                                    <input type="radio" id="star2" name="rate" value="2" />
+                                    <input type="radio" id="star2" name="rate" value="2" (click)="rating2()"/>
                                     <label for="star2" title="text">2 stars</label>
-                                    <input type="radio" id="star1" name="rate" value="1" />
+                                    <input type="radio" id="star1" name="rate" value="1" (click)="rating1()"/>
                                     <label for="star1" title="text">1 star</label>
                                 </div>
 
@@ -92,7 +92,7 @@
                 </form>
             </div>-->
             <app-movie-table [_searchString]="searchString"
-                             [_searchRating]=9></app-movie-table>
+                             [_searchRating]=searchRating></app-movie-table>
             <!--<router-outlet></router-outlet>-->
 
         </main>

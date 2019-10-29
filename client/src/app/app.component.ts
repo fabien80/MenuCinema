@@ -76,4 +76,20 @@ export class AppComponent implements OnInit {
         this._searchRating = value;
     }
 
+    rating1() {
+        this._searchRating = 2;
+    }
+    rating2() {
+        this._searchRating = 4;
+    }
+    rating3() {
+        this._searchRating = 6;
+    }
+    rating4() {
+        this._searchRating = 8;
+    }
+    rating5() {
+        this._searchRating = 9;
+    }
+
 }

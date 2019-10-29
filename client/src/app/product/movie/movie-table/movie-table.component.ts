@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {MovieResult, SearchMovieQuery, SearchMovieResponse} from '../../../tmdb-data/searchMovie';
 import {TmdbService} from '../../../services/tmdb.service';
+import {forEach} from "@angular/router/src/utils/collection";
 
 const maxPage = 1000;
 
@@ -14,8 +15,10 @@ const maxPage = 1000;
 export class MovieTableComponent implements OnInit, OnChanges {
 
     moviesFound: SearchMovieResponse;
+    // création temporaire de cette variable pour les rank, utilisation a la place du movieFound
     @Input() private _searchString;
     @Input() private _searchRating;
+
     private _selectedTab = 1;
     private sortName = false;
     private sortScore = false;
@@ -56,6 +59,16 @@ export class MovieTableComponent implements OnInit, OnChanges {
                 page
             };
             this.tmdbService.searchMovie(searchMovie).then((response: SearchMovieResponse) => {
+                var i =0;
+                for (let result of response.results) {
+                    if (result.vote_average <= this._searchRating) {
+                        console.log("supprimé", result.title, result.vote_average);
+                        response.results.splice(i,1);
+                    }
+                    else {console.log("conservé", result.title, result.vote_average);}
+                    i++;
+                }
+                    // le for est un test pour afficher seulement les films avec etoile, on supprime de la liste les valeur inférieur aux filtres
                 this.moviesFound = response;
             });
         } else {
