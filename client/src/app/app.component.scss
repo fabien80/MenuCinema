@@ -9,8 +9,30 @@
   margin: auto;
 }
 
+.mat-toolbar {
+  background-color: #434a4f;
+}
+
+#logoCinema {
+  height: 50px;
+}
+
+#titreCinema {
+  color: darkred;
+  font-size: 25px;
+
+}
+.spanText {
+  color: white;
+}
+
+.custom-control-label {
+  color : white;
+}
+
 .spacer {
   flex: 1 1 auto;
+  background-color: #cccccc;
 }
 
 .rate {

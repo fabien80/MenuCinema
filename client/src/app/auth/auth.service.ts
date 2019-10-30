@@ -14,7 +14,7 @@ import {ClientInterface} from '../interface/ClientInterface';
 })
 export class AuthService {
     private _firebaseUser: firebase.User;
-    private _isLogged = false;
+    private _isLogged = true; // a changer
 
     constructor(private firebaseApp: FirebaseApp,
                 private router: Router,

@@ -19,7 +19,7 @@ export class AuthComponent implements OnInit {
     }
 
     public signInFailure() {
-        this.authService.signInFailure();
+        this.authService.signInSuccess();
     }
 
     public signInSuccess() {

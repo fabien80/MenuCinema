@@ -33,6 +33,14 @@ export class TmdbService {
         }).toPromise();
     }
 
+
+    private async get2<T>(url: string): Promise<HttpResponse<T>> { // a finir
+        return this.http.get<T>(url, {
+            observe: 'response',
+            params: {api_key: this.apiKey} // a finir
+        }).toPromise(); // a finir
+    }
+
     constructor(private http: HttpClient) {
     }
 
@@ -51,6 +59,7 @@ export class TmdbService {
         return res.body;
     }
 
+
     async getMovieCastAndCrew(id: number, options?: MovieQuery): Promise<CreditsResponse> {
         const url = `${tmdbApi}/movie/${id}/credits`;
         const res = await this.get<MovieResponse>(url, options);
@@ -61,6 +70,13 @@ export class TmdbService {
         const url = `${tmdbApi}/search/movie`;
         const res = await this.get<SearchMovieResponse>(url, query);
         return res.body;
+    }
+
+    async TopMovie(query: SearchMovieQuery): Promise<SearchMovieResponse> { // a finir
+        const url = `${tmdbApi}/movie/popular`;
+        const res = await this.get2<SearchMovieResponse>(url);
+            // a finir
+        return res.body; // a finir
     }
 
     // _______________________________________________________________________________________________________________________________________

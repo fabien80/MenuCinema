@@ -11,6 +11,25 @@
     <div class="row h-100">
         <aside class="col-12 col-md-2 p-0 bg-dark">
             <nav class="navbar navbar-expand navbar-dark bg-dark flex-md-column flex-row align-items-start">
+                <a class="logo" (click)="goToHomepage()">
+                    <img
+
+                            class="logo"
+                            [src]="getLogoPath()"
+                            alt=""
+                            id="logoCinema"
+                    >
+                    <span id="titreCinema">MenuCinema</span>
+                </a>
+                <span class="spacer"></span>
+                <button mat-button (click)="goToProfile()">
+                    <mat-icon>person</mat-icon>
+                    <span class="spanText">Profil</span>
+                </button>
+                <button mat-button (click)="signOut()">
+                    <mat-icon>power_settings_new</mat-icon>
+                    <span class="spanText">Se déconnecter</span>
+                </button>
                 <br>
                 <app-search-bar (searchEvent)="onSearch($event)"></app-search-bar>
                 <br><br>
@@ -62,24 +81,7 @@
             </nav>
         </aside>
         <main class="col">
-            <mat-toolbar color="primary">
-                <a class="logo" (click)="goToHomepage()">
-                    <img
 
-                            class="logo"
-                            [src]="getLogoPath()"
-                            alt=""
-                    >
-                    <span>MenuCinema</span>
-                </a>
-                <span class="spacer"></span>
-                <button mat-button (click)="goToProfile()">
-                    <mat-icon>person</mat-icon>
-                </button>
-                <button mat-button (click)="signOut()">
-                    <mat-icon>power_settings_new</mat-icon>
-                </button>
-            </mat-toolbar>
 
             <!--<div>
                 <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">

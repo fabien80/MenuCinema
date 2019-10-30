@@ -13,6 +13,9 @@ import {MatButtonModule} from '@angular/material';
     declarations: [
         AuthComponent
     ],
+    exports: [
+        AuthComponent
+    ],
     imports: [
         CommonModule,
         FormsModule,

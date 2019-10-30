@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
                 public authService: AuthService,
                 private router: Router) {
         this.init();
-        this._searchString = 'A';
+        this._searchString = '';
         this._searchRating = 0;
     }
 

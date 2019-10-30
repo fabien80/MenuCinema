@@ -59,21 +59,29 @@ export class MovieTableComponent implements OnInit, OnChanges {
                 page
             };
             this.tmdbService.searchMovie(searchMovie).then((response: SearchMovieResponse) => {
-                var i =0;
-                for (let result of response.results) {
-                    if (result.vote_average <= this._searchRating) {
+                var i =0; // a finir
+                for (let result of response.results) { // a finir
+                    if (result.vote_average <= this._searchRating) { // a finir
                         console.log("supprimé", result.title, result.vote_average);
-                        response.results.splice(i,1);
+                        response.results.splice(i,1); // a finir
                     }
-                    else {console.log("conservé", result.title, result.vote_average);}
+                    else {console.log("conservé", result.title, result.vote_average);} // a finir
                     i++;
                 }
                     // le for est un test pour afficher seulement les films avec etoile, on supprime de la liste les valeur inférieur aux filtres
                 this.moviesFound = response;
             });
         } else {
-            this.moviesFound = this.emptyResult;
-        }
+            const searchMovie: SearchMovieQuery = { // a finir
+                query,
+                region: 'fr',
+                page
+            };
+            this.tmdbService.TopMovie(searchMovie).then((response: SearchMovieResponse) => { // a finir
+                this.moviesFound = response; // a finir
+            });
+           // this.moviesFound = this.emptyResult; ancienne version
+        } // a finir
     }
 
     /**
