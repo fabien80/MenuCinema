@@ -13,7 +13,6 @@ const maxPage = 1000;
 })
 
 export class MovieTableComponent implements OnInit, OnChanges {
-
     moviesFound: SearchMovieResponse;
     // création temporaire de cette variable pour les rank, utilisation a la place du movieFound
     @Input() private _searchString;
@@ -43,6 +42,17 @@ export class MovieTableComponent implements OnInit, OnChanges {
         this.searchMovie(this._searchString, this._selectedTab);
         this.sortName = false;
         this.sortScore = false;
+        // précedemment placé dans le searchmovie, là ou "ici" est indiqué
+        var i =0; // a finir
+        for (let result of this.moviesFound.results) { // a finir
+            if (result.vote_average <= this._searchRating) { // a finir
+                console.log("supprimé", result.title, result.vote_average, this.searchRating);
+                // response.results.splice(0,1); // il faut faire la suppression seulement après avoir bouclé
+            }
+            else {console.log("conservé", result.title, result.vote_average);} // a finir
+
+        }
+        // le for est un test pour afficher seulement les films avec etoile, on supprime de la liste les valeur inférieur aux filtres
     }
 
 
@@ -59,16 +69,7 @@ export class MovieTableComponent implements OnInit, OnChanges {
                 page
             };
             this.tmdbService.searchMovie(searchMovie).then((response: SearchMovieResponse) => {
-                var i =0; // a finir
-                for (let result of response.results) { // a finir
-                    if (result.vote_average <= this._searchRating) { // a finir
-                        console.log("supprimé", result.title, result.vote_average);
-                        response.results.splice(i,1); // a finir
-                    }
-                    else {console.log("conservé", result.title, result.vote_average);} // a finir
-                    i++;
-                }
-                    // le for est un test pour afficher seulement les films avec etoile, on supprime de la liste les valeur inférieur aux filtres
+               // ici test
                 this.moviesFound = response;
             });
         } else {

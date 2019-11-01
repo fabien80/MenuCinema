@@ -10,10 +10,12 @@ import {BasketModule} from '../../basket/basket.module';
 import {MovieRoutingModule} from './movie-routing.module';
 import {RecommandationModule} from "../../recommandation/recommandation.module";
 import {ReviewListModule} from "../review-list/review-list.module";
+import { MovieTestsecondComponent } from './movie-testsecond/movie-testsecond.component';
 
 @NgModule({
     declarations: [
-        MovieComponent
+        MovieComponent,
+        MovieTestsecondComponent
     ],
     imports: [
         CommonModule,
@@ -29,7 +31,8 @@ import {ReviewListModule} from "../review-list/review-list.module";
         RecommandationModule,
         ReviewListModule
     ], exports: [
-        MovieComponent
+        MovieComponent,
+        MovieTestsecondComponent
     ]
 })
 export class MovieModule {

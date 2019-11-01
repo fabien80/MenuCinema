@@ -12,11 +12,13 @@ import {FoodModule} from './food/food.module';
 import {MovieModule} from './movie/movie.module';
 import {DialogsModule} from '../dialogs/dialogs.module';
 import { ReviewListComponent } from './review-list/review-list.component';
+import { MovieTestComponent } from './movie/movie-test/movie-test.component';
 
 @NgModule({
     declarations: [
         ProductSelectionComponent,
-        ProductListComponent
+        ProductListComponent,
+        MovieTestComponent
 
     ],
     imports: [
@@ -32,7 +34,8 @@ import { ReviewListComponent } from './review-list/review-list.component';
         DialogsModule
     ], exports: [
         ProductSelectionComponent,
-        ProductListComponent
+        ProductListComponent,
+        MovieTestComponent
     ]
 })
 export class ProductModule {

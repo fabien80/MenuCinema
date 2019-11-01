@@ -1,0 +1,9 @@
+<div class="card-columns">
+<tr class="each_row" *ngFor="let movie of moviesFound.results" >
+    <app-movie-testsecond [moviesTitle]="movie.title"
+                          [moviesOverview]="movie.overview"
+                          [moviesVote_average]="movie.vote_average"
+                          [moviesPoster_path]="movie.poster_path"
+    ></app-movie-testsecond>
+</div>
+
