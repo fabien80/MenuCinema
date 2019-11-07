@@ -1,0 +1,56 @@
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Sidebar -->
+<div class="bg-dark border-right" id="sidebar-wrapper">
+  <span id="titreCinema">MenuCinema </span>
+  <div class="list-group list-group-flush">
+    <span class="spacer"></span>
+    <button mat-button (click)="goToProfile()">
+      <mat-icon>person</mat-icon>
+      <span class="spanText">Profil</span>
+    </button>
+    <button mat-button (click)="signOut()">
+      <mat-icon>power_settings_new</mat-icon>
+      <span class="spanText">Se déconnecter</span>
+    </button>
+    <br>
+    <app-search-bar (searchEvent)="onSearch($event)"></app-search-bar>
+    <br><br>
+    <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
+      <li class="nav-item">
+        <a class="nav-link pl-0" href="#">Filtre par catégorie</a><br>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="checkAction" (click)="action()">
+          <label class="custom-control-label" for="checkAction">Action</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="chekComedie" (click)="comedie()">
+          <label class="custom-control-label" for="chekComedie">Comédie</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="checkAventure" (click)="aventure()">
+          <label class="custom-control-label" for="checkAventure">Aventure</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="checkHorreur" (click)="horreur()">
+          <label class="custom-control-label" for="checkHorreur">Horreur</label>
+          <br><br><br>
+        </div>
+      </li>
+    </ul>
+    <a class="nav-link pl-0" href="#">Filtre par note</a>
+    <div class="rate">
+      <input type="radio" id="star5" name="rate" value="5" (click)="rating5()" />
+      <label for="star5" title="text">5 stars</label>
+      <input type="radio" id="star4" name="rate" value="4" (click)="rating4()"/>
+      <label for="star4" title="text">4 stars</label>
+      <input type="radio" id="star3" name="rate" value="3" (click)="rating3()"/>
+      <label for="star3" title="text">3 stars</label>
+      <input type="radio" id="star2" name="rate" value="2" (click)="rating2()"/>
+      <label for="star2" title="text">2 stars</label>
+      <input type="radio" id="star1" name="rate" value="1" (click)="rating1()"/>
+      <label for="star1" title="text">1 star</label>
+    </div>
+    <br>
+    <br>
+
+

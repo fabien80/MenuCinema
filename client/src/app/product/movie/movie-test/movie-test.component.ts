@@ -2,6 +2,8 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {MovieResult, SearchMovieQuery, SearchMovieResponse} from '../../../tmdb-data/searchMovie';
 import {TmdbService} from '../../../services/tmdb.service';
 import {forEach} from "@angular/router/src/utils/collection";
+import {NavBarService} from '../../../services/nav-bar.service';
+import {of, Observable, Subject} from 'rxjs';
 
 const maxPage = 1000;
 
@@ -11,47 +13,103 @@ const maxPage = 1000;
   styleUrls: ['./movie-test.component.scss']
 })
 export class MovieTestComponent implements OnInit, OnChanges {
+
+  // sur cette page on a modifié les variable, le constructor, le ngonInit, le ngOnChange, le searchMovie,
+
   moviesFound: SearchMovieResponse;
-  // création temporaire de cette variable pour les rank, utilisation a la place du movieFound
+  // création des variables pour les utiliser dans la fonction searchstring
   @Input() private _searchString;
   @Input() private _searchRating;
+  @Input() private comedie;
+  @Input() private aventure;
+  @Input() private action;
+  @Input() private horreur;
+
 
   private _selectedTab = 1;
   private sortName = false;
   private sortScore = false;
-  emptyResult: SearchMovieResponse = {
-    results: [],
-    total_results: 0,
-    total_pages: 0
-  };
 
 
-  constructor(private tmdbService: TmdbService) {
+  // par defaut on affiche on fait appel a searchmovie pour afficher les topmovie
+  constructor(private tmdbService: TmdbService,
+              private navBarService: NavBarService) {
+    this.searchMovie(this._searchString, this._selectedTab);
   }
 
+  //ici on met en place des subscribe qui interceptent les modifications des variables dans le navbar.service
   ngOnInit() {
-    this.moviesFound = this.emptyResult;
+    //évement qui se produit quand une recherche est fait dans la search bar
+    this.navBarService._SearchStringSubject
+        .subscribe(
+            data => {
+              this._searchString = data;
+              this.searchMovie(this._searchString, this._selectedTab);
+            },
+            err => { console.log('error')},
+            () => {
+            }
+        );
+    //évement qui se produit quand une recherche est fait sur les notes
+    this.navBarService._searchRatingSubject.subscribe(
+            data => {
+              this._searchRating = data;
+              this.searchMovie(this._searchString, this._selectedTab);
+            },
+            err => { console.log('error')},
+            () => {
+            }
+        );
+    //évement qui se produit quand une recherche sur la catégorie action
+    this.navBarService._actionSubject
+        .subscribe(
+            data => {
+              this.action = data;
+              this.searchMovie(this._searchString, this._selectedTab);
+            },
+            err => { console.log('error')},
+            () => {
+            }
+        );
+    //évement qui se produit quand une recherche sur la catégorie aventure
+    this.navBarService._aventureSubject
+        .subscribe(
+            data => {
+              this.aventure = data;
+              this.searchMovie(this._searchString, this._selectedTab);
+            },
+            err => { console.log('error')},
+            () => {
+            }
+        );
+    //évement qui se produit quand une recherche sur la catégorie comédie
+    this.navBarService._comedieSubject
+        .subscribe(
+            data => {
+              this.comedie = data;
+              this.searchMovie(this._searchString, this._selectedTab);
+            },
+            err => { console.log('error')},
+            () => {
+            }
+        );
+    //évement qui se produit quand une recherche sur la catégorie horreur
+    this.navBarService._horreurSubject
+        .subscribe(
+            data => {
+              this.horreur = data;
+              this.searchMovie(this._searchString, this._selectedTab);
+            },
+            err => { console.log('error')},
+            () => {
+            }
+        );
   }
 
   /**
    * A chaques changements des inputs, effectue une nouvelle recherche, se replace à la première page et remet à false les boolean de tri
    */
   ngOnChanges(changes: SimpleChanges) {
-    this._selectedTab = 1;
-    this.searchMovie(this._searchString, this._selectedTab);
-    this.sortName = false;
-    this.sortScore = false;
-    // précedemment placé dans le searchmovie, là ou "ici" est indiqué
-    var i =0; // a finir
-    for (let result of this.moviesFound.results) { // a finir
-      if (result.vote_average <= this._searchRating) { // a finir
-        console.log("supprimé", result.title, result.vote_average, this.searchRating);
-        // response.results.splice(0,1); // il faut faire la suppression seulement après avoir bouclé
-      }
-      else {console.log("conservé", result.title, result.vote_average);} // a finir
-
-    }
-    // le for est un test pour afficher seulement les films avec etoile, on supprime de la liste les valeur inférieur aux filtres
   }
 
 
@@ -60,8 +118,9 @@ export class MovieTestComponent implements OnInit, OnChanges {
    * @param query : la phrase ou mot à rechercher
    * @param page : la page selectionné
    */
+  //si la query est vide, on fait un appel API a TopMovie, si la query n'est pas vide, on fait un appel API a searchMovie
   public searchMovie(query: string, page: number) {
-    if (query !== '') {
+    if (query !== '' && query !== undefined) {
       const searchMovie: SearchMovieQuery = {
         query,
         region: 'fr',
@@ -77,8 +136,8 @@ export class MovieTestComponent implements OnInit, OnChanges {
         region: 'fr',
         page
       };
-      this.tmdbService.TopMovie(searchMovie).then((response: SearchMovieResponse) => { // a finir
-        this.moviesFound = response; // a finir
+      this.tmdbService.TopMovie(searchMovie, this._searchRating, this.action, this.comedie, this.aventure, this.horreur).then((response: SearchMovieResponse) => { // a finir
+        this.moviesFound = response;// a finir
       });
       // this.moviesFound = this.emptyResult; ancienne version
     } // a finir
@@ -109,6 +168,7 @@ export class MovieTestComponent implements OnInit, OnChanges {
     }
 
     this.searchMovie(this._searchString, this._selectedTab);
+
   }
 
   /**

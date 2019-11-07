@@ -6,12 +6,13 @@ import {firebase, firebaseui} from 'firebaseui-angular';
 
 export const environment = {
     production: false,
+    tmdbBaseUrl: 'https://api.themoviedb.org/3/',
     tmdbKey: `040fc302130d6412705f5f025c30dbe1`,
     firebase: {
-        apiKey: 'AIzaSyBHHHbXlleq_10r6PEC-cXu0VkiFa0c2d8',
-        authDomain: 'l3m-menu-cinema.firebaseapp.com',
-        databaseURL: 'https://l3m-menu-cinema.firebaseio.com',
-        projectId: 'l3m-menu-cinema',
+        apiKey: 'AIzaSyBCf5bgZ3iZiK2DJ95-vArfXroz9e4gt3U\n',
+        authDomain: 'menucinema-248cb.firebaseapp.com',
+        databaseURL: 'https://menucinema-248cb.firebaseio.com',
+        projectId: 'menucinema-248cb',
         storageBucket: 'l3m-menu-cinema.appspot.com',
         messagingSenderId: '654696164371'
     },

@@ -1,0 +1,104 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <aside class="col-12 col-md-2 p-0 bg-dark">
+            <nav class="navbar navbar-expand navbar-dark bg-dark flex-md-column flex-row align-items-start">
+                <a class="logo" (click)="goToHomepage()">
+                    <img
+
+                            class="logo"
+                            [src]="getLogoPath()"
+                            alt=""
+                            id="logoCinema"
+                    >
+                    <span id="titreCinema">MenuCinema</span>
+                </a>
+                <span class="spacer"></span>
+                <button mat-button (click)="goToProfile()">
+                    <mat-icon>person</mat-icon>
+                    <span class="spanText">Profil</span>
+                </button>
+                <button mat-button (click)="signOut()">
+                    <mat-icon>power_settings_new</mat-icon>
+                    <span class="spanText">Se déconnecter</span>
+                </button>
+                <br>
+                <app-search-bar (searchEvent)="onSearch($event)"></app-search-bar>
+                <br><br>
+                <div class="collapse navbar-collapse">
+                    <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
+                        <li class="nav-item">
+                            <a class="nav-link pl-0" href="#">Filtre par catégorie</a><br>
+                            <!-- Default unchecked -->
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="checkAction">
+                                <label class="custom-control-label" for="checkAction">Action</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="chekComedie">
+                                <label class="custom-control-label" for="chekComedie">Comédie</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="checkAventure">
+                                <label class="custom-control-label" for="checkAventure">Aventure</label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="checkHorreur">
+                                <label class="custom-control-label" for="checkHorreur">Horreur</label>
+
+                                <br><br><br>
+                                <a class="nav-link pl-0" href="#">Filtre par note</a>
+                                <div class="rate">
+                                    <input type="radio" id="star5" name="rate" value="5" (click)="rating5()" />
+                                    <label for="star5" title="text">5 stars</label>
+                                    <input type="radio" id="star4" name="rate" value="4" (click)="rating4()"/>
+                                    <label for="star4" title="text">4 stars</label>
+                                    <input type="radio" id="star3" name="rate" value="3" (click)="rating3()"/>
+                                    <label for="star3" title="text">3 stars</label>
+                                    <input type="radio" id="star2" name="rate" value="2" (click)="rating2()"/>
+                                    <label for="star2" title="text">2 stars</label>
+                                    <input type="radio" id="star1" name="rate" value="1" (click)="rating1()"/>
+                                    <label for="star1" title="text">1 star</label>
+                                </div>
+
+                            </div>
+
+
+                        </li>
+
+
+
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+        <main class="col">
+
+
+            <!--<div>
+                <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">
+                    <div>
+                        <input type="file" name="profile" (change)="onFileSelect($event)" />
+                    </div>
+                    <div>
+                        <button type="submit">Upload</button>
+                    </div>
+                </form>
+            </div>-->
+
+            <app-movie-test [_searchString]="searchString"
+                             [_searchRating]=searchRating></app-movie-test>
+            <!--<router-outlet></router-outlet>-->
+
+        </main>
+    </div>
+</div>
+

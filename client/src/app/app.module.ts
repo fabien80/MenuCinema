@@ -24,11 +24,13 @@ import {ProfileFormModule} from "./profile/profile-form/profile-form.module";
 import {MDBBootstrapModule} from "angular-bootstrap-md";
 import {SearchBarModule} from "./search-bar/search-bar.module";
 import {MovieTableModule} from "./product/movie/movie-table/movie-table.module";
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        NavBarComponent
     ],
     imports: [
         BrowserModule,
@@ -58,6 +60,9 @@ import {MovieTableModule} from "./product/movie/movie-table/movie-table.module";
     ],
     providers: [TmdbService, AngularFirestore],
     bootstrap: [AppComponent],
+    exports: [
+        NavBarComponent
+    ],
     entryComponents: []
 })
 export class AppModule {

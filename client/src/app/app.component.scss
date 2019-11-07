@@ -1,3 +1,4 @@
+
 .logo {
   height: inherit;
   position: relative;
@@ -10,25 +11,28 @@
 }
 
 .mat-toolbar {
-  background-color: #434a4f;
+  height: 150px;
+  width: 150px;
 }
 
 #logoCinema {
-  height: 50px;
+  height: 9vw;
 }
 
 #titreCinema {
   color: darkred;
-  font-size: 25px;
+  font-size: 2vw;
 
 }
+
 .spanText {
   color: white;
 }
 
-.custom-control-label {
+.custom-control.custom-checkbox{
   color : white;
 }
+
 
 .spacer {
   flex: 1 1 auto;
@@ -37,8 +41,8 @@
 
 .rate {
   float: left;
-  height: 46px;
-  padding: 0 10px;
+  height: 1.75vw;
+  padding: 0 2vw;
 }
 .rate:not(:checked) > input {
   position:absolute;
@@ -50,7 +54,7 @@
   overflow:hidden;
   white-space:nowrap;
   cursor:pointer;
-  font-size:30px;
+  font-size:1.75vw;
   color:#ccc;
 }
 .rate:not(:checked) > label:before {
@@ -70,3 +74,16 @@
 .rate > label:hover ~ input:checked ~ label {
   color: #c59b08;
 }
+
+
+
+body,html{
+  height: 100%;
+}
+
+
+.main .row{
+  padding: 0px;
+  margin: 0px;
+}
+

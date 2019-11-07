@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {SearchType} from '../enum/SearchType';
 
 @Component({
@@ -7,10 +7,16 @@ import {SearchType} from '../enum/SearchType';
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-    private _searchString: string;
+    @Input() private _searchString;
+    @Input() private _searchRating;
+    @Input() private comedie;
+    @Input() private aventure;
+    @Input() private action;
+    @Input() private horreur;
 
     constructor() {
-        this._searchString = 'A';
+        this._searchString = '';
+        console.log(this.comedie);
     }
 
     ngOnInit() {

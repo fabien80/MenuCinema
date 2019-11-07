@@ -38,12 +38,13 @@ export class MovieTableComponent implements OnInit, OnChanges {
      * A chaques changements des inputs, effectue une nouvelle recherche, se replace à la première page et remet à false les boolean de tri
      */
     ngOnChanges(changes: SimpleChanges) {
+        console.log('Detectection input');
         this._selectedTab = 1;
         this.searchMovie(this._searchString, this._selectedTab);
         this.sortName = false;
         this.sortScore = false;
         // précedemment placé dans le searchmovie, là ou "ici" est indiqué
-        var i =0; // a finir
+       /* var i =0; // a finir
         for (let result of this.moviesFound.results) { // a finir
             if (result.vote_average <= this._searchRating) { // a finir
                 console.log("supprimé", result.title, result.vote_average, this.searchRating);
@@ -51,7 +52,7 @@ export class MovieTableComponent implements OnInit, OnChanges {
             }
             else {console.log("conservé", result.title, result.vote_average);} // a finir
 
-        }
+        }*/
         // le for est un test pour afficher seulement les films avec etoile, on supprime de la liste les valeur inférieur aux filtres
     }
 
@@ -70,6 +71,7 @@ export class MovieTableComponent implements OnInit, OnChanges {
             };
             this.tmdbService.searchMovie(searchMovie).then((response: SearchMovieResponse) => {
                // ici test
+                console.log(response);
                 this.moviesFound = response;
             });
         } else {

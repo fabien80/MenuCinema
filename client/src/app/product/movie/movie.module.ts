@@ -12,10 +12,12 @@ import {RecommandationModule} from "../../recommandation/recommandation.module";
 import {ReviewListModule} from "../review-list/review-list.module";
 import { MovieTestsecondComponent } from './movie-testsecond/movie-testsecond.component';
 
+
+
 @NgModule({
     declarations: [
         MovieComponent,
-        MovieTestsecondComponent
+        MovieTestsecondComponent,
     ],
     imports: [
         CommonModule,
@@ -29,11 +31,11 @@ import { MovieTestsecondComponent } from './movie-testsecond/movie-testsecond.co
         BasketModule,
         MovieRoutingModule,
         RecommandationModule,
-        ReviewListModule
+        ReviewListModule,
     ], exports: [
         MovieComponent,
-        MovieTestsecondComponent
-    ]
+        MovieTestsecondComponent,
+    ],
 })
 export class MovieModule {
 }

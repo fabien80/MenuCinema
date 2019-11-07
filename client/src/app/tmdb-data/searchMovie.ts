@@ -8,6 +8,11 @@ export interface SearchMovieQuery {
   primary_release_year?: number;
 }
 
+export interface SearchTopMovie {
+  language?: string; // default: en-US
+  page?: number; // Specify which page to query. minimum: 1, maximum: 1000, default: 1
+}
+
 export interface SearchMovieResponse {
   page?: number;
   results?: MovieResult[];
